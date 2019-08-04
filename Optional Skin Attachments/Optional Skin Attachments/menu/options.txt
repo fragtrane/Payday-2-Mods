@@ -1,0 +1,115 @@
+{
+	"menu_id" : "osa_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "osa_options_menu_title",
+	"description" : "osa_options_menu_desc",
+	"back_callback" : "osa_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "osa_autobuy",
+			"title" : "osa_autobuy_title",
+			"description" : "osa_autobuy_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_autobuy",
+			"default_value" : false
+		},
+		{
+			"type" : "slider",
+			"id" : "osa_autobuy_threshold",
+			"title" : "osa_autobuy_threshold_title",
+			"description" : "osa_autobuy_threshold_desc",
+			"callback" : "osa_callback_slider_discrete",
+			"value" : "osa_autobuy_threshold",
+			"default_value" : 50,
+			"max" : 200,
+			"min" : 0,
+			"step" : 10
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_prefer_sp_buck",
+			"title" : "osa_prefer_sp_buck_title",
+			"description" : "osa_prefer_sp_buck_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_prefer_sp_buck",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_save_removed",
+			"title" : "osa_save_removed_title",
+			"description" : "osa_save_removed_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_save_removed",
+			"default_value" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_optional_boost",
+			"title" : "osa_optional_boost_title",
+			"description" : "osa_optional_boost_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_optional_boost",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_disable_all_boosts",
+			"title" : "osa_disable_all_boosts_title",
+			"description" : "osa_disable_all_boosts_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_disable_all_boosts",
+			"default_value" : false
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_rename_legendary",
+			"title" : "osa_rename_legendary_title",
+			"description" : "osa_rename_legendary_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_rename_legendary",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_allow_unlock",
+			"title" : "osa_allow_unlock_title",
+			"description" : "osa_allow_unlock_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_allow_unlock",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_remove_stats",
+			"title" : "osa_remove_stats_title",
+			"description" : "osa_remove_stats_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_remove_stats",
+			"default_value" : false
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "osa_show_legendary",
+			"title" : "osa_show_legendary_title",
+			"description" : "osa_show_legendary_desc",
+			"callback" : "osa_callback_multi",
+			"items" : [
+				"osa_show_legendary_off",
+				"osa_show_legendary_owned",
+				"osa_show_legendary_all"
+			],
+			"value" : "osa_show_legendary",
+			"default_value" : 1
+		}
+	]
+}

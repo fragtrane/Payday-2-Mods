@@ -1,0 +1,35 @@
+{
+	"name" : "Optional Skin Attachments",
+	"description" : "Adds options for choosing attachments when applying skins. Also improves support for legendary skins and stat boosts.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/managers/menu/blackmarketgui",
+			"script_path" : "lua/blackmarketgui.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/weaponfactorytweakdata",
+			"script_path" : "lua/weaponfactorytweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/blackmarket/weaponskinstweakdata",
+			"script_path" : "lua/weaponskinstweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/managers/blackmarketmanager",
+			"script_path" : "lua/blackmarketmanager.lua"
+		},
+		{
+			"hook_id" : "lib/network/matchmaking/networkaccountsteam",
+			"script_path" : "lua/networkaccountsteam.lua"
+		}
+	]
+}
