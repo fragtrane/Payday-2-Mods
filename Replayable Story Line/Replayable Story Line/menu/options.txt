@@ -1,0 +1,15 @@
+{
+	"menu_id" : "rsl_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "rsl_options_menu_title",
+	"description" : "rsl_options_menu_desc",
+	"items" : [
+		{
+			"type" : "button",
+			"id" : "rsl_reset_story",
+			"title" : "rsl_reset_story_title",
+			"description" : "rsl_reset_story_desc",
+			"callback" : "rsl_callback_button"
+		}
+	]
+}
