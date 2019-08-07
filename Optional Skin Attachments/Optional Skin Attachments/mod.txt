@@ -3,8 +3,8 @@
 	"description" : "Adds options for choosing attachments when applying skins. Also improves support for legendary skins and stat boosts.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
-	"version" : "1.0",
-	"priority" : 0,
+	"version" : "1.1",
+	"priority" : 11,
 	"blt_version" : 2,
 	"hooks" : [
 		{
@@ -30,6 +30,14 @@
 		{
 			"hook_id" : "lib/network/matchmaking/networkaccountsteam",
 			"script_path" : "lua/networkaccountsteam.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "OptionalSkinAttachments",
+			"host" : {
+				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Optional%20Skin%20Attachments/latest.json"
+			}
 		}
 	]
 }

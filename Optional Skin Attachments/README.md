@@ -20,7 +20,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 ## Installation
 
-This is a BLT mod. Download "Optional_Skin_Attachments_v1.0.zip" and extract the entire contents to your mods folder.
+This is a BLT mod. Download "Optional_Skin_Attachments_v1.1.zip" and extract the entire contents to your mods folder.
 
 The location of the mods folder depends on where you installed the game; typically it can be found here:
 
@@ -34,6 +34,11 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
 
+**v1.1 - 2019-08-07**
+
+- Added automatic updating.
+- Changed BLT priority to 11 to make compatible with Blackmarket Persistent Names and WolfHUD.
+
 **v1.0 - 2019-08-04**
 
-Initial release.
+- Initial release.
