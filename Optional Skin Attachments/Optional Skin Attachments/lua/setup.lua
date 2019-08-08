@@ -14,6 +14,8 @@ OSA._settings = {
 	osa_prefer_sp_buck = true,--Prefer Gage Shotgun Pack 000 Buckshot if available.
 	osa_save_removed = true,--Try to save attachments when a skin is removed from Steam inventory.
 	
+	osa_preview = true,--Choose attachments in previews.
+	
 	osa_optional_boost = false,--Allow optional stat boosts.
 	osa_disable_all_boosts = false,--Disable all stat boosts.
 	
@@ -37,6 +39,11 @@ OSA._state_apply = {
 --Track parameters for removing skin
 OSA._state_remove = {
 	keep = false,
+	ready = false
+}
+--Track parameters for previewing skin
+OSA._state_preview = {
+	attach = "keep",--"keep" "replace" "remove"
 	ready = false
 }
 --Flag for BlackMarketGui:buy_equip_weapon_cosmetics_callback
@@ -828,6 +835,98 @@ function OSA:remove_final(params)
 	--Set State
 	self._state_remove.keep = params.keep
 	self._state_remove.ready = true--Flag to indicate to use OSA settings when applying skin
+	--Execute Callback
+	params._callback()
+end
+
+--Menu for previewing skin
+function OSA:preview_skin_menu(params)
+	local menu_title = managers.localization:text("osa_dialog_title")
+
+	--Build parameters
+	local weapon = managers.blackmarket._global.crafted_items[params.data.category][params.data.slot]
+	local blueprint = weapon.blueprint
+	local cosmetics = {
+		id = params.data.cosmetic_id,
+		quality = params.data.cosmetic_quality
+	}
+	local default_blueprint = false
+	if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
+		default_blueprint = tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint
+	end
+	
+	--Menu Message
+	local menu_message
+	if default_blueprint then
+		menu_message = managers.localization:text("dialog_weapon_cosmetics_set_blueprint")
+		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_preview")
+	else
+		menu_message = managers.localization:text("osa_dialog_ask_preview")
+	end
+	
+	--Menu Options
+	local menu_options = {}
+	if default_blueprint then
+		--Skins with attachments
+		menu_options = {
+			[1] = {
+				text = managers.localization:text("osa_dialog_keep"),
+				callback = callback(self, self, "preview_final", {
+					attach = "keep",--Stage 1 flag
+					_callback = params._callback
+				})
+			},
+			[2] = {
+				text = managers.localization:text("osa_dialog_replace"),
+				callback = callback(self, self, "preview_final", {
+					attach = "replace",--Stage 1 flag
+					_callback = params._callback
+				})
+			},
+			[3] = {
+				text = managers.localization:text("osa_dialog_remove"),
+				callback = callback(self, self, "preview_final", {
+					attach = "remove",--Stage 1 flag
+					_callback = params._callback
+				})
+			},
+			[4] = {
+				text = managers.localization:text("dialog_cancel"),
+				is_cancel_button = true
+			}
+		}
+	else
+		--Skins without attachments
+		menu_options = {
+			[1] = {
+				text = managers.localization:text("osa_dialog_keep"),
+				callback = callback(self, self, "preview_final", {
+					attach = "keep",--Stage 1 flag
+					_callback = params._callback
+				})
+			},
+			[2] = {
+				text = managers.localization:text("osa_dialog_remove"),
+				callback = callback(self, self, "preview_final", {
+					attach = "remove",--Stage 1 flag
+					_callback = params._callback
+				})
+			},
+			[3] = {
+				text = managers.localization:text("dialog_cancel"),
+				is_cancel_button = true
+			}
+		}
+	end
+	local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+	menu:Show()
+end
+
+--Execute after parameters have been set
+function OSA:preview_final(params)
+	--Set State
+	self._state_preview.attach = params.attach
+	self._state_preview.ready = true--Flag to indicate to use OSA settings when previewing skin
 	--Execute Callback
 	params._callback()
 end

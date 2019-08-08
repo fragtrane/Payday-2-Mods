@@ -1,5 +1,33 @@
 dofile(ModPath .. "lua/setup.lua")
 
+
+--When a skin is previewed, call the OSA skin menu
+function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
+	if OSA._settings.osa_preview then
+		local _callback = callback(self, self, "osa_preview_cosmetic_on_weapon_callback", data)
+		OSA:preview_skin_menu({data = data, _callback = _callback})
+	else
+		self:osa_preview_cosmetic_on_weapon_callback(data)
+	end
+end
+
+--New preview skin call
+function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
+	if OSA._state_preview.ready then
+		managers.blackmarket:osa_view_weapon_with_cosmetics(data.category, data.slot, {
+			id = data.cosmetic_id,
+			quality = data.cosmetic_quality
+		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
+		OSA._state_preview.ready = false
+	else
+		managers.blackmarket:view_weapon_with_cosmetics(data.category, data.slot, {
+			id = data.cosmetic_id,
+			quality = data.cosmetic_quality
+		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
+	end
+	self:reload()
+end
+
 --This function also uses _equip_weapon_cosmetics_callback
 --Not sure if/when it is used, use the original _equip_weapon_cosmetics_callback if it happens
 local orig_BlackMarketGui_buy_equip_weapon_cosmetics_callback = BlackMarketGui.buy_equip_weapon_cosmetics_callback

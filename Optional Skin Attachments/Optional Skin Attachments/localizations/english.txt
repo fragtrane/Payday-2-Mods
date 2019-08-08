@@ -14,6 +14,9 @@
 	"osa_save_removed_title" : "Save Mods On Missing Skins",
 	"osa_save_removed_desc" : "Try to keep attachments when skins are removed from Steam inventory.",
 	
+	"osa_preview_title" : "Choose Attachments in Previews",
+	"osa_preview_desc" : "Enable dialog menu for choosing attachments when previewing weapon skins.",
+	
 	"osa_optional_boost_title" : "Optional Boosts",
 	"osa_optional_boost_desc" : "Adds option to choose whether or not to apply stat boosts.",
 	
@@ -23,8 +26,8 @@
 	"osa_rename_legendary_title" : "Rename Legendary Skins",
 	"osa_rename_legendary_desc" : "Allow legendary skins to be renamed.",
 	
-	"osa_allow_unlock_title" : "Unlock Legendary Skins",
-	"osa_allow_unlock_desc" : "Allow legendary skins to be unlocked.",
+	"osa_allow_unlock_title" : "Customize Legendary Skins",
+	"osa_allow_unlock_desc" : "Allow legendary skins to be unlocked so that they can be customized.",
 	
 	"osa_remove_stats_title" : "Remove Legendary Mod Stats",
 	"osa_remove_stats_desc" : "Remove stats from legendary weapon attachments.",
@@ -49,6 +52,7 @@
 	
 	"osa_dialog_change_unlock_settings" : "Change your settings in the options menu if you want to customize locked legendary skins.",
 	"osa_dialog_ask_attachments" : "Which attachments do you want to use?",
+	"osa_dialog_ask_preview" : "Which attachments do you want to preview?",
 	"osa_dialog_ask_keep" : "Do you want to keep your attachments?",
 	
 	"osa_dialog_ask_unlock" : "Do you want to unlock this skin so that it can be customized?",

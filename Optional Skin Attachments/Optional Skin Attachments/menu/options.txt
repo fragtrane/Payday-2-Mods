@@ -50,6 +50,19 @@
 		},
 		{
 			"type" : "toggle",
+			"id" : "osa_preview",
+			"title" : "osa_preview_title",
+			"description" : "osa_preview_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_preview",
+			"default_value" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
 			"id" : "osa_optional_boost",
 			"title" : "osa_optional_boost_title",
 			"description" : "osa_optional_boost_desc",

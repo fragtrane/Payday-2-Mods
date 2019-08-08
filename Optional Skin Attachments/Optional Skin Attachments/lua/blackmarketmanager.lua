@@ -1,11 +1,65 @@
 dofile(ModPath .. "lua/setup.lua")
 
---This lets us preview mods on legendary skins if unlock is enabled.
+--Allow mods to be previewed on locked legendary skins
 function BlackMarketManager:is_previewing_legendary_skin()
-	if OSA._settings.osa_allow_unlock then
-		return false
+	return false
+end
+
+--OSA preview skin function
+function BlackMarketManager:osa_view_weapon_with_cosmetics(category, slot, cosmetics, open_node_cb, spawn_workbench, custom_data)
+	if not self._global.crafted_items[category] or not self._global.crafted_items[category][slot] then
+		Application:error("[BlackMarketManager:view_weapon] Trying to view weapon that doesn't exist", category, slot)
+
+		return
 	end
-	return tweak_data.blackmarket.weapon_skins[self._last_viewed_cosmetic_id] and tweak_data.blackmarket.weapon_skins[self._last_viewed_cosmetic_id].locked or false
+
+	local weapon = self._global.crafted_items[category][slot]
+	local blueprint = weapon.blueprint
+
+	--Choose attachments
+	if OSA._state_preview.attach == "keep" then
+		blueprint = deep_clone(self._preview_blueprint.blueprint)
+	elseif OSA._state_preview.attach == "replace" then
+		if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
+			if tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint then
+				blueprint = tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint
+			end
+		end
+	elseif OSA._state_preview.attach == "remove" then
+		blueprint = deep_clone(managers.weapon_factory:get_default_blueprint_by_factory_id(weapon.factory_id))
+	end
+	
+	if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
+		self._last_viewed_cosmetic_id = cosmetics.id
+	end
+	
+	--Rest unchanged
+	self:get_preview_blueprint(category, slot)
+
+	self._preview_blueprint.blueprint = deep_clone(blueprint)
+
+	self:set_preview_cosmetics(category, slot, cosmetics)
+
+	local texture_switches = self:get_weapon_texture_switches(category, slot, weapon)
+
+	self:preload_weapon_blueprint("preview", weapon.factory_id, blueprint, spawn_workbench)
+
+	if spawn_workbench then
+		table.insert(self._preloading_list, {
+			done_cb = function ()
+				managers.menu_scene:spawn_workbench_room()
+			end
+		})
+	end
+
+	table.insert(self._preloading_list, {
+		done_cb = function ()
+			managers.menu_scene:spawn_item_weapon(weapon.factory_id, blueprint, cosmetics, texture_switches, custom_data)
+		end
+	})
+	table.insert(self._preloading_list, {
+		done_cb = open_node_cb
+	})
 end
 
 --Buy mod function. Need to check settings and threshold before calling.
