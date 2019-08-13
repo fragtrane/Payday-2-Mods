@@ -27,11 +27,13 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [Optional_Skin_Attachments_v1.2.zip](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.2.zip) and extract the entire contents to your mods folder.
+This is a BLT mod. Download [Optional_Skin_Attachments_v1.2.zip](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.2.zip) and extract the entire contents to your `mods` folder.
 
-The location of the mods folder depends on where you installed the game; typically it can be found here:
+The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
-	C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+```
+C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+```
 
 ## Contact
 
