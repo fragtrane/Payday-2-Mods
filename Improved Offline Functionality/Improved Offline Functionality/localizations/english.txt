@@ -1,0 +1,28 @@
+{
+	"iof_options_menu_title" : "Improved Offline Functionality",
+	"iof_options_menu_desc" : "Improved Offline Functionality mod options.",
+	
+	"iof_community_title" : "Community Content",
+	"iof_community_desc" : "Enable community and achievement content when offline.",
+	
+	"iof_inventory_title" : "Block Inventory Update",
+	"iof_inventory_desc" : "Disable Steam inventory update when offline.",
+	
+	"iof_filters_title" : "Offline Filters",
+	"iof_filters_desc" : "Show filter button in Crime.net Offline.",
+	
+	"iof_chat_title" : "Offline Chat",
+	"iof_chat_desc" : "Enable chat in single player mode.",
+	
+	"iof_no_interrupt_title" : "No Interaction Interrupt",
+	"iof_no_interrupt_desc" : "Prevent pause menu and chat from interrupting interactions in single player mode.",
+	
+	"iof_armor_title" : "No Armor Regen Bonus",
+	"iof_armor_desc" : "Disable the armor regeneration bonus in single player mode.",
+	
+	"iof_winters_title" : "Enable Winters",
+	"iof_winters_desc" : "Allow Captain Winters to spawn in single player mode.",
+	
+	"iof_dialog_title" : "Improved Offline Functionality",
+	"iof_dialog_restart_required" : "Settings have been updated. You need to restart your game for some settings to take effect."
+}

@@ -1,0 +1,67 @@
+{
+	"name" : "Improved Offline Functionality",
+	"description" : "Allows the use of community content/skins offline and adds various single player mode improvements.",
+	"author" : "fragtrane, some features based on Unknown Knight's Simulate Online mod (Winters, armor recovery, chat)",
+	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/managers/chatmanager",
+			"script_path" : "lua/chatmanager.lua"
+		},
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/menumanager.lua"
+		},
+		{
+			"hook_id" : "lib/network/matchmaking/networkaccountsteam",
+			"script_path" : "lua/networkaccountsteam.lua"
+		},
+		{
+			"hook_id" : "lib/managers/dlcmanager",
+			"script_path" : "lua/dlcmanager.lua"
+		},
+		{
+			"hook_id" : "lib/managers/blackmarketmanager",
+			"script_path" : "lua/blackmarketmanager.lua"
+		},
+		{
+			"hook_id" : "lib/units/beings/player/states/playerstandard",
+			"script_path" : "lua/playerstandard.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/playertweakdata",
+			"script_path" : "lua/playertweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/managers/group_ai_states/groupaistatebesiege",
+			"script_path" : "lua/groupaistatebesiege.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/guitweakdata",
+			"script_path" : "lua/guitweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/managers/menu/menucomponentmanager",
+			"script_path" : "lua/menucomponentmanager.lua"
+		},
+		{
+			"hook_id" : "lib/managers/menumanagerdialogs",
+			"script_path" : "lua/menumanagerdialogs.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "ImprovedOfflineFunctionality",
+			"host" : {
+				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Improved%20Offline%20Functionality/latest.json"
+			}
+		}
+	]
+}

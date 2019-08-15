@@ -1,0 +1,25 @@
+{
+	"dsa_options_menu_title" : "Disable Skin Attachments",
+	"dsa_options_menu_desc" : "Disable Skin Attachments mod options.",
+	
+	"dsa_fix_common_uncommon_title" : "Fix Common/Uncommon Skins",
+	"dsa_fix_common_uncommon_desc" : "Fix common and uncommon weapon skins that remove attachments for no reason.",
+	
+	"dsa_remove_attachments_title" : "Remove Attachments",
+	"dsa_remove_attachments_desc" : "Remove attachments from weapon skins.",
+	
+	"dsa_rename_legendary_title" : "Rename Legendary Skins",
+	"dsa_rename_legendary_desc" : "Allow legendary weapon skins to be renamed.",
+	
+	"dsa_unlock_legendaries_title" : "Customize Legendary Skins",
+	"dsa_unlock_legendaries_desc" : "Unlock legendary weapon skins so that they can be customized.",
+	
+	"dsa_remove_unlocked_attachments_title" : "Remove Unlocked Legendary Attachments",
+	"dsa_remove_unlocked_attachments_desc" : "Remove attachments from unlocked legendary weapon skins.",
+	
+	"dsa_remove_legendary_stats_title" : "Remove Legendary Attachment Stats",
+	"dsa_remove_legendary_stats_desc" : "Remove stats from legendary weapon attachments.",
+	
+	"dsa_dialog_title" : "Disable Skin Attachments",
+	"dsa_dialog_restart_required" : "Settings have been updated. You need to restart your game for some settings to take effect."
+}

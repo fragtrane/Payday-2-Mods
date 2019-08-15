@@ -1,0 +1,72 @@
+{
+	"menu_id" : "iof_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "iof_options_menu_title",
+	"description" : "iof_options_menu_desc",
+	"back_callback" : "iof_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "iof_community",
+			"title" : "iof_community_title",
+			"description" : "iof_community_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_community",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_inventory",
+			"title" : "iof_inventory_title",
+			"description" : "iof_inventory_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_inventory",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_filters",
+			"title" : "iof_filters_title",
+			"description" : "iof_filters_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_filters",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_chat",
+			"title" : "iof_chat_title",
+			"description" : "iof_chat_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_chat",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_no_interrupt",
+			"title" : "iof_no_interrupt_title",
+			"description" : "iof_no_interrupt_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_no_interrupt",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_armor",
+			"title" : "iof_armor_title",
+			"description" : "iof_armor_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_armor",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_winters",
+			"title" : "iof_winters_title",
+			"description" : "iof_winters_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_winters",
+			"default_value" : false
+		}
+	]
+}

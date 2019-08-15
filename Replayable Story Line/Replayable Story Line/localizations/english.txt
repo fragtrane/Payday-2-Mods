@@ -1,0 +1,11 @@
+{
+	"rsl_options_menu_title" : "Replayable Story Line",
+	"rsl_options_menu_desc" : "Replayable Story Line mod options.",
+	
+	"rsl_reset_story_title" : "Reset Story Line",
+	"rsl_reset_story_desc" : "Completely reset your story line progress.",
+	
+	"rsl_dialog_title" : "Replayable Story Line",
+	"rsl_dialog_reset_confirm" : "Are you sure you want to completely reset your story line progress?\n\nWarning: this action cannot be undone.",
+	"rsl_dialog_reset_done" : "Story line has been reset."
+}
