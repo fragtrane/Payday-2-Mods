@@ -2,6 +2,8 @@
 
 Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/ECM%20Timer/ECM_Timer_v1.0.zip).
 
+This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25509).
+
 Note: the code used in this mod was not written by me. I have only ported it to BLT and made a few small changes.
 
 ## Overview
