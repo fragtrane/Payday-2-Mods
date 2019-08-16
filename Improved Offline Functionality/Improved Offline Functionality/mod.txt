@@ -60,7 +60,7 @@
 		{
 			"identifier" : "ImprovedOfflineFunctionality",
 			"host" : {
-				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Improved%20Offline%20Functionality/latest.json"
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Improved%20Offline%20Functionality/latest.json"
 			}
 		}
 	]

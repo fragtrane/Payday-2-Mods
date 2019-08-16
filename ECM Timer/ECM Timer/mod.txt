@@ -20,7 +20,7 @@
 		{
 			"identifier" : "ECMTimer",
 			"host" : {
-				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/ECM%20Timer/latest.json"
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/ECM%20Timer/latest.json"
 			}
 		}
 	]

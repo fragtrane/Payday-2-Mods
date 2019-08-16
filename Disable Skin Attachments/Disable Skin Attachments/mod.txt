@@ -32,7 +32,7 @@
 		{
 			"identifier" : "DisableSkinAttachments",
 			"host" : {
-				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Disable%20Skin%20Attachments/latest.json"
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Disable%20Skin%20Attachments/latest.json"
 			}
 		}
 	]

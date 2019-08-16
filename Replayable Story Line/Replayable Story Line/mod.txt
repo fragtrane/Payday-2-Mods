@@ -20,7 +20,7 @@
 		{
 			"identifier" : "ReplayableStoryLine",
 			"host" : {
-				"meta": "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Replayable%20Story%20Line/latest.json"
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Replayable%20Story%20Line/latest.json"
 			}
 		}
 	]
