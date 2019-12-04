@@ -1,6 +1,6 @@
 # Optional Skin Attachments
 
-Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.2.zip).
+Latest version [v1.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.3.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25474).
 
@@ -27,7 +27,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.2.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.3.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -42,6 +42,11 @@ Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/gro
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.3 - 2019-12-04**
+
+- Reworked BlackMarketGui:populate_mods function, most compatibility issues should now be resolved.
+- BLT priority reverted to 0.
 
 **v1.2 - 2019-08-08**
 

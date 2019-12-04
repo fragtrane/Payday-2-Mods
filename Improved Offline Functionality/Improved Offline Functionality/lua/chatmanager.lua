@@ -7,5 +7,5 @@ function ChatManager:feed_system_message(channel_id, message)
 		self:_receive_message(channel_id, managers.localization:to_upper_text("menu_system_message"), message, tweak_data.system_chat_color)
 		return
 	end
-	ChatManager.feed_system_message(self, channel_id, message)
+	orig_ChatManager_feed_system_message(self, channel_id, message)
 end

@@ -28,8 +28,14 @@ IOF._state = {
 	iof_has_dbd_clan = false,--Dead by Daylight Community
 	iof_has_solus_clan = false,--The Solus Project Community
 	iof_has_raidww2_clan = false,--Raid: World War II Community
-	iof_has_bulldog_1 = false,--Why Don't We Just Use a Spoon? achievement
-	iof_has_sah_11 = false--Heavy Metal achievement
+	iof_has_bulldog_1 = false,--Why Don't We Just Use a Spoon? (Complete Hoxton Breakout on Normal)
+	iof_has_sah_11 = false,--Heavy Metal (Find wrench in Shacklethorne Auction)
+	iof_has_dah_1 = false,--Valuable Ornaments (Complete Diamond Heist on Normal)
+	iof_has_nmh_1 = false,--Just Some Medical Students (Complete No Mercy on Normal)
+	iof_has_glace_1 = false,--Taking the High Road (Complete Green Bridge on Normal)
+	iof_has_mex_9 = false,--Identity Theft (Find murkywater uniforms in Border Crossing)
+	iof_has_sah_1 = false,--Trip to the Coast (Complete Shacklethorne Auction on Normal)
+	iof_has_wwh_1 = false--Friendship Frozen (Complete Alaskan Deal on Normal)
 }
 
 --JSON encode helper

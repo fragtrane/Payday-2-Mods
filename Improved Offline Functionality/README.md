@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.0.zip).
+Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25511).
 
@@ -20,7 +20,7 @@ This mod provides various improvements when playing without an internet connecti
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v1.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -39,6 +39,12 @@ Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/gro
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.1 - 2019-12-04**
+
+- Fixed crash when buying assets (thanks Zed).
+- Added support for new achievement-locked oufits.
+- Compatibility fixes for update 198.
 
 **v1.0 - 2019-08-15**
 
