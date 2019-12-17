@@ -1,0 +1,23 @@
+{
+	"name" : "Revert U199 Titan Cams",
+	"description" : "Big Bank, Four Stores, Big Oil Day 1, and Diamond Store use normal cameras as they did pre-U199.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "core/lib/managers/mission/coreelementunitsequence",
+			"script_path" : "lua/coreelementunitsequence.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "RevertU199TitanCams",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Revert%20U199%20Titan%20Cams/latest.json"
+			}
+		}
+	]
+}
