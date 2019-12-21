@@ -1,0 +1,42 @@
+{
+	"name" : "Item Hunter",
+	"description" : "Locates items for collectible achievements.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/managers/objectinteractionmanager",
+			"script_path" : "lua/objectinteractionmanager.lua"
+		},
+		{
+			"hook_id" : "core/lib/managers/mission/coreelementunitsequence",
+			"script_path" : "lua/coreelementunitsequence.lua"
+		}
+	],
+	"keybinds" : [
+		{
+			"keybind_id" : "item_hunter_keybind",
+			"name" : "itmhnt_keybind_title",
+			"description" : "itmhnt_keybind_desc"
+			"script_path" : "lua/item_hunter_keybind.lua",
+			"run_in_menu" : false,
+			"run_in_game" : true,
+			"localized" : true
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "ItemHunter",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Item%20Hunter/latest.json"
+			}
+		}
+	]
+}
