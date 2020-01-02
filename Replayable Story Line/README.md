@@ -2,7 +2,7 @@
 
 Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Replayable%20Story%20Line/Replayable_Story_Line_v1.0.zip).
 
-This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25510).
+This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25510).
 
 ## Overview
 

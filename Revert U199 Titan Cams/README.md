@@ -2,7 +2,7 @@
 
 Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Revert%20U199%20Titan%20Cams/Revert_U199_Titan_Cams_v1.0.zip).
 
-This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=26173).
+This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26173).
 
 ## Overview
 

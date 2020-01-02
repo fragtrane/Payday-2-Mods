@@ -2,7 +2,7 @@
 
 Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.1.zip).
 
-This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25511).
+This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
 ## Overview
 
