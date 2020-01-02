@@ -1,8 +1,8 @@
 # Optional Skin Attachments
 
-Latest version [v1.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.3.zip).
+Latest version [v1.4](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.4.zip).
 
-This mod can also be found on [Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=25474).
+This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
 ## Overview
 
@@ -27,7 +27,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.3.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.4.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -42,6 +42,13 @@ Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/gro
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.4 - 2020-01-02**
+
+- Fixed a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
+- Fixed a bug where autobuy would purchase stat boosts.
+- Reworked code for deducting continental coins when autobuying mods.
+- Reworked code for checking skins that don't contain mods.
 
 **v1.3 - 2019-12-04**
 

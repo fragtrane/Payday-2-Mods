@@ -3,7 +3,7 @@
 	"description" : "Adds options for choosing attachments when applying skins. Also improves support for legendary skins and stat boosts.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
-	"version" : "1.3",
+	"version" : "1.4",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [
@@ -14,6 +14,10 @@
 		{
 			"hook_id" : "lib/managers/menu/blackmarketgui",
 			"script_path" : "lua/blackmarketgui.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/blackmarkettweakdata",
+			"script_path" : "lua/blackmarkettweakdata.lua"
 		},
 		{
 			"hook_id" : "lib/tweak_data/weaponfactorytweakdata",

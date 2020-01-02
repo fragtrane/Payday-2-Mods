@@ -27,8 +27,8 @@ function WeaponFactoryTweakData:_init_legendary()
 	}
 	
 	--Set new values, remove stats, set name/description
-	for weapon, parts in pairs(OSA._gen_1_mods) do
-		for _, part_id in pairs(parts) do
+	for skin, part_list in pairs(OSA._gen_1_mods) do
+		for _, part_id in pairs(part_list) do
 			for k, v in pairs(new_values) do
 				self.parts[part_id][k] = v
 			end
@@ -40,8 +40,7 @@ function WeaponFactoryTweakData:_init_legendary()
 				self.parts[part_id].stats = {value = val}
 			end
 			self.parts[part_id].name_id = "osa_bm_"..part_id
-			self.parts[part_id].desc_id = "osa_bm_req_"..weapon
+			self.parts[part_id].desc_id = "osa_bm_req_"..skin
 		end
 	end
-	
 end

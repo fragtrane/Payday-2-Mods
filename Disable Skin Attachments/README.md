@@ -1,6 +1,6 @@
 # Disable Skin Attachments
 
-Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.0.zip).
+Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.1.zip).
 
 Note: you may want to consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod, which allows you to choose which attachments you want to use instead of completely disabling them. Optional Skin Attachments is not compatible with Disable Skin Attachments, so only install one of them.
 
@@ -22,7 +22,7 @@ Please note that this mod completely removes attachments from skins, so the atta
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Disable_Skin_Attachments_v1.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Disable_Skin_Attachments_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -43,6 +43,11 @@ Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/gro
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.1 - 2020-01-02**
+
+- Fixed a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
+- Reworked code for renaming legendary skins.
 
 **v1.0 - 2019-08-15**
 

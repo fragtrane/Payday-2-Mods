@@ -144,5 +144,10 @@
 	"osa_bm_wpn_fps_ass_m14_b_legendary" : "Plush Phoenix Barrel",
 	"osa_bm_wpn_fps_ass_m14_body_legendary" : "Plush Phoenix Stock",
 	"osa_bm_wpn_fps_ass_m14_body_upper_legendary" : "Plush Phoenix Upper Body",
-	"osa_bm_wpn_fps_ass_m14_body_lower_legendary" : "Plush Phoenix Lower Body"
+	"osa_bm_wpn_fps_ass_m14_body_lower_legendary" : "Plush Phoenix Lower Body",
+	
+	"osa_dialog_error_01" : "Error Code 01. If you see this message, please let me know.",
+	"osa_dialog_error_02" : "Error Code 02. If you see this message, please let me know.",
+	"osa_dialog_error_03" : "Error Code 03. If you see this message, please let me know.",
+	"osa_dialog_error_04" : "Error Code 04. If you see this message, please let me know."
 }

@@ -1,13 +1,13 @@
 dofile(ModPath .. "lua/setup.lua")
 
-
 --When a skin is previewed, call the OSA skin menu
+local orig_BlackMarketGui_preview_cosmetic_on_weapon_callback = BlackMarketGui.preview_cosmetic_on_weapon_callback
 function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
 	if OSA._settings.osa_preview then
 		local _callback = callback(self, self, "osa_preview_cosmetic_on_weapon_callback", data)
 		OSA:preview_skin_menu({data = data, _callback = _callback})
 	else
-		self:osa_preview_cosmetic_on_weapon_callback(data)
+		orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
 	end
 end
 
@@ -20,6 +20,9 @@ function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
 		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
 		OSA._state_preview.ready = false
 	else
+		local title = managers.localization:text("osa_dialog_title")
+		local desc = managers.localization:text("osa_dialog_error_04")
+		OSA:ok_menu(title, desc, false, false)
 		managers.blackmarket:view_weapon_with_cosmetics(data.category, data.slot, {
 			id = data.cosmetic_id,
 			quality = data.cosmetic_quality
@@ -33,7 +36,7 @@ end
 local orig_BlackMarketGui_buy_equip_weapon_cosmetics_callback = BlackMarketGui.buy_equip_weapon_cosmetics_callback
 function BlackMarketGui:buy_equip_weapon_cosmetics_callback(data)
 	local title = managers.localization:text("osa_dialog_title")
-	local desc = "Error Code 01. If you see this message, please let me know."
+	local desc = managers.localization:text("osa_dialog_error_01")
 	OSA:ok_menu(title, desc, false, false)
 	OSA._buy_equip_flag = true
 	orig_BlackMarketGui_buy_equip_weapon_cosmetics_callback(self, data)
@@ -63,7 +66,7 @@ function BlackMarketGui:_equip_weapon_cosmetics_callback(data)
 		OSA._buy_equip_flag = false
 	elseif not OSA._state_apply.ready then
 		local title = managers.localization:text("osa_dialog_title")
-		local desc = "Error Code 02. If you see this message, please let me know."
+		local desc = managers.localization:text("osa_dialog_error_02")
 		OSA:ok_menu(title, desc, false, false)
 		managers.blackmarket:on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
 	else
@@ -89,7 +92,7 @@ function BlackMarketGui:_remove_weapon_cosmetics_callback(data)
 	--Catch errors
 	if not OSA._state_remove.ready then
 		local title = managers.localization:text("osa_dialog_title")
-		local desc = "Error Code 03. If you see this message, please let me know."
+		local desc = managers.localization:text("osa_dialog_error_03")
 		OSA:ok_menu(title, desc, false, false)
 		managers.blackmarket:on_remove_weapon_cosmetics(data.category, data.slot)
 	else
@@ -108,16 +111,9 @@ function BlackMarketGui:populate_mods(data)
 	for index, _ in ipairs(data) do
 		local mod_name = data[index].name
 		if mod_name and parts_tweak_data[mod_name] and parts_tweak_data[mod_name].is_legendary_part then
-			local set = false
-			for skin, parts in pairs(OSA._gen_1_mods) do
-				for _, part_id in pairs(parts) do
-					if mod_name == part_id then
-						data[index].bitmap_texture = OSA._gen_1_folders[skin]
-						set = true
-						break
-					end
-				end
-				if set then
+			for skin, part_list in pairs(OSA._gen_1_mods) do
+				if table.contains(part_list, mod_name) then
+					data[index].bitmap_texture = OSA._gen_1_folders[skin]
 					break
 				end
 			end

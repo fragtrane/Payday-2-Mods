@@ -65,7 +65,7 @@ end
 --Buy mod function. Need to check settings and threshold before calling.
 --Based on BlackMarketManager:add_to_inventory
 function BlackMarketManager:osa_buy_mod(part_id)
-	managers.custom_safehouse:add_coins(-6)
+	managers.custom_safehouse:deduct_coins(6)
 	local parts_tweak_data = tweak_data.weapon.factory.parts
 	local global_value = parts_tweak_data[part_id].dlc or "normal"
 	local category = "weapon_mods"
@@ -231,14 +231,16 @@ function BlackMarketManager:osa_on_equip_weapon_cosmetics(category, slot, instan
 		--Step 6: Try to buy mods that are out of stock. If bought, move the part to in_stock table.
 		if OSA._settings.osa_autobuy then
 			for _, part_id in ipairs(out_of_stock) do
-				local coins = math.floor(Application:digest_value(managers.custom_safehouse._global.total)) or 0
-				--Don't autobuy if coins will drop below threshold.
-				if coins-6  >= OSA._settings.osa_autobuy_threshold then
-					self:osa_buy_mod(part_id)
-					table.insert(in_stock, part_id)
-				else
-					--If coins will drop below threshold, stop because we can't buy anymore.
-					break
+				if parts_tweak_data[part_id].type ~= "bonus" then
+					local coins = math.floor(Application:digest_value(managers.custom_safehouse._global.total)) or 0
+					--Don't autobuy if coins will drop below threshold.
+					if coins-6  >= OSA._settings.osa_autobuy_threshold then
+						self:osa_buy_mod(part_id)
+						table.insert(in_stock, part_id)
+					else
+						--If coins will drop below threshold, stop because we can't buy anymore.
+						break
+					end
 				end
 			end
 			for _, part_id in ipairs(in_stock) do
@@ -541,14 +543,16 @@ function BlackMarketManager:osa_on_remove_weapon_cosmetics(category, slot, skip_
 		--Step 6: Try to buy mods that are out of stock. If bought, move the part to in_stock table.
 		if OSA._settings.osa_autobuy then
 			for _, part_id in ipairs(out_of_stock) do
-				local coins = math.floor(Application:digest_value(managers.custom_safehouse._global.total)) or 0
-				--Don't autobuy if coins will drop below threshold.
-				if coins-6  >= OSA._settings.osa_autobuy_threshold then
-					self:osa_buy_mod(part_id)
-					table.insert(in_stock, part_id)
-				else
-					--If coins will drop below threshold, stop because we can't buy anymore.
-					break
+				if parts_tweak_data[part_id].type ~= "bonus" then
+					local coins = math.floor(Application:digest_value(managers.custom_safehouse._global.total)) or 0
+					--Don't autobuy if coins will drop below threshold.
+					if coins-6  >= OSA._settings.osa_autobuy_threshold then
+						self:osa_buy_mod(part_id)
+						table.insert(in_stock, part_id)
+					else
+						--If coins will drop below threshold, stop because we can't buy anymore.
+						break
+					end
 				end
 			end
 			for _, part_id in ipairs(in_stock) do
@@ -627,7 +631,9 @@ function BlackMarketManager:osa_on_remove_weapon_cosmetics(category, slot, skip_
 	
 	--Enable update again
 	OSA._skip_omw = false
-
+	
+	--Bugfix: locked name is not reset when skin is removed in base game
+	crafted.locked_name = nil
 	--Rest unchanged except for showing the dialog menu
 	crafted.customize_locked = nil
 	crafted.cosmetics = nil
@@ -667,5 +673,13 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 		self:osa_on_remove_weapon_cosmetics(category, slot, skip_update)
 		return
 	end
+	
 	orig_BlackMarketManager_on_remove_weapon_cosmetics(self, category, slot, skip_update)
+	
+	--Bugfix: locked name is not reset when skin is removed in base game
+	local crafted = self._global.crafted_items[category][slot]
+	if not crafted then
+		return
+	end
+	crafted.locked_name = nil
 end
