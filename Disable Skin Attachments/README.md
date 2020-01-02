@@ -32,7 +32,7 @@ C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
 
 ## Acknowledgments
 
-This mod was inspired by >:3/Pawcio1337's [Disabled skin included modifications](https://modworkshop.net/mydownloads.php?action=view_down&did=19603) and [Customizable legendary skins](https://modworkshop.net/mydownloads.php?action=view_down&did=15082) mods.
+This mod was inspired by >:3/Pawcio1337's [Disabled skin included modifications](https://modworkshop.net/mod/19603) and [Customizable legendary skins](https://modworkshop.net/mod/15082) mods.
 
 Note: both of these mods can trigger false-positive cheater tags.
 

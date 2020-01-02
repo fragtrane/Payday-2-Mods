@@ -30,7 +30,7 @@ C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
 
 ## Acknowledgments
 
-Some parts of this mod (chat, armor regen, Winters) were inspired by Unknown Knight's [Simulate Online](https://modworkshop.net/mydownloads.php?action=view_down&did=16175) mod.
+Some parts of this mod (chat, armor regen, Winters) were inspired by Unknown Knight's [Simulate Online](https://modworkshop.net/mod/16175) mod.
 
 ## Contact
 
