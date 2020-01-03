@@ -8,7 +8,6 @@ Note: you may want to consider using my [Optional Skin Attachments](https://gith
 
 This mod removes weapon attachments from weapon skins and allows legendary weapon skins to be unlocked. Key features and options:
 
-- **No False-Positive Cheater Tags:** Using a weapon mod from a DLC that you don't own is programmed to trigger a cheater tag, and most legendary attachments are also programmed to trigger a cheater tag. This normally gets overrided because the game checks that the attachment is included in the skin that you are using. When a mod removes the attachments associated with a skin, this can lead to false-positive cheater tags if the check is not updated. This issue has been resolved in this mod.
 - **Fix Common/Uncommon Skins:** Fix common and uncommon weapon skins that remove attachments for no reason.
 - **Remove Attachments:** Remove attachments from weapon skins (rare, epic, and non-locked legendary skins).
 - **Rename Legendary Skins:** Allow legendary weapon skins to be renamed.
@@ -16,7 +15,11 @@ This mod removes weapon attachments from weapon skins and allows legendary weapo
 - **Remove Unlocked Legendary Attachments:** Remove attachments from unlocked legendary weapon skins.
 - **Remove Legendary Attachment Stats:** Remove stats from legendary weapon attachments.
 
-Please note that this mod completely removes attachments from skins, so the attachments will not appear as "available" when the skin is applied. This may be a problem if you don't have certain weapon attachments in stock or if you don't own all the DLCs. If you want to have more control over weapon attachments instead of just completely disabling them, consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod instead.
+## Additional Changes/Remarks
+
+- This mod deletes the list of attachment associated with a skin, so the attachments will not appear as "Available" when the skin is applied. This may be a problem if you don't have certain weapon attachments in stock or if you don't own all the DLCs. If you want to have more control over weapon attachments instead of just completely disabling them, consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod instead.
+- If done incorrectly, deleting the list of attachments associated with a skin can cause false-positive cheater flags because the game uses this list to verify whether a player is allowed to use DLC/legendary attachments. This check has been modified in this mod to avoid this issue.
+- This mod fixes a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
 
 ## Installation
 
