@@ -14,7 +14,6 @@ ItemHunter.item_data.halloween_nightmare.objectives = {
 	}
 }
 
---Note: only available on Jewelry Store
 --Praying Mantis (gmod_1)
 --Bullseye (gmod_2)
 --My Spider Sense is Tingling (gmod_3)
@@ -22,9 +21,20 @@ ItemHunter.item_data.halloween_nightmare.objectives = {
 --Like A Boy Killing Snakes (gmod_5)
 --There and Back Again (gmod_6)
 ItemHunter.item_data.gmod = {}
-ItemHunter.item_data.gmod.level = "jewelry_store"--Jewelry Store
---ItemHunter.item_data.gmod.level = "any"
---ItemHunter.item_data.gmod.exclude = {"short1_stage1", "short1_stage2", "short2_stage1", "short2_stage2b"}--Tutorial
+ItemHunter.item_data.gmod.level = "any"
+ItemHunter.item_data.gmod.exclude = {
+	"safehouse",--The Safe House (Laundromat)
+	"chill",--Safe House (Customizable)
+	"chill_combat",--Safe House Raid
+	"haunted",--Safe House Nightmare
+	"hvh",--Cursed Kill Room
+	"short1_stage1", "short1_stage2",--Flash Drive (Stealth Tutorial)
+	"short2_stage1", "short2_stage2b",--Get the Coke (Loud Tutorial)
+	"skm_mus",--Holdout (The Diamond)
+	"skm_red2",--Holdout (First World Bank)
+	"skm_run",--Holdout (Heat Street)
+	"skm_watchdogs_stage2"--Holdout (Boat Load)
+}
 ItemHunter.item_data.gmod.objectives = {
 	interactions = {
 		{id = "Idstring(@IDb3cc2abe1734636c@)", name = "gage_assignment"},--Green Mantis

@@ -32,4 +32,4 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 **v1.0 - 2019-12-17**
 
-Initial release.
+- Initial release.

@@ -1,6 +1,6 @@
 # Item Hunter
 
-Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.0.zip).
+Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26200).
 
@@ -18,7 +18,7 @@ This mod adds waypoints to items for collectible achievements/trophies. The mod 
 	- Water Works (Safe House Nightmare, Overkill)
 
 ### 2014
-- Gage Mod Courier packages: (only available on Jewelry Store for balance)
+- Gage Mod Courier packages:
 	- Praying Mantis (Green Mantis)
 	- Bullseye (Yellow Bull)
 	- My Spider Sense is Tingling (Red Spider)
@@ -72,7 +72,7 @@ This mod adds waypoints to items for collectible achievements/trophies. The mod 
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Item_Hunter_v1.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Item_Hunter_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -88,6 +88,10 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
 
+**v1.1 - 2020-01-08**
+
+- Enabled Gage Mod Courier packages across all maps.
+
 **v1.0 - 2019-12-21**
 
-Initial release.
+- Initial release.
