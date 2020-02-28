@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.1.zip).
+Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.2.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
@@ -20,7 +20,7 @@ This mod provides various improvements when playing without an internet connecti
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.2.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -34,11 +34,17 @@ Some parts of this mod (chat, armor regen, Winters) were inspired by Unknown Kni
 
 ## Contact
 
-Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/groups/frag_pd2)
+Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.2 - 2020-02-29**
+
+- Added support for the Repairman outfit.
+- Added support for the Minstrel outfit and its variations.
+- Added support for the PAYDAY 2 Secret.
 
 **v1.1 - 2019-12-04**
 

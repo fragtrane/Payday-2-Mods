@@ -4,7 +4,7 @@ dofile(ModPath .. "lua/setup.lua")
 local orig_AchievmentManager_get_info = AchievmentManager.get_info
 function AchievmentManager:get_info(id)
 	if not Steam:logged_on() and IOF._settings.iof_community then
-		if IOF._state["iof_has_"..id] then
+		if IOF._state[id] then
 			return {awarded = true}
 		end
 	end

@@ -14,7 +14,7 @@ end
 local orig_BlackMarketManager_has_unlocked_shock = BlackMarketManager.has_unlocked_shock
 function BlackMarketManager:has_unlocked_shock()
 	if not Steam:logged_on() and IOF._settings.iof_community then
-		return IOF._state.iof_has_sah_11, "bm_menu_locked_shock"
+		return IOF._state.sah_11, "bm_menu_locked_shock"
 	end
 	
 	return orig_BlackMarketManager_has_unlocked_shock
