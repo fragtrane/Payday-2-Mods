@@ -1,0 +1,39 @@
+{
+	"name" : "Extra Profiles and Skill Sets",
+	"description" : "Adds more profiles and skill sets.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/managers/multiprofilemanager",
+			"script_path" : "lua/multiprofilemanager.lua"
+		},
+		{
+			"hook_id" : "lib/managers/menu/multiprofileitemgui",
+			"script_path" : "lua/multiprofileitemgui.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/moneytweakdata",
+			"script_path" : "lua/moneytweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/skilltreetweakdata",
+			"script_path" : "lua/skilltreetweakdata.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "ExtraProfilesAndSkillSets",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Extra%20Profiles%20and%20Skill%20Sets/latest.json"
+			}
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"fragProfiles_options_menu_title" : "Extra Profiles and Skill Sets",
+	"fragProfiles_options_menu_desc"  : "Extra Profiles and Skill Sets mod options.",
+	
+	"fragProfiles_total_profiles_title" : "Number of Profiles",
+	"fragProfiles_total_profiles_desc"  : "Total number of profiles (including base game profiles). Click \"Save Settings\" to confirm changes.",
+	"fragProfiles_commit_settings_title" : "Save Settings",
+	"fragProfiles_commit_settings_desc"  : "Click to confirm changes, otherwise they will be discarded.",
+	
+	"fragProfiles_dialog_title" : "Extra Profiles and Skill Sets",
+	"fragProfiles_dialog_unchanged" : "Number of profiles unchanged.",
+	"fragProfiles_dialog_number_profiles" : "You have selected $profile_chosen profiles. You currently have $profile_current profiles.",
+	"fragProfiles_dialog_add_remove_single" : "Profile #$profile_single will be $profile_operation.",
+	"fragProfiles_dialog_add_remove_multiple" : "Profiles #$profile_min-#$profile_max will be $profile_operation.",
+	"fragProfiles_dialog_warn_remove" : "Warning: removing a profile will delete its skills and loadout. You cannot undo this action.",
+	"fragProfiles_dialog_ask_continue" : "Do you want to continue?",
+	"fragProfiles_dialog_saved" : "Settings saved. Restart your game for changes to take effect."
+}

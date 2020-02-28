@@ -1,0 +1,31 @@
+{
+	"menu_id" : "fragProfiles_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "fragProfiles_options_menu_title",
+	"description" : "fragProfiles_options_menu_desc",
+	"items" : [
+		{
+			"type" : "slider",
+			"id" : "total_profiles",
+			"title" : "fragProfiles_total_profiles_title",
+			"description" : "fragProfiles_total_profiles_desc",
+			"callback" : "fragProfiles_callback_slider_discrete",
+			"value" : "total_profiles",
+			"default_value" : 30,
+			"max" : 60,
+			"min" : 15,
+			"step" : 5
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "button",
+			"id" : "commit_settings",
+			"title" : "fragProfiles_commit_settings_title",
+			"description" : "fragProfiles_commit_settings_desc",
+			"callback" : "fragProfiles_callback_button"
+		}
+	]
+}
