@@ -1,0 +1,45 @@
+{
+	"menu_id" : "rtc_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "rtc_options_menu_title",
+	"description" : "rtc_options_menu_desc",
+	"back_callback" : "rtc_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "rtc_big",
+			"title" : "rtc_big_title",
+			"description" : "rtc_big_desc",
+			"callback" : "rtc_callback_toggle",
+			"value" : "rtc_big",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "rtc_welcome_to_the_jungle_1",
+			"title" : "rtc_welcome_to_the_jungle_1_title",
+			"description" : "rtc_welcome_to_the_jungle_1_desc",
+			"callback" : "rtc_callback_toggle",
+			"value" : "rtc_welcome_to_the_jungle_1",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "rtc_family",
+			"title" : "rtc_family_title",
+			"description" : "rtc_family_desc",
+			"callback" : "rtc_callback_toggle",
+			"value" : "rtc_family",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "rtc_four_stores",
+			"title" : "rtc_four_stores_title",
+			"description" : "rtc_four_stores_desc",
+			"callback" : "rtc_callback_toggle",
+			"value" : "rtc_four_stores",
+			"default_value" : true
+		}
+	]
+}

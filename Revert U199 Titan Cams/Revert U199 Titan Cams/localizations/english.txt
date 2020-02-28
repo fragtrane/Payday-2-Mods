@@ -1,0 +1,16 @@
+{
+	"rtc_options_menu_title" : "Revert U199 Titan Cams",
+	"rtc_options_menu_desc" : "Revert U199 Titan Cams mod options.",
+	
+	"rtc_big_title" : "Big Bank",
+	"rtc_big_desc" : "Use normal cameras on Big Bank.",
+	
+	"rtc_four_stores_title" : "Four Stores",
+	"rtc_four_stores_desc" : "Use normal cameras on Four Stores.",
+	
+	"rtc_welcome_to_the_jungle_1_title" : "Big Oil Day 1",
+	"rtc_welcome_to_the_jungle_1_desc" : "Use normal cameras on Big Oil Day 1.",
+	
+	"rtc_family_title" : "Diamond Store",
+	"rtc_family_desc" : "Use normal cameras on Diamond Store."
+}
