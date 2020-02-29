@@ -6,7 +6,7 @@ A collection of my Payday 2 mods. Most of these mods are BLT mods. Each folder a
 
 ## Contact
 
-Steam Group: [steamcommunity.com/groups/frag_pd2](https://steamcommunity.com/groups/frag_pd2)
+Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
