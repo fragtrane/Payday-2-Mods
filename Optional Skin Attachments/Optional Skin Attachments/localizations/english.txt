@@ -149,5 +149,6 @@
 	"osa_dialog_error_01" : "Error Code 01. If you see this message, please let me know.",
 	"osa_dialog_error_02" : "Error Code 02. If you see this message, please let me know.",
 	"osa_dialog_error_03" : "Error Code 03. If you see this message, please let me know.",
-	"osa_dialog_error_04" : "Error Code 04. If you see this message, please let me know."
+	"osa_dialog_error_04" : "Error Code 04. If you see this message, please let me know.",
+	"osa_dialog_error_05" : "Error Code 05. If you see this message, please let me know."
 }

@@ -44,6 +44,10 @@ end
 
 --When a skin is applied, call the OSA skin menu instead
 function BlackMarketGui:equip_weapon_cosmetics_callback(data)
+	if self._item_bought then
+		return
+	end
+	
 	local _callback = callback(self, self, "_equip_weapon_cosmetics_callback", data)
 	OSA:apply_skin_menu({data = data, _callback = _callback})
 end
@@ -71,6 +75,42 @@ function BlackMarketGui:_equip_weapon_cosmetics_callback(data)
 		managers.blackmarket:on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
 	else
 		managers.blackmarket:osa_on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
+		OSA._state_apply.ready = false
+	end
+	
+	self:reload()
+end
+
+--When a weapon color is applied, call the OSA skin menu instead
+function BlackMarketGui:equip_weapon_color_callback(data)
+	if self._item_bought then
+		return
+	end
+	
+	local _callback = callback(self, self, "_equip_weapon_color_callback", data)
+	OSA:apply_skin_menu({data = data, _callback = _callback})
+end
+
+--Modified apply weapon color call
+local orig_BlackMarketGui__equip_weapon_color_callback = BlackMarketGui._equip_weapon_color_callback
+function BlackMarketGui:_equip_weapon_color_callback(data)
+	self._item_bought = true
+	local instance_id = data.name
+
+	if data.equip_weapon_cosmetics then
+		instance_id = data.equip_weapon_cosmetics.instance_id
+	end
+
+	managers.menu_component:post_event("item_buy")
+	
+	--Catch errors
+	if not OSA._state_apply.ready then
+		local title = managers.localization:text("osa_dialog_title")
+		local desc = managers.localization:text("osa_dialog_error_05")
+		OSA:ok_menu(title, desc, false, false)
+		managers.blackmarket:on_equip_weapon_color(data.category, data.slot, instance_id, data.cosmetic_color_index, data.cosmetic_quality or "mint", true)
+	else
+		managers.blackmarket:osa_on_equip_weapon_color(data.category, data.slot, instance_id, data.cosmetic_color_index, data.cosmetic_quality or "mint", true)
 		OSA._state_apply.ready = false
 	end
 	

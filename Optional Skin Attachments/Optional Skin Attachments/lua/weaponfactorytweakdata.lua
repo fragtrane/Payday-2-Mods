@@ -37,10 +37,21 @@ function WeaponFactoryTweakData:_init_legendary()
 				if self.parts[part_id].stats then
 					val = self.parts[part_id].stats.value or val
 				end
-				self.parts[part_id].stats = {value = val}
+				--Don't remove stats on SRAB
+				if not _G.SRAB or part_id ~= "wpn_fps_sho_ksg_b_legendary" then
+					self.parts[part_id].stats = {value = val}
+				end
 			end
 			self.parts[part_id].name_id = "osa_bm_"..part_id
 			self.parts[part_id].desc_id = "osa_bm_req_"..skin
 		end
 	end
+	
+	--Fix foregrip on Raven Admiral
+	--Without this, the foregrip will disappear if you apply the Short Barrel then switch to the Admiral Barrel
+	--Use insert so we don't overwrite SRAB's forbids
+	self.parts.wpn_fps_sho_ksg_b_legendary.forbids = self.parts.wpn_fps_sho_ksg_b_legendary.forbids or {}
+	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.forbids, "wpn_fps_sho_ksg_fg_short")
+	self.parts.wpn_fps_sho_ksg_b_legendary.adds = self.parts.wpn_fps_sho_ksg_b_legendary.adds or {}
+	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.adds, "wpn_fps_sho_ksg_fg_standard")
 end

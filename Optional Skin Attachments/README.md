@@ -1,6 +1,6 @@
 # Optional Skin Attachments
 
-Latest version [v1.4](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.4.zip).
+Latest version [v1.5](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.5.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -36,7 +36,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.4.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.5.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.5.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -51,6 +51,12 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.5 - 2020-02-29**
+
+- Added support for new custom colors.
+- Fixed an issue on the Raven Admiral skin where applying the Short Barrel then switching to the Admiral Barrel would cause the foregrip to disappear.
+- Compatibility fixes for upcoming mod.
 
 **v1.4 - 2020-01-02**
 
