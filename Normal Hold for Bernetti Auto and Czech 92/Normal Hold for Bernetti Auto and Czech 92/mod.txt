@@ -1,0 +1,31 @@
+{
+	"name" : "Normal Hold for Bernetti Auto and Czech 92",
+	"description" : "Known issues:\n- Reload sound is silent at first. You need to equip a 5/7 AP and join a game. Afterwards, you can leave and the reload sound will work until you close your game.\n- Sight attachments are slightly misaligned (iron sights work fine though).\n ",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "0.1",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/tweak_data/weapontweakdata",
+			"script_path" : "lua/weapontweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/units/beings/player/states/playerstandard",
+			"script_path" : "lua/playerstandard.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/playertweakdata",
+			"script_path" : "lua/playertweakdata.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "NormalHoldForBernettiAutoAndCzech92",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Normal%20Hold%20for%20Bernetti%20Auto%20and%20Czech%2092/latest.json"
+			}
+		}
+	]
+}
