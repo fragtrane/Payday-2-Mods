@@ -4,7 +4,7 @@ dofile(ModPath .. "lua/setup.lua")
 local orig_NetworkAccountSTEAM_init = NetworkAccountSTEAM.init
 function NetworkAccountSTEAM:init()
 	orig_NetworkAccountSTEAM_init(self)
-
+	
 	if Steam:logged_on() then
 		IOF._state.pd2_clan = Steam:is_user_in_source(Steam:userid(), "103582791433980119")
 		IOF._state.dbd_clan = Steam:is_user_in_source(Steam:userid(), "103582791441335905")
@@ -18,7 +18,10 @@ end
 local orig_NetworkAccountSTEAM_achievements_fetched = NetworkAccountSTEAM.achievements_fetched
 function NetworkAccountSTEAM:achievements_fetched()
 	orig_NetworkAccountSTEAM_achievements_fetched(self)
-
+	
+	--Set state only if achievement is awarded
+	--Note: state will not be reverted if achievement is removed
+	--Implement it like this because we can't distinguish between non-awarded achievement and achievement that failed to load
 	if Steam:logged_on() then
 		for id, _ in pairs(IOF._state) do
 			if managers.achievment:get_info(id) and managers.achievment:get_info(id).awarded then

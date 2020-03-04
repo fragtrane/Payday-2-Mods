@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.2.zip).
+Latest version [v1.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.3.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
@@ -16,11 +16,19 @@ This mod provides various improvements when playing without an internet connecti
 - **No Armor Regen Bonus:** Disable the armor regeneration bonus in single player mode.
 - **Enable Winters:** Allow Captain Winters to spawn in single player mode.
 
+In order to prevent the locked outfit bug, the saved achievement state is now loaded even when there is an internet connection. In addition, achievements will not be removed from the saved state because there is no way to distinguish between a non-awarded achievement and an achievement that failed to load. Thus, in the unlikely event that you reset your achievements, you should also delete the state file for your Steam account:
+
+```
+saves/iof_<steamID64>.txt
+```
+
+Community group checking seem to work fine so those are still handled normally.
+
 ## Installation
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.2.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.3.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -39,6 +47,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.3 - 2020-03-04**
+
+- Reworked state loading to prevent locked outfit bug.
 
 **v1.2 - 2020-02-29**
 

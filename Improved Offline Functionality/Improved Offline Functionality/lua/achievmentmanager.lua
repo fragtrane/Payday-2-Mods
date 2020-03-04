@@ -3,11 +3,13 @@ dofile(ModPath .. "lua/setup.lua")
 --Fix for functions that use this to verify achievements
 local orig_AchievmentManager_get_info = AchievmentManager.get_info
 function AchievmentManager:get_info(id)
-	if not Steam:logged_on() and IOF._settings.iof_community then
-		if IOF._state[id] then
-			return {awarded = true}
-		end
+	local result = orig_AchievmentManager_get_info(self, id)
+	
+	--Always overwrite "awarded" using state to prevent locked outfit bug
+	if IOF._settings.iof_community and IOF._state[id] then
+		result = result or {}
+		result.awarded = true
 	end
 	
-	return orig_AchievmentManager_get_info(self, id) 
+	return result
 end

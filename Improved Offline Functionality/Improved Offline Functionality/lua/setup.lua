@@ -98,9 +98,14 @@ else
 	IOF:save_settings()
 end
 
---Load state if offline
-if not Steam:logged_on() then
+--Load state
+--Also loads when online, use to prevent locked outfit bug
+local state_exists = io.open(IOF._save_path.."iof_"..tostring(Steam:userid())..".txt", "r")
+if state_exists ~= nil then
+	state_exists:close()
 	IOF:load_user_state()
+else
+	IOF:save_user_state()
 end
 
 --Menu hooks
