@@ -1,9 +1,9 @@
 {
 	"name" : "Normal Hold for Bernetti Auto and Czech 92",
-	"description" : "Known issues:\n- Reload sound is silent at first. You need to equip a 5/7 AP and join a game. Afterwards, you can leave and the reload sound will work until you close your game.\n- Sight attachments are slightly misaligned (iron sights work fine though).\n ",
+	"description" : "Hold Bernetti Auto and Czech 92 normally instead of using the foregrip. Note: reload sound is silent until you join a game with the 5/7 AP equipped.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
-	"version" : "0.1",
+	"version" : "0.2",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [
