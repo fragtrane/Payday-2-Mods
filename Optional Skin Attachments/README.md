@@ -1,6 +1,6 @@
 # Optional Skin Attachments
 
-Latest version [v1.5](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.5.zip).
+Latest version [v1.6](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.6.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -16,8 +16,6 @@ This mod allows you to choose which attachments to use when applying weapon skin
 - **Prefer Shotgun Pack Buckshot:** Give the Gage Shotgun Pack 000 Buckshot priority when applying skins. When skins are applied or removed, the free 000 Buckshot will be replaced by the Gage Shotgun Pack 000 Buckshot if you own the Gage Shotgun Pack DLC.
 - **Save Mods On Missing Skins:** Try to keep attachments when skins are removed from Steam inventory.
 - **Choose Attachments in Previews:** Enable dialog menu for choosing attachments when previewing weapon skins.
-- **Optional Boosts:** Adds option to choose whether or not to apply stat boosts.
-- **Disable All Boosts:** Stops all skin stat boosts from being applied to weapons.
 - **Rename Legendary Skins:** Allow legendary skins to be renamed.
 - **Customize Legendary Skins:** Allow legendary skins to be unlocked so that they can be customized.
 - **Remove Legendary Mod Stats:** Remove stats from legendary weapon attachments.
@@ -36,7 +34,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.5.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.5.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.6.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.6.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -51,6 +49,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.6 - 2020-03-10**
+
+- Choosing stat boosts disabled due to sync issue.
 
 **v1.5 - 2020-02-29**
 

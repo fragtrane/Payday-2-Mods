@@ -102,6 +102,9 @@ local save_exists = io.open(OSA._save_path..OSA._save_name, "r")
 if save_exists ~= nil then
 	save_exists:close()
 	OSA:load_settings()
+	--Disable choosing boosts due to sync issue
+	OSA._settings.osa_optional_boost = false
+	OSA._settings.osa_disable_all_boosts = false
 else
 	OSA:save_settings()
 end

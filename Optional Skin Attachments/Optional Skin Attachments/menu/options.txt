@@ -63,28 +63,6 @@
 		},
 		{
 			"type" : "toggle",
-			"id" : "osa_optional_boost",
-			"title" : "osa_optional_boost_title",
-			"description" : "osa_optional_boost_desc",
-			"callback" : "osa_callback_toggle",
-			"value" : "osa_optional_boost",
-			"default_value" : false
-		},
-		{
-			"type" : "toggle",
-			"id" : "osa_disable_all_boosts",
-			"title" : "osa_disable_all_boosts_title",
-			"description" : "osa_disable_all_boosts_desc",
-			"callback" : "osa_callback_toggle",
-			"value" : "osa_disable_all_boosts",
-			"default_value" : false
-		},
-		{
-			"type" : "divider",
-			"size" : 16
-		},
-		{
-			"type" : "toggle",
 			"id" : "osa_rename_legendary",
 			"title" : "osa_rename_legendary_title",
 			"description" : "osa_rename_legendary_desc",
