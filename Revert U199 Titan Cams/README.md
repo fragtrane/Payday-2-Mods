@@ -10,7 +10,7 @@ Key features and options:
 
 - Reverts the Titan Cameras added to Big Bank, Four Stores, Big Oil Day 1, and Diamond Store in U199.
 
-## Installation [BLT]
+## Installation
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
