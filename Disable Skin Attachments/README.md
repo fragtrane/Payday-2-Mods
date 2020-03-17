@@ -21,7 +21,7 @@ This mod removes weapon attachments from weapon skins and allows legendary weapo
 - If done incorrectly, deleting the list of attachments associated with a skin can cause false-positive cheater flags because the game uses this list to verify whether a player is allowed to use DLC/legendary attachments. This check has been modified in this mod to avoid this issue.
 - This mod fixes a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -30,7 +30,7 @@ This is a BLT mod. Download [`Disable_Skin_Attachments_v1.1.zip`](https://github
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Acknowledgments

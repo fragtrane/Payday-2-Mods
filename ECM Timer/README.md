@@ -17,7 +17,7 @@ Key features and options:
 
 Due to the low likelihood of these occurrences during typical gameplay and the fact that these issues are not game-breaking, there are no plans to fix them at this time.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -26,7 +26,7 @@ This is a BLT mod. Download [`ECM_Timer_v2.0.zip`](https://github.com/fragtrane/
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Acknowledgments

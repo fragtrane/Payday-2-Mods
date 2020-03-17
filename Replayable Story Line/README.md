@@ -11,7 +11,7 @@ Key features and options:
 - **Replay Story Line Missions:** Story line missions can be replayed even after they have been completed.
 - **Reset Story Line Button:** A button is included in the options menu to completely reset the story line progress.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -20,7 +20,7 @@ This is a BLT mod. Download [`Replayable_Story_Line_v1.0.zip`](https://github.co
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Contact

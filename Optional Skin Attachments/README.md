@@ -30,7 +30,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 - This mod adds the ability to preview weapon modifications on locked legendary skins.
 - This mod fixes a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -39,7 +39,7 @@ This is a BLT mod. Download [`Optional_Skin_Attachments_v1.6.zip`](https://githu
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Contact

@@ -28,7 +28,7 @@ With regard to profiles, Extra Profiles and Skill Sets is implemented in the sam
 
 Extra Profiles and Skill Sets also extends the maximum number of characters in a profile name to 30. Oh Shit! More Profiles does this by overwriting the entire `MultiProfileItemGui:init()` function, which causes conflicts with other mods. Extra Profiles and Skill Sets uses a post-hook which avoids this issue.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -37,7 +37,7 @@ This is a BLT mod. Download [`Extra_Profiles_and_Skill_Sets_v1.0.zip`](https://g
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Acknowledgments

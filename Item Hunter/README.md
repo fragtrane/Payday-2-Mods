@@ -68,7 +68,7 @@ This mod adds waypoints to items for collectible achievements/trophies. The mod 
 ### 2019
 - Identity Theft (Border Crossing)
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -77,7 +77,7 @@ This is a BLT mod. Download [`Item_Hunter_v1.1.zip`](https://github.com/fragtran
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Contact

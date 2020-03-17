@@ -24,7 +24,7 @@ saves/iof_<steamID64>.txt
 
 Community group checking seem to work fine so those are still handled normally.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -33,7 +33,7 @@ This is a BLT mod. Download [`Improved_Offline_Functionality_v1.3.zip`](https://
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Acknowledgments

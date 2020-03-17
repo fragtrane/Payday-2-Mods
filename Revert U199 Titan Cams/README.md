@@ -10,7 +10,7 @@ Key features and options:
 
 - Reverts the Titan Cameras added to Big Bank, Four Stores, Big Oil Day 1, and Diamond Store in U199.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -19,7 +19,7 @@ This is a BLT mod. Download [`Revert_U199_Titan_Cams_v1.1.zip`](https://github.c
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Contact

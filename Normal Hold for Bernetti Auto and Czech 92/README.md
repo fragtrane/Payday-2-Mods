@@ -14,7 +14,7 @@ The reload sound is silent when the application is first launched. You need to e
 
 I have already tried changing the reload using mod_overrides instead, but that just makes the reload permamently silent.
 
-## Installation
+## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
@@ -23,7 +23,7 @@ This is a BLT mod. Download [`Normal_Hold_for_Bernetti_Auto_and_Czech_92_v0.2.zi
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
 ```
-C:\Program Files\Steam\steamapps\common\PAYDAY 2\mods
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 ```
 
 ## Contact
