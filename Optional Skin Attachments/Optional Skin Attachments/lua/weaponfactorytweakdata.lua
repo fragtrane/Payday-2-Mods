@@ -2,6 +2,7 @@ dofile(ModPath .. "lua/setup.lua")
 
 --Delete legendary mods from akimbo variants of Kobus 90 and Judge
 --Akimbo Deagles / single Crosskill don't have this problem
+--Put default part in adds for Reinfeld 880, Locomotive 12G, and Bootleg so it is re-added after forbid
 local orig_WeaponFactoryTweakData_init = WeaponFactoryTweakData.init
 function WeaponFactoryTweakData:init()
 	orig_WeaponFactoryTweakData_init(self)
@@ -12,6 +13,16 @@ function WeaponFactoryTweakData:init()
 	--Anarcho
 	table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_b_legend")
 	table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_g_legend")
+	
+	--Big Kahuna / Demon
+	--Default body adds default grip
+	self.parts.wpn_fps_shot_r870_body_standard.adds = self.parts.wpn_fps_shot_r870_body_standard.adds or {}
+	table.insert(self.parts.wpn_fps_shot_r870_body_standard.adds, "wpn_fps_upg_m4_g_standard")
+	
+	--Mars Ultor
+	--Default lower receiver adds default barrel extension
+	self.parts.wpn_fps_ass_tecci_lower_reciever.adds = self.parts.wpn_fps_ass_tecci_lower_reciever.adds or {}
+	table.insert(self.parts.wpn_fps_ass_tecci_lower_reciever.adds, "wpn_fps_ass_tecci_ns_standard")
 end
 
 --Set up legendary parts
@@ -54,4 +65,31 @@ function WeaponFactoryTweakData:_init_legendary()
 	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.forbids, "wpn_fps_sho_ksg_fg_short")
 	self.parts.wpn_fps_sho_ksg_b_legendary.adds = self.parts.wpn_fps_sho_ksg_b_legendary.adds or {}
 	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.adds, "wpn_fps_sho_ksg_fg_standard")
+	
+	--Big Kahuna
+	--Legendary stock forbids default grip
+	self.parts.wpn_fps_shot_r870_s_legendary.forbids = self.parts.wpn_fps_shot_r870_s_legendary.forbids or {}
+	table.insert(self.parts.wpn_fps_shot_r870_s_legendary.forbids, "wpn_fps_upg_m4_g_standard")
+	
+	--Demon
+	--Legendary stock forbids default grip
+	self.parts.wpn_fps_shot_shorty_s_legendary.forbids = self.parts.wpn_fps_shot_shorty_s_legendary.forbids or {}
+	table.insert(self.parts.wpn_fps_shot_shorty_s_legendary.forbids, "wpn_fps_upg_m4_g_standard")
+	
+	--Mars Ultor
+	--Legendary barrel forbids default barrel extension
+	self.parts.wpn_fps_ass_tecci_b_legend.forbids = self.parts.wpn_fps_ass_tecci_b_legend.forbids or {}
+	table.insert(self.parts.wpn_fps_ass_tecci_b_legend.forbids, "wpn_fps_ass_tecci_ns_standard")
+	
+	--Astatoz
+	--Legendary foregrip type changed to "foregrip" (instead of "gadget")
+	self.parts.wpn_fps_ass_m16_fg_legend.type = "foregrip"
+	
+	--Vlad's Rodina
+	--Legendary stock adds default grip
+	--Legendary grip forbids default grip
+	self.parts.wpn_upg_ak_s_legend.adds = self.parts.wpn_upg_ak_s_legend.adds or {}
+	table.insert(self.parts.wpn_upg_ak_s_legend.adds, "wpn_upg_ak_g_standard")
+	self.parts.wpn_upg_ak_g_legend.forbids = self.parts.wpn_upg_ak_g_legend.forbids or {}
+	table.insert(self.parts.wpn_upg_ak_g_legend.forbids, "wpn_upg_ak_g_standard")
 end

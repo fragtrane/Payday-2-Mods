@@ -111,7 +111,7 @@
 	"osa_bm_wpn_fps_shot_r870_fg_legendary" : "Big Kahuna Foregrip",
 	
 	"osa_bm_wpn_fps_pis_1911_g_legendary" : "Santa's Slayers Grip",
-	"osa_bm_wpn_fps_pis_1911_fl_legendary" : "Santa's Slayers Scope",
+	"osa_bm_wpn_fps_pis_1911_fl_legendary" : "Santa's Slayers Laser",
 	
 	"osa_bm_wpn_fps_snp_model70_b_legend" : "Don Pastrami Barrel",
 	"osa_bm_wpn_fps_snp_model70_s_legend" : "Don Pastrami Stock",

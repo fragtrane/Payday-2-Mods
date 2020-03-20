@@ -1,6 +1,6 @@
 # Optional Skin Attachments
 
-Latest version [v1.6](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.6.zip).
+Latest version [v1.7](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.7.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -34,7 +34,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.6.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.6.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.7.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.7.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -49,6 +49,16 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.7 - 2020-03-20**
+
+- Improved legendary attachment handling for various weapons:
+	- Big Kahuna: Big Kahuna Stock now removes the default grip to prevent clipping.
+	- Demon: Demon Stock now removes the default grip to prevent clipping.
+	- Mars Ultor: Mars Ultor Barrel now removes the default barrel extension to prevent clipping.
+	- Astatoz: Astatoz Foregrip's type has been changed to "foregrip" so that it will replace the default AMR-16 foregrip when applied (also to prevent clipping).
+	- Vlad's Rodina: the default grip will no longer disappear when the Vlad's Rodina Stock is applied. Other grips can still be applied as normal to replace the default grip.
+- Fixed the name of the Santa's Slayers Laser.
 
 **v1.6 - 2020-03-10**
 
