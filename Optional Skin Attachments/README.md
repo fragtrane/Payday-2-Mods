@@ -51,7 +51,7 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 ## Changelog
 
 **v1.7.1 - 2020-03-20**
-- Fixed a bug where the default grip would not be removed on the Locmotive 12G and Reinfeld 880.
+- Fixed a bug where the default grip would not be removed on the Locmotive 12G and Reinfeld 880 (thanks de vuelta en el negocio).
 - Fixed a bug where the default barrel extension would not be removed on the Bootleg.
 
 **v1.7 - 2020-03-20**
