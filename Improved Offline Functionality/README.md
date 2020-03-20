@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v1.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.3.zip).
+Latest version [v1.4](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.4.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
@@ -28,7 +28,7 @@ Community group checking seem to work fine so those are still handled normally.
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.3.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.4.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -47,6 +47,12 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.4 - 2020-03-20**
+
+- Fixed a bug where multiplayer lobbies would appear in Crime.net Offline (thanks realthelift).
+- Unnecessary filter options removed from Crime.net Offline. The only option that remains is the difficulty filter.
+- Reworked MenuCallbackHandler:is_multiplayer function to prevent unnecessary options from appearing in pause menu of Crime.net Offline.
 
 **v1.3 - 2020-03-04**
 

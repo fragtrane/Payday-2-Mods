@@ -3,7 +3,7 @@
 	"description" : "Allows the use of community content/skins offline and adds various single player mode improvements.",
 	"author" : "fragtrane, some features based on Unknown Knight's Simulate Online mod (Winters, armor recovery, chat)",
 	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
-	"version" : "1.3",
+	"version" : "1.4",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [
@@ -58,6 +58,10 @@
 		{
 			"hook_id" : "lib/managers/achievmentmanager",
 			"script_path" : "lua/achievmentmanager.lua"
+		},
+		{
+			"hook_id" : "lib/network/matchmaking/networkmatchmakingsteam",
+			"script_path" : "lua/networkmatchmakingsteam.lua"
 		}
 	],
 	"updates" : [
