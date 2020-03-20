@@ -19,10 +19,38 @@ function WeaponFactoryTweakData:init()
 	self.parts.wpn_fps_shot_r870_body_standard.adds = self.parts.wpn_fps_shot_r870_body_standard.adds or {}
 	table.insert(self.parts.wpn_fps_shot_r870_body_standard.adds, "wpn_fps_upg_m4_g_standard")
 	
+	--Reinfeld and Locomotive grips forbid default grip
+	for _, part_id in pairs(self.wpn_fps_shot_r870.uses_parts) do
+		if self.parts[part_id] and self.parts[part_id].type == "grip" and part_id ~= "wpn_fps_upg_m4_g_standard" then
+			self.parts[part_id].forbids = self.parts[part_id].forbids or {}
+			if not table.contains(self.parts[part_id].forbids, "wpn_fps_upg_m4_g_standard") then
+				table.insert(self.parts[part_id].forbids, "wpn_fps_upg_m4_g_standard")
+			end
+		end
+	end
+	for _, part_id in pairs(self.wpn_fps_shot_serbu.uses_parts) do
+		if self.parts[part_id] and self.parts[part_id].type == "grip" and part_id ~= "wpn_fps_upg_m4_g_standard" then
+			self.parts[part_id].forbids = self.parts[part_id].forbids or {}
+			if not table.contains(self.parts[part_id].forbids, "wpn_fps_upg_m4_g_standard") then
+				table.insert(self.parts[part_id].forbids, "wpn_fps_upg_m4_g_standard")
+			end
+		end
+	end
+	
 	--Mars Ultor
 	--Default lower receiver adds default barrel extension
 	self.parts.wpn_fps_ass_tecci_lower_reciever.adds = self.parts.wpn_fps_ass_tecci_lower_reciever.adds or {}
 	table.insert(self.parts.wpn_fps_ass_tecci_lower_reciever.adds, "wpn_fps_ass_tecci_ns_standard")
+	
+	--Bootleg barrel extensions forbid default barrel extension
+	for _, part_id in pairs(self.wpn_fps_ass_tecci.uses_parts) do
+		if self.parts[part_id] and self.parts[part_id].type == "barrel_ext" and part_id ~= "wpn_fps_ass_tecci_ns_standard" then
+			self.parts[part_id].forbids = self.parts[part_id].forbids or {}
+			if not table.contains(self.parts[part_id].forbids, "wpn_fps_ass_tecci_ns_standard") then
+				table.insert(self.parts[part_id].forbids, "wpn_fps_ass_tecci_ns_standard")
+			end
+		end
+	end
 end
 
 --Set up legendary parts
