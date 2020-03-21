@@ -1,0 +1,105 @@
+{
+	"sdss_options_menu_title" : "Super Duper Skin Swapper",
+	"sdss_options_menu_desc" : "Super Duper Skin Swapper mod options.",
+	
+	"sdss_hide_unowned_title" : "Hide unowned skins",
+	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
+	
+	"sdss_allow_variants_title" : "Allow legendary mods on variants",
+	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on akimbo/single variants. Restart required.\nWarning: not fully tested yet.",
+	
+	"sdss_quality_override_title" : "Wear override",
+	"sdss_quality_override_desc" : "Override the visual appearance of the wear of skins (client sided). Restart required.",
+	"sdss_quality_override_off" : "Disabled",
+	"sdss_quality_override_mint" : "Mint-Condition",
+	"sdss_quality_override_fine" : "Lightly-Marked",
+	"sdss_quality_override_good" : "Broken-In",
+	"sdss_quality_override_fair" : "Well-Used",
+	"sdss_quality_override_poor" : "Battle-Worn",
+	
+	"sdss_clean_dupes_title" : "Hide duplicate skins",
+	"sdss_clean_dupes_desc" : "Hide duplicate copies of skins and only show the ones with the best quality.",
+	"sdss_clean_dupes_off" : "Disabled",
+	"sdss_clean_dupes_bonus" : "Prefer stat boost",
+	"sdss_clean_dupes_quality" : "Prefer quality",
+	"sdss_clean_dupes_both" : "Best normal & stat",
+	"sdss_clean_dupes_allvars" : "All variants",
+	
+	"sdss_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",
+	"sdss_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
+	"sdss_bm_req_flamethrower_mk2_fire" : "Requires Dragon Lord legendary skin.",
+	"sdss_bm_req_rpg7_boom" : "Requires Green Grin legendary skin.",
+	"sdss_bm_req_m134_bulletstorm" : "Requires The Gimp legendary skin.",
+	"sdss_bm_req_p90_dallas_sallad" : "Requires Alamo Dallas legendary skin.",
+	"sdss_bm_req_r870_waves" : "Requires Big Kahuna legendary skin.",
+	"sdss_bm_req_x_1911_ginger" : "Requires Santa's Slayers legendary skin.",
+	"sdss_bm_req_model70_baaah" : "Requires Don Pastrami legendary skin.",
+	"sdss_bm_req_par_wolf" : "Requires Hungry Wolf legendary skin.",
+	"sdss_bm_req_m16_cola" : "Requires Astatoz legendary skin.",
+	"sdss_bm_req_judge_burn" : "Requires Anarcho legendary skin.",
+	"sdss_bm_req_boot_buck" : "Requires Apex legendary skin.",
+	"sdss_bm_req_ksg_same" : "Requires Admiral legendary skin.",
+	"sdss_bm_req_tecci_grunt" : "Requires Mars Ultor legendary skin.",
+	"sdss_bm_req_serbu_lones" : "Requires Demon legendary skin.",
+	"sdss_bm_req_new_m14_lones" : "Requires Plush Phoenix legendary skin.",
+	
+	"bm_menu_lower_body" : "Lower Body",
+	"bm_menu_upper_body" : "Upper Body",
+	
+	"sdss_bm_wpn_fps_ass_74_b_legend" : "Vlad's Rodina Barrel",
+	"sdss_bm_wpn_upg_ak_fg_legend" : "Vlad's Rodina Foregrip",
+	"sdss_bm_wpn_upg_ak_g_legend" : "Vlad's Rodina Grip",
+	"sdss_bm_wpn_upg_ak_s_legend" : "Vlad's Rodina Stock",
+	"sdss_bm_wpn_upg_ak_fl_legend" : "Vlad's Rodina Laser",
+	
+	"sdss_bm_wpn_fps_pis_deagle_b_legend" : "Midas Touch Barrel",
+	
+	"sdss_bm_wpn_fps_fla_mk2_body_fierybeast" : "Dragon Lord Receiver",
+	
+	"sdss_bm_wpn_fps_rpg7_m_grinclown" : "Green Grin Rocket",
+	
+	"sdss_bm_wpn_fps_lmg_m134_body_upper_spikey" : "The Gimp Body Kit",
+	"sdss_bm_wpn_fps_lmg_m134_barrel_legendary" : "The Gimp Barrel",
+	
+	"sdss_bm_wpn_fps_smg_p90_b_legend" : "Alamo Dallas Barrel",
+	
+	"sdss_bm_wpn_fps_shot_r870_b_legendary" : "Big Kahuna Barrel",
+	"sdss_bm_wpn_fps_shot_r870_s_legendary" : "Big Kahuna Stock",
+	"sdss_bm_wpn_fps_shot_r870_fg_legendary" : "Big Kahuna Foregrip",
+	
+	"sdss_bm_wpn_fps_pis_1911_g_legendary" : "Santa's Slayers Grip",
+	"sdss_bm_wpn_fps_pis_1911_fl_legendary" : "Santa's Slayers Laser",
+	
+	"sdss_bm_wpn_fps_snp_model70_b_legend" : "Don Pastrami Barrel",
+	"sdss_bm_wpn_fps_snp_model70_s_legend" : "Don Pastrami Stock",
+	
+	"sdss_bm_wpn_fps_lmg_svinet_b_standard" : "Hungry Wolf Barrel",
+	"sdss_bm_wpn_fps_lmg_svinet_s_legend" : "Hungry Wolf Stock",
+	
+	"sdss_bm_wpn_fps_ass_m16_b_legend" : "Astatoz Barrel",
+	"sdss_bm_wpn_fps_ass_m16_fg_legend" : "Astatoz Foregrip",
+	"sdss_bm_wpn_fps_ass_m16_s_legend" : "Astatoz Stock",
+	
+	"sdss_bm_wpn_fps_pis_judge_b_legend" : "Anarcho Barrel",
+	"sdss_bm_wpn_fps_pis_judge_g_legend" : "Anarcho Grip",
+	
+	"sdss_bm_wpn_fps_sho_boot_b_legendary" : "Apex Barrel",
+	"sdss_bm_wpn_fps_sho_boot_fg_legendary" : "Apex Foregrip",
+	"sdss_bm_wpn_fps_sho_boot_o_legendary" : "Apex Iron Sights",
+	"sdss_bm_wpn_fps_sho_boot_s_legendary" : "Apex Stock",
+	
+	"sdss_bm_wpn_fps_sho_ksg_b_legendary" : "Admiral Barrel",
+	
+	"sdss_bm_wpn_fps_ass_tecci_b_legend" : "Mars Ultor Barrel",
+	"sdss_bm_wpn_fps_ass_tecci_fg_legend" : "Mars Ultor Foregrip",
+	"sdss_bm_wpn_fps_ass_tecci_s_legend" : "Mars Ultor Stock",
+	
+	"sdss_bm_wpn_fps_shot_shorty_b_legendary" : "Demon Barrel",
+	"sdss_bm_wpn_fps_shot_shorty_fg_legendary" : "Demon Foregrip",
+	"sdss_bm_wpn_fps_shot_shorty_s_legendary" : "Demon Stock",
+	
+	"sdss_bm_wpn_fps_ass_m14_b_legendary" : "Plush Phoenix Barrel",
+	"sdss_bm_wpn_fps_ass_m14_body_legendary" : "Plush Phoenix Stock",
+	"sdss_bm_wpn_fps_ass_m14_body_upper_legendary" : "Plush Phoenix Upper Body",
+	"sdss_bm_wpn_fps_ass_m14_body_lower_legendary" : "Plush Phoenix Lower Body"
+}

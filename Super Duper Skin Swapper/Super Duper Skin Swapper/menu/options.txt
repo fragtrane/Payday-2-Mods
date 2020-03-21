@@ -1,0 +1,60 @@
+{
+	"menu_id" : "sdss_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "sdss_options_menu_title",
+	"description" : "sdss_options_menu_desc",
+	"back_callback" : "sdss_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "sdss_hide_unowned",
+			"title" : "sdss_hide_unowned_title",
+			"description" : "sdss_hide_unowned_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_hide_unowned",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_allow_variants",
+			"title" : "sdss_allow_variants_title",
+			"description" : "sdss_allow_variants_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_allow_variants",
+			"default_value" : false
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "sdss_quality_override",
+			"title" : "sdss_quality_override_title",
+			"description" : "sdss_quality_override_desc",
+			"callback" : "sdss_callback_multi",
+			"items" : [
+				"sdss_quality_override_off",
+				"sdss_quality_override_mint",
+				"sdss_quality_override_fine",
+				"sdss_quality_override_good",
+				"sdss_quality_override_fair",
+				"sdss_quality_override_poor"
+			],
+			"value" : "sdss_quality_override",
+			"default_value" : 1
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "sdss_clean_dupes",
+			"title" : "sdss_clean_dupes_title",
+			"description" : "sdss_clean_dupes_desc",
+			"callback" : "sdss_callback_multi",
+			"items" : [
+				"sdss_clean_dupes_off",
+				"sdss_clean_dupes_bonus",
+				"sdss_clean_dupes_quality",
+				"sdss_clean_dupes_both",
+				"sdss_clean_dupes_allvars"
+			],
+			"value" : "sdss_clean_dupes",
+			"default_value" : 1
+		}
+	]
+}

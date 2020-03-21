@@ -1,0 +1,12 @@
+{
+	"hds_options_menu_title" : "Hide Duplicate Skins",
+	"hds_options_menu_desc" : "Hide Duplicate Skins mod options.",
+	
+	"hds_clean_dupes_title" : "Clean mode",
+	"hds_clean_dupes_desc" : "Choose how skins are prioritized when cleaning duplicates.",
+	"hds_clean_dupes_off" : "Disabled",
+	"hds_clean_dupes_bonus" : "Prefer stat boost",
+	"hds_clean_dupes_quality" : "Prefer quality",
+	"hds_clean_dupes_both" : "Best normal & stat",
+	"hds_clean_dupes_allvars" : "All variants"
+}

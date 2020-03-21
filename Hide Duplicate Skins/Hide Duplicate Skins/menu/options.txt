@@ -1,0 +1,25 @@
+{
+	"menu_id" : "hds_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "hds_options_menu_title",
+	"description" : "hds_options_menu_desc",
+	"back_callback" : "hds_callback_save",
+	"items" : [
+		{
+			"type" : "multiple_choice",
+			"id" : "hds_clean_dupes",
+			"title" : "hds_clean_dupes_title",
+			"description" : "hds_clean_dupes_desc",
+			"callback" : "hds_callback_multi",
+			"items" : [
+				"hds_clean_dupes_off",
+				"hds_clean_dupes_bonus",
+				"hds_clean_dupes_quality",
+				"hds_clean_dupes_both",
+				"hds_clean_dupes_allvars"
+			],
+			"value" : "hds_clean_dupes",
+			"default_value" : 1
+		}
+	]
+}

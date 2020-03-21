@@ -1,5 +1,7 @@
 # Optional Skin Attachments
 
+**Note: Optional Skin Attachments is NOT compatible with Super Duper Skin Swapper. Legendary skin support is already built into Super Duper Skin Swapper.**
+
 Latest version [v1.7.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.7.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
