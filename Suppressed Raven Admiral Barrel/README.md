@@ -6,6 +6,8 @@ This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26914).
 
 ## Overview
 
+Demo: https://www.youtube.com/watch?v=AyhWtQ63WyQ
+
 This mod turns the Raven Admiral's legendary barrel into a silencer. It does not let you use the barrel without owning the skin. It also does not give any stats that are not possible in the base game.
 
 Key features and options:
