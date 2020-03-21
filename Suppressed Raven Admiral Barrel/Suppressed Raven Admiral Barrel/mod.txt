@@ -1,0 +1,23 @@
+{
+	"name" : "Suppressed Raven Admiral Barrel",
+	"description" : "Turns the Raven Admiral's legendary barrel into a suppressor.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 1,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/tweak_data/weaponfactorytweakdata",
+			"script_path" : "lua/weaponfactorytweakdata.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "SuppressedRavenAdmiralBarrel",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Suppressed%20Raven%20Admiral%20Barrel/latest.json"
+			}
+		}
+	]
+}
