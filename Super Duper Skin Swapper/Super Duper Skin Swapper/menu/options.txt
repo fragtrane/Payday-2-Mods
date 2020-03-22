@@ -25,23 +25,6 @@
 		},
 		{
 			"type" : "multiple_choice",
-			"id" : "sdss_quality_override",
-			"title" : "sdss_quality_override_title",
-			"description" : "sdss_quality_override_desc",
-			"callback" : "sdss_callback_multi",
-			"items" : [
-				"sdss_quality_override_off",
-				"sdss_quality_override_mint",
-				"sdss_quality_override_fine",
-				"sdss_quality_override_good",
-				"sdss_quality_override_fair",
-				"sdss_quality_override_poor"
-			],
-			"value" : "sdss_quality_override",
-			"default_value" : 1
-		},
-		{
-			"type" : "multiple_choice",
 			"id" : "sdss_clean_dupes",
 			"title" : "sdss_clean_dupes_title",
 			"description" : "sdss_clean_dupes_desc",

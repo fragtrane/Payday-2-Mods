@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.0.zip).
+Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -17,7 +17,6 @@ Key features and options:
 - **Use Default Weapon Icon for Swapped Skins:** When you use apply a skin that is meant for a different weapon, the inventory will display the actual weapon instead of the weapon skin icon so you know what gun you are using. It will still apply the rarity background so you know that you have a skin equipped. In the weapon customization menu, weapon skin icons are displayed so you know which skin you are applying.
 - **Hide Unowned Skins:** Hide skins that you do not own.
 - **Allow Legendary Mods on Variants:** Allow legendary weapon attachments to be used on akimbo/single variants (not fully tested).
-- **Wear Override:** Override the visual appearance of the wear of skins (client sided).
 - **Clean Duplicates:** Hide duplicate copies of skins and only show the ones with the best quality. Can be configured to prefer stat boosted skins, prefer the best quality, show both the best stat boosted and non-stat boosted, or show all variants of the skin.
 
 ## Additional Changes/Remarks
@@ -70,7 +69,7 @@ Legendary attachments are only available for use when the corresponding legendar
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -93,6 +92,11 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.1 - 2020-03-22**
+
+- Real skin will be displayed as a mini-icon when a weapon is selected in inventory.
+- Wear override option removed.
 
 **v1.0 - 2020-03-21**
 

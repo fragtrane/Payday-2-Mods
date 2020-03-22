@@ -8,15 +8,6 @@
 	"sdss_allow_variants_title" : "Allow legendary mods on variants",
 	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on akimbo/single variants. Restart required.\nWarning: not fully tested yet.",
 	
-	"sdss_quality_override_title" : "Wear override",
-	"sdss_quality_override_desc" : "Override the visual appearance of the wear of skins (client sided). Restart required.",
-	"sdss_quality_override_off" : "Disabled",
-	"sdss_quality_override_mint" : "Mint-Condition",
-	"sdss_quality_override_fine" : "Lightly-Marked",
-	"sdss_quality_override_good" : "Broken-In",
-	"sdss_quality_override_fair" : "Well-Used",
-	"sdss_quality_override_poor" : "Battle-Worn",
-	
 	"sdss_clean_dupes_title" : "Hide duplicate skins",
 	"sdss_clean_dupes_desc" : "Hide duplicate copies of skins and only show the ones with the best quality.",
 	"sdss_clean_dupes_off" : "Disabled",

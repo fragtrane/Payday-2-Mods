@@ -11,7 +11,6 @@ SDSS._save_name = "sdss_settings.txt"
 SDSS._settings = {
 	sdss_hide_unowned = true,--Hide skins that you don't own
 	sdss_allow_variants = false,--Allow legendary attachments on akimbo/single variants
-	sdss_quality_override = 1,--Display all skins in a certain condition
 	sdss_clean_dupes = 1--Hide duplicates
 }
 --Load skin data
@@ -87,21 +86,7 @@ end)
 
 --Map indexes to names for multiple choice settings
 function SDSS:get_multi_name(multi_id)
-	if multi_id == "sdss_quality_override" then
-		if self._settings[multi_id] == 1 then
-			return "off"
-		elseif self._settings[multi_id] == 2 then
-			return "mint"--Mint-Condition
-		elseif self._settings[multi_id] == 3 then
-			return "fine"--Lightly-Marked
-		elseif self._settings[multi_id] == 4 then
-			return "good"--Broken-In
-		elseif self._settings[multi_id] == 5 then
-			return "fair"--Well-Used
-		elseif self._settings[multi_id] == 6 then
-			return "poor"--Battle-Worn
-		end
-	elseif multi_id == "sdss_clean_dupes" then
+	if multi_id == "sdss_clean_dupes" then
 		if self._settings[multi_id] == 1 then
 			return "off"
 		elseif self._settings[multi_id] == 2 then
