@@ -52,7 +52,6 @@ Hooks:PostHook(BlackMarketGui, "update_info_text", "sdss_post_BlackMarketGui_upd
 end)
 
 --Mini skin icon in corner when a weapon with a swapped skin is selected
---TODO: streamline
 Hooks:PostHook(BlackMarketGui, "populate_weapon_category_new", "sdss_post_BlackMarketGui_populate_weapon_category_new", function(self, data)
 	local category = data.category
 	local crafted_category = managers.blackmarket:get_crafted_category(category) or {}
@@ -63,34 +62,58 @@ Hooks:PostHook(BlackMarketGui, "populate_weapon_category_new", "sdss_post_BlackM
 	
 	for i = 1, max_items, 1 do
 		local slot = data[i].slot
-		if slot and crafted_category[slot] and crafted_category[slot].cosmetics then
+		if slot and crafted_category[slot] and crafted_category[slot].cosmetics and crafted_category[slot].cosmetics.id then
 			local crafted = crafted_category[slot]
 			local weapon_id = crafted.weapon_id
 			local id = crafted.cosmetics.id
 			local weapon_skin = tweak_data.blackmarket.weapon_skins[id]
 			if weapon_skin then
-				local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
-				if weapon_skin.use_blacklist then
-					found_weapon = not found_weapon
-				end
-				if not found_weapon then
-					data[i].mini_icons = data[i].mini_icons or {}
-					local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
-					
+				--Check that it's not a BeardLib universal skin
+				if not weapon_skin.universal then
+					--SDSS
+					local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
+					if weapon_skin.use_blacklist then
+						found_weapon = not found_weapon
+					end
+					if not found_weapon then
+						local guis_catalog = "guis/"
+						local bundle_folder = weapon_skin.texture_bundle_folder
+						if bundle_folder then
+							guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
+						end
+						local texture_name = weapon_skin.texture_name or tostring(id)
+						local path = "weapon_skins/"
+						local texture_path = guis_catalog .. path .. texture_name
+						
+						local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
+						data[i].mini_icons = data[i].mini_icons or {}
+						table.insert(data[i].mini_icons, {
+							stream = true,
+							h = 24,--Scale down
+							layer = 0,
+							w = 48,--Scale down
+							right = 0,--Move left
+							texture = texture_path,
+							bottom = math.floor((#icon_list - 1) / 11) * 25 + 24
+						})
+					end
+				else
+					--Handle BeardLib universal skin
 					local guis_catalog = "guis/"
 					local bundle_folder = weapon_skin.texture_bundle_folder
 					if bundle_folder then
 						guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
 					end
-					local texture_name = weapon_skin.texture_name or tostring(id)
 					local path = "weapon_skins/"
-					local texture_path = guis_catalog .. path .. texture_name
+					local texture_path = guis_catalog .. path .. weapon_skin.universal_id
+					local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
+					data[i].mini_icons = data[i].mini_icons or {}
 					table.insert(data[i].mini_icons, {
 						stream = true,
-						h = 24,--Scale down
+						h = 32,
 						layer = 0,
-						w = 48,--Scale down
-						right = 0,--Move left
+						w = 64,
+						right = -16,
 						texture = texture_path,
 						bottom = math.floor((#icon_list - 1) / 11) * 25 + 24
 					})
