@@ -40,7 +40,7 @@ SDSS supports custom weapon skins, I tested it on the [AK.762 | Cyber Midnight R
 
 SDSS supports BeardLib's universal skins, I tested it on the [Case Hardened Universal Skin](https://modworkshop.net/mod/25610). For universal skins, the inventory icon will display the real weapon and the universal skin icon will be displayed as a mini-icon.
 
-Note that if a mod author chooses not to use BeardLib's universal skin system and instead makes many copies of the same skin, each of those copies will be duplicated across all weapons. This happens with the [BUFF Universal Skin](https://modworkshop.net/mod/24358).
+For the [BUFF Universal Skin](https://modworkshop.net/mod/24358), you need to download the SDSS compatible version which uses BeardLib's univeral skins. The other version does not use BeardLib's universal skin system so you will end up with duplicated skins.
 
 SDSS should be compatible with most custom weapons, but not all custom weapons will support skins properly. I tested it with the [Akimbo Steakout 12G](https://modworkshop.net/mod/19092) mod. However, the Immortal Python skin will not be available. If you want give your custom weapon an Immortal Python skin, you can do so using this template:
 
