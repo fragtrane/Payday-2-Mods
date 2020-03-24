@@ -309,13 +309,15 @@ end
 
 --Allow all skins on all weapons
 --But filter out Immortal Python
-function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_id)	
+function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_id)
 	local weapon_skin = tweak_data.blackmarket.weapon_skins[weapon_skin_id]
 	local found_weapon = false
 	
-	--Allows everything except for Immortal Python (unlockable) and colors (blacklist)
+	--Allows everything except for Immortal Python (unlockable + global value tam) and colors (blacklist)
+	--Don't duplicate BeardLib universal skins (unlockable + universal)
+	--Other custom skins allowed
 	--Golden AK.762 has been removed from blacklist so it can actually use colors now
-	if weapon_skin and not weapon_skin.is_a_unlockable and not weapon_skin.use_blacklist then
+	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal)) and not weapon_skin.use_blacklist then
 		return true
 	end
 	
@@ -344,7 +346,7 @@ function BlackMarketManager:get_cosmetics_by_weapon_id(weapon_id)
 		weapon_id = tweak_data.weapon[weapon_id].parent_weapon_id or weapon_id
 	end
 	
-	--Don't allow skins for weapons in blacklist (no skins blacklisted right now)
+	--Don't allow skins for weapons in SDSS blacklist (not being used at the moment)
 	if table.contains(SDSS._blacklist, weapon_id) then
 		return {}
 	end
