@@ -36,7 +36,11 @@ When using a swapped skin, unmodded peers will see the weapon skin icon in the l
 
 SDSS overwrites the BlackMarketManager:get_weapon_icon_path() function used by BeardLib, but retains support for BeardLib's universal skin icons. However, in inventory screens, SDSS will keep using the real weapon with the rarity background (like with swapped skins). Otherwise, you don't know what weapon you are using because the universal skin icon system uses one icon for all weapons. The universal skin icon is only used when applying weapon skins.
 
-I have tested SDSS with the [BUFF Universal Skin](https://modworkshop.net/mod/24358) and the [Case Hardened Universal Skin](https://modworkshop.net/mod/25610). Case Hardened Universal Skin uses BeardLib's universal skin icon feature, so it will be replaced by the real weapon in the inventory screen. The BUFF Universal Skin does not use this but it just has the same icon copied across all skins, so unfortunately you are not able to tell which gun you are using.
+SDSS supports custom weapon skins, I tested it on the [AK.762 | Cyber Midnight Reborn](https://modworkshop.net/mod/25718).
+
+SDSS supports BeardLib's universal skins, I tested it on the [Case Hardened Universal Skin](https://modworkshop.net/mod/25610). For universal skins, the inventory icon will display the real weapon and the universal skin icon will be displayed as a mini-icon.
+
+Note that if a mod author chooses not to use BeardLib's universal skin system and instead makes many copies of the same skin, each of those copies will be duplicated across all weapons. This happens with the [BUFF Universal Skin](https://modworkshop.net/mod/24358).
 
 SDSS should be compatible with most custom weapons, but not all custom weapons will support skins properly. I tested it with the [Akimbo Steakout 12G](https://modworkshop.net/mod/19092) mod. However, the Immortal Python skin will not be available. If you want give your custom weapon an Immortal Python skin, you can do so using this template:
 
