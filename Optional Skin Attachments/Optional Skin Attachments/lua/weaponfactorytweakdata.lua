@@ -1,18 +1,24 @@
 dofile(ModPath .. "lua/setup.lua")
 
---Delete legendary mods from akimbo variants of Kobus 90 and Judge
---Akimbo Deagles / single Crosskill don't have this problem
+--Be careful when messing with legendary mods in uses_parts, can cause sync issues/cheater tags.
 --Put default part in adds for Reinfeld 880, Locomotive 12G, and Bootleg so it is re-added after forbid
 local orig_WeaponFactoryTweakData_init = WeaponFactoryTweakData.init
 function WeaponFactoryTweakData:init()
 	orig_WeaponFactoryTweakData_init(self)
 	
-	--Alamo Dallas
-	table.delete(self.wpn_fps_smg_x_p90.uses_parts, "wpn_fps_smg_p90_b_legend")
-
-	--Anarcho
-	table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_b_legend")
-	table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_g_legend")
+	--Change to dummy part to hide
+	for i, part_id in ipairs(self.wpn_fps_smg_x_p90.uses_parts) do
+		if part_id == "wpn_fps_smg_p90_b_legend" then
+			self.wpn_fps_smg_x_p90.uses_parts[i] = "wpn_fps_smg_p90_b_legend_dummy"
+		end
+	end
+	for i, part_id in ipairs(self.wpn_fps_pis_x_judge.uses_parts) do
+		if part_id == "wpn_fps_pis_judge_b_legend" then
+			self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_b_legend_dummy"
+		elseif part_id == "wpn_fps_pis_judge_g_legend" then
+			self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_g_legend_dummy"
+		end
+	end
 	
 	--Big Kahuna / Demon
 	--Default body adds default grip
@@ -58,6 +64,19 @@ local orig_WeaponFactoryTweakData__init_legendary = WeaponFactoryTweakData._init
 function WeaponFactoryTweakData:_init_legendary()
 	orig_WeaponFactoryTweakData__init_legendary(self)
 	
+	--Set up dummy parts
+	--Set unatainable to nil to prevent false cheater tags since dummy part isn't in default_blueprint.
+	--Edge case: someone cheats legendary skin, puts it on akimbo variant -> not detected.
+	self.parts.wpn_fps_smg_p90_b_legend_dummy = deep_clone(self.parts.wpn_fps_smg_p90_b_legend)
+	self.parts.wpn_fps_smg_p90_b_legend_dummy.unatainable = nil
+	
+	self.parts.wpn_fps_pis_judge_b_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_b_legend)
+	self.parts.wpn_fps_pis_judge_b_legend_dummy.unatainable = nil
+	
+	self.parts.wpn_fps_pis_judge_g_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_g_legend)
+	self.parts.wpn_fps_pis_judge_g_legend_dummy.unatainable = nil
+	
+	--Set up legendary parts
 	local new_values = {
 		pcs = {},--Without this, the part gets flagged as inaccessible
 		is_a_unlockable = true,--Set unlockable so it can't be dropped/bought

@@ -2,7 +2,7 @@
 
 **Note: Optional Skin Attachments is NOT compatible with Super Duper Skin Swapper. Legendary skin support is already built into Super Duper Skin Swapper.**
 
-Latest version [v1.7.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.7.1.zip).
+Latest version [v1.8](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.8.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -32,11 +32,16 @@ This mod allows you to choose which attachments to use when applying weapon skin
 - This mod adds the ability to preview weapon modifications on locked legendary skins.
 - This mod fixes a bug in the base game where weapons could not be renamed even after the legendary skin was removed.
 
+## Known Issues
+
+- Previewing a weapon color completely removes the weapon texture (thanks ☢ Big Sky. (MDQ)).
+- Legendary mods on Akimbo Kobus 90 / Akimbo Judge are not validated. May implement in the future.
+
 ## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.7.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.7.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.8.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.8.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -52,7 +57,12 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
 
+**v1.8 - 2020-03-26**
+
+- Reworked method for removing unusable legendary attachments from Akimbo Kobus 90 and Akimbo Judge to prevent sync issues.
+
 **v1.7.1 - 2020-03-20**
+
 - Fixed a bug where the default grip would not be removed on the Locomotive 12G and Reinfeld 880 (thanks de vuelta en el negocio).
 - Fixed a bug where the default barrel extension would not be removed on the Bootleg.
 

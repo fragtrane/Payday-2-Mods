@@ -1,29 +1,22 @@
 dofile(ModPath .. "lua/setup.lua")
 
---Handle legendary mods on akimbo/single variants
+--Set some adds/forbids to prevent legendary attachment clipping.
+--Do not add or delete legendary mods from uses_parts here, can cause sync issues/cheater tags.
 Hooks:PostHook(WeaponFactoryTweakData, "init", "sdss_post_WeaponFactoryTweakData_init", function(self)
 	if not SDSS._settings.sdss_allow_variants then
-		--Delete legendary mods from akimbo variants of Kobus 90 and Judge
-		
-		--Alamo Dallas
-		--Visible for peers whether modded/unmodded, client/host
-		table.delete(self.wpn_fps_smg_x_p90.uses_parts, "wpn_fps_smg_p90_b_legend")
-		
-		--Anarcho
-		--Untested
-		table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_b_legend")
-		table.delete(self.wpn_fps_pis_x_judge.uses_parts, "wpn_fps_pis_judge_g_legend")
-	else
-		--Add legendary mods to Akimbo Deagles / single Crosskill
-		
-		--Midas Touch
-		--Invisible in third person on akimbo for both vanilla and modded peers, as both client and host.
-		table.insert(self.wpn_fps_x_deagle.uses_parts, "wpn_fps_pis_deagle_b_legend")
-		
-		--Santa's Slayers
-		--Invisible in third person on single for both vanilla and modded peers, as both client and host.
-		table.insert(self.wpn_fps_pis_1911.uses_parts, "wpn_fps_pis_1911_g_legendary")
-		table.insert(self.wpn_fps_pis_1911.uses_parts, "wpn_fps_pis_1911_fl_legendary")
+		--Change to dummy part to hide
+		for i, part_id in ipairs(self.wpn_fps_smg_x_p90.uses_parts) do
+			if part_id == "wpn_fps_smg_p90_b_legend" then
+				self.wpn_fps_smg_x_p90.uses_parts[i] = "wpn_fps_smg_p90_b_legend_dummy"
+			end
+		end
+		for i, part_id in ipairs(self.wpn_fps_pis_x_judge.uses_parts) do
+			if part_id == "wpn_fps_pis_judge_b_legend" then
+				self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_b_legend_dummy"
+			elseif part_id == "wpn_fps_pis_judge_g_legend" then
+				self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_g_legend_dummy"
+			end
+		end
 	end
 	
 	--Big Kahuna / Demon
@@ -65,8 +58,37 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "sdss_post_WeaponFactoryTweakData
 	end	
 end)
 
+--Insert legendary parts AFTER bonuses. Otherwise, when peers send index of bonus in outfit string, we will think it is a legendary part.
+--If someone also extends their uses_parts table with other attachments, we might think that they are using a legendary attachment -> handle in NetworkPeer, don't flag if legendary attachment is not on original gun.
+Hooks:PostHook(WeaponFactoryTweakData, "create_bonuses", "sdss_post_WeaponFactoryTweakData_create_bonuses", function(self, ...)
+	if SDSS._settings.sdss_allow_variants then
+		--Midas Touch
+		--Invisible in third person on akimbo for both vanilla and modded peers, as both client and host.
+		table.insert(self.wpn_fps_x_deagle.uses_parts, "wpn_fps_pis_deagle_b_legend")
+		
+		--Santa's Slayers
+		--Invisible in third person on single for both vanilla and modded peers, as both client and host.
+		table.insert(self.wpn_fps_pis_1911.uses_parts, "wpn_fps_pis_1911_g_legendary")
+		table.insert(self.wpn_fps_pis_1911.uses_parts, "wpn_fps_pis_1911_fl_legendary")
+	end
+end)
+
 --Set up legendary parts
 Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFactoryTweakData__init_legendary", function(self)
+	--Set up dummy parts
+	--Used when "allow variants" is off, this way we can hide the legendary parts from the akimbos in inventory.
+	--Set unatainable to nil to prevent false cheater tags since dummy part isn't in default_blueprint.
+	--Edge case: someone cheats legendary skin, puts it on akimbo variant, and you have disabled variants -> not detected.
+	self.parts.wpn_fps_smg_p90_b_legend_dummy = deep_clone(self.parts.wpn_fps_smg_p90_b_legend)
+	self.parts.wpn_fps_smg_p90_b_legend_dummy.unatainable = nil
+	
+	self.parts.wpn_fps_pis_judge_b_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_b_legend)
+	self.parts.wpn_fps_pis_judge_b_legend_dummy.unatainable = nil
+	
+	self.parts.wpn_fps_pis_judge_g_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_g_legend)
+	self.parts.wpn_fps_pis_judge_g_legend_dummy.unatainable = nil
+	
+	--Set up legendary parts
 	local new_values = {
 		pcs = {},--Without this, the part gets flagged as inaccessible
 		is_a_unlockable = true,--Set unlockable so it can't be dropped/bought

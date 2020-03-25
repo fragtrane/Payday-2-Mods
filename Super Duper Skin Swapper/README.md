@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.2.zip).
+Latest version [v1.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.3.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -62,18 +62,23 @@ SDSS is NOT compatible with [Hide Duplicate Skins](https://github.com/fragtrane/
 
 ## Equipping Legendary Attachments on Akimbo/Single Variants
 
-- The Alamo Dallas Barrel can be seen by other players (both vanilla and modded) when equipped on the Akimbo Kobus 90s.
-- The Santa's Slayers Grip and Santa's Slayers Laser are invisible for other players when equipped on the single Crosskill. It will just look like a normal Crosskill with a skin.
-- The Midas Touch Barrel is invisible for other players when equipped on the Akimbo Deagles. It looks very strange because the Akimbo Deagles will have no barrel.
+- The Alamo Dallas Barrel can be seen by other players (both vanilla and modded) when equipped on the Akimbo Kobus 90s. This works in-game as well as in the lobby.
+- The Santa's Slayers Grip and Santa's Slayers Laser are invisible in-game for other players when equipped on the single Crosskill. It will just look like a normal Crosskill with a skin. However, these attachments are visible to modded players when in the lobby.
+- The Midas Touch Barrel is invisible in-game for other players when equipped on the Akimbo Deagles. It looks very strange because the Akimbo Deagles will have no barrel. However, these attachments are visible to modded players when in the lobby.
 - I do not own the Anarcho skin so I could not test its attachments on the Akimbo Judges.
 
 Legendary attachments are only available for use when the corresponding legendary skin is equipped, so it will not cause a cheater tag. Any false-positive cheater tags are due to other players using mods that delete attachments without changing the piracy check (e.g. Customizable Legendary Skins or the original Super Skin Swapper). If players run these mods, you will be marked as a cheater for using any legendary attachment, regardless of what weapon it is equipped on. Therefore, there is no harm in using the attachments on single/akimbo variants.
+
+## Known Issues
+
+- Legendary attachments on the single Crosskill and Akimbo Deagle are not validated. The parts list of the single Crosskill and Akimbo Deagle do not contain the legendary parts so they were manually added. If other players have extended the parts list of these weapons, we will think that they are using legendary parts regardless of what they are actually using. To prevent false-positive cheater tags, validation is skipped.
+- Legendary attachments of the Santa's Slayers and Midas Touch do not show up in-game for other players (both vanilla and  modded) when equipped on single/akimbo variant respectively. However, they do show up in the lobby to modded players. Will continue to look into fixing this.
 
 ## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.2.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.3.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -96,6 +101,12 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.3 - 2020-03-26**
+
+- Reworked method for validating weapon modifications.
+- Reworked method for removing legendary attachments from Akimbo Kobus 90 and Akimbo Judge when "Allow Variants" is off to prevent sync issues.
+- Reworked method for adding legendary attachments to single Crosskill and Akimbo Deagle to prevent sync issues.
 
 **v1.2 - 2020-03-24**
 
