@@ -4,7 +4,7 @@
 
 Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.2.zip).
 
-You may want to consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod, which allows you to choose which attachments you want to use instead of completely disabling them. I am mostly uploading this mod for archiving purposes.
+You may want to consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod, which allows you to choose which attachments you want to use instead of completely disabling them. Disable Skin Attachments is somewhat obsolete and I am mostly uploading it for archiving purposes.
 
 ## Overview
 
