@@ -1,8 +1,10 @@
 # Disable Skin Attachments
 
-Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.1.zip).
+Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.2.zip).
 
-Note: you may want to consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod, which allows you to choose which attachments you want to use instead of completely disabling them. Optional Skin Attachments is not compatible with Disable Skin Attachments, so only install one of them.
+You may want to consider using my [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) mod, which allows you to choose which attachments you want to use instead of completely disabling them. I am mostly uploading this mod for archiving purposes.
+
+**Note: Disable Skin Attachments is NOT compatible with Optional Skin Attachments or Super Duper Skin Swapper.**
 
 ## Overview
 
@@ -25,7 +27,7 @@ This mod removes weapon attachments from weapon skins and allows legendary weapo
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Disable_Skin_Attachments_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Disable_Skin_Attachments_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Disable%20Skin%20Attachments/Disable_Skin_Attachments_v1.2.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -46,6 +48,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.2 - 2020-03-26**
+
+- Reworked method for validating weapon modifications for compatibility with latest update.
 
 **v1.1 - 2020-01-02**
 
