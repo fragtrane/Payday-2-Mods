@@ -102,7 +102,20 @@ function WeaponFactoryTweakData:_init_legendary()
 			end
 			self.parts[part_id].name_id = "osa_bm_"..part_id
 			self.parts[part_id].desc_id = "osa_bm_req_"..skin
+			
+			--Set sub_type to "laser" so the color can be changed
+			if self.parts[part_id].perks then
+				if table.contains(self.parts[part_id].perks, "gadget") then
+					self.parts[part_id].sub_type = "laser"
+				end
+			end
+			--Raven's barrel sub_type is "silencer" which is wrong, but that gets overwritten so it's fine
 		end
+	end
+	
+	--SRAB localization
+	if _G.SRAB then
+		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "osa_bm_wpn_fps_sho_ksg_b_legendary_srab"
 	end
 	
 	--Fix foregrip on Raven Admiral

@@ -81,9 +81,32 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFacto
 			for k, v in pairs(new_values) do
 				self.parts[part_id][k] = v
 			end
+			if SDSS._settings.sdss_remove_stats then
+				local val = 0
+				if self.parts[part_id].stats then
+					val = self.parts[part_id].stats.value or val
+				end
+				--Don't remove stats on SRAB
+				if not _G.SRAB or part_id ~= "wpn_fps_sho_ksg_b_legendary" then
+					self.parts[part_id].stats = {value = val}
+				end
+			end
 			self.parts[part_id].name_id = "sdss_bm_"..part_id
 			self.parts[part_id].desc_id = "sdss_bm_req_"..skin
+			
+			--Set sub_type to "laser" so the color can be changed
+			if self.parts[part_id].perks then
+				if table.contains(self.parts[part_id].perks, "gadget") then
+					self.parts[part_id].sub_type = "laser"
+				end
+			end
+			--Raven's barrel sub_type is "silencer" which is wrong, but that gets overwritten so it's fine
 		end
+	end
+	
+	--SRAB localization
+	if _G.SRAB then
+		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "sdss_bm_wpn_fps_sho_ksg_b_legendary_srab"
 	end
 	
 	--Fix foregrip on Raven Admiral

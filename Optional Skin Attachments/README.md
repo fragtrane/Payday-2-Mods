@@ -2,7 +2,7 @@
 
 **Note: Optional Skin Attachments is NOT compatible with Super Duper Skin Swapper. Legendary skin support is already built into Super Duper Skin Swapper.**
 
-Latest version [v1.8](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.8.zip).
+Latest version [v1.9](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.9.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -34,14 +34,13 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 ## Known Issues
 
-- Previewing a weapon color completely removes the weapon texture (thanks ☢ Big Sky. (MDQ)).
 - Legendary mods on Akimbo Kobus 90 / Akimbo Judge are not validated. May implement in the future.
 
 ## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v1.8.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.8.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v1.9.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v1.9.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -56,6 +55,22 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.9 - 2020-03-30**
+
+- Added the ability to customize the laser color on legendary attachments. Vlad's Rodina Laser and Santa's Slayers Laser could already use custom colors and have not been changed. List of affected attachments:
+	- Astatoz Foregrip
+	- Anarcho Barrel
+	- Apex Barrel
+	- Admiral Barrel
+	- Mars Ultor Barrel
+	- Demon Barrel
+	- Plush Phoenix Barrel
+- Fixed a bug where previewing a weapon color would completely remove the weapon texture (thanks ☢ Big Sky. (MDQ)).
+- Minor/internal changes:
+	- Reworked localization integration with Suppressed Raven Admiral Barrel mod.
+	- Reworked BlackMarketManager:player_owns_silenced_weapon() check when SRAB is in use.
+	- Fixed a bug in autobuy function.
 
 **v1.8 - 2020-03-26**
 

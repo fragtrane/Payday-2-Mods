@@ -68,8 +68,8 @@
 	"osa_dialog_reason_stock" : "Out-of-Stock Attachments",
 	"osa_dialog_reason_incompatible" : "Incompatible Attachments",
 	
-	"osa_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",
 	"osa_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
+	"osa_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",
 	"osa_bm_req_flamethrower_mk2_fire" : "Requires Dragon Lord legendary skin.",
 	"osa_bm_req_rpg7_boom" : "Requires Green Grin legendary skin.",
 	"osa_bm_req_m134_bulletstorm" : "Requires The Gimp legendary skin.",
@@ -132,6 +132,7 @@
 	"osa_bm_wpn_fps_sho_boot_s_legendary" : "Apex Stock",
 	
 	"osa_bm_wpn_fps_sho_ksg_b_legendary" : "Admiral Barrel",
+	"osa_bm_wpn_fps_sho_ksg_b_legendary_srab" : "Admiral Suppressed Barrel",
 	
 	"osa_bm_wpn_fps_ass_tecci_b_legend" : "Mars Ultor Barrel",
 	"osa_bm_wpn_fps_ass_tecci_fg_legend" : "Mars Ultor Foregrip",

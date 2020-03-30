@@ -5,8 +5,14 @@
 	"sdss_hide_unowned_title" : "Hide unowned skins",
 	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
 	
+	"sdss_allow_beardlib_title" : "Allow BeardLib custom skins",
+	"sdss_allow_beardlib_desc" : "Allow BeardLib custom skins to be used on any weapon. Does not apply to BeardLib universal skins.",
+	
 	"sdss_allow_variants_title" : "Allow legendary mods on variants",
 	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on akimbo/single variants. Restart required.\nWarning: not fully tested yet.",
+	
+	"sdss_remove_stats_title" : "Remove legendary mod stats",
+	"sdss_remove_stats_desc" : "Remove stats from legendary weapon attachments. Restart required.",
 	
 	"sdss_clean_dupes_title" : "Hide duplicate skins",
 	"sdss_clean_dupes_desc" : "Hide duplicate copies of skins and only show the ones with the best quality.",
@@ -16,8 +22,8 @@
 	"sdss_clean_dupes_both" : "Best normal & stat",
 	"sdss_clean_dupes_allvars" : "All variants",
 	
-	"sdss_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",
 	"sdss_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
+	"sdss_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",
 	"sdss_bm_req_flamethrower_mk2_fire" : "Requires Dragon Lord legendary skin.",
 	"sdss_bm_req_rpg7_boom" : "Requires Green Grin legendary skin.",
 	"sdss_bm_req_m134_bulletstorm" : "Requires The Gimp legendary skin.",
@@ -80,6 +86,7 @@
 	"sdss_bm_wpn_fps_sho_boot_s_legendary" : "Apex Stock",
 	
 	"sdss_bm_wpn_fps_sho_ksg_b_legendary" : "Admiral Barrel",
+	"sdss_bm_wpn_fps_sho_ksg_b_legendary_srab" : "Admiral Suppressed Barrel",
 	
 	"sdss_bm_wpn_fps_ass_tecci_b_legend" : "Mars Ultor Barrel",
 	"sdss_bm_wpn_fps_ass_tecci_fg_legend" : "Mars Ultor Foregrip",

@@ -10,7 +10,9 @@ SDSS._save_path = SavePath
 SDSS._save_name = "sdss_settings.txt"
 SDSS._settings = {
 	sdss_hide_unowned = true,--Hide skins that you don't own
+	sdss_allow_beardlib = true,--Allow non-universal BeardLib skins to be used on any weapon
 	sdss_allow_variants = false,--Allow legendary attachments on akimbo/single variants
+	sdss_remove_stats = false,--Remove stats from legendary attachments
 	sdss_clean_dupes = 1--Hide duplicates
 }
 --Load skin data
@@ -60,10 +62,6 @@ end
 --Menu hooks
 Hooks:Add("LocalizationManagerPostInit", "sdss_hook_LocalizationManagerPostInit", function(loc)
 	loc:load_localization_file(SDSS._mod_path.."localizations/english.txt")
-	--SRAB localization
-	if _G.SRAB then
-		loc:add_localized_strings( {["sdss_bm_wpn_fps_sho_ksg_b_legendary"] = "Admiral Suppressed Barrel"} )
-	end
 end)
 
 Hooks:Add("MenuManagerInitialize", "sdss_hook_MenuManagerInitialize", function(menu_manager)	

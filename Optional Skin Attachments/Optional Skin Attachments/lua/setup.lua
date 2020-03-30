@@ -112,10 +112,6 @@ end
 --Menu hooks
 Hooks:Add("LocalizationManagerPostInit", "osa_hook_LocalizationManagerPostInit", function(loc)
 	loc:load_localization_file(OSA._mod_path.."localizations/english.txt")
-	--SRAB localization
-	if _G.SRAB then
-		loc:add_localized_strings( {["osa_bm_wpn_fps_sho_ksg_b_legendary"] = "Admiral Suppressed Barrel"} )
-	end
 end)
 
 Hooks:Add("MenuManagerInitialize", "osa_hook_MenuManagerInitialize", function(menu_manager)	

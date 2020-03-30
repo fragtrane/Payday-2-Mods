@@ -16,7 +16,8 @@ function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
 	if OSA._state_preview.ready then
 		managers.blackmarket:osa_view_weapon_with_cosmetics(data.category, data.slot, {
 			id = data.cosmetic_id,
-			quality = data.cosmetic_quality
+			quality = data.cosmetic_quality,
+			color_index = data.cosmetic_color_index
 		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
 		OSA._state_preview.ready = false
 	else
@@ -25,7 +26,8 @@ function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
 		OSA:ok_menu(title, desc, false, false)
 		managers.blackmarket:view_weapon_with_cosmetics(data.category, data.slot, {
 			id = data.cosmetic_id,
-			quality = data.cosmetic_quality
+			quality = data.cosmetic_quality,
+			color_index = data.cosmetic_color_index
 		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
 	end
 	self:reload()

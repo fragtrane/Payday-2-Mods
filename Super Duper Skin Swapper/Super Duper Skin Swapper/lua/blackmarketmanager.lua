@@ -9,9 +9,7 @@ end)
 
 --When offline, set visible skins after data is loaded
 Hooks:PostHook(BlackMarketManager, "load", "sdss_post_BlackMarketManager_tradable_update", function(self, ...)
-	if not Steam:logged_on() then
-		self:set_visible_cosmetics()
-	end
+	self:set_visible_cosmetics()
 end)
 
 --Check if online and if we received a tradable list
@@ -315,9 +313,9 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 	
 	--Allows everything except for Immortal Python (unlockable + global value tam) and colors (blacklist)
 	--Don't duplicate BeardLib universal skins (unlockable + universal)
-	--Other custom skins allowed
+	--Other BeardLib custom skins allowed if enabled in settings
 	--Golden AK.762 has been removed from blacklist so it can actually use colors now
-	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal)) and not weapon_skin.use_blacklist then
+	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal and SDSS._settings.sdss_allow_beardlib)) and not weapon_skin.use_blacklist then
 		return true
 	end
 	
@@ -575,4 +573,26 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 
 		MenuCallbackHandler:_update_outfit_information()
 	end
+end
+
+--Used by quickplay to check if you own a suppressed weapon, fix for SRAB because sub_type was changed
+local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
+function BlackMarketManager:player_owns_silenced_weapon()
+	local result = orig_BlackMarketManager_player_owns_silenced_weapon(self)
+	if not result and _G.SRAB then
+		local categories = {
+			"primaries",
+			"secondaries"
+		}
+		for _, category in ipairs(categories) do
+			for _, crafted_item in pairs(self._global.crafted_items[category]) do
+				for _, part_id in ipairs(crafted_item.blueprint) do
+					if part_id == "wpn_fps_sho_ksg_b_legendary" then
+						return true
+					end
+				end
+			end
+		end
+	end
+	return result
 end

@@ -71,7 +71,7 @@ function BlackMarketManager:osa_buy_mod(part_id)
 	local category = "weapon_mods"
 	self._global.inventory[global_value] = self._global.inventory[global_value] or {}
 	self._global.inventory[global_value][category] = self._global.inventory[global_value][category] or {}
-	self._global.inventory[global_value][category][part_id] = (self._global.inventory[global_value][category][id] or 0) + 1
+	self._global.inventory[global_value][category][part_id] = (self._global.inventory[global_value][category][part_id] or 0) + 1
 	self:alter_global_value_item(global_value, category, nil, part_id, INV_ADD)
 	self:dispatch_event("added_to_inventory", part_id, category, global_value)
 end
@@ -708,4 +708,26 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 		
 		self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)
 	end
+end
+
+--Used by quickplay to check if you own a suppressed weapon, fix for SRAB because sub_type was changed
+local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
+function BlackMarketManager:player_owns_silenced_weapon()
+	local result = orig_BlackMarketManager_player_owns_silenced_weapon(self)
+	if not result and _G.SRAB then
+		local categories = {
+			"primaries",
+			"secondaries"
+		}
+		for _, category in ipairs(categories) do
+			for _, crafted_item in pairs(self._global.crafted_items[category]) do
+				for _, part_id in ipairs(crafted_item.blueprint) do
+					if part_id == "wpn_fps_sho_ksg_b_legendary" then
+						return true
+					end
+				end
+			end
+		end
+	end
+	return result
 end

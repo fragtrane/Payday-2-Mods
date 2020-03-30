@@ -16,11 +16,29 @@
 		},
 		{
 			"type" : "toggle",
+			"id" : "sdss_allow_beardlib",
+			"title" : "sdss_allow_beardlib_title",
+			"description" : "sdss_allow_beardlib_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_allow_beardlib",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
 			"id" : "sdss_allow_variants",
 			"title" : "sdss_allow_variants_title",
 			"description" : "sdss_allow_variants_desc",
 			"callback" : "sdss_callback_toggle",
 			"value" : "sdss_allow_variants",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_remove_stats",
+			"title" : "sdss_remove_stats_title",
+			"description" : "sdss_remove_stats_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_remove_stats",
 			"default_value" : false
 		},
 		{
