@@ -1,0 +1,29 @@
+{
+	"bosbc_options_menu_title" : "Birth of Sky Budget Cuts",
+	"bosbc_options_menu_desc"  : "Birth of Sky Budget Cuts mod options.",
+	
+	"bosbc_normal_title" : "Normal",
+	"bosbc_normal_desc"  : "Enable on Normal difficulty.",
+	"bosbc_hard_title" : "Hard",
+	"bosbc_hard_desc"  : "Enable on Hard difficulty.",
+	"bosbc_very_hard_title" : "Very Hard",
+	"bosbc_very_hard_desc"  : "Enable on Very Hard difficulty.",
+	"bosbc_overkill_title" : "Overkill",
+	"bosbc_overkill_desc"  : "Enable on Overkill difficulty.",
+	"bosbc_mayhem_title" : "Mayhem",
+	"bosbc_mayhem_desc"  : "Enable on Mayhem difficulty.",
+	"bosbc_death_wish_title" : "Death Wish",
+	"bosbc_death_wish_desc"  : "Enable on Death Wish difficulty.",
+	"bosbc_death_sentence_title" : "Death Sentence",
+	"bosbc_death_sentence_desc"  : "Enable on Death Sentence difficulty.",
+	
+	"bosbc_sp_title" : "Single Player",
+	"bosbc_sp_desc"  : "Enable in single player mode.",
+	
+	"bosbc_announce_message_1" : "Notice: due to budget cuts, the availability of parachutes may be limited.",
+	
+	"bosbc_open_message_1" : "Damn, looks like Locke didn't give us enough parachutes.",
+	
+	"bosbc_empty_message_1" : "That cheap dwankie Locke didn't give us a single parachute!",
+	"bosbc_empty_message_2" : "Looks like we're in for a rough landing."
+}

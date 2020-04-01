@@ -1,0 +1,47 @@
+{
+	"name" : "Birth of Sky Budget Cuts",
+	"description" : "Due to budget cuts, parachutes may not be available on the Birth of Sky heist.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/managers/mission/missionscriptelement",
+			"script_path" : "lua/missionscriptelement.lua"
+		},
+		{
+			"hook_id" : "core/lib/managers/mission/coreelementunitsequence",
+			"script_path" : "lua/coreelementunitsequence.lua"
+		},
+		{
+			"hook_id" : "lib/managers/objectinteractionmanager",
+			"script_path" : "lua/objectinteractionmanager.lua"
+		},
+		{
+			"hook_id" : "lib/network/base/hostnetworksession",
+			"script_path" : "lua/hostnetworksession.lua"
+		},
+		{
+			"hook_id" : "lib/states/ingameparachuting",
+			"script_path" : "lua/ingameparachuting.lua"
+		},
+		{
+			"hook_id" : "lib/states/ingamefreefall",
+			"script_path" : "lua/ingamefreefall.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "BirthOfSkyBudgetCuts",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Birth%20of%20Sky%20Budget%20Cuts/latest.json"
+			}
+		}
+	]
+}

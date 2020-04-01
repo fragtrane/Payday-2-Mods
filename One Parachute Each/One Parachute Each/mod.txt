@@ -1,0 +1,23 @@
+{
+	"name" : "One Parachute Each",
+	"description" : "Parachutes do not respawn on the Birth of Sky heist.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/objectinteractionmanager",
+			"script_path" : "lua/objectinteractionmanager.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "OneParachuteEach",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/One%20Parachute%20Each/latest.json"
+			}
+		}
+	]
+}

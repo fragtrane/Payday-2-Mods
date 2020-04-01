@@ -1,0 +1,85 @@
+{
+	"menu_id" : "bosbc_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "bosbc_options_menu_title",
+	"description" : "bosbc_options_menu_desc",
+	"back_callback" : "bosbc_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "bosbc_normal",
+			"title" : "bosbc_normal_title",
+			"description" : "bosbc_normal_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_normal",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_hard",
+			"title" : "bosbc_hard_title",
+			"description" : "bosbc_hard_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_hard",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_very_hard",
+			"title" : "bosbc_very_hard_title",
+			"description" : "bosbc_very_hard_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_very_hard",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_overkill",
+			"title" : "bosbc_overkill_title",
+			"description" : "bosbc_overkill_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_overkill",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_mayhem",
+			"title" : "bosbc_mayhem_title",
+			"description" : "bosbc_mayhem_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_mayhem",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_death_wish",
+			"title" : "bosbc_death_wish_title",
+			"description" : "bosbc_death_wish_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_death_wish",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_death_sentence",
+			"title" : "bosbc_death_sentence_title",
+			"description" : "bosbc_death_sentence_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_death_sentence",
+			"default_value" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "bosbc_sp",
+			"title" : "bosbc_sp_title",
+			"description" : "bosbc_sp_desc",
+			"callback" : "bosbc_callback_toggle",
+			"value" : "bosbc_sp",
+			"default_value" : false
+		}
+	]
+}
