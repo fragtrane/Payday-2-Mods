@@ -59,12 +59,12 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 **v1.9 - 2020-03-30**
 
 - Added the ability to customize the laser color on legendary attachments. Vlad's Rodina Laser and Santa's Slayers Laser could already use custom colors and have not been changed. List of affected attachments:
-	- Astatoz Foregrip
+	- Admiral Barrel
 	- Anarcho Barrel
 	- Apex Barrel
-	- Admiral Barrel
-	- Mars Ultor Barrel
+	- Astatoz Foregrip
 	- Demon Barrel
+	- Mars Ultor Barrel
 	- Plush Phoenix Barrel
 - Fixed a bug where previewing a weapon color would completely remove the weapon texture (thanks ☢ Big Sky. (MDQ)).
 - Minor/internal changes:
@@ -84,10 +84,10 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 **v1.7 - 2020-03-20**
 
 - Improved legendary attachment handling for various weapons:
+	- Astatoz: Astatoz Foregrip's type has been changed to "foregrip" so that it will replace the default AMR-16 foregrip when applied (also to prevent clipping).
 	- Big Kahuna: Big Kahuna Stock now removes the default grip to prevent clipping.
 	- Demon: Demon Stock now removes the default grip to prevent clipping.
 	- Mars Ultor: Mars Ultor Barrel now removes the default barrel extension to prevent clipping.
-	- Astatoz: Astatoz Foregrip's type has been changed to "foregrip" so that it will replace the default AMR-16 foregrip when applied (also to prevent clipping).
 	- Vlad's Rodina: the default grip will no longer disappear when the Vlad's Rodina Stock is applied. Other grips can still be applied as normal to replace the default grip.
 - Fixed the name of the Santa's Slayers Laser.
 

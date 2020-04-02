@@ -99,12 +99,12 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 **v1.4 - 2020-03-30**
 
 - Added the ability to customize the laser color on legendary attachments. Vlad's Rodina Laser and Santa's Slayers Laser could already use custom colors and have not been changed. List of affected attachments:
-	- Astatoz Foregrip
+	- Admiral Barrel
 	- Anarcho Barrel
 	- Apex Barrel
-	- Admiral Barrel
-	- Mars Ultor Barrel
+	- Astatoz Foregrip
 	- Demon Barrel
+	- Mars Ultor Barrel
 	- Plush Phoenix Barrel
 - Added option to allow BeardLib custom skins to be used on all weapons. Does not affect BeardLib universal skins. Enabled by default.
 - Added option to remove stats from legendary attachments. Disabled by default.
