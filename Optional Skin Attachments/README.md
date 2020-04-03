@@ -78,13 +78,13 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 **v1.7.1 - 2020-03-20**
 
-- Fixed a bug where the default grip would not be removed on the Locomotive 12G and Reinfeld 880 (thanks de vuelta en el negocio).
-- Fixed a bug where the default barrel extension would not be removed on the Bootleg.
+- Fixed a bug where the default grip would not be removed on the Locomotive 12G and Reinfeld 880 when other grips were equipped (thanks de vuelta en el negocio).
+- Fixed a bug where the default barrel extension would not be removed on the Bootleg when other barrel extensions were equipped.
 
 **v1.7 - 2020-03-20**
 
 - Improved legendary attachment handling for various weapons:
-	- Astatoz: Astatoz Foregrip's type has been changed to "foregrip" so that it will replace the default AMR-16 foregrip when applied (also to prevent clipping).
+	- Astatoz: Astatoz Foregrip's type has been changed to "foregrip" so that it will replace the default AMR-16 foregrip when applied to prevent clipping.
 	- Big Kahuna: Big Kahuna Stock now removes the default grip to prevent clipping.
 	- Demon: Demon Stock now removes the default grip to prevent clipping.
 	- Mars Ultor: Mars Ultor Barrel now removes the default barrel extension to prevent clipping.
