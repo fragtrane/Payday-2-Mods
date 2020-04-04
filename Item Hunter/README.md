@@ -1,6 +1,6 @@
 # Item Hunter
 
-Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.1.zip).
+Latest version [v1.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.2.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26200).
 
@@ -72,7 +72,7 @@ This mod adds waypoints to items for collectible achievements/trophies. The mod 
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Item_Hunter_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Item_Hunter_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Item%20Hunter/Item_Hunter_v1.2.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -87,6 +87,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.2 - 2020-04-04**
+
+- Minor rework to prevent crashes (hopefully).
 
 **v1.1 - 2020-01-08**
 

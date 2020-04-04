@@ -306,7 +306,7 @@ function ItemHunter:check_keep_wps(level_id, obj_type, objective)
 		end
 	end
 	if obj_type == "interactions" then
-		for _, unit in pairs(clone(managers.interaction._interactive_units)) do
+		for _, unit in pairs(managers.interaction._interactive_units) do
 			local id = unit:name()
 			local name = unit:interaction().tweak_data
 			if tostring(id) == tostring(objective.id) and tostring(name) == objective.name then

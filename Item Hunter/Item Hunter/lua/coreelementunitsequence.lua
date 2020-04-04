@@ -8,11 +8,9 @@ core:import("CoreUnit")
 ElementUnitSequence = ElementUnitSequence or class(CoreMissionScriptElement.MissionScriptElement)
 
 --Use mission script to identify correct pumpkin for Spooky Pumpkin
---Maybe there's a better way to do this
 local orig_ElementUnitSequence_on_executed = ElementUnitSequence.on_executed
 function ElementUnitSequence:on_executed(...)
-	ItemHunter = _G.ItemHunter or {}
-	tweak_data = _G.tweak_data or {}
+	local ItemHunter = _G.ItemHunter
 	if self._values.enabled and Global.game_settings and not Network:is_client() then
 		local level_id = Global.game_settings.level_id
 		if level_id == "help" then
