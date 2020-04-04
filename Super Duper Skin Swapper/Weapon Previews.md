@@ -48,7 +48,7 @@ A list of the skins and weapon attachments shown in the preview images.
 
 |Preview|Attachments<img width=300/>|
 |:--|:--|
-|<a href="https://i.imgur.com/ZuPR0P4.jpg"><img src="https://i.imgur.com/ZuPR0P4.jpg" alt="Kross Vertex with Vix CQC skin" width="320"></a>|• Weapon Skin: [Vix CQC (M1014)](https://steamcommunity.com/market/search?q=%22M1014+SHOTGUN+%7C+Vix+CQC%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Barrel Ext: Fire Breather Nozzle<br>• Sight: Maelstrom Sight<br>• Stock: 2 Piece Stock|
+|<a href="https://i.imgur.com/xKwglg5.jpg"><img src="https://i.imgur.com/xKwglg5.jpg" alt="Kross Vertex with Vix CQC skin" width="320"></a>|• Weapon Skin: [Vix CQC (M1014)](https://steamcommunity.com/market/search?q=%22M1014+SHOTGUN+%7C+Vix+CQC%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Barrel Ext: Fire Breather Nozzle<br>• Sight: Maelstrom Sight<br>• Stock: 2 Piece Stock|
 
 **Czech 92 with Demon Skin**
 
@@ -76,7 +76,7 @@ _Note: the legendary attachments do not show up properly in third person when eq
 
 |Preview|Attachments<img width=300/>|
 |:--|:--|
-|<a href="https://i.imgur.com/3FIV69V.jpg"><img src="https://i.imgur.com/3FIV69V.jpg" alt="Akimbo Deagle with Midas Touch skin" width="320"></a>|• Weapon Skin: [Midas Touch (Deagle)](https://steamcommunity.com/market/search?q=%22DEAGLE+PISTOL+%7C+Midas+Touch%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Grip: Ergo Grip<br>• Slide: Midas Touch Barrel|
+|<a href="https://i.imgur.com/1hBZYlQ.jpg"><img src="https://i.imgur.com/1hBZYlQ.jpg" alt="Akimbo Deagle with Midas Touch skin" width="320"></a>|• Weapon Skin: [Midas Touch (Deagle)](https://steamcommunity.com/market/search?q=%22DEAGLE+PISTOL+%7C+Midas+Touch%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Grip: Ergo Grip<br>• Slide: Midas Touch Barrel|
 
 **Crosskill with Santa's Slayers skin**
 
