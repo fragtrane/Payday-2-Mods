@@ -63,8 +63,9 @@ SDSS is NOT compatible with [Hide Duplicate Skins](https://github.com/fragtrane/
 ## Equipping Legendary Attachments on Akimbo/Single Variants
 
 - The Alamo Dallas Barrel can be seen by other players (both vanilla and modded) when equipped on the Akimbo Kobus 90s. This works in-game as well as in the lobby.
-- I do not own the Anarcho skin so I could not test its attachments on the Akimbo Judges.
-- The legendary attachments on the Santa's Slayers and Midas Touch legendary attachments do not sync properly when equipped on the single/akimbo variant and have been disabled as of v1.3.1.
+- I do not own the Anarcho skin so I could not test its attachments on the Akimbo Judges. It _should_ work fine though.
+- The legendary attachments on the Santa's Slayers and Midas Touch do not sync properly when equipped on the single/akimbo variant and have been disabled as of v1.3.1.
+	- Update 2020-04-07: legendary attachments can be equipped on the single Crosskill and Akimbo Deagle using the [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments) mod. However, they cannot be seen by other players.
 
 Legendary attachments are only available for use when the corresponding legendary skin is equipped, so it will not cause a cheater tag. Any false-positive cheater tags are due to other players using mods that delete attachments without changing the piracy check (e.g. Customizable Legendary Skins or the original Super Skin Swapper). If players run these mods, you will be marked as a cheater for using any legendary attachment, regardless of what weapon it is equipped on. Therefore, there is no harm in using the attachments on single/akimbo variants.
 

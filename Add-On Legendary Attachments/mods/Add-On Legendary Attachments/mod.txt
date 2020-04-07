@@ -1,0 +1,48 @@
+{
+	"name" : "Add-On Legendary Attachments",
+	"description" : "Adds a standalone copy of legendary attachments for legendary skins that you own. Can be used even if you don't have the legendary skin equipped.",
+	"author" : "fragtrane",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "1.0",
+	"priority" : 0,
+	"blt_version" : 2,
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/setup.lua"
+		},
+		{
+			"hook_id" : "lib/states/menumainstate",
+			"script_path" : "lua/menumainstate.lua"
+		},
+		{
+			"hook_id" : "lib/managers/blackmarketmanager",
+			"script_path" : "lua/blackmarketmanager.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/weaponfactorytweakdata",
+			"script_path" : "lua/weaponfactorytweakdata.lua"
+		},
+		{
+			"hook_id" : "lib/tweak_data/blackmarket/weaponskinstweakdata",
+			"script_path" : "lua/weaponskinstweakdata.lua"
+		}
+	],
+	"updates" : [
+		{
+			"identifier" : "AddOnLegendaryAttachments",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Add-On%20Legendary%20Attachments/latest.json"
+			}
+		},
+		{
+			"identifier" : "AddOnLegendaryAttachmentsAssets",
+			"install_dir" : "assets/mod_overrides/",
+			"install_folder" : "Add-On Legendary Attachments Assets",
+			"display_name" : "Add-On Legendary Attachments Assets",
+			"host" : {
+				"meta" : "https://github.com/fragtrane/Payday-2-Mod-Updates/raw/master/Add-On%20Legendary%20Attachments/latest.json"
+			}
+		}
+	]
+}

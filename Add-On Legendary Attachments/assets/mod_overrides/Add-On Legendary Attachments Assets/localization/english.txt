@@ -1,0 +1,80 @@
+{
+	"bm_wp_req_ak74_rodina_desc" : "Requires ownership of Vlad's Rodina legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_deagle_bling_desc" : "Requires ownership of Midas Touch legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_flamethrower_mk2_fire_desc" : "Requires ownership of Dragon Lord legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_rpg7_boom_desc" : "Requires ownership of Green Grin legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_m134_bulletstorm_desc" : "Requires ownership of The Gimp legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_p90_dallas_sallad_desc" : "Requires ownership of Alamo Dallas legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_r870_waves_desc" : "Requires ownership of Big Kahuna legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_x_1911_ginger_desc" : "Requires ownership of Santa's Slayers legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_model70_baaah_desc" : "Requires ownership of Don Pastrami legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_par_wolf_desc" : "Requires ownership of Hungry Wolf legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_m16_cola_desc" : "Requires ownership of Astatoz legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_judge_burn_desc" : "Requires ownership of Anarcho legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_boot_buck_desc" : "Requires ownership of Apex legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_ksg_same_desc" : "Requires ownership of Admiral legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_tecci_grunt_desc" : "Requires ownership of Mars Ultor legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_serbu_lones_desc" : "Requires ownership of Demon legendary skin. Cannot be seen by other players.",
+	"bm_wp_req_new_m14_lones_desc" : "Requires ownership of Plush Phoenix legendary skin. Cannot be seen by other players.",
+	
+	"bm_menu_lower_body" : "Lower Body",
+	"bm_menu_upper_body" : "Upper Body",
+	
+	"bm_wp_wpn_fps_ass_74_b_legend_addon" : "Vlad's Rodina Barrel (Add-On Mod)",
+	"bm_wp_wpn_upg_ak_fg_legend_addon" : "Vlad's Rodina Foregrip (Add-On Mod)",
+	"bm_wp_wpn_upg_ak_g_legend_addon" : "Vlad's Rodina Grip (Add-On Mod)",
+	"bm_wp_wpn_upg_ak_s_legend_addon" : "Vlad's Rodina Stock (Add-On Mod)",
+	"bm_wp_wpn_upg_ak_fl_legend_addon" : "Vlad's Rodina Laser (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_pis_deagle_b_legend_addon" : "Midas Touch Barrel (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_fla_mk2_body_fierybeast_addon" : "Dragon Lord Receiver (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_rpg7_m_grinclown_addon" : "Green Grin Rocket (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_lmg_m134_body_upper_spikey_addon" : "The Gimp Body Kit (Add-On Mod)",
+	"bm_wp_wpn_fps_lmg_m134_barrel_legendary_addon" : "The Gimp Barrel (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_smg_p90_b_legend_addon" : "Alamo Dallas Barrel (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_shot_r870_b_legendary_addon" : "Big Kahuna Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_shot_r870_s_legendary_addon" : "Big Kahuna Stock (Add-On Mod)",
+	"bm_wp_wpn_fps_shot_r870_fg_legendary_addon" : "Big Kahuna Foregrip (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_pis_1911_g_legendary_addon" : "Santa's Slayers Grip (Add-On Mod)",
+	"bm_wp_wpn_fps_pis_1911_fl_legendary_addon" : "Santa's Slayers Laser (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_snp_model70_b_legend_addon" : "Don Pastrami Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_snp_model70_s_legend_addon" : "Don Pastrami Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_lmg_svinet_b_standard_addon" : "Hungry Wolf Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_lmg_svinet_s_legend_addon" : "Hungry Wolf Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_ass_m16_b_legend_addon" : "Astatoz Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m16_fg_legend_addon" : "Astatoz Foregrip (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m16_s_legend_addon" : "Astatoz Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_pis_judge_b_legend_addon" : "Anarcho Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_pis_judge_g_legend_addon" : "Anarcho Grip (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_sho_boot_b_legendary_addon" : "Apex Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_boot_fg_legendary_addon" : "Apex Foregrip (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_boot_o_legendary_addon" : "Apex Iron Sights (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_boot_s_legendary_addon" : "Apex Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_sho_ksg_b_legendary_addon" : "Admiral Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_ksg_b_legendary_addon_srab" : "Admiral Suppressed Barrel (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_ass_tecci_b_legend_addon" : "Mars Ultor Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_tecci_fg_legend_addon" : "Mars Ultor Foregrip (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_tecci_s_legend_addon" : "Mars Ultor Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_shot_shorty_b_legendary_addon" : "Demon Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_shot_shorty_fg_legendary_addon" : "Demon Foregrip (Add-On Mod)",
+	"bm_wp_wpn_fps_shot_shorty_s_legendary_addon" : "Demon Stock (Add-On Mod)",
+	
+	"bm_wp_wpn_fps_ass_m14_b_legendary_addon" : "Plush Phoenix Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m14_body_legendary_addon" : "Plush Phoenix Stock (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m14_body_upper_legendary_addon" : "Plush Phoenix Upper Body (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m14_body_lower_legendary_addon" : "Plush Phoenix Lower Body (Add-On Mod)"
+}

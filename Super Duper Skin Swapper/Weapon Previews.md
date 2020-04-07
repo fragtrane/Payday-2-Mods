@@ -64,27 +64,25 @@ A list of the skins and weapon attachments shown in the preview images.
 
 **Akimbo Kobus 90 with Alamo Dallas skin**
 
-_Note: the legendary attachments can be seen by other players when equipped on the Akimbo Kobus 90: [image](https://i.imgur.com/ha4g2h3.jpg)._
-
 |Preview|Attachments<img width=300/>|
 |:--|:--|
 |<a href="https://i.imgur.com/swmfhBi.jpg"><img src="https://i.imgur.com/swmfhBi.jpg" alt="Akimbo Kobus 90 with Alamo Dallas skin" width="320"></a>|• Weapon Skin: [Alamo Dallas (Kobus 90)](https://steamcommunity.com/market/search?q=%22KOBUS+90+SUBMACHINE+GUN+%7C+Alamo+Dallas%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Slide: Alamo Dallas Barrel|
 
 **Akimbo Deagle with Midas Touch skin**
 
-_Note: the legendary attachments do not show up properly in third person when equipped on the Akimbo Deagles: [image](https://i.imgur.com/bMqwc9x.jpg)._
+_Note: equipping legendary mods on the Akimbo Deagle requires [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments)._
 
 |Preview|Attachments<img width=300/>|
 |:--|:--|
-|<a href="https://i.imgur.com/1hBZYlQ.jpg"><img src="https://i.imgur.com/1hBZYlQ.jpg" alt="Akimbo Deagle with Midas Touch skin" width="320"></a>|• Weapon Skin: [Midas Touch (Deagle)](https://steamcommunity.com/market/search?q=%22DEAGLE+PISTOL+%7C+Midas+Touch%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Grip: Ergo Grip<br>• Slide: Midas Touch Barrel|
+|<a href="https://i.imgur.com/1hBZYlQ.jpg"><img src="https://i.imgur.com/1hBZYlQ.jpg" alt="Akimbo Deagle with Midas Touch skin" width="320"></a>|• Weapon Skin: [Midas Touch (Deagle)](https://steamcommunity.com/market/search?q=%22DEAGLE+PISTOL+%7C+Midas+Touch%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Grip: Ergo Grip<br>• Slide: Midas Touch Barrel (Add-On Mod)|
 
 **Crosskill with Santa's Slayers skin**
 
-_Note: the legendary attachments do not show up properly in third person when equipped on the single Crosskill: [image](https://i.imgur.com/hMi4U5b.jpg)._
+_Note: equipping legendary mods on the single Crosskill requires [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments)._
 
 |Preview|Attachments<img width=300/>|
 |:--|:--|
-|<a href="https://i.imgur.com/HiS41rK.jpg"><img src="https://i.imgur.com/HiS41rK.jpg" alt="Crosskill with Santa's Slayers skin" width="320"></a>|• Weapon Skin: [Santa's Slayers (Akimbo Crosskill)](https://steamcommunity.com/market/search?q=%22AKIMBO+CROSSKILL+PISTOLS+%7C+Santa%27s+Slayers%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Gadget: Santa's Slayers Laser<br>• Grip: Santa's Slayers Grip<br>• Slide: Long Vented Slide|
+|<a href="https://i.imgur.com/HiS41rK.jpg"><img src="https://i.imgur.com/HiS41rK.jpg" alt="Crosskill with Santa's Slayers skin" width="320"></a>|• Weapon Skin: [Santa's Slayers (Akimbo Crosskill)](https://steamcommunity.com/market/search?q=%22AKIMBO+CROSSKILL+PISTOLS+%7C+Santa%27s+Slayers%22&category_218620_collection%5B%5D=any&appid=218620)<br>• Gadget: Santa's Slayers Laser (Add-On Mod)<br>• Grip: Santa's Slayers Grip (Add-On Mod)<br>• Slide: Long Vented Slide|
 
 **Bot Weapon: Thanatos .50 cal with The Fork skin**
 

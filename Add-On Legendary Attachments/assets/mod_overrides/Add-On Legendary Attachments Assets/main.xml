@@ -1,0 +1,702 @@
+<mod name="Add-On Legendary Attachments Assets" author="fragtrane" min_lib_version="3.38">
+	<Localization directory="localization" default="english.txt"/>
+	
+    <AddFiles directory="assets">
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_74_b_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fg_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_g_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_s_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fl_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_deagle_b_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_fla_mk2_body_fierybeast_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_rpg7_m_grinclown_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_body_upper_spikey_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_barrel_legendary_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_p90_b_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_b_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_s_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_fg_legendary_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_g_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_fl_legendary_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_b_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_s_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_b_standard_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_s_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_b_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_fg_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_s_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_g_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_b_legend_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_b_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_fg_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_o_legendary_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_s_legendary_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_ksg_b_legendary_addon"/>
+		
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_b_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_fg_legend_addon"/>
+        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_s_legend_addon"/>
+        
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_b_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_fg_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_s_legendary_addon"/>
+		
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_b_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_upper_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_lower_legendary_addon"/>
+    </AddFiles>
+	
+	<!-- Vlad's Rodina, 5 attachments -->
+	<!-- Vlad's Rodina Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_ass_74_b_legend_addon"
+		based_on="wpn_fps_ass_74_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_74"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Vlad's Rodina Foregrip, based on Railed Wooden Foregrip -->
+	<WeaponMod
+		id="wpn_upg_ak_fg_legend_addon"
+		based_on="wpn_upg_ak_fg_combo2"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_74"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Vlad's Rodina Grip, based on default grip -->
+	<WeaponMod
+		id="wpn_upg_ak_g_legend_addon"
+		based_on="wpn_upg_ak_g_standard"
+		type="grip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_74"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Vlad's Rodina Stock, based on Folding Stock -->
+	<WeaponMod
+		id="wpn_upg_ak_s_legend_addon"
+		based_on="wpn_upg_ak_s_folding"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_74"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Vlad's Rodina Laser, based on Tactical Laser Module -->
+	<WeaponMod
+		id="wpn_upg_ak_fl_legend_addon"
+		based_on="wpn_fps_upg_fl_ass_smg_sho_peqbox"
+		type="gadget"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_74"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Midas Touch, 1 attachment -->
+	<!-- Midas Touch Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_pis_deagle_b_legend_addon"
+		based_on="wpn_fps_pis_deagle_b_standard"
+		type="slide"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_pis_deagle"/>
+			<value_node value="wpn_fps_x_deagle"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Dragon Lord, 1 attachment -->
+	<!-- Dragon Lord Receiver, based on default lower receiver -->
+	<WeaponMod
+		id="wpn_fps_fla_mk2_body_fierybeast_addon"
+		based_on="wpn_fps_fla_mk2_body"
+		type="lower_reciever"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_fla_mk2"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Green Grin, 1 attachment -->
+	<!-- Green Grin Rocket, based on default rocket -->
+	<WeaponMod
+		id="wpn_fps_rpg7_m_grinclown_addon"
+		based_on="wpn_fps_rpg7_m_rocket"
+		type="magazine"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_rpg7"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- The Gimp, 2 attachments -->
+	<!-- The Gimp Body Kit, based on default upper body -->
+	<WeaponMod
+		id="wpn_fps_lmg_m134_body_upper_spikey_addon"
+		based_on="wpn_fps_lmg_m134_body_upper"
+		type="extra"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_lmg_m134"/>
+		</weapons>
+	</WeaponMod>
+	<!-- The Gimp Barrel, based on Aerial Assault Barrel -->
+	<WeaponMod
+		id="wpn_fps_lmg_m134_barrel_legendary_addon"
+		based_on="wpn_fps_lmg_m134_barrel_extreme"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_lmg_m134"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Alamo Dallas, 1 attachment -->
+	<!-- Alamo Dallas Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_smg_p90_b_legend_addon"
+		based_on="wpn_fps_smg_p90_b_short"
+		type="slide"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_smg_p90"/>
+			<value_node value="wpn_fps_smg_x_p90"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Big Kahuna, 3 attachments -->
+	<!-- Big Kahuna Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_shot_r870_b_legendary_addon"
+		based_on="wpn_fps_shot_r870_b_long"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_r870"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Big Kahuna Stock, based on Short Enough Stock -->
+	<WeaponMod
+		id="wpn_fps_shot_r870_s_legendary_addon"
+		based_on="wpn_fps_shot_r870_s_nostock"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_r870"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Big Kahuna Foregrip, based on Zombie Hunter Pump -->
+	<WeaponMod
+		id="wpn_fps_shot_r870_fg_legendary_addon"
+		based_on="wpn_fps_shot_r870_fg_wood"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_r870"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Santa's Slayers, 2 attachments -->
+	<!-- Santa's Slayers Grip, based on Bling Grip -->
+	<WeaponMod
+		id="wpn_fps_pis_1911_g_legendary_addon"
+		based_on="wpn_fps_pis_1911_g_bling"
+		type="grip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_pis_1911"/>
+			<value_node value="wpn_fps_x_1911"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Santa's Slayers Laser, based on Pocket Laser -->
+	<WeaponMod
+		id="wpn_fps_pis_1911_fl_legendary_addon"
+		based_on="wpn_fps_upg_fl_pis_laser"
+		type="gadget"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_pis_1911"/>
+			<value_node value="wpn_fps_x_1911"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Don Pastrami, 2 attachments -->
+	<!-- Don Pastrami Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_snp_model70_b_legend_addon"
+		based_on="wpn_fps_snp_model70_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_snp_model70"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Don Pastrami Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_snp_model70_s_legend_addon"
+		based_on="wpn_fps_snp_model70_s_standard"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_snp_model70"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Hungry Wolf, 2 attachments -->
+	<!-- Hungry Wolf Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_lmg_svinet_b_standard_addon"
+		based_on="wpn_fps_lmg_par_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_lmg_par"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Hungry Wolf Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_lmg_svinet_s_legend_addon"
+		based_on="wpn_fps_lmg_par_s_standard"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_lmg_par"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Astatoz, 3 attachments -->
+	<!-- Astatoz Barrel, based on Long Barrel -->
+	<WeaponMod
+		id="wpn_fps_ass_m16_b_legend_addon"
+		based_on="wpn_fps_m4_uupg_b_long"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m16"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Astatoz Foregrip, based on Tactical Handguard -->
+	<WeaponMod
+		id="wpn_fps_ass_m16_fg_legend_addon"
+		based_on="wpn_fps_m16_fg_railed"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m16"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Astatoz Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_ass_m16_s_legend_addon"
+		based_on="wpn_fps_m16_s_solid_vanilla"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m16"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Anarcho, 2 attachments -->
+	<!-- Anarcho Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_pis_judge_b_legend_addon"
+		based_on="wpn_fps_pis_judge_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_pis_judge"/>
+			<value_node value="wpn_fps_pis_x_judge"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Anarcho Grip, based on default grip -->
+	<WeaponMod
+		id="wpn_fps_pis_judge_g_legend_addon"
+		based_on="wpn_fps_pis_judge_g_standard"
+		type="grip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_pis_judge"/>
+			<value_node value="wpn_fps_pis_x_judge"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Apex, 4 attachments -->
+	<!-- Apex Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_sho_boot_b_legendary_addon"
+		based_on="wpn_fps_sho_boot_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_sho_boot"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Apex Foregrip, based on default foregrip -->
+	<WeaponMod
+		id="wpn_fps_sho_boot_fg_legendary_addon"
+		based_on="wpn_fps_sho_boot_fg_standard"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_sho_boot"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Apex Iron Sights, based on unknown default part -->
+	<WeaponMod
+		id="wpn_fps_sho_boot_o_legendary_addon"
+		based_on="wpn_fps_sho_boot_em_extra"
+		type="sight"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_sho_boot"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Apex Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_sho_boot_s_legendary_addon"
+		based_on="wpn_fps_sho_boot_s_short"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_sho_boot"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Admiral, 1 attachment -->
+	<!-- Admiral Barrel, based on Long Barrel -->
+	<WeaponMod
+		id="wpn_fps_sho_ksg_b_legendary_addon"
+		based_on="wpn_fps_sho_ksg_b_long"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_sho_ksg"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Mars Ultor, 3 attachments -->
+	<!-- Mars Ultor Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_ass_tecci_b_legend_addon"
+		based_on="wpn_fps_ass_tecci_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_tecci"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Mars Ultor Foregrip, based on default foregrip -->
+	<WeaponMod
+		id="wpn_fps_ass_tecci_fg_legend_addon"
+		based_on="wpn_fps_ass_tecci_fg_standard"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_tecci"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Mars Ultor Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_ass_tecci_s_legend_addon"
+		based_on="wpn_fps_ass_tecci_s_standard"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_tecci"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Demon, 3 attachments -->
+	<!-- Demon Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_shot_shorty_b_legendary_addon"
+		based_on="wpn_fps_shot_r870_b_short"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_serbu"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Demon Foregrip, based on default foregrip -->
+	<WeaponMod
+		id="wpn_fps_shot_shorty_fg_legendary_addon"
+		based_on="wpn_fps_shot_r870_fg_small"
+		type="foregrip"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_serbu"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Demon Stock, based on default stock -->
+	<WeaponMod
+		id="wpn_fps_shot_shorty_s_legendary_addon"
+		based_on="wpn_fps_shot_r870_s_nostock_vanilla"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_shot_serbu"/>
+		</weapons>
+	</WeaponMod>
+	
+	<!-- Plush Phoenix, 4 attachments -->
+	<!-- Plush Phoenix Barrel, based on default barrel -->
+	<WeaponMod
+		id="wpn_fps_ass_m14_b_legendary_addon"
+		based_on="wpn_fps_ass_m14_b_standard"
+		type="barrel"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m14"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Plush Phoenix Stock, based on Abraham Body -->
+	<WeaponMod
+		id="wpn_fps_ass_m14_body_legendary_addon"
+		based_on="wpn_fps_ass_m14_body_ebr"
+		type="stock"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m14"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Plush Phoenix Upper Body, based on default upper body -->
+	<WeaponMod
+		id="wpn_fps_ass_m14_body_upper_legendary_addon"
+		based_on="wpn_fps_ass_m14_body_upper"
+		type="upper_body"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m14"/>
+		</weapons>
+	</WeaponMod>
+	<!-- Plush Phoenix Lower Body, based on default lower body -->
+	<WeaponMod
+		id="wpn_fps_ass_m14_body_lower_legendary_addon"
+		based_on="wpn_fps_ass_m14_body_lower"
+		type="lower_body"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_ass_m14"/>
+		</weapons>
+	</WeaponMod>
+</mod>
