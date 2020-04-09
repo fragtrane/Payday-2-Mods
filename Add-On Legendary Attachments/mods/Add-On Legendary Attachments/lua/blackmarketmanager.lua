@@ -32,7 +32,7 @@ function BlackMarketManager:set_available_legendary_addon_parts(remove_all)
 	
 	--Set available parts for owned skins
 	for skin_id, parts in pairs(AOLA._gen_1_mods) do
-		local has_skin = self:have_inventory_tradable_item("weapon_skins", skin_id)
+		local has_skin = self:have_inventory_tradable_item("weapon_skins", skin_id) or AOLA._settings.aola_debug
 		for _, part_id in pairs(parts) do
 			local addon = tweak_data.weapon.factory.parts[part_id.."_addon"]
 			local global_value = "normal"
@@ -55,7 +55,7 @@ function BlackMarketManager:clean_legendary_addon_parts(remove_all)
 			for slot, crafted in pairs(category_data) do
 				--Loop over legendary skins
 				for skin_id, parts in pairs(AOLA._gen_1_mods) do
-					local has_skin = self:have_inventory_tradable_item("weapon_skins", skin_id)
+					local has_skin = self:have_inventory_tradable_item("weapon_skins", skin_id) or AOLA._settings.aola_debug
 					has_skin = has_skin and not remove_all
 					--Only need to check skins that are not owned
 					if not has_skin then

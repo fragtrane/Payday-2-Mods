@@ -36,7 +36,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 			if addon then
 				for k, v in pairs(self.parts[part_id]) do
 					if not table.contains(ignore, k) then
-						if tostring(type(k)) == "table" then
+						if tostring(type(v)) == "table" then
 							self.parts[part_id.."_addon"][k] = deep_clone(v)
 						else
 							self.parts[part_id.."_addon"][k] = v
@@ -52,8 +52,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 				
 				--Remove stuff that was copied from "based_on" part but isn't in the legendary attachment
 				--e.g. prevents Raven's front sight from being moved, might fix some other things
-				for k, _ in pairs(self.parts[part_id.."_addon"]) do
-					if not table.contains(ignore, k) and self.parts[part_id][k] == nil then
+				local based_on = AOLA._based_on[part_id.."_addon"]
+				for k, v in pairs(self.parts[part_id.."_addon"]) do
+					--if not ignore, and based_on not nil, and real part nil, and addon has same value as based_on (i.e. was copied)
+					--Last value check does not check tables and just assumes they are the same, if there issues in the future, add key to ignore list
+					if not table.contains(ignore, k) and self.parts[based_on][k] ~= nil and self.parts[part_id][k] == nil and (v == self.parts[based_on][k] or tostring(type(v)) == "table") then
 						self.parts[part_id.."_addon"][k] = nil
 					end
 				end

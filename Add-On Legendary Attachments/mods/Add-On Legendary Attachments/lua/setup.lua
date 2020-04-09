@@ -6,6 +6,9 @@ _G.AOLA = {}
 AOLA._mod_path = ModPath
 AOLA._save_path = SavePath--Currently unused
 AOLA._save_name = "aola_settings.txt"--Currently unused
+AOLA._settings = {
+	aola_debug = false
+}
 AOLA._overrides_path = "./assets/mod_overrides/Add-On Legendary Attachments Assets"
 AOLA._overrides_path_check = AOLA._overrides_path.."/assets"--Used to check if assets have installed
 
@@ -181,4 +184,47 @@ AOLA._gen_1_mods = {
 		"wpn_fps_ass_m14_body_upper_legendary",
 		"wpn_fps_ass_m14_body_lower_legendary"
 	}
+}
+
+AOLA._based_on = {
+	wpn_fps_ass_74_b_legend_addon = "wpn_fps_ass_74_b_standard",
+	wpn_upg_ak_fg_legend_addon = "wpn_upg_ak_fg_combo2",
+	wpn_upg_ak_g_legend_addon = "wpn_upg_ak_g_standard",
+	wpn_upg_ak_s_legend_addon = "wpn_upg_ak_s_folding",
+	wpn_upg_ak_fl_legend_addon = "wpn_fps_upg_fl_ass_smg_sho_peqbox",
+	wpn_fps_pis_deagle_b_legend_addon = "wpn_fps_pis_deagle_b_standard",
+	wpn_fps_fla_mk2_body_fierybeast_addon = "wpn_fps_fla_mk2_body",
+	wpn_fps_rpg7_m_grinclown_addon = "wpn_fps_rpg7_m_rocket",
+	wpn_fps_lmg_m134_body_upper_spikey_addon = "wpn_fps_lmg_m134_body_upper",
+	wpn_fps_lmg_m134_barrel_legendary_addon = "wpn_fps_lmg_m134_barrel_extreme",
+	wpn_fps_smg_p90_b_legend_addon = "wpn_fps_smg_p90_b_short",
+	wpn_fps_shot_r870_b_legendary_addon = "wpn_fps_shot_r870_b_long",
+	wpn_fps_shot_r870_s_legendary_addon = "wpn_fps_shot_r870_s_nostock",
+	wpn_fps_shot_r870_fg_legendary_addon = "wpn_fps_shot_r870_fg_wood",
+	wpn_fps_pis_1911_g_legendary_addon = "wpn_fps_pis_1911_g_bling",
+	wpn_fps_pis_1911_fl_legendary_addon = "wpn_fps_upg_fl_pis_laser",
+	wpn_fps_snp_model70_b_legend_addon = "wpn_fps_snp_model70_b_standard",
+	wpn_fps_snp_model70_s_legend_addon = "wpn_fps_snp_model70_s_standard",
+	wpn_fps_lmg_svinet_b_standard_addon = "wpn_fps_lmg_par_b_standard",
+	wpn_fps_lmg_svinet_s_legend_addon = "wpn_fps_lmg_par_s_standard",
+	wpn_fps_ass_m16_b_legend_addon = "wpn_fps_m4_uupg_b_long",
+	wpn_fps_ass_m16_fg_legend_addon = "wpn_fps_m16_fg_railed",
+	wpn_fps_ass_m16_s_legend_addon = "wpn_fps_m16_s_solid_vanilla",
+	wpn_fps_pis_judge_b_legend_addon = "wpn_fps_pis_judge_b_standard",
+	wpn_fps_pis_judge_g_legend_addon = "wpn_fps_pis_judge_g_standard",
+	wpn_fps_sho_boot_b_legendary_addon = "wpn_fps_sho_boot_b_standard",
+	wpn_fps_sho_boot_fg_legendary_addon = "wpn_fps_sho_boot_fg_standard",
+	wpn_fps_sho_boot_o_legendary_addon = "wpn_fps_sho_boot_em_extra",
+	wpn_fps_sho_boot_s_legendary_addon = "wpn_fps_sho_boot_s_short",
+	wpn_fps_sho_ksg_b_legendary_addon = "wpn_fps_sho_ksg_b_long",
+	wpn_fps_ass_tecci_b_legend_addon = "wpn_fps_ass_tecci_b_standard",
+	wpn_fps_ass_tecci_fg_legend_addon = "wpn_fps_ass_tecci_fg_standard",
+	wpn_fps_ass_tecci_s_legend_addon = "wpn_fps_ass_tecci_s_standard",
+	wpn_fps_shot_shorty_b_legendary_addon = "wpn_fps_shot_r870_b_short",
+	wpn_fps_shot_shorty_fg_legendary_addon = "wpn_fps_shot_r870_fg_small",
+	wpn_fps_shot_shorty_s_legendary_addon = "wpn_fps_shot_r870_s_nostock_vanilla",
+	wpn_fps_ass_m14_b_legendary_addon = "wpn_fps_ass_m14_b_standard",
+	wpn_fps_ass_m14_body_legendary_addon = "wpn_fps_ass_m14_body_ebr",
+	wpn_fps_ass_m14_body_upper_legendary_addon = "wpn_fps_ass_m14_body_upper",
+	wpn_fps_ass_m14_body_lower_legendary_addon = "wpn_fps_ass_m14_body_lower"
 }
