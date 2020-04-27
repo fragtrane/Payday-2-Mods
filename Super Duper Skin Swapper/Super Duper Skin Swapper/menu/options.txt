@@ -7,11 +7,11 @@
 	"items" : [
 		{
 			"type" : "toggle",
-			"id" : "sdss_hide_unowned",
-			"title" : "sdss_hide_unowned_title",
-			"description" : "sdss_hide_unowned_desc",
+			"id" : "sdss_enabled",
+			"title" : "sdss_enabled_title",
+			"description" : "sdss_enabled_desc",
 			"callback" : "sdss_callback_toggle",
-			"value" : "sdss_hide_unowned",
+			"value" : "sdss_enabled",
 			"default_value" : true
 		},
 		{
@@ -21,6 +21,15 @@
 			"description" : "sdss_allow_beardlib_desc",
 			"callback" : "sdss_callback_toggle",
 			"value" : "sdss_allow_beardlib",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_hide_unowned",
+			"title" : "sdss_hide_unowned_title",
+			"description" : "sdss_hide_unowned_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_hide_unowned",
 			"default_value" : true
 		},
 		{

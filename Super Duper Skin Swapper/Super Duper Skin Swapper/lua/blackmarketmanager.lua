@@ -311,18 +311,22 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 	local weapon_skin = tweak_data.blackmarket.weapon_skins[weapon_skin_id]
 	local found_weapon = false
 	
-	--Allows everything except for Immortal Python (unlockable + global value tam) and colors (blacklist)
-	--Don't duplicate BeardLib universal skins (unlockable + universal)
-	--Other BeardLib custom skins allowed if enabled in settings
-	--Golden AK.762 has been removed from blacklist so it can actually use colors now
-	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal and SDSS._settings.sdss_allow_beardlib)) and not weapon_skin.use_blacklist then
-		return true
+	--SDSS override
+	if SDSS._settings.sdss_enabled then
+		--Allows everything except for Immortal Python (unlockable + global value tam) and colors (blacklist)
+		--Don't duplicate BeardLib universal skins (unlockable + universal)
+		--Other BeardLib custom skins allowed if enabled in settings
+		--Golden AK.762 has been removed from blacklist so it can actually use colors now
+		if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal and SDSS._settings.sdss_allow_beardlib)) and not weapon_skin.use_blacklist then
+			return true
+		end
+		
+		--Check extra ID (let skins without Immortal Python use another weapon's Immortal Python)
+		if weapon_skin and weapon_skin.extra_weapon_ids and table.contains(weapon_skin.extra_weapon_ids, weapon_id) then
+			return true
+		end
 	end
 	
-	--Check extra ID (let skins without Immortal Python use another weapon's Immortal Python)
-	if weapon_skin and weapon_skin.extra_weapon_ids and table.contains(weapon_skin.extra_weapon_ids, weapon_id) then
-		return true
-	end
 	
 	if weapon_skin then
 		--Fix mistake in dump
@@ -549,7 +553,8 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 	crafted.cosmetics = nil
 
 	--Bugfix: global value not removed?
-	if old_cosmetic_id then
+	--Check for old_cosmetic_data to prevent crash when removing custom skin that no longer exists
+	if old_cosmetic_id and old_cosmetic_data then
 		local global_value = old_cosmetic_data.global_value or managers.dlc:dlc_to_global_value(old_cosmetic_data.dlc)
 		
 		self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)

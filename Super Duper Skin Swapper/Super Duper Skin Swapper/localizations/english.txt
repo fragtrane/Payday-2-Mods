@@ -2,11 +2,14 @@
 	"sdss_options_menu_title" : "Super Duper Skin Swapper",
 	"sdss_options_menu_desc" : "Super Duper Skin Swapper mod options.",
 	
-	"sdss_hide_unowned_title" : "Hide unowned skins",
-	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
+	"sdss_enabled_title" : "Enable skin swapping",
+	"sdss_enabled_desc" : "Allow skins to be used on any weapon.",
 	
 	"sdss_allow_beardlib_title" : "Allow BeardLib custom skins",
 	"sdss_allow_beardlib_desc" : "Allow BeardLib custom skins to be used on any weapon. Does not apply to BeardLib universal skins.",
+	
+	"sdss_hide_unowned_title" : "Hide unowned skins",
+	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
 	
 	"sdss_allow_variants_title" : "Allow legendary mods on variants",
 	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on akimbo/single variants. Restart required.\nWarning: not fully tested yet.",

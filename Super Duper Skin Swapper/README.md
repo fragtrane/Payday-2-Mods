@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v1.4](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.4.zip).
+Latest version [v1.5](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.5.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -73,7 +73,7 @@ Legendary attachments are only available for use when the corresponding legendar
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.4.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.5.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.5.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -96,6 +96,11 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.5 - 2020-04-27**
+
+- Added option to enable/disable skin swapping in options menu.
+- Fixed a crash that could occur if custom skins were uninstalled without first removing them from weapons.
 
 **v1.4 - 2020-03-30**
 
