@@ -404,7 +404,7 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 	
 	local old_cosmetic_id = crafted.cosmetics and crafted.cosmetics.id
 	local old_cosmetic_data = old_cosmetic_id and tweak_data.blackmarket.weapon_skins[old_cosmetic_id]
-	local old_cosmetic_default_blueprint = old_cosmetic_data and old_cosmetic_data.default_blueprint
+	local old_cosmetic_default_blueprint = old_cosmetic_data and old_cosmetic_data.default_blueprint or {}
 	local blueprint = weapon_skin_data.default_blueprint or {}
 	
 	--Check if any legendary parts are not available on new skin
@@ -528,7 +528,7 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 	
 	local old_cosmetic_id = crafted.cosmetics and crafted.cosmetics.id
 	local old_cosmetic_data = old_cosmetic_id and tweak_data.blackmarket.weapon_skins[old_cosmetic_id]
-	local old_cosmetic_default_blueprint = old_cosmetic_data and old_cosmetic_data.default_blueprint
+	local old_cosmetic_default_blueprint = old_cosmetic_data and old_cosmetic_data.default_blueprint or {}
 	
 	--Check if any legendary parts
 	--v2.0 Also check DLC attachments
