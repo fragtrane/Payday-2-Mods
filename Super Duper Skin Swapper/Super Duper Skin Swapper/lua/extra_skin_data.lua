@@ -1,23 +1,6 @@
---Don't let these weapons use skins
+--Don't let these weapons use any weapon skins or weapon colors
 SDSS._blacklist = {
 --	"akm_gold"--Golden AK.762
-}
-
---Add extra weapon IDs to skins
---Mainly so we can give an Immortal Python skin to weapons that don't have one.
-SDSS._extra_weapon_ids = {
-	--Immortal Python (AK.762)
-	akm_tam = {
-		"akm_gold"--Golden AK.762
-	},
-	--Immortal Python (Mark 10)
-	mac10_tam = {
-		"cobray"--Jacket's Piece
-	},
-	--Immortal Python (Akimbo Mark 10)
-	x_mac10_tam = {
-		"x_cobray"--Akimbo Jacket's Piece
-	}
 }
 
 --List of first generation legendary skins and parts

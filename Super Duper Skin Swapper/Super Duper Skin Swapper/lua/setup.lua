@@ -14,7 +14,11 @@ SDSS._settings = {
 	sdss_hide_unowned = true,--Hide skins that you don't own
 	sdss_allow_variants = false,--Allow legendary attachments on akimbo/single variants
 	sdss_remove_stats = false,--Remove stats from legendary attachments
-	sdss_clean_dupes = 1--Hide duplicates
+	sdss_clean_dupes = 1,--Hide duplicates
+	sdss_immortal_python = false,--Set default weapon color to Immortal Python
+	sdss_paint_scheme = 1,--Override default paint scheme of weapon colors
+	sdss_color_wear = 1,--Override default wear of weapon colors
+	sdss_pattern_scale = 1--Override default pattern scale of weapon colors
 }
 --Load skin data
 dofile(SDSS._mod_path.."lua/extra_skin_data.lua")
@@ -65,7 +69,7 @@ Hooks:Add("LocalizationManagerPostInit", "sdss_hook_LocalizationManagerPostInit"
 	loc:load_localization_file(SDSS._mod_path.."localizations/english.txt")
 end)
 
-Hooks:Add("MenuManagerInitialize", "sdss_hook_MenuManagerInitialize", function(menu_manager)	
+Hooks:Add("MenuManagerInitialize", "sdss_hook_MenuManagerInitialize", function(menu_manager)
 	MenuCallbackHandler.sdss_callback_toggle = function(self, item)
 		SDSS._settings[item:name()] = item:value() == "on"
 	end
@@ -96,6 +100,20 @@ function SDSS:get_multi_name(multi_id)
 			return "both"--Best stat and non-stat
 		elseif self._settings[multi_id] == 5 then
 			return "allvars"--Show all combinations of boost + wear
+		end
+	elseif multi_id == "sdss_color_wear" then
+		if self._settings[multi_id] == 1 then
+			return "off"
+		elseif self._settings[multi_id] == 2 then
+			return "mint"--Mint-Condition
+		elseif self._settings[multi_id] == 3 then
+			return "fine"--Lightly-Marked
+		elseif self._settings[multi_id] == 4 then
+			return "good"--Broken-In
+		elseif self._settings[multi_id] == 5 then
+			return "fair"--Well-Used
+		elseif self._settings[multi_id] == 6 then
+			return "poor"--Battle-Worn
 		end
 	end
 end

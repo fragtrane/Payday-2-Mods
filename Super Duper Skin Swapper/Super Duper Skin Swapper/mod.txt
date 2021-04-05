@@ -3,7 +3,7 @@
 	"description" : "Allows any skin to be used on any weapon. Reworked version of the original Super Skin Swapper by SAR_Boats.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
-	"version" : "1.5",
+	"version" : "2.0",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [
@@ -40,12 +40,8 @@
 			"script_path" : "lua/networkpeer.lua"
 		},
 		{
-			"hook_id" : "lib/managers/menu/menuscenemanager",
-			"script_path" : "lua/menuscenemanager.lua"
-		},
-		{
-			"hook_id" : "lib/setups/setup",
-			"script_path" : "lua/get_weapon_icon_path_fix.lua"
+			"hook_id" : "lib/managers/achievmentmanager",
+			"script_path" : "lua/achievmentmanager.lua"
 		}
 	],
 	"updates" : [

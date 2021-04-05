@@ -5,6 +5,7 @@ dofile(ModPath .. "lua/setup.lua")
 Hooks:PostHook(WeaponFactoryTweakData, "init", "sdss_post_WeaponFactoryTweakData_init", function(self)
 	if not SDSS._settings.sdss_allow_variants then
 		--Change to dummy part to hide
+		--IMPORTANT: dummy parts are cloned from legendary mods and need to be handled to prevent false-positive cheater tags.
 		for i, part_id in ipairs(self.wpn_fps_smg_x_p90.uses_parts) do
 			if part_id == "wpn_fps_smg_p90_b_legend" then
 				self.wpn_fps_smg_x_p90.uses_parts[i] = "wpn_fps_smg_p90_b_legend_dummy"
@@ -62,7 +63,9 @@ end)
 Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFactoryTweakData__init_legendary", function(self)
 	--Set up dummy parts
 	--Used when "allow variants" is off, this way we can hide the legendary parts from the akimbos in inventory.
-	--Parts are tagged as "unatainable", handle validation in NetworkPeer.
+	--Parts are tagged as "unatainable", need to handle validation to prevent false-positive cheater tags.
+	--We add the dummy mods to the blueprints of the corresponding skins in weaponskinstweakdata.lua
+	--As an extra level of redundancy, we also update the check in networkpeer.lua
 	self.parts.wpn_fps_smg_p90_b_legend_dummy = deep_clone(self.parts.wpn_fps_smg_p90_b_legend)
 	self.parts.wpn_fps_pis_judge_b_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_b_legend)
 	self.parts.wpn_fps_pis_judge_g_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_g_legend)

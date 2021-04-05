@@ -1,5 +1,49 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--New in v2.0
+--Set default weapon color wear, paint scheme, pattern scale when equipping weapon color
+Hooks:PreHook(BlackMarketGui, "equip_weapon_color_callback", "sdss_pre_BlackMarketGui_equip_weapon_color_callback", function(self, data)
+	--Set wear if setting is not "off"
+	local wear = SDSS:get_multi_name("sdss_color_wear")
+	if wear ~= "off" then
+		data.cosmetic_quality = wear
+	end
+	
+	--Set paint scheme, shift index by 1 because first option is "off"
+	if SDSS._settings.sdss_paint_scheme > 1 then
+		data.cosmetic_color_index = SDSS._settings.sdss_paint_scheme - 1
+	end
+	
+	--Set pattern scale, shift index by 1 because first option is "off"
+	--No restart required when equipping a weapon color
+	--When changing from a weapon color which does not have pattern scale to one that does, the default weapon scale in BlackMarketTweakData is used.
+	--We also overwrite that value in weaponskinstweakdata.lua (for that one a restart is required)
+	if SDSS._settings.sdss_pattern_scale > 1 then
+		data.cosmetic_pattern_scale = SDSS._settings.sdss_pattern_scale - 1
+	end
+end)
+
+--New in v2.0
+--Also apply settings when previewing a weapon color
+Hooks:PreHook(BlackMarketGui, "preview_cosmetic_on_weapon_callback", "sdss_pre_BlackMarketGui_preview_cosmetic_on_weapon_callback", function(self, data)
+	if data.is_a_color_skin then
+		local wear = SDSS:get_multi_name("sdss_color_wear")
+		if wear ~= "off" then
+			if data.is_a_color_skin then
+				data.cosmetic_quality = wear
+			end
+		end
+		
+		if SDSS._settings.sdss_paint_scheme > 1 then
+			data.cosmetic_color_index = SDSS._settings.sdss_paint_scheme - 1
+		end
+		
+		if SDSS._settings.sdss_pattern_scale > 1 then
+			data.cosmetic_pattern_scale = SDSS._settings.sdss_pattern_scale - 1
+		end
+	end
+end)
+
 --Refresh icons after opening weapon modification menu
 --0.1 too fast sometimes, better 0.25 to be safe
 Hooks:PostHook(BlackMarketGui, "_open_crafting_node", "sdss_post_BlackMarketGui__open_crafting_node", function()
@@ -98,25 +142,7 @@ Hooks:PostHook(BlackMarketGui, "populate_weapon_category_new", "sdss_post_BlackM
 						})
 					end
 				else
-					--Handle BeardLib universal skin
-					local guis_catalog = "guis/"
-					local bundle_folder = weapon_skin.texture_bundle_folder
-					if bundle_folder then
-						guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
-					end
-					local path = "weapon_skins/"
-					local texture_path = guis_catalog .. path .. weapon_skin.universal_id
-					local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
-					data[i].mini_icons = data[i].mini_icons or {}
-					table.insert(data[i].mini_icons, {
-						stream = true,
-						h = 32,
-						layer = 0,
-						w = 64,
-						right = -16,
-						texture = texture_path,
-						bottom = math.floor((#icon_list - 1) / 11) * 25 + 24
-					})
+					--v2.0: BeardLib universal skins use weapon color system now so we don't need to do anything.
 				end
 			end
 		end

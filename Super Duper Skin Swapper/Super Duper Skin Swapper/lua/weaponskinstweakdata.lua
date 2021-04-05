@@ -1,22 +1,17 @@
 dofile(ModPath .. "lua/setup.lua")
 
 --Warning: removing default_blueprint can trigger false-positives in the anti-piracy code if not done properly.
---Remove attachments and remove unique name. The removed blueprints do not contain weapon mods so false-positives are not an issue.
+--We don't remove blueprints so this isn't an issue
 Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "sdss_post_BlackMarketTweakData__init_weapon_skins", function(self)
+	--Add dummy mods for Alamo Dallas to default_blueprint to prevent false-positive cheater flags
+	table.insert(self.weapon_skins.p90_dallas_sallad.default_blueprint, "wpn_fps_smg_p90_b_legend_dummy")
+	
+	--Add dummy mods for Anarcho to default_blueprint to prevent false-positive cheater flags
+	table.insert(self.weapon_skins.judge_burn.default_blueprint, "wpn_fps_pis_judge_b_legend_dummy")
+	table.insert(self.weapon_skins.judge_burn.default_blueprint, "wpn_fps_pis_judge_g_legend_dummy")
+	
+	--Allow legendaries to be customized and renamed, remove weapons from color blacklist
 	for skin_id, skin in pairs(self.weapon_skins) do
-		--Save legacy blueprint for anti-piracy check
-		if skin.default_blueprint then
-			skin.legacy_blueprint = deep_clone(skin.default_blueprint)
-		end
-		
-		--Remove blueprint
-		if not SDSS._gen_1_mods[skin_id] then			
-			skin.default_blueprint = nil
-		else
-			--First generation legendary, only put legendary attachments in blueprint
-			skin.default_blueprint = deep_clone(SDSS._gen_1_mods[skin_id])
-		end
-		
 		--Remove unique name and unlock (for legendaries)
 		skin.unique_name_id = nil
 		skin.locked = nil
@@ -32,12 +27,17 @@ Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "sdss_post_BlackMarke
 			table.delete(skin.weapon_ids, "akm_gold")
 		end
 	end
-	
-	--Extra Weapon IDs (for Immortal Python)
-	for skin_id, weapons in pairs(SDSS._extra_weapon_ids) do
-		self.weapon_skins[skin_id].extra_weapon_ids = self.weapon_skins[skin_id].extra_weapon_ids or {}
-		for _, weapon_id in pairs(weapons) do
-			table.insert(self.weapon_skins[skin_id].extra_weapon_ids, weapon_id)
-		end
+end)
+
+--New in v2.0
+--Set default pattern scale
+--Don't set default color here, do it in achievmentmanager.lua so we can check if Immortal Python is unlocked first
+Hooks:PostHook(BlackMarketTweakData, "_setup_weapon_color_skins", "sdss_post_BlackMarketTweakData__setup_weapon_color_skins", function(self)
+	--Set pattern scale, shift index by 1 because first option is "off"
+	if SDSS._settings.sdss_pattern_scale > 1 then
+		self.weapon_color_pattern_scale_default = SDSS._settings.sdss_pattern_scale - 1
 	end
+	
+	--Hook this to DLC Manager instead so we can check if Immortal Python is unlocked
+	--self.weapon_color_default = "color_immortal_python"
 end)

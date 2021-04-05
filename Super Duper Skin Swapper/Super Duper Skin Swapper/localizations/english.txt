@@ -6,13 +6,13 @@
 	"sdss_enabled_desc" : "Allow skins to be used on any weapon.",
 	
 	"sdss_allow_beardlib_title" : "Allow BeardLib custom skins",
-	"sdss_allow_beardlib_desc" : "Allow BeardLib custom skins to be used on any weapon. Does not apply to BeardLib universal skins.",
+	"sdss_allow_beardlib_desc" : "Allow BeardLib custom skins to be used on any weapon.",
 	
 	"sdss_hide_unowned_title" : "Hide unowned skins",
 	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
 	
-	"sdss_allow_variants_title" : "Allow legendary mods on variants",
-	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on akimbo/single variants. Restart required.\nWarning: not fully tested yet.",
+	"sdss_allow_variants_title" : "Allow legendary mods on akimbo variants",
+	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge. Restart required.",
 	
 	"sdss_remove_stats_title" : "Remove legendary mod stats",
 	"sdss_remove_stats_desc" : "Remove stats from legendary weapon attachments. Restart required.",
@@ -24,6 +24,21 @@
 	"sdss_clean_dupes_quality" : "Prefer quality",
 	"sdss_clean_dupes_both" : "Best normal & stat",
 	"sdss_clean_dupes_allvars" : "All variants",
+	
+	"sdss_immortal_python_title" : "Default Color to Immortal Python",
+	"sdss_immortal_python_desc" : "Use Immortal Python as default weapon color (if unlocked). Restart required.",
+	
+	"sdss_paint_scheme_title" : "Default Paint Scheme",
+	"sdss_paint_scheme_desc" : "Change default paint scheme for weapon colors.",
+	"sdss_paint_scheme_off" : "Game Default",
+	
+	"sdss_color_wear_title" : "Default Color Wear",
+	"sdss_color_wear_desc" : "Change default wear for weapon colors.",
+	"sdss_color_wear_off" : "Game Default",
+	
+	"sdss_pattern_scale_title": "Default Pattern Scale",
+	"sdss_pattern_scale_desc": "Change default pattern scale for weapon colors.",
+	"sdss_pattern_scale_off": "Game Default",
 	
 	"sdss_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
 	"sdss_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",

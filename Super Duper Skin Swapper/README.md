@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v1.5](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.5.zip).
+Latest version [v2.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.0.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -13,16 +13,17 @@ Weapon previews can be viewed [here](https://github.com/fragtrane/Payday-2-Mods/
 Key features and options:
 
 - **Use Any Skin on Any Weapon:** Weapon skins can be applied to any weapon. Note: this will not unlock weapon skins that you do not own.
-- **No Duplicated Immortal Pythons:** Each weapon will only have access to one Immortal Python skin.
+- ~~**No Duplicated Immortal Pythons:** Each weapon will only have access to one Immortal Python skin.~~ Immortal Python has been changed in the base game to use the weapon color system.
 - **Use Default Weapon Icon for Swapped Skins:** When you use apply a skin that is meant for a different weapon, the inventory will display the actual weapon instead of the weapon skin icon so you know what gun you are using. It will still apply the rarity background so you know that you have a skin equipped, and the weapon skin icon will be displayed as a mini-icon when the weapon is selected. In the weapon customization menu, weapon skin icons are displayed normally so you know which skin you are applying.
 - **Hide Unowned Skins:** Hide skins that you do not own.
 - **Allow Legendary Mods on Variants:** Allow legendary weapon attachments to be used on akimbo/single variants (not fully tested).
 - **Clean Duplicates:** Hide duplicate copies of skins and only show the ones with the best quality. Can be configured to prefer stat boosted skins, prefer the best quality, show both the best stat boosted and non-stat boosted, or show all variants of the skin.
+- **Customize Default Weapon Color Settings**: Set default paint scheme, wear, and pattern scale used for weapon colors.
 
 ## Additional Changes/Remarks
 
-- The Golden AK.762, Jacket's Piece, and Akimbo Jacket's Piece do not have Immortal Python skins so they use the Immortal Python skin of the AK.762, Mark 10, and Akimbo Mark 10 respectively.
-- The Golden AK.762 is allowed to equip custom colors.
+- ~~The Golden AK.762, Jacket's Piece, and Akimbo Jacket's Piece do not have Immortal Python skins so they use the Immortal Python skin of the AK.762, Mark 10, and Akimbo Mark 10 respectively.~~ Immortal Python has been changed in the base game to use the weapon color system.
+- The Golden AK.762 is allowed to equip weapon colors.
 - Attachments have been removed from weapons skins for compatibility reasons (so they are not automatically added when you apply a skin and you won't be able to equip them for free). The anti-piracy check has been updated to prevent false-positive cheater tags. However, when previewing a skin from Steam inventory or when opening safes, weapons skins will display their normal included attachments.
 - The "MODIFICATIONS INCLUDED" description has been removed from all skins.
 - Legendary weapon skins have their attachments removed as well and can be customized as normal.
@@ -32,27 +33,19 @@ Key features and options:
 
 ## Compatibility
 
+**Note: compatibility was originally checked about 1 year ago in April 2020. Some of the information here may have changed; this section is currently being updated.**
+
 When using a swapped skin, unmodded peers will see the weapon skin icon in the loadout screen. Modded peers will see the real weapon with a rarity background (like you do). When in-game, they will be able to see the skin applied on your gun.
 
-SDSS overwrites the BlackMarketManager:get_weapon_icon_path() function used by BeardLib, but retains support for BeardLib's universal skin icons. However, in inventory screens, SDSS will keep using the real weapon with the rarity background (like with swapped skins). Otherwise, you don't know what weapon you are using because the universal skin icon system uses one icon for all weapons. The universal skin icon is only used when applying weapon skins.
+~~SDSS overwrites the BlackMarketManager:get_weapon_icon_path() function used by BeardLib, but retains support for BeardLib's universal skin icons. However, in inventory screens, SDSS will keep using the real weapon with the rarity background (like with swapped skins). Otherwise, you don't know what weapon you are using because the universal skin icon system uses one icon for all weapons. The universal skin icon is only used when applying weapon skins.~~ BeardLib universal skins now use the weapon color system so this function is only used by SDSS.
 
 SDSS supports custom weapon skins, I tested it on the [AK.762 | Cyber Midnight Reborn](https://modworkshop.net/mod/25718).
 
-SDSS supports BeardLib's universal skins, I tested it on the [Case Hardened Universal Skin](https://modworkshop.net/mod/25610). For universal skins, the inventory icon will display the real weapon and the universal skin icon will be displayed as a mini-icon.
+~~SDSS supports BeardLib's universal skins, I tested it on the [Case Hardened Universal Skin](https://modworkshop.net/mod/25610). For universal skins, the inventory icon will display the real weapon and the universal skin icon will be displayed as a mini-icon.~~ BeardLib universal skins now use the weapon color system and should not be affected by SDSS.
 
-For the [BUFF Universal Skin](https://modworkshop.net/mod/24358), you need to download the SDSS compatible version which uses BeardLib's univeral skins. The other version does not use BeardLib's universal skin system so you will end up with duplicated skins.
+~~For the [BUFF Universal Skin](https://modworkshop.net/mod/24358), you need to download the SDSS compatible version which uses BeardLib's univeral skins. The other version does not use BeardLib's universal skin system so you will end up with duplicated skins.~~ BeardLib universal skins now use the weapon color system and should not be affected by SDSS.
 
-SDSS should be compatible with most custom weapons, but not all custom weapons will support skins properly. I tested it with the [Akimbo Steakout 12G](https://modworkshop.net/mod/19092) mod. However, the Immortal Python skin will not be available. If you want give your custom weapon an Immortal Python skin, you can do so using this template:
-
-```
-Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "Some_Unique_Identifier_For_Your_Hook", function(self)
-	local weapon_id = "x_aa12"--ID of custom weapon. In this example, Akimbo Steakout 12G.
-	local skin_id = "aa12_tam"--ID of Immortal Python skin you want to use. In this case, Steakout 12G.
-	--Do it like this so you don't overwrite other weapons that want to use this skin
-	self.weapon_skins[skin_id].extra_weapon_ids = self.weapon_skins[skin_id].extra_weapon_ids or {}
-	table.insert(self.weapon_skins[skin_id].extra_weapon_ids, weapon_id)
-end)
-```
+SDSS should be compatible with most custom weapons, but not all custom weapons will support skins properly. I tested it with the [Akimbo Steakout 12G](https://modworkshop.net/mod/19092) mod. ~~However, the Immortal Python skin will not be available. If you want give your custom weapon an Immortal Python skin, you can do so using this template:~~ Immortal Python has been changed in the base game to use the weapon color system.
 
 SDSS is compatible with [WolfHUD](https://github.com/Kamikaze94/WolfHUD). Big thanks to Kamikaze94 for taking the time to update WolfHUD to be compatible.
 
@@ -63,7 +56,7 @@ SDSS is NOT compatible with [Hide Duplicate Skins](https://github.com/fragtrane/
 ## Equipping Legendary Attachments on Akimbo/Single Variants
 
 - The Alamo Dallas Barrel can be seen by other players (both vanilla and modded) when equipped on the Akimbo Kobus 90s. This works in-game as well as in the lobby.
-- I do not own the Anarcho skin so I could not test its attachments on the Akimbo Judges. It _should_ work fine though.
+- ~~I do not own the Anarcho skin so I could not test its attachments on the Akimbo Judges. It _should_ work fine though.~~ The Anarcho Barrel and Anarcho Grip also work fine on the Akimbo Judges.
 - The legendary attachments on the Santa's Slayers and Midas Touch do not sync properly when equipped on the single/akimbo variant and have been disabled as of v1.3.1.
 	- Update 2020-04-07: legendary attachments can be equipped on the single Crosskill and Akimbo Deagle using the [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments) mod. However, they cannot be seen by other players.
 
@@ -73,7 +66,7 @@ Legendary attachments are only available for use when the corresponding legendar
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v1.5.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v1.5.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v2.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.0.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -96,6 +89,19 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v2.0 - 2020-04-05**
+
+- Updated the mod to work with the latest version of the game (U205).
+	- Crashfix: resolved compatibility issues with BeardLib's updated universal weapon skin system.
+	- Crashfix: resolved compatibility issues with U201 changes to the weapon color system.
+	- Fixed an issue where the rarity background for weapon colors was not being set properly (thanks GreenGhost21).
+- Attachments which are part of weapon skins can now be equipped for free like in the base game.
+- DLC attachments which are part of weapons skins can now be equipped even if you do not own the DLC (like in the base game).
+- Added option to set Immortal Python as default weapon color. Disabled by default.
+- Added option to choose default default paint scheme for weapon colors.
+- Added option to choose default wear for weapon colors.
+- Added option to choose default pattern scale for weapon colors.
 
 **v1.5 - 2020-04-27**
 
