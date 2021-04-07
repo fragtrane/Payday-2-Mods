@@ -29,28 +29,24 @@ function MenuCrimeNetFiltersInitiator:update_node(node)
 end
 
 --Enable chat, based on Seven/Unknown Knight's Simulate Online mod
+local orig_MenuManager_toggle_chatinput = MenuManager.toggle_chatinput
 function MenuManager:toggle_chatinput()
-	if (not IOF._settings.iof_chat and Global.game_settings.single_player) or Application:editor() then
-		return
+	local result = orig_MenuManager_toggle_chatinput(self)
+	
+	--If chat was not enabled and single player and IOF enabled
+	if not result and Global.game_settings.single_player and IOF._settings.iof_chat then
+		--Same return checks
+		if Application:editor() or SystemInfo:platform() ~= Idstring("WIN32") or self:active_menu() or not managers.network:session() then
+			return
+		end
+		--Toggle chat
+		if managers.hud then
+			managers.hud:toggle_chatinput()
+			return true
+		end
 	end
-
-	if SystemInfo:platform() ~= Idstring("WIN32") then
-		return
-	end
-
-	if self:active_menu() then
-		return
-	end
-
-	if not managers.network:session() then
-		return
-	end
-
-	if managers.hud then
-		managers.hud:toggle_chatinput()
-
-		return true
-	end
+	
+	return
 end
 
 --Multiplayer check used to set filter item visibility, return true so that the filters are visible.

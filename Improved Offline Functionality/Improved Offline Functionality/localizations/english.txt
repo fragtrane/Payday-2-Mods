@@ -2,7 +2,7 @@
 	"iof_options_menu_title" : "Improved Offline Functionality",
 	"iof_options_menu_desc" : "Improved Offline Functionality mod options.",
 	
-	"iof_community_title" : "Community Content",
+	"iof_community_title" : "Community / Achievement Content",
 	"iof_community_desc" : "Enable community and achievement content when offline.",
 	
 	"iof_inventory_title" : "Block Inventory Update",
@@ -23,6 +23,15 @@
 	"iof_winters_title" : "Enable Winters",
 	"iof_winters_desc" : "Allow Captain Winters to spawn in single player mode.",
 	
+	"iof_freeze_achi_title": "Freeze Achievement State",
+	"iof_freeze_achi_desc": "Once an achievement has been detected as unlocked, it will never be removed.\nOnly enable if you are still getting the \"Outfit Locked\" bug even after installing this mod.",
+	
+	"iof_clear_state_title" : "Delete Local State File",
+	"iof_clear_state_desc" : "Delete the locally saved states of achievements and community groups.\nOnly do this if you have reset your Steam achievements and \"Freeze Achievement State\" is enabled.",
+	
 	"iof_dialog_title" : "Improved Offline Functionality",
-	"iof_dialog_restart_required" : "Settings have been updated. You need to restart your game for some settings to take effect."
+	"iof_dialog_restart_required" : "Settings have been updated. You need to restart your game for some settings to take effect.",
+	
+	"iof_dialog_clear_state_prompt" : "You are about to delete the locally saved states of your achievements and community groups. This will not affect your actual Steam achievements or community groups. The state file will be automatically generated again when you restart your game.\n\nYou do not need to do this unless you have reset your Steam achievements and the \"Freeze Achievement State\" option is enabled.\n\nDo you want to continue?",
+	"iof_dialog_clear_state_done" : "Local state has been cleared. The state file will be automatically generated again when you restart your game."
 }

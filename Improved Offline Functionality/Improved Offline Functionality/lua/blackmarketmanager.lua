@@ -18,5 +18,5 @@ function BlackMarketManager:has_unlocked_shock()
 		return IOF._state.sah_11, "bm_menu_locked_shock"
 	end
 	
-	return orig_BlackMarketManager_has_unlocked_shock
+	return orig_BlackMarketManager_has_unlocked_shock(self)
 end]]

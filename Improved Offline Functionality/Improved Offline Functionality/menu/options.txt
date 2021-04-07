@@ -67,6 +67,26 @@
 			"callback" : "iof_callback_toggle",
 			"value" : "iof_winters",
 			"default_value" : false
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "iof_freeze_achi",
+			"title" : "iof_freeze_achi_title",
+			"description" : "iof_freeze_achi_desc",
+			"callback" : "iof_callback_toggle",
+			"value" : "iof_freeze_achi",
+			"default_value" : false
+		},
+		{
+			"type" : "button",
+			"id" : "iof_clear_state",
+			"title" : "iof_clear_state_title",
+			"description" : "iof_clear_state_desc",
+			"callback" : "iof_callback_button"
 		}
 	]
 }

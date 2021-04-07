@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v1.4](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.4.zip).
+Latest version [v2.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.0.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
@@ -16,19 +16,15 @@ This mod provides various improvements when playing without an internet connecti
 - **No Armor Regen Bonus:** Disable the armor regeneration bonus in single player mode.
 - **Enable Winters:** Allow Captain Winters to spawn in single player mode.
 
-In order to prevent the locked outfit bug, the saved achievement state is now loaded even when there is an internet connection. In addition, achievements will not be removed from the saved state because there is no way to distinguish between a non-awarded achievement and an achievement that failed to load. Thus, in the unlikely event that you reset your achievements, you should also delete the state file for your Steam account:
+Regarding the "Outfit Locked" bug: as of v2.0, IOF only updates your locally saved achievement state when they have been successfully loaded from Steam. In principle, this should be sufficient to prevent the "Outfit Locked" bug. However, if you are still getting this bug, you can enable the "Freeze Achievement State" option. This will prevent your locally saved achievements from ever being removed and will guarantee that you do not get the "Outfit Locked" bug.
 
-```
-saves/iof_<steamID64>.txt
-```
-
-Community group checking seem to work fine so those are still handled normally.
+Note that in the unlikely event that you reset your Steam achievements and have enabled the "Freeze Achievement State" option, you will need to manually delete your locally saved state file. You can do so using the "Delete Local State File" button in the options menu.
 
 ## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v1.4.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v2.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.0.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -47,6 +43,19 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v2.0 - 2021-04-07**
+
+- Reworked achievement state saving.
+	- IOF will now check if achievements were successfully loaded from Steam before saving the achievement state.
+	- IOF will now save all achievements, including any achievements added in the future.
+- Added new "Freeze Achievement State" option to prevent achievements from ever being removed. Disabled by default.
+	- The new achievement checks should, in principle, be sufficient to prevent the "Outfit Locked" bug. However, if you are still getting this bug, you can enable this option.
+- Added new "Delete Local State File" button for deleting locally saved achievement state.
+	- Enabling the "Freeze Achievement State" option will prevent your locally saved achievements from ever being removed. Therefore, if you choose to reset your Steam achievements at any point, you will need to manually delete your local state file using this button.
+- Reworked Captain Winters check to improve stability/compatibility.
+- Reworked interaction interrupt check to improve stability/compatibility.
+- Reworked offline chat to improve stability/compatibility.
 
 **v1.4 - 2020-03-20**
 

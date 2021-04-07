@@ -14,8 +14,9 @@ function NetworkAccountSTEAM:init()
 	end
 end
 
+--Getting Steam achievements as been moved to achievmentmanager.lua
 --Check and save achievements when online
-local orig_NetworkAccountSTEAM_achievements_fetched = NetworkAccountSTEAM.achievements_fetched
+--[[local orig_NetworkAccountSTEAM_achievements_fetched = NetworkAccountSTEAM.achievements_fetched
 function NetworkAccountSTEAM:achievements_fetched()
 	orig_NetworkAccountSTEAM_achievements_fetched(self)
 	
@@ -30,4 +31,4 @@ function NetworkAccountSTEAM:achievements_fetched()
 		end
 		IOF:save_user_state()
 	end
-end
+end]]

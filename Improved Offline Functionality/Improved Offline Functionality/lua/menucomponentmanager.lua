@@ -7,15 +7,15 @@ function MenuComponentManager:_create_chat_gui()
 		self._preplanning_chat_gui_active = false
 		self._lobby_chat_gui_active = false
 		self._crimenet_chat_gui_active = false
-
+		
 		if self._game_chat_gui then
 			self:show_game_chat_gui()
 		else
 			self:add_game_chat()
 		end
-
+		
 		self._game_chat_gui:set_params(self._saved_game_chat_params or "default")
-
+		
 		self._saved_game_chat_params = nil
 	end
 end
@@ -47,15 +47,15 @@ function MenuComponentManager:_create_preplanning_chats_gui()
 		self._preplanning_chat_gui_active = true
 		self._crimenet_chat_gui_active = false
 		self._lobby_chat_gui_active = false
-
+		
 		if self._game_chat_gui then
 			self:show_game_chat_gui()
 		else
 			self:add_game_chat()
 		end
-
+		
 		self._game_chat_gui:set_params(self._saved_game_chat_params or "preplanning")
-
+		
 		self._saved_game_chat_params = nil
 	end
 end
