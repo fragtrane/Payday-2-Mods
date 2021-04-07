@@ -90,11 +90,11 @@ Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
 
-**v2.0.1 - 2020-04-06**
+**v2.0.1 - 2021-04-06**
 
 - Hotfix for a crash related to weapons skins without attachments.
 
-**v2.0 - 2020-04-05**
+**v2.0 - 2021-04-05**
 
 - Updated the mod to work with the latest version of the game (U205).
 	- Crashfix: resolved compatibility issues with BeardLib's updated universal weapon skin system.
