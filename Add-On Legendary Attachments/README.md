@@ -1,6 +1,6 @@
 # Add-On Legendary Attachments
 
-Latest version v1.1.
+Latest version v1.2.
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/27211).
 
@@ -33,7 +33,7 @@ Add-on legendary attachments use a white version of the legendary skin icon. I h
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) and [BeardLib](https://modworkshop.net/mod/14924); it will not work if you do not have them installed.
 
-This mod consists of a BLT part and an asset override part. The asset overrides can be downloaded automatically so you only need to install the BLT part of the mod. Download [`Add-On_Legendary_Attachments_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_v1.1.zip) and extract the entire contents to your `mods` folder.
+This mod consists of a BLT part and an asset override part. The asset overrides can be downloaded automatically so you only need to install the BLT part of the mod. Download [`Add-On_Legendary_Attachments_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_v1.2.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -43,7 +43,7 @@ C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 
 You will automatically be prompted to install the assets overrides through SuperBLT's Download Manager when you start the game.
 
-If you like, you can also install the asset overrides manually. Download [`Add-On_Legendary_Attachments_Assets_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_Assets_v1.1.zip) and extract the entire contents to your `mod_overrides` folder.
+If you run into issues, you can also install the asset overrides manually. Download [`Add-On_Legendary_Attachments_Assets_v1.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_Assets_v1.2.zip) and extract the entire contents to your `mod_overrides` folder.
 
 The location of the `mod_overrides` folder depends on where you installed the game; typically it can be found here:
 
@@ -55,10 +55,10 @@ C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\assets\mod_overrides
 
 Before uninstalling, you should remove all add-on legendary parts from your weapons. If you delete the assets folder, the BLT mod will automatically remove the attachments the next time you launch the game. Step by step instructions:
 
-1. Delete the `Add-On Legendary Attachments Assets` folder found here:
+1. Delete the `AOLA Assets` folder found here:
 
 ```
-C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\assets\mod_overrides\Add-On Legendary Attachments Assets
+C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\assets\mod_overrides\AOLA Assets
 ```
 
 2. Launch the game and the attachments will be removed. Ignore the pop-up asking to download assets.
@@ -78,6 +78,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.2 - 2021-04-08**
+
+- Assets folder has been migrated to `mod_overrides/AOLA Assets`. After updating to v1.2 and restarting your game, the assets folder will be automatically migrated and you will be prompted to restart your game once more. Your currently equipped attachments should not be affected. Please update to v1.2 as soon as possible, because asset downloads through SuperBLT is currently broken because the old file path is too long.
 
 **v1.1 - 2020-04-09**
 

@@ -63,21 +63,45 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 				
 				--Set sub_type to "laser" so the color can be changed
 				--SDSS/OSA sets this as well but we may not be using those mods
+				--Raven's barrel sub_type is "silencer" which is wrong, but it has a gadget so that gets overwritten here
 				if self.parts[part_id.."_addon"].perks then
 					if table.contains(self.parts[part_id.."_addon"].perks, "gadget") then
 						self.parts[part_id.."_addon"].sub_type = "laser"
 					end
 				end
-				--Raven's barrel sub_type is "silencer" which is wrong, but that gets overwritten so it's fine
 			end
 		end
 	end
 	
-	--SRAB localization
-	if _G.SRAB then
+	--Suppressed Raven Admiral Barrel mod
+	--Legacy support for _G.SRAB identifier used by v1.0
+	if _G.SuppressedRavenAdmiralBarrel or _G.SRAB then
+		--Change localization
 		local part_id = "wpn_fps_sho_ksg_b_legendary"
 		if self.parts[part_id.."_addon"] then
 			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_sho_ksg_b_legendary_addon_srab"
+		end
+		--Dragon's Breath rounds block suppressors
+		table.insert(self.parts.wpn_fps_upg_a_dragons_breath.forbids, part_id.."_addon")
+	end
+	
+	--Suppressed Judge Anarcho Barrel mod
+	if _G.SuppressedJudgeAnarchoBarrel then
+		--Change localization
+		local part_id = "wpn_fps_pis_judge_b_legend"
+		if self.parts[part_id.."_addon"] then
+			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_pis_judge_b_legend_addon_sjab"
+		end
+		--Dragon's Breath rounds block suppressors
+		table.insert(self.parts.wpn_fps_upg_a_dragons_breath.forbids, part_id.."_addon")
+	end
+	
+	--Suppressed AMR-16 Astatoz Barrel mod
+	if _G.SuppressedAMR16AstatozBarrel then
+		--Change localization
+		local part_id = "wpn_fps_ass_m16_b_legend"
+		if self.parts[part_id.."_addon"] then
+			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_ass_m16_b_legend_addon_saab"
 		end
 	end
 end)

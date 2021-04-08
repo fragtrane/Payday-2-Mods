@@ -37,7 +37,14 @@ Hooks:PostHook(MenuMainState, "at_enter", "AOLA_post_MenuMainState_at_enter", fu
 		--If SuperBLT and BeardLib installed, check if assets have been downloaded yet
 		local has_assets = AOLA:check_assets()
 		
+		--If not has assets, check legacy assets
+		local migrated = false
 		if not has_assets then
+			migrated = AOLA:migrate_legacy_assets()
+		end
+		
+		--If no assets and not migrated, go download assets
+		if not has_assets and not migrated then
 			local menu_title = managers.localization:text("aola_dialog_title")
 			local menu_message = managers.localization:text("aola_dialog_missing_assets")
 			--Wait until updates are done checking to open download manager

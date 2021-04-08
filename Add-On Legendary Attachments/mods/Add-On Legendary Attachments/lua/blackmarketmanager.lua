@@ -115,11 +115,15 @@ end
 --Used by quickplay to check if you own a suppressed weapon, fix for SRAB
 --Only need to fix addon. If user only has SRAB, sub_type of base is still "silencer".
 --SDSS/OSA change sub_type of base but they also update this check so it doesn't need to be done again.
-local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
+--This is never going to happen and who uses quickplay anyways
+--[[local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
 function BlackMarketManager:player_owns_silenced_weapon()
 	local result = orig_BlackMarketManager_player_owns_silenced_weapon(self)
+
 	if not AOLA.missing_dependency then
-		if not result and _G.SRAB then
+		--Check for Suppressed Raven Admiral Barrel mod
+		--Legacy support for _G.SRAB identifier used by v1.0
+		if not result and (_G.SuppressedRavenAdmiralBarrel or _G.SRAB) then
 			local categories = {
 				"primaries",
 				"secondaries"
@@ -135,5 +139,6 @@ function BlackMarketManager:player_owns_silenced_weapon()
 			end
 		end
 	end
+	
 	return result
-end
+end]]

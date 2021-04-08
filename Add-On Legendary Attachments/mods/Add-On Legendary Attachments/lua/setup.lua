@@ -9,8 +9,10 @@ AOLA._save_name = "aola_settings.txt"--Currently unused
 AOLA._settings = {
 	aola_debug = false
 }
-AOLA._overrides_path = "./assets/mod_overrides/Add-On Legendary Attachments Assets"
-AOLA._overrides_path_check = AOLA._overrides_path.."/assets"--Used to check if assets have installed
+AOLA._overrides_folder = "./assets/mod_overrides"
+AOLA._legacy_overrides_path = AOLA._overrides_folder .. "/Add-On Legendary Attachments Assets"
+AOLA._overrides_path = AOLA._overrides_folder .. "/AOLA Assets"
+AOLA._overrides_path_check = AOLA._overrides_path .."/assets"--Used to check if assets have installed
 
 --Settings? Button to clean mods?
 
@@ -19,13 +21,19 @@ Hooks:Add("LocalizationManagerPostInit", "AOLA_hook_LocalizationManagerPostInit"
 	loc:load_localization_file(AOLA._mod_path.."localizations/english.txt")
 end)
 
---Make folder in mod_overrides so updates can be checked
-function AOLA:make_overrides_folder()
-	if file and not file.DirectoryExists(self._overrides_path) then
-		file.CreateDirectory(self._overrides_path)
+--Create mod_overrides folder if it does not exist
+if file and not file.DirectoryExists(AOLA._overrides_folder) then
+	file.CreateDirectory(AOLA._overrides_folder)
+end
+
+--Create AOLA Assets folder if it does not exist so that updates can be checked
+--Check if legacy assets folder exists first, because in that case we need to migrate and we shouldn't create the new folder otherwise the migration will fail
+if file and not file.DirectoryExists(AOLA._legacy_overrides_path) then
+	--Create new AOLA Assets folder
+	if file and not file.DirectoryExists(AOLA._overrides_path) then
+		file.CreateDirectory(AOLA._overrides_path)
 	end
 end
-AOLA:make_overrides_folder()
 
 --SuperBLT check
 function AOLA:check_superblt()
@@ -37,8 +45,35 @@ function AOLA:check_beardlib()
 	return _G.BeardLib and true or false
 end
 
+--Migrate Legacy Assets
+function AOLA:migrate_legacy_assets()
+	--https://stackoverflow.com/questions/1340230/check-if-directory-exists-in-lua
+	if file.DirectoryExists(self._legacy_overrides_path) then
+		file.MoveDirectory(self._legacy_overrides_path, AOLA._overrides_path)
+		
+		local menu_title = managers.localization:text("aola_dialog_title")
+		local menu_message = "Due to a configuration change in AOLA, your game needs to be restarted."
+		local cb = callback(MenuCallbackHandler, MenuCallbackHandler, "_dialog_save_progress_backup_no")
+		local menu_options = {
+			[1] = {
+				text = managers.localization:text("menu_quit"),
+				callback = cb
+			}
+		}
+		
+		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+		menu:Show()
+		
+		return true
+		
+	else
+		return false
+	end
+end
+
 --Assets check
 function AOLA:check_assets()
+	--https://stackoverflow.com/questions/1340230/check-if-directory-exists-in-lua
 	return file and file.DirectoryExists(self._overrides_path_check) and true or false
 end
 
