@@ -1,5 +1,34 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--New in v2.0
+--Hide attachments the proper way lmao
+Hooks:PreHook(BlackMarketGui, "populate_mods", "osa_pre_BlackMarketGui_populate_mods", function(self, data)
+	--Hide Anarcho Barrel on Akimbo
+	if data.prev_node_data and data.prev_node_data.name == "x_judge" and data.name == "barrel" then
+		for index, mod_t in ipairs(data.on_create_data or {}) do
+			if mod_t[1] == "wpn_fps_pis_judge_b_legend" then
+				table.remove(data.on_create_data, index)
+			end
+		end
+	end
+	--Hide Anarcho Grip on Akimbo
+	if data.prev_node_data and data.prev_node_data.name == "x_judge" and data.name == "grip" then
+		for index, mod_t in ipairs(data.on_create_data or {}) do
+			if mod_t[1] == "wpn_fps_pis_judge_g_legend" then
+				table.remove(data.on_create_data, index)
+			end
+		end
+	end
+	--Hide Alamo Dallas Barrel on Akimbo
+	if data.prev_node_data and data.prev_node_data.name == "x_p90" and data.name == "slide" then
+		for index, mod_t in ipairs(data.on_create_data or {}) do
+			if mod_t[1] == "wpn_fps_smg_p90_b_legend" then
+				table.remove(data.on_create_data, index)
+			end
+		end
+	end
+end)
+
 --When a skin is previewed, call the OSA skin menu
 local orig_BlackMarketGui_preview_cosmetic_on_weapon_callback = BlackMarketGui.preview_cosmetic_on_weapon_callback
 function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
@@ -13,11 +42,33 @@ end
 
 --New preview skin call
 function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
+	--2.0 Modify Data
+	--We really need to clean this up at some point
+	--Set default weapon color wear, paint scheme, pattern scale when previewing weapon color
+	local id = data.cosmetic_id
+	
+	local wear = data.cosmetic_quality
+	local paint_scheme = data.cosmetic_color_index
+	local pattern_scale = tweak_data.blackmarket.weapon_color_pattern_scale_default
+	
+	if tweak_data.blackmarket.weapon_skins[id] and tweak_data.blackmarket.weapon_skins[id].is_a_color_skin then
+		if OSA:get_multi_name("osa_color_wear") ~= "off" then
+			wear = OSA:get_multi_name("osa_color_wear")
+		end
+		if OSA._settings.osa_paint_scheme > 1 then
+			paint_scheme = OSA._settings.osa_paint_scheme - 1
+		end
+		if OSA._settings.osa_pattern_scale > 1 then
+			pattern_scale = OSA._settings.osa_pattern_scale - 1
+		end
+	end
+	
 	if OSA._state_preview.ready then
 		managers.blackmarket:osa_view_weapon_with_cosmetics(data.category, data.slot, {
 			id = data.cosmetic_id,
-			quality = data.cosmetic_quality,
-			color_index = data.cosmetic_color_index
+			quality = wear,
+			color_index = paint_scheme,
+			pattern_scale = pattern_scale
 		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
 		OSA._state_preview.ready = false
 	else

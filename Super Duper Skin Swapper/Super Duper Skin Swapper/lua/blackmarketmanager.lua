@@ -8,7 +8,7 @@ Hooks:PreHook(BlackMarketManager, "tradable_update", "sdss_pre_BlackMarketManage
 end)
 
 --When offline, set visible skins after data is loaded
-Hooks:PostHook(BlackMarketManager, "load", "sdss_post_BlackMarketManager_tradable_update", function(self, ...)
+Hooks:PostHook(BlackMarketManager, "load", "sdss_post_BlackMarketManager_load", function(self, ...)
 	self:set_visible_cosmetics()
 end)
 
@@ -622,10 +622,14 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 end
 
 --Used by quickplay to check if you own a suppressed weapon, fix for SRAB because sub_type was changed
-local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
+--This is never going to happen and who uses quickplay anyways
+--[[local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
 function BlackMarketManager:player_owns_silenced_weapon()
 	local result = orig_BlackMarketManager_player_owns_silenced_weapon(self)
-	if not result and _G.SRAB then
+	
+	--Check for Suppressed Raven Admiral Barrel mod
+	--Legacy support for _G.SRAB identifier used by v1.0
+	if not result and (_G.SuppressedRavenAdmiralBarrel or _G.SRAB) then
 		local categories = {
 			"primaries",
 			"secondaries"
@@ -640,5 +644,6 @@ function BlackMarketManager:player_owns_silenced_weapon()
 			end
 		end
 	end
+	
 	return result
-end
+end]]

@@ -3,23 +3,6 @@ dofile(ModPath .. "lua/setup.lua")
 --Set some adds/forbids to prevent legendary attachment clipping.
 --Do not add or delete legendary mods from uses_parts, can cause sync issues/cheater tags.
 Hooks:PostHook(WeaponFactoryTweakData, "init", "sdss_post_WeaponFactoryTweakData_init", function(self)
-	if not SDSS._settings.sdss_allow_variants then
-		--Change to dummy part to hide
-		--IMPORTANT: dummy parts are cloned from legendary mods and need to be handled to prevent false-positive cheater tags.
-		for i, part_id in ipairs(self.wpn_fps_smg_x_p90.uses_parts) do
-			if part_id == "wpn_fps_smg_p90_b_legend" then
-				self.wpn_fps_smg_x_p90.uses_parts[i] = "wpn_fps_smg_p90_b_legend_dummy"
-			end
-		end
-		for i, part_id in ipairs(self.wpn_fps_pis_x_judge.uses_parts) do
-			if part_id == "wpn_fps_pis_judge_b_legend" then
-				self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_b_legend_dummy"
-			elseif part_id == "wpn_fps_pis_judge_g_legend" then
-				self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_g_legend_dummy"
-			end
-		end
-	end
-	
 	--Big Kahuna / Demon
 	--Default body adds default grip
 	self.parts.wpn_fps_shot_r870_body_standard.adds = self.parts.wpn_fps_shot_r870_body_standard.adds or {}
@@ -61,15 +44,6 @@ end)
 
 --Set up legendary parts
 Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFactoryTweakData__init_legendary", function(self)
-	--Set up dummy parts
-	--Used when "allow variants" is off, this way we can hide the legendary parts from the akimbos in inventory.
-	--Parts are tagged as "unatainable", need to handle validation to prevent false-positive cheater tags.
-	--We add the dummy mods to the blueprints of the corresponding skins in weaponskinstweakdata.lua
-	--As an extra level of redundancy, we also update the check in networkpeer.lua
-	self.parts.wpn_fps_smg_p90_b_legend_dummy = deep_clone(self.parts.wpn_fps_smg_p90_b_legend)
-	self.parts.wpn_fps_pis_judge_b_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_b_legend)
-	self.parts.wpn_fps_pis_judge_g_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_g_legend)
-	
 	--Set up legendary parts
 	local new_values = {
 		pcs = {},--Without this, the part gets flagged as inaccessible
@@ -81,19 +55,26 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFacto
 	--Set new values, remove stats, set name/description
 	for skin, part_list in pairs(SDSS._gen_1_mods) do
 		for _, part_id in pairs(part_list) do
+			--Set new values
 			for k, v in pairs(new_values) do
 				self.parts[part_id][k] = v
 			end
+			
+			--Remove stats
 			if SDSS._settings.sdss_remove_stats then
 				local val = 0
 				if self.parts[part_id].stats then
 					val = self.parts[part_id].stats.value or val
 				end
 				--Don't remove stats on SRAB
+				--Note: SRAB 1.1 and future legendary stat mods will PreHook _set_inaccessibles so removing stats here won't be an issue anymore
+				--SRAB 1.1 will use the identifier _G.SuppressedRavenAdmiralBarrel so we just keep this old check here for backwards compatiblity until everyone updates
 				if not _G.SRAB or part_id ~= "wpn_fps_sho_ksg_b_legendary" then
 					self.parts[part_id].stats = {value = val}
 				end
 			end
+			
+			--Set name and description
 			self.parts[part_id].name_id = "sdss_bm_"..part_id
 			self.parts[part_id].desc_id = "sdss_bm_req_"..skin
 			
@@ -103,13 +84,39 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "sdss_post_WeaponFacto
 					self.parts[part_id].sub_type = "laser"
 				end
 			end
-			--Raven's barrel sub_type is "silencer" which is wrong, but that gets overwritten so it's fine
+			--Raven's barrel sub_type is "silencer" which is wrong, but it has a gadget so that gets overwritten here
 		end
 	end
 	
-	--SRAB localization
-	if _G.SRAB then
-		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "sdss_bm_wpn_fps_sho_ksg_b_legendary_srab"
+	--Localization for Suppressed Raven Admiral Barrel mod
+	--Legacy support for _G.SRAB identifier used by v1.0
+	if _G.SuppressedRavenAdmiralBarrel or _G.SRAB then
+		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "sdss_bm_wpn_fps_sho_ksg_b_legendary_sup"
+	end
+	
+	--Localization for Suppressed Judge Anarcho Barrel mod
+	if _G.SuppressedJudgeAnarchoBarrel then
+		self.parts.wpn_fps_pis_judge_b_legend.name_id = "sdss_bm_wpn_fps_pis_judge_b_legend_sup"
+	end
+	
+	--Localization for Suppressed AMR-16 Astatoz Barrel mod
+	if _G.SuppressedAMR16AstatozBarrel then
+		self.parts.wpn_fps_ass_m16_b_legend.name_id = "sdss_bm_wpn_fps_ass_m16_b_legend_sup"
+	end
+	
+	--Localization for Suppressed Breaker 12G Apex Barrel mod
+	if _G.SuppressedBreaker12GApexBarrel then
+		self.parts.wpn_fps_sho_boot_b_legendary.name_id = "sdss_bm_wpn_fps_sho_boot_b_legendary_sup"
+	end
+	
+	--Localization for Suppressed Deagle Midas Touch Barrel mod
+	if _G.SuppressedDeagleMidasTouchBarrel then
+		self.parts.wpn_fps_pis_deagle_b_legend.name_id = "sdss_bm_wpn_fps_pis_deagle_b_legend_sup"
+	end
+	
+	--Localization for Suppressed Locomotive 12G Demon Barrel mod
+	if _G.SuppressedLocomotive12GDemonBarrel then
+		self.parts.wpn_fps_shot_shorty_b_legendary.name_id = "sdss_bm_wpn_fps_shot_shorty_b_legendary_sup"
 	end
 	
 	--Fix foregrip on Raven Admiral

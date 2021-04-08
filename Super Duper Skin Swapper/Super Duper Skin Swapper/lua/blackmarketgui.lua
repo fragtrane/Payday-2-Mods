@@ -1,5 +1,36 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--New in v2.1
+--Hide attachments the proper way lmao.
+Hooks:PreHook(BlackMarketGui, "populate_mods", "sdss_pre_BlackMarketGui_populate_mods", function(self, data)
+	if not SDSS._settings.sdss_allow_variants then
+		--Hide Anarcho Barrel on Akimbo
+		if data.prev_node_data and data.prev_node_data.name == "x_judge" and data.name == "barrel" then
+			for index, mod_t in ipairs(data.on_create_data or {}) do
+				if mod_t[1] == "wpn_fps_pis_judge_b_legend" then
+					table.remove(data.on_create_data, index)
+				end
+			end
+		end
+		--Hide Anarcho Grip on Akimbo
+		if data.prev_node_data and data.prev_node_data.name == "x_judge" and data.name == "grip" then
+			for index, mod_t in ipairs(data.on_create_data or {}) do
+				if mod_t[1] == "wpn_fps_pis_judge_g_legend" then
+					table.remove(data.on_create_data, index)
+				end
+			end
+		end
+		--Hide Alamo Dallas Barrel on Akimbo
+		if data.prev_node_data and data.prev_node_data.name == "x_p90" and data.name == "slide" then
+			for index, mod_t in ipairs(data.on_create_data or {}) do
+				if mod_t[1] == "wpn_fps_smg_p90_b_legend" then
+					table.remove(data.on_create_data, index)
+				end
+			end
+		end
+	end
+end)
+
 --New in v2.0
 --Set default weapon color wear, paint scheme, pattern scale when equipping weapon color
 Hooks:PreHook(BlackMarketGui, "equip_weapon_color_callback", "sdss_pre_BlackMarketGui_equip_weapon_color_callback", function(self, data)
@@ -18,6 +49,7 @@ Hooks:PreHook(BlackMarketGui, "equip_weapon_color_callback", "sdss_pre_BlackMark
 	--No restart required when equipping a weapon color
 	--When changing from a weapon color which does not have pattern scale to one that does, the default weapon scale in BlackMarketTweakData is used.
 	--We also overwrite that value in weaponskinstweakdata.lua (for that one a restart is required)
+	--Actually we don't do that anymore, because that also affects some skins and not just weapon colors
 	if SDSS._settings.sdss_pattern_scale > 1 then
 		data.cosmetic_pattern_scale = SDSS._settings.sdss_pattern_scale - 1
 	end

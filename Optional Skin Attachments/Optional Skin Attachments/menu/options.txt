@@ -101,6 +101,73 @@
 			],
 			"value" : "osa_show_legendary",
 			"default_value" : 1
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_immortal_python",
+			"title" : "osa_immortal_python_title",
+			"description" : "osa_immortal_python_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_immortal_python",
+			"default_value" : false
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "osa_paint_scheme",
+			"title" : "osa_paint_scheme_title",
+			"description" : "osa_paint_scheme_desc",
+			"callback" : "osa_callback_multi",
+			"items" : [
+				"osa_paint_scheme_off",
+				"menu_weapon_color_index_1",
+				"menu_weapon_color_index_2",
+				"menu_weapon_color_index_3",
+				"menu_weapon_color_index_4",
+				"menu_weapon_color_index_5",
+				"menu_weapon_color_index_6",
+				"menu_weapon_color_index_7",
+				"menu_weapon_color_index_8",
+				"menu_weapon_color_index_9",
+				"menu_weapon_color_index_10"
+			],
+			"value" : "osa_paint_scheme",
+			"default_value" : 1
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "osa_color_wear",
+			"title" : "osa_color_wear_title",
+			"description" : "osa_color_wear_desc",
+			"callback" : "osa_callback_multi",
+			"items" : [
+				"osa_color_wear_off",
+				"bm_menu_quality_mint",
+				"bm_menu_quality_fine",
+				"bm_menu_quality_good",
+				"bm_menu_quality_fair",
+				"bm_menu_quality_poor"
+			],
+			"value" : "osa_color_wear",
+			"default_value" : 1
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "osa_pattern_scale",
+			"title" : "osa_pattern_scale_title",
+			"description" : "osa_pattern_scale_desc",
+			"callback" : "osa_callback_multi",
+			"items" : [
+				"osa_pattern_scale_off",
+				"menu_pattern_scale_small",
+				"menu_pattern_scale_medium",
+				"menu_pattern_scale_large",
+			],
+			"value" : "osa_pattern_scale",
+			"default_value" : 1
 		}
 	]
 }

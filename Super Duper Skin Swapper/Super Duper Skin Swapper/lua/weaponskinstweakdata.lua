@@ -3,13 +3,6 @@ dofile(ModPath .. "lua/setup.lua")
 --Warning: removing default_blueprint can trigger false-positives in the anti-piracy code if not done properly.
 --We don't remove blueprints so this isn't an issue
 Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "sdss_post_BlackMarketTweakData__init_weapon_skins", function(self)
-	--Add dummy mods for Alamo Dallas to default_blueprint to prevent false-positive cheater flags
-	table.insert(self.weapon_skins.p90_dallas_sallad.default_blueprint, "wpn_fps_smg_p90_b_legend_dummy")
-	
-	--Add dummy mods for Anarcho to default_blueprint to prevent false-positive cheater flags
-	table.insert(self.weapon_skins.judge_burn.default_blueprint, "wpn_fps_pis_judge_b_legend_dummy")
-	table.insert(self.weapon_skins.judge_burn.default_blueprint, "wpn_fps_pis_judge_g_legend_dummy")
-	
 	--Allow legendaries to be customized and renamed, remove weapons from color blacklist
 	for skin_id, skin in pairs(self.weapon_skins) do
 		--Remove unique name and unlock (for legendaries)
@@ -32,7 +25,9 @@ end)
 --New in v2.0
 --Set default pattern scale
 --Don't set default color here, do it in achievmentmanager.lua so we can check if Immortal Python is unlocked first
-Hooks:PostHook(BlackMarketTweakData, "_setup_weapon_color_skins", "sdss_post_BlackMarketTweakData__setup_weapon_color_skins", function(self)
+--So this actually changes the pattern scale on some skins as well (e.g. CAR-4 Stripe On, 5/7 AP Possessed)
+--Maybe look into making this an actual option in the future
+--[[Hooks:PostHook(BlackMarketTweakData, "_setup_weapon_color_skins", "sdss_post_BlackMarketTweakData__setup_weapon_color_skins", function(self)
 	--Set pattern scale, shift index by 1 because first option is "off"
 	if SDSS._settings.sdss_pattern_scale > 1 then
 		self.weapon_color_pattern_scale_default = SDSS._settings.sdss_pattern_scale - 1
@@ -40,4 +35,4 @@ Hooks:PostHook(BlackMarketTweakData, "_setup_weapon_color_skins", "sdss_post_Bla
 	
 	--Hook this to DLC Manager instead so we can check if Immortal Python is unlocked
 	--self.weapon_color_default = "color_immortal_python"
-end)
+end)]]

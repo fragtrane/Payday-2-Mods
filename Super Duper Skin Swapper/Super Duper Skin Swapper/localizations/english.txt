@@ -12,7 +12,7 @@
 	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
 	
 	"sdss_allow_variants_title" : "Allow legendary mods on akimbo variants",
-	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge. Restart required.",
+	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge.",
 	
 	"sdss_remove_stats_title" : "Remove legendary mod stats",
 	"sdss_remove_stats_desc" : "Remove stats from legendary weapon attachments. Restart required.",
@@ -68,6 +68,7 @@
 	"sdss_bm_wpn_upg_ak_fl_legend" : "Vlad's Rodina Laser",
 	
 	"sdss_bm_wpn_fps_pis_deagle_b_legend" : "Midas Touch Barrel",
+	"sdss_bm_wpn_fps_pis_deagle_b_legend_sup" : "Midas Touch Suppressed Barrel",
 	
 	"sdss_bm_wpn_fps_fla_mk2_body_fierybeast" : "Dragon Lord Receiver",
 	
@@ -92,25 +93,29 @@
 	"sdss_bm_wpn_fps_lmg_svinet_s_legend" : "Hungry Wolf Stock",
 	
 	"sdss_bm_wpn_fps_ass_m16_b_legend" : "Astatoz Barrel",
+	"sdss_bm_wpn_fps_ass_m16_b_legend_sup" : "Astatoz Suppressed Barrel",
 	"sdss_bm_wpn_fps_ass_m16_fg_legend" : "Astatoz Foregrip",
 	"sdss_bm_wpn_fps_ass_m16_s_legend" : "Astatoz Stock",
 	
 	"sdss_bm_wpn_fps_pis_judge_b_legend" : "Anarcho Barrel",
+	"sdss_bm_wpn_fps_pis_judge_b_legend_sup" : "Anarcho Suppressed Barrel",
 	"sdss_bm_wpn_fps_pis_judge_g_legend" : "Anarcho Grip",
 	
 	"sdss_bm_wpn_fps_sho_boot_b_legendary" : "Apex Barrel",
+	"sdss_bm_wpn_fps_sho_boot_b_legendary_sup" : "Apex Suppressed Barrel",
 	"sdss_bm_wpn_fps_sho_boot_fg_legendary" : "Apex Foregrip",
 	"sdss_bm_wpn_fps_sho_boot_o_legendary" : "Apex Iron Sights",
 	"sdss_bm_wpn_fps_sho_boot_s_legendary" : "Apex Stock",
 	
 	"sdss_bm_wpn_fps_sho_ksg_b_legendary" : "Admiral Barrel",
-	"sdss_bm_wpn_fps_sho_ksg_b_legendary_srab" : "Admiral Suppressed Barrel",
+	"sdss_bm_wpn_fps_sho_ksg_b_legendary_sup" : "Admiral Suppressed Barrel",
 	
 	"sdss_bm_wpn_fps_ass_tecci_b_legend" : "Mars Ultor Barrel",
 	"sdss_bm_wpn_fps_ass_tecci_fg_legend" : "Mars Ultor Foregrip",
 	"sdss_bm_wpn_fps_ass_tecci_s_legend" : "Mars Ultor Stock",
 	
 	"sdss_bm_wpn_fps_shot_shorty_b_legendary" : "Demon Barrel",
+	"sdss_bm_wpn_fps_shot_shorty_b_legendary_sup" : "Demon Suppressed Barrel",
 	"sdss_bm_wpn_fps_shot_shorty_fg_legendary" : "Demon Foregrip",
 	"sdss_bm_wpn_fps_shot_shorty_s_legendary" : "Demon Stock",
 	

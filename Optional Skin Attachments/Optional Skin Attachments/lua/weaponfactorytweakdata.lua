@@ -6,20 +6,6 @@ local orig_WeaponFactoryTweakData_init = WeaponFactoryTweakData.init
 function WeaponFactoryTweakData:init()
 	orig_WeaponFactoryTweakData_init(self)
 	
-	--Change to dummy part to hide
-	for i, part_id in ipairs(self.wpn_fps_smg_x_p90.uses_parts) do
-		if part_id == "wpn_fps_smg_p90_b_legend" then
-			self.wpn_fps_smg_x_p90.uses_parts[i] = "wpn_fps_smg_p90_b_legend_dummy"
-		end
-	end
-	for i, part_id in ipairs(self.wpn_fps_pis_x_judge.uses_parts) do
-		if part_id == "wpn_fps_pis_judge_b_legend" then
-			self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_b_legend_dummy"
-		elseif part_id == "wpn_fps_pis_judge_g_legend" then
-			self.wpn_fps_pis_x_judge.uses_parts[i] = "wpn_fps_pis_judge_g_legend_dummy"
-		end
-	end
-	
 	--Big Kahuna / Demon
 	--Default body adds default grip
 	self.parts.wpn_fps_shot_r870_body_standard.adds = self.parts.wpn_fps_shot_r870_body_standard.adds or {}
@@ -64,18 +50,6 @@ local orig_WeaponFactoryTweakData__init_legendary = WeaponFactoryTweakData._init
 function WeaponFactoryTweakData:_init_legendary()
 	orig_WeaponFactoryTweakData__init_legendary(self)
 	
-	--Set up dummy parts
-	--Set unatainable to nil to prevent false cheater tags since dummy part isn't in default_blueprint.
-	--Edge case: someone cheats legendary skin, puts it on akimbo variant -> not detected.
-	self.parts.wpn_fps_smg_p90_b_legend_dummy = deep_clone(self.parts.wpn_fps_smg_p90_b_legend)
-	self.parts.wpn_fps_smg_p90_b_legend_dummy.unatainable = nil
-	
-	self.parts.wpn_fps_pis_judge_b_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_b_legend)
-	self.parts.wpn_fps_pis_judge_b_legend_dummy.unatainable = nil
-	
-	self.parts.wpn_fps_pis_judge_g_legend_dummy = deep_clone(self.parts.wpn_fps_pis_judge_g_legend)
-	self.parts.wpn_fps_pis_judge_g_legend_dummy.unatainable = nil
-	
 	--Set up legendary parts
 	local new_values = {
 		pcs = {},--Without this, the part gets flagged as inaccessible
@@ -96,6 +70,8 @@ function WeaponFactoryTweakData:_init_legendary()
 					val = self.parts[part_id].stats.value or val
 				end
 				--Don't remove stats on SRAB
+				--Note: SRAB 1.1 and future legendary stat mods will PreHook _set_inaccessibles so removing stats here won't be an issue anymore
+				--SRAB 1.1 will use the identifier _G.SuppressedRavenAdmiralBarrel so we just keep this old check here for backwards compatiblity until everyone updates
 				if not _G.SRAB or part_id ~= "wpn_fps_sho_ksg_b_legendary" then
 					self.parts[part_id].stats = {value = val}
 				end
@@ -113,9 +89,35 @@ function WeaponFactoryTweakData:_init_legendary()
 		end
 	end
 	
-	--SRAB localization
-	if _G.SRAB then
-		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "osa_bm_wpn_fps_sho_ksg_b_legendary_srab"
+	--Localization for Suppressed Raven Admiral Barrel mod
+	--Legacy support for _G.SRAB identifier used by v1.0
+	if _G.SuppressedRavenAdmiralBarrel or _G.SRAB then
+		self.parts.wpn_fps_sho_ksg_b_legendary.name_id = "osa_bm_wpn_fps_sho_ksg_b_legendary_sup"
+	end
+	
+	--Localization for Suppressed Judge Anarcho Barrel mod
+	if _G.SuppressedJudgeAnarchoBarrel then
+		self.parts.wpn_fps_pis_judge_b_legend.name_id = "osa_bm_wpn_fps_pis_judge_b_legend_sup"
+	end
+	
+	--Localization for Suppressed AMR-16 Astatoz Barrel mod
+	if _G.SuppressedAMR16AstatozBarrel then
+		self.parts.wpn_fps_ass_m16_b_legend.name_id = "osa_bm_wpn_fps_ass_m16_b_legend_sup"
+	end
+	
+	--Localization for Suppressed Breaker 12G Apex Barrel mod
+	if _G.SuppressedBreaker12GApexBarrel then
+		self.parts.wpn_fps_sho_boot_b_legendary.name_id = "osa_bm_wpn_fps_sho_boot_b_legendary_sup"
+	end
+	
+	--Localization for Suppressed Deagle Midas Touch Barrel mod
+	if _G.SuppressedDeagleMidasTouchBarrel then
+		self.parts.wpn_fps_pis_deagle_b_legend.name_id = "osa_bm_wpn_fps_pis_deagle_b_legend_sup"
+	end
+	
+	--Localization for Suppressed Locomotive 12G Demon Barrel mod
+	if _G.SuppressedLocomotive12GDemonBarrel then
+		self.parts.wpn_fps_shot_shorty_b_legendary.name_id = "osa_bm_wpn_fps_shot_shorty_b_legendary_sup"
 	end
 	
 	--Fix foregrip on Raven Admiral

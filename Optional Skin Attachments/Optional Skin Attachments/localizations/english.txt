@@ -38,6 +38,21 @@
 	"osa_show_legendary_owned" : "Owned",
 	"osa_show_legendary_all" : "All",
 	
+	"osa_immortal_python_title" : "Default Color to Immortal Python",
+	"osa_immortal_python_desc" : "Use Immortal Python as default weapon color (if unlocked). Restart required.",
+	
+	"osa_paint_scheme_title" : "Default Paint Scheme",
+	"osa_paint_scheme_desc" : "Change default paint scheme for weapon colors.",
+	"osa_paint_scheme_off" : "Game Default",
+	
+	"osa_color_wear_title" : "Default Color Wear",
+	"osa_color_wear_desc" : "Change default wear for weapon colors.",
+	"osa_color_wear_off" : "Game Default",
+	
+	"osa_pattern_scale_title": "Default Pattern Scale",
+	"osa_pattern_scale_desc": "Change default pattern scale for weapon colors.",
+	"osa_pattern_scale_off": "Game Default",
+	
 	"osa_dialog_title" : "Optional Skin Attachments",
 	"osa_dialog_restart_required" : "Settings have been updated. You need to restart your game for some settings to take effect.",
 	
@@ -96,6 +111,7 @@
 	"osa_bm_wpn_upg_ak_fl_legend" : "Vlad's Rodina Laser",
 	
 	"osa_bm_wpn_fps_pis_deagle_b_legend" : "Midas Touch Barrel",
+	"osa_bm_wpn_fps_pis_deagle_b_legend_sup" : "Midas Touch Suppressed Barrel",
 	
 	"osa_bm_wpn_fps_fla_mk2_body_fierybeast" : "Dragon Lord Receiver",
 	
@@ -120,25 +136,29 @@
 	"osa_bm_wpn_fps_lmg_svinet_s_legend" : "Hungry Wolf Stock",
 	
 	"osa_bm_wpn_fps_ass_m16_b_legend" : "Astatoz Barrel",
+	"osa_bm_wpn_fps_ass_m16_b_legend_sup" : "Astatoz Suppressed Barrel",
 	"osa_bm_wpn_fps_ass_m16_fg_legend" : "Astatoz Foregrip",
 	"osa_bm_wpn_fps_ass_m16_s_legend" : "Astatoz Stock",
 	
 	"osa_bm_wpn_fps_pis_judge_b_legend" : "Anarcho Barrel",
+	"osa_bm_wpn_fps_pis_judge_b_legend_sup" : "Anarcho Suppressed Barrel",
 	"osa_bm_wpn_fps_pis_judge_g_legend" : "Anarcho Grip",
 	
 	"osa_bm_wpn_fps_sho_boot_b_legendary" : "Apex Barrel",
+	"osa_bm_wpn_fps_sho_boot_b_legendary_sup" : "Apex Suppressed Barrel",
 	"osa_bm_wpn_fps_sho_boot_fg_legendary" : "Apex Foregrip",
 	"osa_bm_wpn_fps_sho_boot_o_legendary" : "Apex Iron Sights",
 	"osa_bm_wpn_fps_sho_boot_s_legendary" : "Apex Stock",
 	
 	"osa_bm_wpn_fps_sho_ksg_b_legendary" : "Admiral Barrel",
-	"osa_bm_wpn_fps_sho_ksg_b_legendary_srab" : "Admiral Suppressed Barrel",
+	"osa_bm_wpn_fps_sho_ksg_b_legendary_sup" : "Admiral Suppressed Barrel",
 	
 	"osa_bm_wpn_fps_ass_tecci_b_legend" : "Mars Ultor Barrel",
 	"osa_bm_wpn_fps_ass_tecci_fg_legend" : "Mars Ultor Foregrip",
 	"osa_bm_wpn_fps_ass_tecci_s_legend" : "Mars Ultor Stock",
 	
 	"osa_bm_wpn_fps_shot_shorty_b_legendary" : "Demon Barrel",
+	"osa_bm_wpn_fps_shot_shorty_b_legendary_sup" : "Demon Suppressed Barrel",
 	"osa_bm_wpn_fps_shot_shorty_fg_legendary" : "Demon Foregrip",
 	"osa_bm_wpn_fps_shot_shorty_s_legendary" : "Demon Stock",
 	

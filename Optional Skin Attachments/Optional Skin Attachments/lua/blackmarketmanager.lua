@@ -1,5 +1,31 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--THIS IS NEW
+--Modified from SDSS 2.0, show icon over rarity when weapon is wrong so we can see what guns that people with SDSS are using.
+local orig_BlackMarketManager_get_weapon_icon_path = BlackMarketManager.get_weapon_icon_path
+function BlackMarketManager:get_weapon_icon_path(weapon_id, cosmetics)
+	local id = cosmetics and cosmetics.id
+	if id then
+		local weapon_skin = tweak_data.blackmarket.weapon_skins[id]
+		if weapon_skin then
+			--Fix mistake in dump
+			--Check if right weapon
+			local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
+			--Wrong weapon, not color skin. Put default icon over rarity.
+			if not found_weapon and not weapon_skin.is_a_color_skin then
+				local rarity = weapon_skin.rarity or "common"
+				local rarity_path = tweak_data.economy.rarities[rarity] and tweak_data.economy.rarities[rarity].bg_texture
+				--local texture_path = self:get_weapon_icon_path(weapon_id, nil)
+				--Use original function for getting icon, might be more stable
+				local texture_path = orig_BlackMarketManager_get_weapon_icon_path(self, weapon_id, nil)
+				return texture_path, rarity_path
+			end
+		end
+	end
+	--Otherwise use original
+	return orig_BlackMarketManager_get_weapon_icon_path(self, weapon_id, cosmetics)
+end
+
 --Allow mods to be previewed on locked legendary skins
 function BlackMarketManager:is_previewing_legendary_skin()
 	return false
@@ -113,12 +139,36 @@ end
 
 --Changed to call _osa_set_weapon_cosmetics
 function BlackMarketManager:osa_on_equip_weapon_color(category, slot, color_id, color_index, color_quality, update_weapon_unit)
+	--2.0 Modify Data
+	--We really need to clean this up at some point
+	--Pattern scale only works here, doesnt work in blackmarketgui
+	--Set default weapon color wear, paint scheme, pattern scale when equipping weapon color
+	local wear = OSA:get_multi_name("osa_color_wear")
+	if wear ~= "off" then
+		--We good
+	else
+		wear = color_quality
+	end
+	
+	--Set paint scheme, shift index by 1 because first option is "off"
+	local paint_scheme = color_index
+	if OSA._settings.osa_paint_scheme > 1 then
+		paint_scheme = OSA._settings.osa_paint_scheme - 1
+	end
+	
+	--Set pattern scale, shift index by 1 because first option is "off"
+	local pattern_scale = tweak_data.blackmarket.weapon_color_pattern_scale_default
+	if OSA._settings.osa_pattern_scale > 1 then
+		pattern_scale = OSA._settings.osa_pattern_scale - 1
+	end
+	
 	return self:_osa_set_weapon_cosmetics(category, slot, {
 		bonus = false,
 		id = color_id,
 		instance_id = color_id,
-		color_index = color_index,
-		quality = color_quality
+		color_index = paint_scheme,
+		pattern_scale = pattern_scale,
+		quality = wear
 	}, update_weapon_unit)
 end
 
@@ -648,10 +698,14 @@ function BlackMarketManager:osa_on_remove_weapon_cosmetics(category, slot, skip_
 	crafted.locked_name = nil
 	
 	--Bugfix: global value not removed?
-	if old_cosmetic_id then
+	--Check for old_cosmetic_data to prevent crash when removing custom skin that no longer exists
+	--Updated for v2.0: added more checks to hopefully make this more stable
+	if old_cosmetic_id and old_cosmetic_data and (old_cosmetic_data.global_value or old_cosmetic_data.dlc) then
 		local global_value = old_cosmetic_data.global_value or managers.dlc:dlc_to_global_value(old_cosmetic_data.dlc)
 		
-		self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)
+		if global_value then
+			self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)
+		end
 	end
 	
 	--Rest unchanged except for showing the dialog menu
@@ -701,20 +755,28 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 	crafted.locked_name = nil
 	
 	--Bugfix: global value not removed?
+	--Check for old_cosmetic_data to prevent crash when removing custom skin that no longer exists
+	--Updated for v2.0: added more checks to hopefully make this more stable
 	local old_cosmetic_id = crafted.cosmetics and crafted.cosmetics.id
 	local old_cosmetic_data = old_cosmetic_id and tweak_data.blackmarket.weapon_skins[old_cosmetic_id]
-	if old_cosmetic_id then
+	if old_cosmetic_id and old_cosmetic_data and (old_cosmetic_data.global_value or old_cosmetic_data.dlc) then
 		local global_value = old_cosmetic_data.global_value or managers.dlc:dlc_to_global_value(old_cosmetic_data.dlc)
 		
-		self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)
+		if global_value then
+			self:alter_global_value_item(global_value, category, slot, old_cosmetic_id, CRAFT_REMOVE)
+		end
 	end
 end
 
 --Used by quickplay to check if you own a suppressed weapon, fix for SRAB because sub_type was changed
-local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
+--This is never going to happen and who uses quickplay anyways
+--[[local orig_BlackMarketManager_player_owns_silenced_weapon = BlackMarketManager.player_owns_silenced_weapon
 function BlackMarketManager:player_owns_silenced_weapon()
 	local result = orig_BlackMarketManager_player_owns_silenced_weapon(self)
-	if not result and _G.SRAB then
+	
+	--Check for Suppressed Raven Admiral Barrel mod
+	--Legacy support for _G.SRAB identifier used by v1.0
+	if not result and (_G.SuppressedRavenAdmiralBarrel or _G.SRAB) then
 		local categories = {
 			"primaries",
 			"secondaries"
@@ -729,5 +791,6 @@ function BlackMarketManager:player_owns_silenced_weapon()
 			end
 		end
 	end
+	
 	return result
-end
+end]]

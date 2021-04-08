@@ -22,7 +22,12 @@ OSA._settings = {
 	osa_rename_legendary = true,--Allow legendary weapons to be renamed.
 	osa_allow_unlock = false,--Allow legendary weapons to be unlocked.
 	osa_remove_stats = false,--Remove stats from legendary attachments.
-	osa_show_legendary = 1--Show legendary parts in weapon mod menu. 1 = "off", 2 = "owned", 3 = "all".
+	osa_show_legendary = 1,--Show legendary parts in weapon mod menu. 1 = "off", 2 = "owned", 3 = "all".
+
+	osa_immortal_python = false,--Set default weapon color to Immortal Python
+	osa_paint_scheme = 1,--Override default paint scheme of weapon colors
+	osa_color_wear = 1,--Override default wear of weapon colors
+	osa_pattern_scale = 1--Override default pattern scale of weapon colors
 }
 OSA._restart_list = {
 	"osa_rename_legendary",
@@ -146,6 +151,20 @@ function OSA:get_multi_name(multi_id)
 			return "owned"
 		elseif self._settings[multi_id] == 3 then
 			return "all"
+		end
+	elseif multi_id == "osa_color_wear" then
+		if self._settings[multi_id] == 1 then
+			return "off"
+		elseif self._settings[multi_id] == 2 then
+			return "mint"--Mint-Condition
+		elseif self._settings[multi_id] == 3 then
+			return "fine"--Lightly-Marked
+		elseif self._settings[multi_id] == 4 then
+			return "good"--Broken-In
+		elseif self._settings[multi_id] == 5 then
+			return "fair"--Well-Used
+		elseif self._settings[multi_id] == 6 then
+			return "poor"--Battle-Worn
 		end
 	end
 end
