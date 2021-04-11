@@ -25,6 +25,10 @@
 	"sdss_clean_dupes_both" : "Best normal & stat",
 	"sdss_clean_dupes_allvars" : "All variants",
 	
+	"sdss_quality_filter_title" : "Minimum wear level",
+	"sdss_quality_filter_desc" : "Hide skins below the set quality if hide duplicate skins is enabled",
+	"sdss_quality_filter_all" : "No quality filter",
+	
 	"sdss_immortal_python_title" : "Default Color to Immortal Python",
 	"sdss_immortal_python_desc" : "Use Immortal Python as default weapon color (if unlocked). Restart required.",
 	

@@ -103,13 +103,18 @@ function BlackMarketManager:build_visible_cosmetics_list(tradable_list)
 			local quality_ind = get_index(quality)
 			local variant = item.bonus and "stat" or "norm"
 			local instance_id = item.instance_id
-			--If skin doesn't exist or the variant doesn't exist or the wear doesn't exist, add it
-			if not instances[entry] or not instances[entry][variant] or not instances[entry][variant][quality_ind] then
-				instances[entry] = instances[item.entry] or {}
-				instances[entry][variant] = instances[entry][variant] or {}
-				instances[entry][variant][quality_ind] = {instance_id = instance_id}
-			else
-				instances[entry][variant][quality_ind].instance_id = choose_instance(instance_id, instances[entry][variant][quality_ind].instance_id)
+			local quality_filter = SDSS:get_multi_name("sdss_quality_filter")
+			local quality_filter_index = get_index(quality_filter)
+			--If the skin is below the quality filter, ignore it
+			if quality_ind >= quality_filter_index then
+				--If skin doesn't exist or the variant doesn't exist or the wear doesn't exist, add it
+				if not instances[entry] or not instances[entry][variant] or not instances[entry][variant][quality_ind] then
+					instances[entry] = instances[item.entry] or {}
+					instances[entry][variant] = instances[entry][variant] or {}
+					instances[entry][variant][quality_ind] = {instance_id = instance_id}
+				else
+					instances[entry][variant][quality_ind].instance_id = choose_instance(instance_id, instances[entry][variant][quality_ind].instance_id)
+				end
 			end
 		end
 	end

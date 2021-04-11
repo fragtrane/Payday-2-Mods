@@ -15,6 +15,7 @@ SDSS._settings = {
 	sdss_allow_variants = false,--Allow legendary attachments on akimbo/single variants
 	sdss_remove_stats = false,--Remove stats from legendary attachments
 	sdss_clean_dupes = 1,--Hide duplicates
+	ssds_quality_filter = 1,--Filter out lower quality skins
 	sdss_immortal_python = false,--Set default weapon color to Immortal Python
 	sdss_paint_scheme = 1,--Override default paint scheme of weapon colors
 	sdss_color_wear = 1,--Override default wear of weapon colors
@@ -100,6 +101,18 @@ function SDSS:get_multi_name(multi_id)
 			return "both"--Best stat and non-stat
 		elseif self._settings[multi_id] == 5 then
 			return "allvars"--Show all combinations of boost + wear
+		end
+	elseif multi_id == "sdss_quality_filter" then
+		if self._settings[multi_id] == 1 then
+			return "poor"--Battle-Worn / All
+		elseif self._settings[multi_id] == 2 then
+			return "fair"--Well-Used
+		elseif self._settings[multi_id] == 3 then
+			return "good"--Broken-In
+		elseif self._settings[multi_id] == 4 then
+			return "fine"--Lightly-Marked
+		elseif self._settings[multi_id] == 5 then
+			return "mint"--Mint-Condition
 		end
 	elseif multi_id == "sdss_color_wear" then
 		if self._settings[multi_id] == 1 then

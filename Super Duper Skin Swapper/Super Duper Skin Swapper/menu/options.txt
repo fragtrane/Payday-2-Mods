@@ -67,6 +67,22 @@
 			"default_value" : 1
 		},
 		{
+			"type" : "multiple_choice",
+			"id" : "sdss_quality_filter",
+			"title" : "sdss_quality_filter_title",
+			"description" : "sdss_quality_filter_desc",
+			"callback" : "sdss_callback_multi",
+			"items" : [
+				"sdss_quality_filter_all",
+				"bm_menu_quality_fair",
+				"bm_menu_quality_good",
+				"bm_menu_quality_fine",
+				"bm_menu_quality_mint"
+			],
+			"value" : "sdss_quality_filter",
+			"default_value" : 1
+		},
+		{
 			"type" : "divider",
 			"size" : 16
 		},
