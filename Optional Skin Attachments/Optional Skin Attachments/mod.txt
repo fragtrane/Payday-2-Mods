@@ -3,7 +3,7 @@
 	"description" : "Adds options for choosing attachments when applying skins. Also improves support for legendary skins.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
-	"version" : "2.0",
+	"version" : "2.0.1",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [

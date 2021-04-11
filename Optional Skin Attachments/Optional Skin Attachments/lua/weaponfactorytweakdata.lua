@@ -61,19 +61,27 @@ function WeaponFactoryTweakData:_init_legendary()
 	--Set new values, remove stats, set name/description
 	for skin, part_list in pairs(OSA._gen_1_mods) do
 		for _, part_id in pairs(part_list) do
+			--Set new values
 			for k, v in pairs(new_values) do
 				self.parts[part_id][k] = v
 			end
+			
+			--Remove stats except for concealment (to prevent detection risk discrepancies as client)
 			if OSA._settings.osa_remove_stats then
 				local val = 0
+				local conceal = 0
 				if self.parts[part_id].stats then
 					val = self.parts[part_id].stats.value or val
+					conceal = self.parts[part_id].stats.concealment or conceal
 				end
 				--Don't remove stats on SRAB
 				--Note: SRAB 1.1 and future legendary stat mods will PreHook _set_inaccessibles so removing stats here won't be an issue anymore
 				--SRAB 1.1 will use the identifier _G.SuppressedRavenAdmiralBarrel so we just keep this old check here for backwards compatiblity until everyone updates
 				if not _G.SRAB or part_id ~= "wpn_fps_sho_ksg_b_legendary" then
-					self.parts[part_id].stats = {value = val}
+					self.parts[part_id].stats = {
+						value = val,
+						concealment = conceal
+					}
 				end
 			end
 			self.parts[part_id].name_id = "osa_bm_"..part_id
@@ -154,4 +162,8 @@ function WeaponFactoryTweakData:_init_legendary()
 	table.insert(self.parts.wpn_upg_ak_s_legend.adds, "wpn_upg_ak_g_standard")
 	self.parts.wpn_upg_ak_g_legend.forbids = self.parts.wpn_upg_ak_g_legend.forbids or {}
 	table.insert(self.parts.wpn_upg_ak_g_legend.forbids, "wpn_upg_ak_g_standard")
+	
+	--Midas Touch
+	--Stop barrel from shifting the front post of the Marksman Sight
+	self.parts.wpn_fps_pis_deagle_b_legend.override.wpn_upg_o_marksmansight_front = nil
 end

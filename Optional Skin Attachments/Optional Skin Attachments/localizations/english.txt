@@ -30,7 +30,7 @@
 	"osa_allow_unlock_desc" : "Allow legendary skins to be unlocked so that they can be customized.",
 	
 	"osa_remove_stats_title" : "Remove Legendary Mod Stats",
-	"osa_remove_stats_desc" : "Remove stats from legendary weapon attachments.",
+	"osa_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment.",
 	
 	"osa_show_legendary_title" : "Show Legendary Mods",
 	"osa_show_legendary_desc" : "Show legendary weapon attachments in weapon customization menu.",
