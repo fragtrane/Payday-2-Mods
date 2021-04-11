@@ -15,7 +15,7 @@
 	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge.",
 	
 	"sdss_remove_stats_title" : "Remove legendary mod stats",
-	"sdss_remove_stats_desc" : "Remove stats from legendary weapon attachments. Restart required.",
+	"sdss_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment. Restart required.",
 	
 	"sdss_clean_dupes_title" : "Hide duplicate skins",
 	"sdss_clean_dupes_desc" : "Hide duplicate copies of skins and only show the ones with the best quality.",
