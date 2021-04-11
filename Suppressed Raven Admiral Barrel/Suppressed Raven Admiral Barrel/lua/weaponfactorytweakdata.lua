@@ -1,14 +1,15 @@
 --For OSA / SDSS
-_G.SRAB = {}
+_G.SuppressedRavenAdmiralBarrel = {}
 
 Hooks:PostHook(WeaponFactoryTweakData, "init", "srab_post_WeaponFactoryTweakData_init", function(self)
 	--Dragon's Breath rounds block suppressors
 	table.insert(self.parts.wpn_fps_upg_a_dragons_breath.forbids, "wpn_fps_sho_ksg_b_legendary")
 end)
 
-Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "srab_post_WeaponFactoryTweakData__init_legendary", function(self)
+--PreHook last function in init, make sure that all attachments and whatnot have been set up.
+Hooks:PreHook(WeaponFactoryTweakData, "_set_inaccessibles", "srab_pre_WeaponFactoryTweakData__set_inaccessibles", function(self)
 	--Combined stats of Short Barrel and Silent Killer Suppressor
-	--Works out perfectly because the Optical Illusions bug will cause give the same bonus that you get on a real suppressed Raven
+	--Works out perfectly because the Optical Illusions bug will give the same bonus that you get on a real suppressed Raven
 	self.parts.wpn_fps_sho_ksg_b_legendary.stats = {
 		value = 1,
 		alert_size = 12,
@@ -22,20 +23,20 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "srab_post_WeaponFacto
 	}
 	
 	--Add "silencer" perk, "gadget" perk is not overwritten
+	self.parts.wpn_fps_sho_ksg_b_legendary.perks = self.parts.wpn_fps_sho_ksg_b_legendary.perks or {}
 	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.perks, "silencer")
 	
-	--Suppressed fire sound
-	self.parts.wpn_fps_sho_ksg_b_legendary.sound_switch = {
-		suppressed = "suppressed_a"
-	}
+	--Suppressed fire sound, clone Silent Killer Suppressor
+	self.parts.wpn_fps_sho_ksg_b_legendary.sound_switch = deep_clone(self.parts.wpn_fps_upg_ns_shot_thick.sound_switch)
 	
-	--Block barrel extensions
-	self.parts.wpn_fps_sho_ksg_b_legendary.forbids = {
-		"wpn_fps_upg_shot_ns_king",
-		"wpn_fps_upg_ns_shot_thick",
-		"wpn_fps_upg_ns_shot_shark",
-		"wpn_fps_upg_ns_sho_salvo_large",
-		"wpn_fps_upg_a_dragons_breath",
-		"wpn_fps_upg_ns_duck"
-	}
+	--Block all barrel extensions
+	self.parts.wpn_fps_sho_ksg_b_legendary.forbids = self.parts.wpn_fps_sho_ksg_b_legendary.forbids or {}
+	for _, part_id in pairs(self.wpn_fps_sho_ksg.uses_parts) do
+		if part_id ~= "wpn_fps_sho_ksg_b_legendary" and self.parts[part_id] and self.parts[part_id].type == "barrel_ext" then
+			table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.forbids, part_id)
+		end
+	end
+	
+	--Block Dragon's Breath
+	table.insert(self.parts.wpn_fps_sho_ksg_b_legendary.forbids, "wpn_fps_upg_a_dragons_breath")
 end)
