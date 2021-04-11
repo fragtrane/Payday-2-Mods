@@ -43,8 +43,14 @@ Hooks:PostHook(MenuMainState, "at_enter", "AOLA_post_MenuMainState_at_enter", fu
 			migrated = AOLA:migrate_legacy_assets()
 		end
 		
+		--Check duplicated assets in case someone updated AOLA Assets before updating AOLA BLT
+		local cleaned_dupe = false
+		if not migrated and has_assets then
+			cleaned_dupe = AOLA:clean_duplicated_assets()
+		end
+		
 		--If no assets and not migrated, go download assets
-		if not has_assets and not migrated then
+		if not has_assets and not migrated and not cleaned_dupe then
 			local menu_title = managers.localization:text("aola_dialog_title")
 			local menu_message = managers.localization:text("aola_dialog_missing_assets")
 			--Wait until updates are done checking to open download manager

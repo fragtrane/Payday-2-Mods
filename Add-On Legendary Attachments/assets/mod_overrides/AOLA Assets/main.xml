@@ -190,10 +190,10 @@
 	</WeaponMod>
 	
 	<!-- The Gimp, 2 attachments -->
-	<!-- The Gimp Body Kit, based on default upper body -->
+	<!-- The Gimp Body Kit, based on I'll Take Half That Kit -->
 	<WeaponMod
 		id="wpn_fps_lmg_m134_body_upper_spikey_addon"
-		based_on="wpn_fps_lmg_m134_body_upper"
+		based_on="wpn_fps_lmg_m134_body_upper_light"
 		type="extra"
 		texture_bundle_folder="aola"
 		guess_unit="false"
@@ -385,10 +385,10 @@
 	</WeaponMod>
 	
 	<!-- Astatoz, 3 attachments -->
-	<!-- Astatoz Barrel, based on Long Barrel -->
+	<!-- Astatoz Barrel, based on default barrel -->
 	<WeaponMod
 		id="wpn_fps_ass_m16_b_legend_addon"
-		based_on="wpn_fps_m4_uupg_b_long"
+		based_on="wpn_fps_m4_uupg_b_medium_vanilla"
 		type="barrel"
 		texture_bundle_folder="aola"
 		guess_unit="false"
@@ -400,10 +400,10 @@
 			<value_node value="wpn_fps_ass_m16"/>
 		</weapons>
 	</WeaponMod>
-	<!-- Astatoz Foregrip, based on Tactical Handguard -->
+	<!-- Astatoz Foregrip, based on default foregrip -->
 	<WeaponMod
 		id="wpn_fps_ass_m16_fg_legend_addon"
-		based_on="wpn_fps_m16_fg_railed"
+		based_on="wpn_fps_m16_fg_standard"
 		type="foregrip"
 		texture_bundle_folder="aola"
 		guess_unit="false"
@@ -528,10 +528,10 @@
 	</WeaponMod>
 	
 	<!-- Admiral, 1 attachment -->
-	<!-- Admiral Barrel, based on Long Barrel -->
+	<!-- Admiral Barrel, based on default barrel -->
 	<WeaponMod
 		id="wpn_fps_sho_ksg_b_legendary_addon"
-		based_on="wpn_fps_sho_ksg_b_long"
+		based_on="wpn_fps_sho_ksg_b_standard"
 		type="barrel"
 		texture_bundle_folder="aola"
 		guess_unit="false"
@@ -575,10 +575,10 @@
 			<value_node value="wpn_fps_ass_tecci"/>
 		</weapons>
 	</WeaponMod>
-	<!-- Mars Ultor Stock, based on default stock -->
+	<!-- Mars Ultor Stock, based on Folding Stock -->
 	<WeaponMod
 		id="wpn_fps_ass_tecci_s_legend_addon"
-		based_on="wpn_fps_ass_tecci_s_standard"
+		based_on="wpn_fps_m4_uupg_s_fold"
 		type="stock"
 		texture_bundle_folder="aola"
 		guess_unit="false"

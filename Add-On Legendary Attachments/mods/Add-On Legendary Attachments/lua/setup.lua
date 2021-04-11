@@ -52,7 +52,7 @@ function AOLA:migrate_legacy_assets()
 		file.MoveDirectory(self._legacy_overrides_path, AOLA._overrides_path)
 		
 		local menu_title = managers.localization:text("aola_dialog_title")
-		local menu_message = "Due to a configuration change in AOLA, your game needs to be restarted."
+		local menu_message = managers.localization:text("aola_dialog_config_change_restart")
 		local cb = callback(MenuCallbackHandler, MenuCallbackHandler, "_dialog_save_progress_backup_no")
 		local menu_options = {
 			[1] = {
@@ -69,6 +69,53 @@ function AOLA:migrate_legacy_assets()
 	else
 		return false
 	end
+end
+
+--Clean duplicated assets
+--Can happen if someone updated AOLA Assets before updating AOLA BLT
+function AOLA:clean_duplicated_assets()
+	--https://stackoverflow.com/questions/1340230/check-if-directory-exists-in-lua
+	if file.DirectoryExists(self._overrides_path) and file.DirectoryExists(self._legacy_overrides_path) then
+		--Need to remove files before we can remove directory
+		--Stole this from SuperBLT base
+		--io.remove_directory_and_files(self._legacy_overrides_path .. "/", true)
+		self:actually_delete_the_fucking_directory_please(self._legacy_overrides_path)
+		
+		local menu_title = managers.localization:text("aola_dialog_title")
+		local menu_message = managers.localization:text("aola_dialog_config_change_restart")
+		local cb = callback(MenuCallbackHandler, MenuCallbackHandler, "_dialog_save_progress_backup_no")
+		local menu_options = {
+			[1] = {
+				text = managers.localization:text("menu_quit"),
+				callback = cb
+			}
+		}
+		
+		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+		menu:Show()
+		
+		return true
+		
+	else
+		return false
+	end
+end
+
+--Recursively delete path because RemoveDirectory only works on empty folders
+function AOLA:actually_delete_the_fucking_directory_please(path)
+	--1. Recursion to clean any subfolders
+	local dirs = file.GetDirectories(path) or {}
+	for _, dir in pairs(dirs) do
+		self:actually_delete_the_fucking_directory_please(path .. "/" .. dir)
+	end
+	--2. Remove files from path
+	local files = file.GetFiles(path) or {}
+	for _, v in pairs(files) do
+		local file_path = path .. "/" .. v
+		os.remove( file_path )
+	end
+	--3. Remove path
+	file.RemoveDirectory(path)
 end
 
 --Assets check

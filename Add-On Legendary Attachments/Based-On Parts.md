@@ -6,7 +6,7 @@ A list of the weapon parts that each add-on legendary attachment is based on. Ot
 
 |Add-On Attachment|Based-On Attachment|Add-On Part ID|Based-On Part ID|Note|
 |:--|:--|:--|:--|:--|
-|Admiral Barrel|Long Barrel|wpn_fps_sho_ksg_b_legendary_addon|wpn_fps_sho_ksg_b_long|Same DLC|
+|Admiral Barrel|Default Barrel|wpn_fps_sho_ksg_b_legendary_addon|wpn_fps_sho_ksg_b_standard|Default Part|
 |Alamo Dallas Barrel|Default Barrel|wpn_fps_smg_p90_b_legend_addon|wpn_fps_smg_p90_b_short|Default Part|
 |Anarcho Barrel|Default Barrel|wpn_fps_pis_judge_b_legend_addon|wpn_fps_pis_judge_b_standard|Default Part|
 |Anarcho Grip|Default Grip|wpn_fps_pis_judge_g_legend_addon|wpn_fps_pis_judge_g_standard|Default Part|
@@ -14,8 +14,8 @@ A list of the weapon parts that each add-on legendary attachment is based on. Ot
 |Apex Foregrip|Default Foregrip|wpn_fps_sho_boot_fg_legendary_addon|wpn_fps_sho_boot_fg_standard|Default Part|
 |Apex Iron Sights|Unknown Default Part|wpn_fps_sho_boot_o_legendary_addon|wpn_fps_sho_boot_em_extra|Default Part|
 |Apex Stock|Default Stock|wpn_fps_sho_boot_s_legendary_addon|wpn_fps_sho_boot_s_short|Default Part|
-|Astatoz Barrel|Long Barrel|wpn_fps_ass_m16_b_legend_addon|wpn_fps_m4_uupg_b_long|Base Game|
-|Astatoz Foregrip|Tactical Handguard|wpn_fps_ass_m16_fg_legend_addon|wpn_fps_m16_fg_railed|Base Game|
+|Astatoz Barrel|Default Barrel|wpn_fps_ass_m16_b_legend_addon|wpn_fps_m4_uupg_b_medium_vanilla|Default Part|
+|Astatoz Foregrip|Default Foregrip|wpn_fps_ass_m16_fg_legend_addon|wpn_fps_m16_fg_standard|Default Part|
 |Astatoz Stock|Default Stock|wpn_fps_ass_m16_s_legend_addon|wpn_fps_m16_s_solid_vanilla|Default Part|
 |Big Kahuna Barrel|Default Barrel|wpn_fps_shot_r870_b_legendary_addon|wpn_fps_shot_r870_b_long|Default Part|
 |Big Kahuna Foregrip|Zombie Hunter Pump|wpn_fps_shot_r870_fg_legendary_addon|wpn_fps_shot_r870_fg_wood|Base Game|
@@ -31,7 +31,7 @@ A list of the weapon parts that each add-on legendary attachment is based on. Ot
 |Hungry Wolf Stock|Default Stock|wpn_fps_lmg_svinet_s_legend_addon|wpn_fps_lmg_par_s_standard|Default Part|
 |Mars Ultor Barrel|Default Barrel|wpn_fps_ass_tecci_b_legend_addon|wpn_fps_ass_tecci_b_standard|Default Part|
 |Mars Ultor Foregrip|Default Foregrip|wpn_fps_ass_tecci_fg_legend_addon|wpn_fps_ass_tecci_fg_standard|Default Part|
-|Mars Ultor Stock|Default Stock|wpn_fps_ass_tecci_s_legend_addon|wpn_fps_ass_tecci_s_standard|Default Part|
+|Mars Ultor Stock|Folding Stock|wpn_fps_ass_tecci_s_legend_addon|wpn_fps_m4_uupg_s_fold|Base Game|
 |Midas Touch Barrel|Default Barrel|wpn_fps_pis_deagle_b_legend_addon|wpn_fps_pis_deagle_b_standard|Default Part|
 |Plush Phoenix Barrel|Default Barrel|wpn_fps_ass_m14_b_legendary_addon|wpn_fps_ass_m14_b_standard|Default Part|
 |Plush Phoenix Lower Body|Default Lower Body|wpn_fps_ass_m14_body_lower_legendary_addon|wpn_fps_ass_m14_body_lower|Default Part|
@@ -40,12 +40,24 @@ A list of the weapon parts that each add-on legendary attachment is based on. Ot
 |Santa's Slayers Grip|Bling Grip|wpn_fps_pis_1911_g_legendary_addon|wpn_fps_pis_1911_g_bling|Base Game|
 |Santa's Slayers Laser|Pocket Laser|wpn_fps_pis_1911_fl_legendary_addon|wpn_fps_upg_fl_pis_laser|Base Game|
 |The Gimp Barrel|Aerial Assault Barrel|wpn_fps_lmg_m134_barrel_legendary_addon|wpn_fps_lmg_m134_barrel_extreme|Same DLC|
-|The Gimp Body Kit|Default Upper Body|wpn_fps_lmg_m134_body_upper_spikey_addon|wpn_fps_lmg_m134_body_upper|Default Part|
+|The Gimp Body Kit|I'll Take Half That Kit|wpn_fps_lmg_m134_body_upper_spikey_addon|wpn_fps_lmg_m134_body_upper_light|Same DLC|
 |Vlad's Rodina Barrel|Default Barrel|wpn_fps_ass_74_b_legend_addon|wpn_fps_ass_74_b_standard|Default Part|
 |Vlad's Rodina Foregrip|Railed Wooden Foregrip|wpn_upg_ak_fg_legend_addon|wpn_upg_ak_fg_combo2|Base Game|
 |Vlad's Rodina Grip|Default Grip|wpn_upg_ak_g_legend_addon|wpn_upg_ak_g_standard|Default Part|
 |Vlad's Rodina Laser|Tactical Laser Module|wpn_upg_ak_fl_legend_addon|wpn_fps_upg_fl_ass_smg_sho_peqbo|Base Game|
 |Vlad's Rodina Stock|Folding Stock|wpn_upg_ak_s_legend_addon|wpn_upg_ak_s_folding|Base Game|
+
+## Old Based-On Parts (Pre 1.3)
+
+Prior to version 1.3, several add-on attachments used different based-on parts that more closely resembled their legendary counterparts from an aesthetic standpoint. They were changed in version 1.3 so that the concealment of the based-on parts would more closely match the legendary parts to reduce detection risk sync issues when playing as a client. The pre 1.3 based-on parts are listed below.
+
+|Add-On Attachment|Based-On Attachment|Add-On Part ID|Based-On Part ID|Note|
+|:--|:--|:--|:--|:--|
+|Admiral Barrel|Long Barrel|wpn_fps_sho_ksg_b_legendary_addon|wpn_fps_sho_ksg_b_long|Same DLC|
+|Astatoz Barrel|Long Barrel|wpn_fps_ass_m16_b_legend_addon|wpn_fps_m4_uupg_b_long|Base Game|
+|Astatoz Foregrip|Tactical Handguard|wpn_fps_ass_m16_fg_legend_addon|wpn_fps_m16_fg_railed|Base Game|
+|Mars Ultor Stock|Default Stock|wpn_fps_ass_tecci_s_legend_addon|wpn_fps_ass_tecci_s_standard|Default Part|
+|The Gimp Body Kit|Default Upper Body|wpn_fps_lmg_m134_body_upper_spikey_addon|wpn_fps_lmg_m134_body_upper|Default Part|
 
 ## Laser Sync
 The integrated laser found on non-gadget legendary attachments cannot be seen by other players. Full list of attachments with lasers that do not sync:

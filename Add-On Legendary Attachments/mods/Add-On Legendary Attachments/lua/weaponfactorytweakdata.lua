@@ -73,35 +73,62 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 		end
 	end
 	
-	--Suppressed Raven Admiral Barrel mod
+	--Localization for Suppressed Raven Admiral Barrel mod
 	--Legacy support for _G.SRAB identifier used by v1.0
 	if _G.SuppressedRavenAdmiralBarrel or _G.SRAB then
 		--Change localization
 		local part_id = "wpn_fps_sho_ksg_b_legendary"
 		if self.parts[part_id.."_addon"] then
-			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_sho_ksg_b_legendary_addon_srab"
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
 		end
 		--Dragon's Breath rounds block suppressors
 		table.insert(self.parts.wpn_fps_upg_a_dragons_breath.forbids, part_id.."_addon")
 	end
 	
-	--Suppressed Judge Anarcho Barrel mod
+	--Localization for Suppressed Judge Anarcho Barrel mod
 	if _G.SuppressedJudgeAnarchoBarrel then
 		--Change localization
 		local part_id = "wpn_fps_pis_judge_b_legend"
 		if self.parts[part_id.."_addon"] then
-			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_pis_judge_b_legend_addon_sjab"
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
 		end
 		--Dragon's Breath rounds block suppressors
 		table.insert(self.parts.wpn_fps_upg_a_dragons_breath.forbids, part_id.."_addon")
 	end
 	
-	--Suppressed AMR-16 Astatoz Barrel mod
+	--Localization for Suppressed AMR-16 Astatoz Barrel mod
 	if _G.SuppressedAMR16AstatozBarrel then
 		--Change localization
 		local part_id = "wpn_fps_ass_m16_b_legend"
 		if self.parts[part_id.."_addon"] then
-			self.parts[part_id.."_addon"].name_id = "bm_wp_wpn_fps_ass_m16_b_legend_addon_saab"
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
+		end
+	end
+	
+	--Localization for Suppressed Breaker 12G Apex Barrel mod
+	if _G.SuppressedBreaker12GApexBarrel then
+		--Change localization
+		local part_id = "wpn_fps_sho_boot_b_legendary"
+		if self.parts[part_id.."_addon"] then
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
+		end
+	end
+	
+	--Localization for Suppressed Deagle Midas Touch Barrel mod
+	if _G.SuppressedDeagleMidasTouchBarrel then
+		--Change localization
+		local part_id = "wpn_fps_pis_deagle_b_legend"
+		if self.parts[part_id.."_addon"] then
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
+		end
+	end
+	
+	--Localization for Suppressed Locomotive 12G Demon Barrel mod
+	if _G.SuppressedLocomotive12GDemonBarrel then
+		--Change localization
+		local part_id = "wpn_fps_shot_shorty_b_legendary"
+		if self.parts[part_id.."_addon"] then
+			self.parts[part_id.."_addon"].name_id = "bm_wp_" .. part_id .. "_addon_sup"
 		end
 	end
 end)

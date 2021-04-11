@@ -27,6 +27,7 @@
 	"bm_wp_wpn_upg_ak_fl_legend_addon" : "Vlad's Rodina Laser (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_pis_deagle_b_legend_addon" : "Midas Touch Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_pis_deagle_b_legend_addon_sup" : "Midas Touch Suppressed Barrel (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_fla_mk2_body_fierybeast_addon" : "Dragon Lord Receiver (Add-On Mod)",
 	
@@ -51,25 +52,29 @@
 	"bm_wp_wpn_fps_lmg_svinet_s_legend_addon" : "Hungry Wolf Stock (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_ass_m16_b_legend_addon" : "Astatoz Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_ass_m16_b_legend_addon_sup" : "Astatoz Suppressed Barrel (Add-On Mod)",
 	"bm_wp_wpn_fps_ass_m16_fg_legend_addon" : "Astatoz Foregrip (Add-On Mod)",
 	"bm_wp_wpn_fps_ass_m16_s_legend_addon" : "Astatoz Stock (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_pis_judge_b_legend_addon" : "Anarcho Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_pis_judge_b_legend_addon_sup" : "Anarcho Suppressed Barrel (Add-On Mod)",
 	"bm_wp_wpn_fps_pis_judge_g_legend_addon" : "Anarcho Grip (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_sho_boot_b_legendary_addon" : "Apex Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_boot_b_legendary_addon_sup" : "Apex Suppressed Barrel (Add-On Mod)",
 	"bm_wp_wpn_fps_sho_boot_fg_legendary_addon" : "Apex Foregrip (Add-On Mod)",
 	"bm_wp_wpn_fps_sho_boot_o_legendary_addon" : "Apex Iron Sights (Add-On Mod)",
 	"bm_wp_wpn_fps_sho_boot_s_legendary_addon" : "Apex Stock (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_sho_ksg_b_legendary_addon" : "Admiral Barrel (Add-On Mod)",
-	"bm_wp_wpn_fps_sho_ksg_b_legendary_addon_srab" : "Admiral Suppressed Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_sho_ksg_b_legendary_addon_sup" : "Admiral Suppressed Barrel (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_ass_tecci_b_legend_addon" : "Mars Ultor Barrel (Add-On Mod)",
 	"bm_wp_wpn_fps_ass_tecci_fg_legend_addon" : "Mars Ultor Foregrip (Add-On Mod)",
 	"bm_wp_wpn_fps_ass_tecci_s_legend_addon" : "Mars Ultor Stock (Add-On Mod)",
 	
 	"bm_wp_wpn_fps_shot_shorty_b_legendary_addon" : "Demon Barrel (Add-On Mod)",
+	"bm_wp_wpn_fps_shot_shorty_b_legendary_addon_sup" : "Demon Suppressed Barrel (Add-On Mod)",
 	"bm_wp_wpn_fps_shot_shorty_fg_legendary_addon" : "Demon Foregrip (Add-On Mod)",
 	"bm_wp_wpn_fps_shot_shorty_s_legendary_addon" : "Demon Stock (Add-On Mod)",
 	
