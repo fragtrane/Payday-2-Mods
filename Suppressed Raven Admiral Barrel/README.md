@@ -15,10 +15,11 @@ Key features and options:
 - **Silencer Effect for Raven's Legendary Barrel:** The Raven's legendary barrel now has a silencer effect, allowing you to use it in stealth without slapping a suppressor on it and making the gun ridiculously long and ugly. As with all silencers, Dragon's Breath rounds are not allowed.
 - **Balanced Stats:** The stats of the legendary barrel are equal to the combined effects of the Short Barrel and The Silent Killer Suppressor. By happy accident, the Optical Illusions aced bug will even give you +3 concealment which is exactly what you would get if you were using The Silent Killer Suppressor. So stats-wise, it is completely identical to a vanilla stealth Raven.
 - **OSA/SDSS Integration:** Both [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) and [Super Duper Skin Swapper](https://github.com/fragtrane/Payday-2-Mods/tree/master/Super%20Duper%20Skin%20Swapper) have the option to display legendary weapon mods in the weapon modification menu. If you are using the Suppressed Raven Admiral Barrel mod, the name of the legendary barrel will be changed to "Admiral Suppressed Barrel".
+- **AOLA Compatible**: If you use the [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments) mod, the stats of the add-on attachments will also be changed.
 
 ## IMPORTANT: Client Detection Risk
 
-The mod works as both host and client. However, if you are a client, the host will see you with the wrong detection risk which can cause problems in stealth if you are not aware, because the host calculates the detection. This happens because you have modified the stats of your attachments, but other players can only see the original stats. TL;DR:
+The mod works as both host and client. However, if you are a client, the host will see you with the wrong detection risk which can cause problems in stealth if you are not aware, because the host calculates the detection. This happens because you have modified the stats of your attachments, but other players can only see the original stats. TLDR:
 
 - Real Admiral Barrel: other players see your concealment DECREASED by 2 points, i.e. HIGHER detection risk (bad).
 - Add-On Admiral Barrel (AOLA): other players will see your concealment INCREASED by 2 points, i.e. LOWER detection risk (good).
@@ -36,6 +37,10 @@ This mod has been tested both as client and host with vanilla and modded peers.
 - Players who do not have the mod will hear a loud gunshot. This may be confusing for them because they will hear a loud gunshot but won't see guards being alerted.
 - Similarly, you will see a silencer icon in the loadout screen next to any player with a Raven Admiral Barrel equipped, regardless of whether or not they have the mod.
 - Unmodded players will not see a silencer icon in the loadout screen.
+
+In order to reduce the detection risk offset with AOLA attachments, this mod has changed the synced parts (based-on parts) for the following AOLA attachments:
+
+- Add-On Admiral Barrel: synced as Short Barrel.
 
 ## Installation [BLT]
 

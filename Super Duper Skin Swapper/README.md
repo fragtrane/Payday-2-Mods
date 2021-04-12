@@ -16,7 +16,7 @@ Key features and options:
 - ~~**No Duplicated Immortal Pythons:** Each weapon will only have access to one Immortal Python skin.~~ Immortal Python has been changed in the base game to use the weapon color system.
 - **Use Default Weapon Icon for Swapped Skins:** When you use apply a skin that is meant for a different weapon, the inventory will display the actual weapon instead of the weapon skin icon so you know what gun you are using. It will still apply the rarity background so you know that you have a skin equipped, and the weapon skin icon will be displayed as a mini-icon when the weapon is selected. In the weapon customization menu, weapon skin icons are displayed normally so you know which skin you are applying.
 - **Hide Unowned Skins:** Hide skins that you do not own.
-- **Allow Legendary Mods on Variants:** Allow legendary weapon attachments to be used on akimbo/single variants (not fully tested).
+- **Allow Legendary Mods on Variants:** Allow legendary weapon attachments to be used on akimbo/single variants.
 - **Clean Duplicates:** Hide duplicate copies of skins and only show the ones with the best quality. Can be configured to prefer stat boosted skins, prefer the best quality, show both the best stat boosted and non-stat boosted, or show all variants of the skin.
 - **Customize Default Weapon Color Settings**: Set default paint scheme, wear, and pattern scale used for weapon colors.
 
