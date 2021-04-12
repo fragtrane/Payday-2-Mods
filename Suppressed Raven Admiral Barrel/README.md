@@ -8,12 +8,13 @@ This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26914).
 
 Demo: https://www.youtube.com/watch?v=AyhWtQ63WyQ
 
-This mod turns the Raven Admiral's legendary barrel into a silencer. It does not let you use the barrel without owning the skin. It also does not give any stats that are not possible in the base game.
+This mod turns the Raven Admiral's legendary barrel into a silencer. It does not let you use the barrel without owning the skin. It also does not give any stats that are not possible in the base game. Stat changes:
+
+- Admiral Barrel: equal to the combined stats of the Short Barrel and The Silent Killer Suppressor. By happy accident, this results in a net effect of +2 concealment, so the Optical Illusions aced bug will give you +3 concealment which is exactly what you would get if you were using The Silent Killer Suppressor in the base game. So stats-wise, it is completely identical to a vanilla stealth Raven.
 
 Key features and options:
 
-- **Silencer Effect for Raven's Legendary Barrel:** The Raven's legendary barrel now has a silencer effect, allowing you to use it in stealth without slapping a suppressor on it and making the gun ridiculously long and ugly. As with all silencers, Dragon's Breath rounds are not allowed.
-- **Balanced Stats:** The stats of the legendary barrel are equal to the combined effects of the Short Barrel and The Silent Killer Suppressor. By happy accident, the Optical Illusions aced bug will even give you +3 concealment which is exactly what you would get if you were using The Silent Killer Suppressor. So stats-wise, it is completely identical to a vanilla stealth Raven.
+- **Silencer Effect for Raven Admiral Barrel:** The Raven Admiral's legendary barrel now has a silencer effect, allowing you to use it in stealth without equipping a suppressor and destroying the look of the gun. As with all silencers, Dragon's Breath rounds are not allowed.
 - **OSA/SDSS Integration:** Both [Optional Skin Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Optional%20Skin%20Attachments) and [Super Duper Skin Swapper](https://github.com/fragtrane/Payday-2-Mods/tree/master/Super%20Duper%20Skin%20Swapper) have the option to display legendary weapon mods in the weapon modification menu. If you are using the Suppressed Raven Admiral Barrel mod, the name of the legendary barrel will be changed to "Admiral Suppressed Barrel".
 - **AOLA Compatible**: If you use the [Add-On Legendary Attachments](https://github.com/fragtrane/Payday-2-Mods/tree/master/Add-On%20Legendary%20Attachments) mod, the stats of the add-on attachments will also be changed.
 
@@ -22,7 +23,7 @@ Key features and options:
 The mod works as both host and client. However, if you are a client, the host will see you with the wrong detection risk which can cause problems in stealth if you are not aware, because the host calculates the detection. This happens because you have modified the stats of your attachments, but other players can only see the original stats. TLDR:
 
 - Real Admiral Barrel: other players see your concealment DECREASED by 2 points, i.e. HIGHER detection risk (bad).
-- Add-On Admiral Barrel (AOLA): other players will see your concealment INCREASED by 2 points, i.e. LOWER detection risk (good).
+- Add-On Admiral Barrel: other players will see your concealment INCREASED by 2 points, i.e. LOWER detection risk (good).
 
 The real Admiral Barrel only decreases your concealment by 2 points so this should not be a big issue. The Add-On Admiral Barrel is safe to use as a client.
 
