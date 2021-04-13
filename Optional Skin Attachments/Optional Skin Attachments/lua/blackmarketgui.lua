@@ -1,6 +1,5 @@
 dofile(ModPath .. "lua/setup.lua")
 
---New in v2.0
 --Hide attachments the proper way lmao
 Hooks:PreHook(BlackMarketGui, "populate_mods", "osa_pre_BlackMarketGui_populate_mods", function(self, data)
 	--Hide Anarcho Barrel on Akimbo
@@ -29,187 +28,125 @@ Hooks:PreHook(BlackMarketGui, "populate_mods", "osa_pre_BlackMarketGui_populate_
 	end
 end)
 
---When a skin is previewed, call the OSA skin menu
-local orig_BlackMarketGui_preview_cosmetic_on_weapon_callback = BlackMarketGui.preview_cosmetic_on_weapon_callback
-function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
-	if OSA._settings.osa_preview then
-		local _callback = callback(self, self, "osa_preview_cosmetic_on_weapon_callback", data)
-		OSA:preview_skin_menu({data = data, _callback = _callback})
-	else
-		orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
-	end
-end
-
---New preview skin call
-function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
-	--2.0 Modify Data
-	--We really need to clean this up at some point
-	--Set default weapon color wear, paint scheme, pattern scale when previewing weapon color
-	local id = data.cosmetic_id
-	
-	local wear = data.cosmetic_quality
-	local paint_scheme = data.cosmetic_color_index
-	local pattern_scale = tweak_data.blackmarket.weapon_color_pattern_scale_default
-	
-	if tweak_data.blackmarket.weapon_skins[id] and tweak_data.blackmarket.weapon_skins[id].is_a_color_skin then
-		if OSA:get_multi_name("osa_color_wear") ~= "off" then
-			wear = OSA:get_multi_name("osa_color_wear")
-		end
-		if OSA._settings.osa_paint_scheme > 1 then
-			paint_scheme = OSA._settings.osa_paint_scheme - 1
-		end
-		if OSA._settings.osa_pattern_scale > 1 then
-			pattern_scale = OSA._settings.osa_pattern_scale - 1
-		end
-	end
-	
-	if OSA._state_preview.ready then
-		managers.blackmarket:osa_view_weapon_with_cosmetics(data.category, data.slot, {
-			id = data.cosmetic_id,
-			quality = wear,
-			color_index = paint_scheme,
-			pattern_scale = pattern_scale
-		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
-		OSA._state_preview.ready = false
-	else
-		local title = managers.localization:text("osa_dialog_title")
-		local desc = managers.localization:text("osa_dialog_error_04")
-		OSA:ok_menu(title, desc, false, false)
-		managers.blackmarket:view_weapon_with_cosmetics(data.category, data.slot, {
-			id = data.cosmetic_id,
-			quality = data.cosmetic_quality,
-			color_index = data.cosmetic_color_index
-		}, callback(self, self, "_update_crafting_node"), nil, BlackMarketGui.get_crafting_custom_data())
-	end
-	self:reload()
-end
-
---This function also uses _equip_weapon_cosmetics_callback
---Not sure if/when it is used, use the original _equip_weapon_cosmetics_callback if it happens
-local orig_BlackMarketGui_buy_equip_weapon_cosmetics_callback = BlackMarketGui.buy_equip_weapon_cosmetics_callback
-function BlackMarketGui:buy_equip_weapon_cosmetics_callback(data)
-	local title = managers.localization:text("osa_dialog_title")
-	local desc = managers.localization:text("osa_dialog_error_01")
-	OSA:ok_menu(title, desc, false, false)
-	OSA._buy_equip_flag = true
-	orig_BlackMarketGui_buy_equip_weapon_cosmetics_callback(self, data)
-end
-
---When a skin is applied, call the OSA skin menu instead
-function BlackMarketGui:equip_weapon_cosmetics_callback(data)
-	if self._item_bought then
-		return
-	end
-	
-	local _callback = callback(self, self, "_equip_weapon_cosmetics_callback", data)
-	OSA:apply_skin_menu({data = data, _callback = _callback})
-end
-
---Modified apply skin call
-local orig_BlackMarketGui__equip_weapon_cosmetics_callback = BlackMarketGui._equip_weapon_cosmetics_callback
-function BlackMarketGui:_equip_weapon_cosmetics_callback(data)
-	self._item_bought = true
-	local instance_id = data.name
-	
-	if data.equip_weapon_cosmetics then
-		instance_id = data.equip_weapon_cosmetics.instance_id
-	end
-	
-	managers.menu_component:post_event("item_buy")
-	
-	--Catch errors
-	if OSA._buy_equip_flag then
-		managers.blackmarket:on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
-		OSA._buy_equip_flag = false
-	elseif not OSA._state_apply.ready then
-		local title = managers.localization:text("osa_dialog_title")
-		local desc = managers.localization:text("osa_dialog_error_02")
-		OSA:ok_menu(title, desc, false, false)
-		managers.blackmarket:on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
-	else
-		managers.blackmarket:osa_on_equip_weapon_cosmetics(data.category, data.slot, instance_id)
-		OSA._state_apply.ready = false
-	end
-	
-	self:reload()
-end
-
---When a weapon color is applied, call the OSA skin menu instead
-function BlackMarketGui:equip_weapon_color_callback(data)
-	if self._item_bought then
-		return
-	end
-	
-	local _callback = callback(self, self, "_equip_weapon_color_callback", data)
-	OSA:apply_skin_menu({data = data, _callback = _callback})
-end
-
---Modified apply weapon color call
-local orig_BlackMarketGui__equip_weapon_color_callback = BlackMarketGui._equip_weapon_color_callback
-function BlackMarketGui:_equip_weapon_color_callback(data)
-	self._item_bought = true
-	local instance_id = data.name
-
-	if data.equip_weapon_cosmetics then
-		instance_id = data.equip_weapon_cosmetics.instance_id
-	end
-
-	managers.menu_component:post_event("item_buy")
-	
-	--Catch errors
-	if not OSA._state_apply.ready then
-		local title = managers.localization:text("osa_dialog_title")
-		local desc = managers.localization:text("osa_dialog_error_05")
-		OSA:ok_menu(title, desc, false, false)
-		managers.blackmarket:on_equip_weapon_color(data.category, data.slot, instance_id, data.cosmetic_color_index, data.cosmetic_quality or "mint", true)
-	else
-		managers.blackmarket:osa_on_equip_weapon_color(data.category, data.slot, instance_id, data.cosmetic_color_index, data.cosmetic_quality or "mint", true)
-		OSA._state_apply.ready = false
-	end
-	
-	self:reload()
-end
-
---When a skin is removed, call the OSA skin menu instead
-function BlackMarketGui:remove_weapon_cosmetics_callback(data)
-	local _callback = callback(self, self, "_remove_weapon_cosmetics_callback", data)
-	OSA:remove_skin_menu({data = data, _callback = _callback})
-end
-
---Modified remove skin call
-function BlackMarketGui:_remove_weapon_cosmetics_callback(data)
-	self._item_bought = true
-	
-	managers.menu_component:post_event("item_buy")
-	
-	--Catch errors
-	if not OSA._state_remove.ready then
-		local title = managers.localization:text("osa_dialog_title")
-		local desc = managers.localization:text("osa_dialog_error_03")
-		OSA:ok_menu(title, desc, false, false)
-		managers.blackmarket:on_remove_weapon_cosmetics(data.category, data.slot)
-	else
-		managers.blackmarket:osa_on_remove_weapon_cosmetics(data.category, data.slot)
-		OSA._state_remove.ready = false
-	end
-	
-	self:reload()
-end
-
 --Add mod icons to legendary parts
-local orig_BlackMarketGui_populate_mods = BlackMarketGui.populate_mods
-function BlackMarketGui:populate_mods(data)
-	orig_BlackMarketGui_populate_mods(self, data)
-	local parts_tweak_data = tweak_data.weapon.factory.parts
-	for index, _ in ipairs(data) do
-		local mod_name = data[index].name
-		if mod_name and parts_tweak_data[mod_name] and parts_tweak_data[mod_name].is_legendary_part then
-			for skin, part_list in pairs(OSA._gen_1_mods) do
-				if table.contains(part_list, mod_name) then
-					data[index].bitmap_texture = OSA._gen_1_folders[skin]
-					break
+--v3.0: optimized, checks if we are looking at the right weapon first
+Hooks:PostHook(BlackMarketGui, "populate_mods", "osa_post_BlackMarketGui_populate_mods", function(self, data)
+	if data.prev_node_data and data.prev_node_data.name then
+		--Check if we are looking at a weapon with legendary mods
+		for weapon_id, skin_id in pairs(OSA._gen_1_weapons) do
+			if weapon_id == data.prev_node_data.name then
+				--Add icons to the legendary parts
+				local parts_tweak_data = tweak_data.weapon.factory.parts
+				for index, _ in ipairs(data) do
+					local mod_name = data[index].name
+					if mod_name and parts_tweak_data[mod_name] and parts_tweak_data[mod_name].is_legendary_part then
+						data[index].bitmap_texture = OSA._gen_1_folders[skin_id]
+					end
 				end
+				--Already found the right weapon, break
+				break
 			end
 		end
 	end
+end)
+
+--This function also uses _equip_weapon_cosmetics_callback
+--Doesn't ever seem to be used. Pop an error message if it comes up so we can look into it.
+Hooks:PreHook(BlackMarketGui, "buy_equip_weapon_cosmetics_callback", "osa_pre_BlackMarketGui_buy_equip_weapon_cosmetics_callback", function(...)
+	local title = managers.localization:text("osa_dialog_title")
+	local desc = managers.localization:text("osa_dialog_error_01")
+	OSA:ok_menu(title, desc, false, false)
+end)
+
+--This is the button that calls buy_equip_weapon_cosmetics_callback
+--Name is "Buy new weapon" (wtf???)
+--[[
+wcc_buy_equip_weapon = {
+	btn = "BTN_A",
+	prio = 1,
+	name = "bm_menu_btn_buy_new_weapon",
+	callback = callback(self, self, "buy_equip_weapon_cosmetics_callback")
+},
+]]
+
+--Save the data so we can use it when we apply/remove the skin
+--BlackMarketGui:_weapon_cosmetics_callback() will build the params and pass it to managers.menu:show_confirm_weapon_cosmetics(params)
+--We will hijack that menu
+Hooks:PreHook(BlackMarketGui, "_weapon_cosmetics_callback", "osa_pre_BlackMarketGui__weapon_cosmetics_callback", function(self, data, add, yes_clbk)
+	OSA._state = {}
+	OSA._state.data = data
+	OSA._state.add = add
+	OSA._state.yes_clbk = yes_clbk
+end)
+
+--Cleanup state after finishing apply/remove
+Hooks:PostHook(BlackMarketGui, "_equip_weapon_color_callback", "osa_BlackMarketGui__equip_weapon_color_callback", function()
+	OSA._state = nil
+end)
+Hooks:PostHook(BlackMarketGui, "_equip_weapon_cosmetics_callback", "osa_BlackMarketGui__equip_weapon_cosmetics_callback", function()
+	OSA._state = nil
+end)
+Hooks:PostHook(BlackMarketGui, "_remove_weapon_cosmetics_callback", "osa_BlackMarketGui__remove_weapon_cosmetics_callback", function()
+	OSA._state = nil
+end)
+
+--Set default weapon color wear, paint scheme, pattern scale when equipping weapon color
+Hooks:PreHook(BlackMarketGui, "equip_weapon_color_callback", "osa_pre_BlackMarketGui_equip_weapon_color_callback", function(self, data)
+	local wear = OSA:get_multi_name("osa_color_wear")
+	if wear ~= "off" then
+		data.cosmetic_quality = wear
+	end
+	
+	--Shift index by 1 because first option is "off"
+	if OSA._settings.osa_paint_scheme > 1 then
+		data.cosmetic_color_index = OSA._settings.osa_paint_scheme - 1
+	end
+	
+	--Shift index by 1 because first option is "off"
+	if OSA._settings.osa_pattern_scale > 1 then
+		data.cosmetic_pattern_scale = OSA._settings.osa_pattern_scale - 1
+	end
+end)
+
+--Set default weapon color wear, paint scheme, pattern scale when previewing a weapon color
+Hooks:PreHook(BlackMarketGui, "preview_cosmetic_on_weapon_callback", "osa_pre_BlackMarketGui_preview_cosmetic_on_weapon_callback", function(self, data)
+	--Check color skin first, because some weapon skins also use pattern scale e.g. CAR-4 Stripe On, 5/7 AP Possessed
+	if data.is_a_color_skin then
+		--Not sure why but this overwrites the preview wear option that we set in the dialog
+		--So check preview wear is off before doing this
+		local wear = OSA:get_multi_name("osa_color_wear")
+		if wear ~= "off" and not OSA._settings.osa_preview_wear then
+			data.cosmetic_quality = wear
+		end
+		
+		--Shift index by 1 because first option is "off"
+		if OSA._settings.osa_paint_scheme > 1 then
+			data.cosmetic_color_index = OSA._settings.osa_paint_scheme - 1
+		end
+		
+		--Shift index by 1 because first option is "off"
+		if OSA._settings.osa_pattern_scale > 1 then
+			data.cosmetic_pattern_scale = OSA._settings.osa_pattern_scale - 1
+		end
+	end
+end)
+
+--Hijack preview and open our menu if preview is enabled
+local orig_BlackMarketGui_preview_cosmetic_on_weapon_callback = BlackMarketGui.preview_cosmetic_on_weapon_callback
+function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
+	if OSA._settings.osa_preview then
+		--Make a callback to apply the skin
+		OSA._state = {}
+		OSA._state.yes_clbk = callback(self, self, "osa_preview_cosmetic_on_weapon_callback", data)
+		--Pass all of the data so we can also override the wear
+		OSA:weapon_preview_handler(data)
+		return
+	end
+	orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
+end
+
+--Do original preview function and cleanup afterwards
+function BlackMarketGui:osa_preview_cosmetic_on_weapon_callback(data)
+	orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
+	OSA._state = nil
 end

@@ -1,6 +1,7 @@
 dofile(ModPath .. "lua/setup.lua")
 
 --Update which legendary mods are shown.
+--TODO: AOLA integration? Also hide unowned add-on mods?
 Hooks:PostHook(NetworkAccountSTEAM, "_clbk_inventory_load", "osa_post_NetworkAccountSTEAM__clbk_inventory_load", function(self, error, list)
 	for skin, part_list in pairs(OSA._gen_1_mods) do
 		if OSA:get_multi_name("osa_show_legendary") == "off" then

@@ -130,3 +130,46 @@ OSA._gen_1_folders = {
 	--Plush Phoenix
 	new_m14_lones = "guis/dlcs/cash/safes/lones/weapon_skins/new_m14_lones"
 }
+
+--v3.0: map weapon_id to skins
+--Avoid unnecessary searches in BlackMarketGui:populate_mods PostHook
+OSA._gen_1_weapons = {
+	--Vlad's Rodina
+	ak74 = "ak74_rodina",
+	--Midas Touch
+	deagle = "deagle_bling",
+	x_deagle = "deagle_bling",--Also akimbo
+	--Dragon Lord
+	flamethrower_mk2 = "flamethrower_mk2_fire",
+	--Green Grin
+	rpg7 = "rpg7_boom",
+	--The Gimp
+	m134 = "m134_bulletstorm",
+	--Alamo Dallas
+	p90 = "p90_dallas_sallad",
+	x_p90 = "p90_dallas_sallad",--Also akimbo
+	--Big Kahuna
+	r870 = "r870_waves",
+	--Santa's Slayers
+	x_1911 = "x_1911_ginger",
+	colt_1911 = "x_1911_ginger",--Also single
+	--Don Pastrami
+	model70 = "model70_baaah",
+	--Hungry Wolf
+	par = "par_wolf",
+	--Astatoz
+	m16 = "m16_cola",
+	--Anarcho
+	judge = "judge_burn",
+	x_judge = "judge_burn",--Also akimbo
+	--Apex
+	boot = "boot_buck",
+	--Admiral
+	ksg = "ksg_same",
+	--Mars Ultor
+	tecci = "tecci_grunt",
+	--Demon
+	serbu = "serbu_lones",
+	--Plush Phoenix
+	new_m14 = "new_m14_lones"
+}

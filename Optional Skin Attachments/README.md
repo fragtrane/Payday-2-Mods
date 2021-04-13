@@ -2,7 +2,7 @@
 
 **Note: Optional Skin Attachments is NOT compatible with Super Duper Skin Swapper. Legendary skin support is already built into Super Duper Skin Swapper.**
 
-Latest version [v2.0.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v2.0.1.zip).
+Latest version [v3.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v3.0.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25474).
 
@@ -40,7 +40,7 @@ This mod allows you to choose which attachments to use when applying weapon skin
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Optional_Skin_Attachments_v2.0.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v2.0.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Optional_Skin_Attachments_v3.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Optional%20Skin%20Attachments/Optional_Skin_Attachments_v3.0.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -55,6 +55,13 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v3.0 - 2021-04-13**
+
+- Complete overhaul of the code to improve stability and performance.
+- Added the option to choose wear when previewing weapons. Enabled by default.
+- Save Mods On Missing Skins option is now always enabled and has been removed from the options menu.
+- Leaving the options menu now automatically triggers a Steam inventory update, so your legendary attachment visiblity setting is updated immediately.
 
 **v2.0.1 - 2021-04-11**
 

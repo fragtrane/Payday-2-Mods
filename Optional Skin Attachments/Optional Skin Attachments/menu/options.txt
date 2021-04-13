@@ -36,15 +36,6 @@
 			"default_value" : true
 		},
 		{
-			"type" : "toggle",
-			"id" : "osa_save_removed",
-			"title" : "osa_save_removed_title",
-			"description" : "osa_save_removed_desc",
-			"callback" : "osa_callback_toggle",
-			"value" : "osa_save_removed",
-			"default_value" : true
-		},
-		{
 			"type" : "divider",
 			"size" : 16
 		},
@@ -55,6 +46,15 @@
 			"description" : "osa_preview_desc",
 			"callback" : "osa_callback_toggle",
 			"value" : "osa_preview",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "osa_preview_wear",
+			"title" : "osa_preview_wear_title",
+			"description" : "osa_preview_wear_desc",
+			"callback" : "osa_callback_toggle",
+			"value" : "osa_preview_wear",
 			"default_value" : true
 		},
 		{

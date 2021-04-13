@@ -12,12 +12,9 @@ OSA._settings = {
 	osa_autobuy = false,--Automatically buy missing parts.
 	osa_autobuy_threshold = 50,--Do not let coins drop below this threshold when autobuying.
 	osa_prefer_sp_buck = true,--Prefer Gage Shotgun Pack 000 Buckshot if available.
-	osa_save_removed = true,--Try to save attachments when a skin is removed from Steam inventory.
 	
 	osa_preview = true,--Choose attachments in previews.
-	
-	osa_optional_boost = false,--Allow optional stat boosts.
-	osa_disable_all_boosts = false,--Disable all stat boosts.
+	osa_preview_wear = true,--Choose wear in previews
 	
 	osa_rename_legendary = true,--Allow legendary weapons to be renamed.
 	osa_allow_unlock = false,--Allow legendary weapons to be unlocked.
@@ -31,28 +28,9 @@ OSA._settings = {
 }
 OSA._restart_list = {
 	"osa_rename_legendary",
-	"osa_remove_stats"
+	"osa_remove_stats",
+	"osa_immortal_python"
 }
---Track parameters for applying skin
-OSA._state_apply = {
-	attach = "keep",--"keep" "replace" "remove"
-	unlock = false,
-	nolegend = false,
-	boost = false,
-	ready = false
-}
---Track parameters for removing skin
-OSA._state_remove = {
-	keep = false,
-	ready = false
-}
---Track parameters for previewing skin
-OSA._state_preview = {
-	attach = "keep",--"keep" "replace" "remove"
-	ready = false
-}
---Flag for BlackMarketGui:buy_equip_weapon_cosmetics_callback
-OSA._buy_equip_flag = false
 --Flag for deferring BlackMarketManager:_on_modified_weapon. We need this so that we don't get crashes when keeping attachments.
 OSA._skip_omw = false
 --Load data for first generation legendary skins
@@ -107,9 +85,6 @@ local save_exists = io.open(OSA._save_path..OSA._save_name, "r")
 if save_exists ~= nil then
 	save_exists:close()
 	OSA:load_settings()
-	--Disable choosing boosts due to sync issue
-	OSA._settings.osa_optional_boost = false
-	OSA._settings.osa_disable_all_boosts = false
 else
 	OSA:save_settings()
 end
@@ -137,6 +112,10 @@ Hooks:Add("MenuManagerInitialize", "osa_hook_MenuManagerInitialize", function(me
 			OSA:ok_menu("osa_dialog_title", "osa_dialog_restart_required", false, true)
 		end
 		OSA:save_settings()
+		--Do a Steam inventory refresh, the OSA hook will then set the new legendary attachments
+		if Steam:logged_on() then
+			Steam:inventory_load(callback(managers.network.account, NetworkAccountSTEAM, "_clbk_inventory_load"))
+		end
 	end
 	
 	MenuHelper:LoadFromJsonFile(OSA._mod_path.."menu/options.txt", OSA, OSA._settings)
@@ -193,633 +172,389 @@ function OSA:ok_menu(title, desc, callback, localize)
 	menu:Show()
 end
 
---Build params to make it easier to set menu text
---Mostly copied from BlackMarketGui:_weapon_cosmetics_callback
-function OSA:build_skin_params(data, add)
-	local cosmetic_id = data.equip_weapon_cosmetics and data.equip_weapon_cosmetics.entry
-	local cosmetic_name_id = cosmetic_id and tweak_data.blackmarket.weapon_skins[cosmetic_id].name_id
-	local name_localized = cosmetic_name_id and managers.localization:text(cosmetic_name_id) or data.name_localized or data.name
-	local crafted = managers.blackmarket:get_crafted_category(data.category)[data.slot]
-	local crafted_cosmetic_id = crafted.cosmetics and crafted.cosmetics.id
-	local crafted_default_blueprint = crafted.default_blueprint
-	local crafted_has_cosmetic = not not crafted_cosmetic_id
-	local crafted_has_default_blueprint = crafted_cosmetic_id and tweak_data.blackmarket.weapon_skins[crafted_cosmetic_id] and not not tweak_data.blackmarket.weapon_skins[crafted_cosmetic_id].default_blueprint
-	local item_has_cosmetic = add
-	local item_has_default_blueprint = add and tweak_data.blackmarket.weapon_skins[cosmetic_id or data.cosmetic_id] and tweak_data.blackmarket.weapon_skins[cosmetic_id or data.cosmetic_id].default_blueprint and true or false
-	local skin_params = {
-		name = name_localized,
-		category = data.category,
-		slot = data.slot,
-		weapon_name = managers.weapon_factory:get_weapon_name_by_factory_id(crafted.factory_id),
-		customize_locked = add and data.locked_cosmetics and true or false,
-		crafted_name = crafted_cosmetic_id and tweak_data.blackmarket.weapon_skins[crafted_cosmetic_id] and tweak_data.blackmarket.weapon_skins[crafted_cosmetic_id].name_id and managers.localization:text(tweak_data.blackmarket.weapon_skins[crafted_cosmetic_id].name_id) or managers.localization:text("bm_menu_no_mod"),
-		crafted_has_cosmetic = crafted_has_cosmetic,
-		crafted_has_default_blueprint = crafted_has_default_blueprint,
-		item_has_cosmetic = item_has_cosmetic,
-		item_has_default_blueprint = item_has_default_blueprint,
-	}
-	return skin_params
-end
-
---First menu when skin is applied.
---Stage 1: choose attachments.
---Input Params: params.skin_params, params.data, params._callback
-function OSA:apply_skin_menu(params)
+--v3.0
+--We let BlackMarketGui:_weapon_cosmetics_callback build the params for us
+--The we hijack the confirm dialog and call our own
+function OSA:weapon_cosmetics_handler(params)
+	--Initialize this so we can save options
+	self._state.options = {}
+	
+	--Make our life easier
+	local data = self._state.data
+	local add = self._state.add
+	
+	--Check if the skin has the "osa_no_attachments" and set item_has_default_blueprint to false if it does
+	--Do the checks the way they do in BlackMarketGui:_weapon_cosmetics_callback()
+	if add and params.item_has_default_blueprint then
+		local cosmetic_id = data.equip_weapon_cosmetics and data.equip_weapon_cosmetics.entry
+		cosmetic_id = cosmetic_id or data.cosmetic_id
+		
+		local skins_tweak = tweak_data.blackmarket.weapon_skins
+		if skins_tweak[cosmetic_id] and skins_tweak[cosmetic_id].osa_no_attachments then
+			params.item_has_default_blueprint = false
+		end
+	end
+	
+	--Build menu
 	local menu_title = managers.localization:text("osa_dialog_title")
 	
-	--Menu Message
-	--Build params if necessary
-	local skin_params
-	if not params.skin_params then
-		skin_params = self:build_skin_params(params.data, true)
-	else
-		skin_params = params.skin_params
-	end
-	--Weapon slot message
-	local menu_message = managers.localization:text("dialog_blackmarket_slot_item", {
-		slot = skin_params.slot,
-		item = skin_params.weapon_name
-	})
-	--Apply skin message
-	menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_add", {
-		cosmetic = skin_params.name
-	})
-	--Replace skin message (when the weapon already has a skin)
-	if skin_params.crafted_has_cosmetic then
-		menu_message = menu_message.." "..managers.localization:text("dialog_weapon_cosmetics_replace", {
-		cosmetic = skin_params.crafted_name
-	})
-	end
-	--Choose ask cosmetics message
-	if skin_params.customize_locked and not self._settings.osa_allow_unlock then
-		--If unlock is not allowed and skin is locked legendary, warn.
-		menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_locked")
-		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_change_unlock_settings")
-	elseif skin_params.item_has_default_blueprint then
-		--Otherwise print replace message if skin has attachments
-		menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_set_blueprint")
-		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_attachments")
-	else
-		--Otherwise just ask to keep attachments.
-		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_keep")
-	end
+	--[Slot XX] Weapon Name
+	--This is fucking useless maybe we should just get rid of it.
+	--[[local menu_message = managers.localization:text("dialog_blackmarket_slot_item", {
+		slot = params.slot,
+		item = params.weapon_name
+	})]]
+	local menu_message
 	
-	--Three menus
-	--1. Apply commons/uncommons. Options: Keep, Remove All, Cancel.
-	--2. Apply rares/epics/unlocked. Options: Keep, Use Skin, Remove All, Cancel.
-	--3. Apply locked when unlocking is not allowed. Options: Continue, Cancel.
-	
-	--Menu Options
-	local menu_options = {}
-	if skin_params.customize_locked and not self._settings.osa_allow_unlock then
-		--Locked legendary, continue
-		menu_options = {
-			[1] = {
-				text = managers.localization:text("dialog_continue"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "replace",
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[2] = {
-				text = managers.localization:text("dialog_cancel"),
-				is_cancel_button = true
-			}
-		}
-	elseif skin_params.item_has_default_blueprint then
-		--Skins with attachments
-		menu_options = {
-			[1] = {
-				text = managers.localization:text("osa_dialog_keep"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "keep",--Stage 1 flag
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[2] = {
-				text = managers.localization:text("osa_dialog_replace"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "replace",--Stage 1 flag
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[3] = {
-				text = managers.localization:text("osa_dialog_remove"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "remove",--Stage 1 flag
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[4] = {
-				text = managers.localization:text("dialog_cancel"),
-				is_cancel_button = true
-			}
-		}
-	else
-		--Skins without attachments
-		menu_options = {
-			[1] = {
-				text = managers.localization:text("osa_dialog_keep"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "keep",--Stage 1 flag
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[2] = {
-				text = managers.localization:text("osa_dialog_remove"),
-				callback = callback(self, self, "attachments_callback_apply", {
-					attach = "remove",--Stage 1 flag
-					skin_params = skin_params,
-					data = params.data,
-					_callback = params._callback
-				})
-			},
-			[3] = {
-				text = managers.localization:text("dialog_cancel"),
-				is_cancel_button = true
-			}
-		}
-	end
-	local menu = QuickMenu:new(menu_title, menu_message, menu_options)
-	menu:Show()
-end
-
---Stage 2: choose whether to unlock the skin.
---Input Params: params.attach, params.skin_params, params.data, params._callback
-function OSA:attachments_callback_apply(params)
-	--If not locked legendary or unlock is not allowed, skip to next step
-	local skin_params = params.skin_params
-	if not skin_params.customize_locked or not self._settings.osa_allow_unlock then
-		--If not legendary, move on.
-		self:boost_callback({
-			nolegend = false,--Stage 2 flag
-			unlock = false,--Stage 2 flag
-			attach = params.attach,--Stage 1 flag
-			skin_params = skin_params,
-			data = params.data,
-			_callback = params._callback
-		})
-	else
-		--Otherwise confirm unlock
-		local menu_title = managers.localization:text("osa_dialog_title")
-		local menu_message = managers.localization:text("dialog_blackmarket_slot_item", {
-			slot = skin_params.slot,
-			item = skin_params.weapon_name
-		})
-		menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_locked")
-		if params.attach == "keep" then
-			--If "keep" was selected, warn that the skin will be unlocked
-			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_keep_unlock_warn")
-			local menu_options = {
-				[1] = {
-					text = managers.localization:text("osa_dialog_unlock"),
-					callback = callback(self, self, "boost_callback", {
-						nolegend = false,--Stage 2 flag
-						unlock = true,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				},
-				[2] = {
-					text = managers.localization:text("osa_dialog_back"),
-					callback = callback(self, self, "apply_skin_menu", {
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				}
-			}
-			local menu = QuickMenu:new(menu_title, menu_message, menu_options)
-			menu:Show()
-		elseif params.attach == "replace" then
-			--If "replace" was selected, ask if the user wants to unlock the skin
-			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_unlock")
-			local menu_options = {
-				[1] = {
-					text = managers.localization:text("osa_dialog_unlock"),
-					callback = callback(self, self, "boost_callback", {
-						nolegend = false,--Stage 2 flag
-						unlock = true,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				},
-				[2] = {
-					text = managers.localization:text("osa_dialog_unlock_remove_legend"),
-					callback = callback(self, self, "boost_callback", {
-						nolegend = true,--Stage 2 flag
-						unlock = true,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				},
-				[3] = {
-					text = managers.localization:text("osa_dialog_dont_unlock"),
-					callback = callback(self, self, "boost_callback", {
-						nolegend = false,--Stage 2 flag
-						unlock = false,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				},
-				[4] = {
-					text = managers.localization:text("osa_dialog_back"),
-					callback = callback(self, self, "apply_skin_menu", {
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				}
-			}
-			local menu = QuickMenu:new(menu_title, menu_message, menu_options)
-			menu:Show()
-		elseif params.attach == "remove" then
-			--If "remove" was selected, warn that the skin will be unlocked
-			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_remove_unlock_warn")
-			local menu_options = {
-				[1] = {
-					text = managers.localization:text("osa_dialog_unlock"),
-					callback = callback(self, self, "boost_callback", {
-						nolegend = false,--Stage 2 flag
-						unlock = true,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				},
-				[2] = {
-					text = managers.localization:text("osa_dialog_back"),
-					callback = callback(self, self, "apply_skin_menu", {
-						skin_params = skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				}
-			}
-			local menu = QuickMenu:new(menu_title, menu_message, menu_options)
-			menu:Show()
-		end
-	end
-end
-
---Stage 3: choose whether to apply stat boost.
---Input Params: params.nolegend, params.unlock, params.attach, params.skin_params, params.data, params._callback
-function OSA:boost_callback(params)
-	--Check whether the skin has a stat boost
-	local instance_id = params.data.name
-	if params.data.equip_weapon_cosmetics then
-		instance_id = params.data.equip_weapon_cosmetics.instance_id
-	end
-	local item_data = managers.blackmarket:get_inventory_tradable()[instance_id]
-	--Fix for Immortal Python
-	local has_boost = false
-	if item_data then 
-		has_boost = item_data.bonus
-	end
-	--Skip this step if optional boosts is not enabled
-	--Or if the skin does not have a boost / is Immortal Python (no item_data)
-	--Or if disable all boost -> disable boost and skip
-	if not self._settings.osa_optional_boost or not has_boost or not item_data or self._settings.osa_disable_all_boosts then
-		self:apply_final({
-			boost = has_boost and not self._settings.osa_disable_all_boosts,--Stage 3 flag
-			nolegend = params.nolegend,--Stage 2 flag
-			unlock = params.unlock,--Stage 2 flag
-			attach = params.attach,--Stage 1 flag
-			_callback = params._callback
-		})
-	else
-		local menu_title = managers.localization:text("osa_dialog_title")
-
-		local skin_params = params.skin_params
-		local menu_message = managers.localization:text("dialog_blackmarket_slot_item", {
-			slot = skin_params.slot,
-			item = skin_params.weapon_name
-		})	
-		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_boost")
-		
-		--Generate bonus text
-		--Based on build params
-		--params.data.cosmetic_id has the ID
-		local cosmetic_id = params.data.equip_weapon_cosmetics and params.data.equip_weapon_cosmetics.entry or params.data.cosmetic_id
-		local bonus = cosmetic_id and tweak_data.blackmarket.weapon_skins[cosmetic_id].bonus
-		
-		--Bonus Name ID
-		bonus_name_id = tweak_data.economy.bonuses[bonus].name_id
-
-		--Get team bonus
-		local team = false
-		if tweak_data.economy.bonuses[bonus].exp_multiplier then
-			local tb = (tweak_data.economy.bonuses[bonus].exp_multiplier - 1) * 100
-			team = "+"..string.format("%.0f", tb).."%"
-		end
-		
-		--Get bonus value depending on type of bonus
-		local value
-		--Concealment Bonus
-		if string.sub(tostring(bonus), 1, 13) == "concealment_p" then
-			value = string.sub(tostring(bonus), 14, 14)
-			value = tonumber(value)
-		end
-		--Damage Bonus
-		if string.sub(tostring(bonus), 1, 8) == "damage_p" then
-			value = string.sub(tostring(bonus), 9, 9)
-			value = tonumber(value)
-		end
-		--Stability Bonus (Step 4)
-		if string.sub(tostring(bonus), 1, 8) == "recoil_p" then
-			value = string.sub(tostring(bonus), 9, 9)
-			value = 4*tonumber(value)
-		end
-		--Negative Accuracy Bonus (Step 4)
-		if string.sub(tostring(bonus), 1, 8) == "spread_n" then
-			value = string.sub(tostring(bonus), 9, 9)
-			value = -4*tonumber(value)
-		end
-		--Accuracy Bonus (Step 4)
-		if string.sub(tostring(bonus), 1, 8) == "spread_p" then
-			value = string.sub(tostring(bonus), 9, 9)
-			value = 4*tonumber(value)
-		end
-		--Team Bonus
-		if string.sub(tostring(bonus), 1, 16) == "team_exp_money_p" then
-			value = ""
-		end
-		--Total Ammo Bonus (Step 5%)
-		if string.sub(tostring(bonus), 1, 12) == "total_ammo_p" then
-			local weapon_id = tweak_data.blackmarket.weapon_skins[cosmetic_id].weapon_id
-			local AMMO_MAX = tweak_data.weapon[weapon_id].AMMO_MAX
-			value = string.sub(tostring(bonus), 13, 13)
-			value = tonumber(value)*5/100*AMMO_MAX
-			value = math.floor(value + 0.5)--Round
-		end
-		--Convert value to string (except in the case of team boost)
-		if type(value) == "number" then
-			if value > 0 then
-				value = "+"..tostring(value).." "
-			else
-				value = tostring(value).." "
-			end
-		end
-		--Build string
-		if team then
-			bonus_string = value..managers.localization:text(bonus_name_id, {team_bonus = team})
+	if add then
+		--Check options
+		--You are about to apply weapon skin XXX to your weapon.
+		if menu_message then
+			menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_add", {
+				cosmetic = params.name
+			})
 		else
-			bonus_string = value..managers.localization:text(bonus_name_id)
+			menu_message = managers.localization:text("dialog_weapon_cosmetics_add", {
+				cosmetic = params.name
+			})
 		end
 		
-		--Append string
-		menu_message = menu_message.."\n\n"..bonus_string
+		--This will replace your current weapon skin XXX.
+		--This is also fucking useless.
+		--[[if params.crafted_has_cosmetic then
+			menu_message = menu_message.." "..managers.localization:text("dialog_weapon_cosmetics_replace", {
+				cosmetic = params.crafted_name
+			})
+		end]]
+		
+		--Choose ask cosmetics message
+		if params.customize_locked and not self._settings.osa_allow_unlock then
+			--This is a special weapon skin, while it is applied you will not be able to change the configuration nor the custom name for this weapon.
+			menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_locked")
+			--Change your settings in the options menu if you want to customize locked legendary skins.
+			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_change_unlock_settings")
+		elseif params.item_has_default_blueprint then
+			--This weapon skin contains its own set of modifications and will reaplce your current configuration.
+			--menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_set_blueprint")
+			--Which attachments do you want to use?
+			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_attachments")
+		else
+			--Do you want to keep your attachments?
+			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_keep")
+		end
+		
+		--Build menu
+		--We can always keep unless we are equipping a locked legendary and unlock not allowed
+		local can_keep = not params.customize_locked or self._settings.osa_allow_unlock
+		--We can only replace if we are adding and the added item has a blueprint
+		local can_replace = params.item_has_default_blueprint
+		--We can always remove unless we are equipping a locked legendary and unlock not allowed
+		local can_remove = not params.customize_locked or self._settings.osa_allow_unlock
 		
 		local menu_options = {}
-		--Ask to apply bonus
-		if not skin_params.customize_locked or not self._settings.osa_allow_unlock then
-			--Back button: If non-legendary or unlock not allowed, go back to apply_skin_menu
-			menu_options = {
-				[1] = {
-					text = managers.localization:text("dialog_yes"),
-					callback = callback(self, self, "apply_final", {
-						boost = true,--Stage 3 flag
-						nolegend = params.nolegend,--Stage 2 flag
-						unlock = params.unlock,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						_callback = params._callback
-					})
-				},
-				[2] = {
-					text = managers.localization:text("dialog_no"),
-					callback = callback(self, self, "apply_final", {
-						boost = false,--Stage 3 flag
-						nolegend = params.nolegend,--Stage 2 flag
-						unlock = params.unlock,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						_callback = params._callback
-					})
-				},
-				[3] = {
-					text = managers.localization:text("osa_dialog_back"),
-					callback = callback(self, self, "apply_skin_menu", {
-						skin_params = params.skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				}
+		count = 1
+		--Keep attachments
+		if can_keep then
+			menu_options[count] = {
+				text = managers.localization:text("osa_dialog_keep"),
+				callback = function()
+					self:legendary_handler("keep", params)
+				end
 			}
-		else
-			--Back button: If locked legendary and unlock is allowed, go back to attachments_callback_apply
-			menu_options = {
-				[1] = {
-					text = managers.localization:text("dialog_yes"),
-					callback = callback(self, self, "apply_final", {
-						boost = true,--Stage 3 flag
-						nolegend = params.nolegend,--Stage 2 flag
-						unlock = params.unlock,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						_callback = params._callback
-					})
-				},
-				[2] = {
-					text = managers.localization:text("dialog_no"),
-					callback = callback(self, self, "apply_final", {
-						boost = false,--Stage 3 flag
-						nolegend = params.nolegend,--Stage 2 flag
-						unlock = params.unlock,--Stage 2 flag
-						attach = params.attach,--Stage 1 flag
-						_callback = params._callback
-					})
-				},
-				[3] = {
-					text = managers.localization:text("osa_dialog_back"),
-					callback = callback(self, self, "attachments_callback_apply", {
-						attach = params.attach,--Stage 1 flag
-						skin_params = params.skin_params,
-						data = params.data,
-						_callback = params._callback
-					})
-				}
-			}
+			count = count + 1
 		end
-
+		--If locked legendary, we can can only replace, so replace dialog with "continue"
+		if can_replace then
+			menu_options[count] = {
+				text = can_keep and managers.localization:text("osa_dialog_replace") or managers.localization:text("dialog_continue"),
+				callback = function()
+					self:legendary_handler("replace", params)
+				end
+			}
+			count = count + 1
+		end
+		--Remove
+		if can_remove then
+			menu_options[count] = {
+				text = managers.localization:text("osa_dialog_remove"),
+				callback = function()
+					self:legendary_handler("remove", params)
+				end
+			}
+			count = count + 1
+		end
+		--Cancel
+		menu_options[count] = {
+			text = managers.localization:text("dialog_cancel"),
+			callback = function()
+				self._state = nil
+			end,
+			is_cancel_button = true
+		}
+		--Show Menu
+		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+		menu:Show()
+	else
+		--Remove / Keep
+		--You are about to remove weapon skin XXX to your weapon.
+		if menu_message then
+			menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_remove", {
+				cosmetic = params.name
+			})
+		else
+			menu_message = managers.localization:text("dialog_weapon_cosmetics_remove", {
+				cosmetic = params.name
+			})
+		end
+		--Do you want to keep your attachments?
+		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_keep")
+		
+		local menu_options = {
+			[1] = {
+				text = managers.localization:text("osa_dialog_keep"),
+				callback = function()
+					self:remove_handler("keep", params)
+				end
+			},
+			[2] = {
+				text = managers.localization:text("osa_dialog_remove"),
+				callback = function()
+					self:remove_handler("remove", params)
+				end
+			},
+			[3] = {
+				text = managers.localization:text("dialog_cancel"),
+				callback = function()
+					self._state = nil
+				end,
+				is_cancel_button = true
+			}
+		}
+		--Show Menu
 		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
 		menu:Show()
 	end
 end
 
---Final execution once all options have been set
---Input Params: params.boost, params.nolegend, params.unlock, params.attach, params._callback
-function OSA:apply_final(params)
-	--Set State
-	self._state_apply.boost = params.boost
-	self._state_apply.nolegend = params.nolegend
-	self._state_apply.unlock = params.unlock
-	self._state_apply.attach = params.attach
-	self._state_apply.ready = true--Flag to indicate to use OSA settings when applying skin
-	--Execute Callback
-	params._callback()
+--Finish remove
+function OSA:remove_handler(option, params)
+	--Save
+	self._state.options.attach = option
+	
+	--Done, run callback
+	self._state.yes_clbk()
 end
 
---Menu when skin is removed.
-function OSA:remove_skin_menu(params)
-	local menu_title = managers.localization:text("osa_dialog_title")
+--Handle menu for legendary options
+--Options: keep / replace / remove
+function OSA:legendary_handler(option, params)
+	--Save
+	self._state.options.attach = option
 	
-	--Menu Message
-	local skin_params
-	if not params.skin_params then
-		skin_params = self:build_skin_params(params.data, true)
+	--Only need to handle if locked and allow unlock is enabled
+	--If not we just pass
+	if not (params.customize_locked and self._settings.osa_allow_unlock) then
+		--Don't unlock
+		self:apply_handler("no", params)
 	else
-		skin_params = params.skin_params
+		local menu_title = managers.localization:text("osa_dialog_title")
+		--This is a special weapon skin, while it is applied you will not be able to change the configuration nor the custom name for this weapon.
+		local menu_message = managers.localization:text("dialog_weapon_cosmetics_locked")
+		local menu_options
+		if option ~= "replace" then
+			--If not replacing, this is just an unlock confirmation
+			if option == "keep" then
+				--Keep
+				menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_keep_unlock_warn")
+			else
+				--Remove
+				menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_remove_unlock_warn")
+			end
+			
+			--Unlock or go back
+			menu_options = {
+				[1] = {
+					text = managers.localization:text("osa_dialog_unlock"),
+					callback = function()
+						self:apply_handler("yes", params)
+					end
+				},
+				[2] = {
+					text = managers.localization:text("osa_dialog_back"),
+					callback = function()
+						self:weapon_cosmetics_handler(params)
+					end,
+					is_cancel_button = true
+				}
+			}
+		else
+			--Choose whether to unlock
+			menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_unlock")
+			menu_options = {
+				[1] = {
+					text = managers.localization:text("osa_dialog_unlock"),
+					callback = function()
+						self:apply_handler("yes", params)
+					end
+				},
+				[2] = {
+					text = managers.localization:text("osa_dialog_unlock_remove_legend"),
+					callback = function()
+						self:apply_handler("remove_legend", params)
+					end
+				},
+				[3] = {
+					text = managers.localization:text("osa_dialog_dont_unlock"),
+					callback = function()
+						self:apply_handler("no", params)
+					end
+				},
+				[4] = {
+					text = managers.localization:text("osa_dialog_back"),
+					callback = function()
+						self:weapon_cosmetics_handler(params)
+					end,
+					is_cancel_button = true
+				}
+			}
+		end
+		
+		--Show Menu
+		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+		menu:Show()
 	end
-	local menu_message = managers.localization:text("dialog_blackmarket_slot_item", {
-		slot = skin_params.slot,
-		item = skin_params.weapon_name
-	})
-	menu_message = menu_message.."\n\n"..managers.localization:text("dialog_weapon_cosmetics_remove", {
-		cosmetic = skin_params.name
-	})
-	menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_keep")
-	local menu_options = {
-		[1] = {
-			text = managers.localization:text("osa_dialog_keep"),
-			callback = callback(self, self, "remove_final", {
-				keep = true,
-				skin_params = skin_params,
-				data = params.data,
-				_callback = params._callback
-			})
-		},
-		[2] = {
-			text = managers.localization:text("osa_dialog_remove"),
-			callback = callback(self, self, "remove_final", {
-				keep = false,
-				skin_params = skin_params,
-				data = params.data,
-				_callback = params._callback
-			})
-		},
-		[3] = {
-			text = managers.localization:text("dialog_cancel"),
-			is_cancel_button = true
-		}
+end
+
+--Finish apply
+function OSA:apply_handler(option, params)
+	--Save
+	self._state.options.unlock = option
+	
+	--Done, run callback
+	self._state.yes_clbk()
+end
+
+--Pass all of the data so we can also set the wear if we want later.
+function OSA:weapon_preview_handler(data)
+	--Initialize this so we can save options
+	self._state.options = {}
+	
+	--Check if skin has blueprint
+	local skin_id = data.cosmetic_id
+	local skin_data = tweak_data.blackmarket.weapon_skins[skin_id]
+	local has_blueprint = skin_data and skin_data.default_blueprint and not skin_data.osa_no_attachments
+	
+	--Build menu
+	local menu_title = managers.localization:text("osa_dialog_title")
+	local menu_message = managers.localization:text("osa_dialog_ask_preview")
+	
+	local menu_options = {}
+	count = 1
+	--Keep attachments, we can always do this
+	menu_options[count] = {
+		text = managers.localization:text("osa_dialog_keep"),
+		callback = function()
+			self:weapon_wear_handler("keep", data)
+		end
 	}
+	count = count + 1
+	--Use skin attachments, only if the skin has a blueprint
+	if has_blueprint then
+		menu_options[count] = {
+			text = managers.localization:text("osa_dialog_replace"),
+			callback = function()
+				self:weapon_wear_handler("replace", data)
+			end
+		}
+		count = count + 1
+	end
+	--Remove, we can always do this
+	menu_options[count] = {
+		text = managers.localization:text("osa_dialog_remove"),
+		callback = function()
+			self:weapon_wear_handler("remove", data)
+		end
+	}
+	count = count + 1
+	--Cancel
+	menu_options[count] = {
+		text = managers.localization:text("dialog_cancel"),
+		callback = function()
+			self._state = nil
+		end,
+		is_cancel_button = true
+	}
+	--Show Menu
 	local menu = QuickMenu:new(menu_title, menu_message, menu_options)
 	menu:Show()
 end
 
---Execute after parameters have been set
-function OSA:remove_final(params)
-	--Set State
-	self._state_remove.keep = params.keep
-	self._state_remove.ready = true--Flag to indicate to use OSA settings when applying skin
-	--Execute Callback
-	params._callback()
-end
-
---Menu for previewing skin
-function OSA:preview_skin_menu(params)
-	local menu_title = managers.localization:text("osa_dialog_title")
-
-	--Build parameters
-	local weapon = managers.blackmarket._global.crafted_items[params.data.category][params.data.slot]
-	local blueprint = weapon.blueprint
-	local cosmetics = {
-		id = params.data.cosmetic_id,
-		quality = params.data.cosmetic_quality
-	}
-	local default_blueprint = false
-	if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
-		default_blueprint = tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint
-	end
+--Choose wear
+function OSA:weapon_wear_handler(option, data)
+	--Save
+	self._state.options.attach = option
 	
-	--Menu Message
-	local menu_message
-	if default_blueprint then
-		menu_message = managers.localization:text("dialog_weapon_cosmetics_set_blueprint")
-		menu_message = menu_message.."\n\n"..managers.localization:text("osa_dialog_ask_preview")
+	--Wear preview off, go directly to final
+	if not self._settings.osa_preview_wear then
+		self:weapon_preview_handler_final(nil, data)
 	else
-		menu_message = managers.localization:text("osa_dialog_ask_preview")
-	end
-	
-	--Menu Options
-	local menu_options = {}
-	if default_blueprint then
-		--Skins with attachments
-		menu_options = {
+		--Show "Real Wear" tag if not a color and the skin is owned
+		local real_quality = not data.is_a_color_skin and data.unlocked and data.cosmetic_quality
+		--Wear menu
+		local menu_title = managers.localization:text("osa_dialog_title")
+		local menu_message = managers.localization:text("osa_dialog_choose_quality")
+		local menu_options = {
 			[1] = {
-				text = managers.localization:text("osa_dialog_keep"),
-				callback = callback(self, self, "preview_final", {
-					attach = "keep",--Stage 1 flag
-					_callback = params._callback
-				})
+				text = managers.localization:text("bm_menu_quality_mint") .. (real_quality == "mint" and " (".. managers.localization:text("osa_dialog_real_quality") .. ")" or ""),
+				callback = function()
+					self:weapon_preview_handler_final("mint", data)
+				end
 			},
 			[2] = {
-				text = managers.localization:text("osa_dialog_replace"),
-				callback = callback(self, self, "preview_final", {
-					attach = "replace",--Stage 1 flag
-					_callback = params._callback
-				})
+				text = managers.localization:text("bm_menu_quality_fine") .. (real_quality == "fine" and " (".. managers.localization:text("osa_dialog_real_quality") .. ")" or ""),
+				callback = function()
+					self:weapon_preview_handler_final("fine", data)
+				end
 			},
 			[3] = {
-				text = managers.localization:text("osa_dialog_remove"),
-				callback = callback(self, self, "preview_final", {
-					attach = "remove",--Stage 1 flag
-					_callback = params._callback
-				})
+				text = managers.localization:text("bm_menu_quality_good") .. (real_quality == "good" and " (".. managers.localization:text("osa_dialog_real_quality") .. ")" or ""),
+				callback = function()
+					self:weapon_preview_handler_final("good", data)
+				end
 			},
 			[4] = {
-				text = managers.localization:text("dialog_cancel"),
+				text = managers.localization:text("bm_menu_quality_fair") .. (real_quality == "fair" and " (".. managers.localization:text("osa_dialog_real_quality") .. ")" or ""),
+				callback = function()
+					self:weapon_preview_handler_final("fair", data)
+				end
+			},
+			[5] = {
+				text = managers.localization:text("bm_menu_quality_poor") .. (real_quality == "poor" and " (".. managers.localization:text("osa_dialog_real_quality") .. ")" or ""),
+				callback = function()
+					self:weapon_preview_handler_final("poor", data)
+				end
+			},
+			[6] = {
+				text = managers.localization:text("osa_dialog_back"),
+				callback = function()
+					self:weapon_preview_handler(data)
+				end,
 				is_cancel_button = true
 			}
 		}
-	else
-		--Skins without attachments
-		menu_options = {
-			[1] = {
-				text = managers.localization:text("osa_dialog_keep"),
-				callback = callback(self, self, "preview_final", {
-					attach = "keep",--Stage 1 flag
-					_callback = params._callback
-				})
-			},
-			[2] = {
-				text = managers.localization:text("osa_dialog_remove"),
-				callback = callback(self, self, "preview_final", {
-					attach = "remove",--Stage 1 flag
-					_callback = params._callback
-				})
-			},
-			[3] = {
-				text = managers.localization:text("dialog_cancel"),
-				is_cancel_button = true
-			}
-		}
+		--Show Menu
+		local menu = QuickMenu:new(menu_title, menu_message, menu_options)
+		menu:Show()
 	end
-	local menu = QuickMenu:new(menu_title, menu_message, menu_options)
-	menu:Show()
 end
 
---Execute after parameters have been set
-function OSA:preview_final(params)
-	--Set State
-	self._state_preview.attach = params.attach
-	self._state_preview.ready = true--Flag to indicate to use OSA settings when previewing skin
-	--Execute Callback
-	params._callback()
+--Set attachment option
+function OSA:weapon_preview_handler_final(option, data)
+	--Set quality
+	if option then
+		data.cosmetic_quality = option
+	end
+	
+	--Done, run callback
+	self._state.yes_clbk()
 end

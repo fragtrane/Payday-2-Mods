@@ -11,26 +11,20 @@
 	"osa_prefer_sp_buck_title" : "Prefer Shotgun Pack Buckshot",
 	"osa_prefer_sp_buck_desc" : "Give the Gage Shotgun Pack 000 Buckshot priority when applying skins.",
 	
-	"osa_save_removed_title" : "Save Mods On Missing Skins",
-	"osa_save_removed_desc" : "Try to keep attachments when skins are removed from Steam inventory.",
-	
 	"osa_preview_title" : "Choose Attachments in Previews",
 	"osa_preview_desc" : "Enable dialog menu for choosing attachments when previewing weapon skins.",
 	
-	"osa_optional_boost_title" : "Optional Boosts",
-	"osa_optional_boost_desc" : "Adds option to choose whether or not to apply stat boosts.",
-	
-	"osa_disable_all_boosts_title" : "Disable All Boosts",
-	"osa_disable_all_boosts_desc" : "Stops all skin stat boosts from being applied to weapons.",
+	"osa_preview_wear_title" : "Choose Wear in Previews",
+	"osa_preview_wear_desc" : "Enable dialog menu for choosing wear when previewing weapon skins.",
 	
 	"osa_rename_legendary_title" : "Rename Legendary Skins",
-	"osa_rename_legendary_desc" : "Allow legendary skins to be renamed.",
+	"osa_rename_legendary_desc" : "Allow legendary skins to be renamed. Restart required.",
 	
 	"osa_allow_unlock_title" : "Customize Legendary Skins",
 	"osa_allow_unlock_desc" : "Allow legendary skins to be unlocked so that they can be customized.",
 	
 	"osa_remove_stats_title" : "Remove Legendary Mod Stats",
-	"osa_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment.",
+	"osa_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment. Restart required.",
 	
 	"osa_show_legendary_title" : "Show Legendary Mods",
 	"osa_show_legendary_desc" : "Show legendary weapon attachments in weapon customization menu.",
@@ -74,13 +68,14 @@
 	"osa_dialog_keep_unlock_warn" : "If you want to keep your current attachments, this skin will be unlocked. Do you want to continue?",
 	"osa_dialog_remove_unlock_warn" : "If you want to remove attachments, this skin will be unlocked. Do you want to continue?",
 	
-	"osa_dialog_ask_boost" : "Do you want to apply the stat boost for this skin?",
+	"osa_dialog_choose_quality" : "Which skin wear do you want to preview?",
+	"osa_dialog_real_quality" : "Actual Wear",
 	
 	"osa_dialog_could_not_keep" : "Not all weapon attachments could be kept.",
-	"osa_dialog_reason_dlc" : "Missing DLC",
-	"osa_dialog_reason_legendary" : "Legendary Attachments",
+	"osa_dialog_reason_no_dlc" : "Missing DLC",
+	"osa_dialog_reason_legend" : "Legendary Attachments",
+	"osa_dialog_reason_out_of_stock" : "Out-of-Stock Attachments",
 	"osa_dialog_reason_unavailable" : "Unavailable Attachments",
-	"osa_dialog_reason_stock" : "Out-of-Stock Attachments",
 	"osa_dialog_reason_incompatible" : "Incompatible Attachments",
 	
 	"osa_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
@@ -167,9 +162,5 @@
 	"osa_bm_wpn_fps_ass_m14_body_upper_legendary" : "Plush Phoenix Upper Body",
 	"osa_bm_wpn_fps_ass_m14_body_lower_legendary" : "Plush Phoenix Lower Body",
 	
-	"osa_dialog_error_01" : "Error Code 01. If you see this message, please let me know.",
-	"osa_dialog_error_02" : "Error Code 02. If you see this message, please let me know.",
-	"osa_dialog_error_03" : "Error Code 03. If you see this message, please let me know.",
-	"osa_dialog_error_04" : "Error Code 04. If you see this message, please let me know.",
-	"osa_dialog_error_05" : "Error Code 05. If you see this message, please let me know."
+	"osa_dialog_error_01" : "Error Code 01. If you see this message, please let me know."
 }

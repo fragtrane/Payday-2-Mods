@@ -1,11 +1,8 @@
 dofile(ModPath .. "lua/setup.lua")
 
---Be careful when messing with legendary mods in uses_parts, can cause sync issues/cheater tags.
---Put default part in adds for Reinfeld 880, Locomotive 12G, and Bootleg so it is re-added after forbid
-local orig_WeaponFactoryTweakData_init = WeaponFactoryTweakData.init
-function WeaponFactoryTweakData:init()
-	orig_WeaponFactoryTweakData_init(self)
-	
+--Set some adds/forbids to prevent legendary attachment clipping.
+--Do not add or delete legendary mods from uses_parts, can cause sync issues/cheater tags.
+Hooks:PostHook(WeaponFactoryTweakData, "init", "osa_post_WeaponFactoryTweakData_init", function(self)
 	--Big Kahuna / Demon
 	--Default body adds default grip
 	self.parts.wpn_fps_shot_r870_body_standard.adds = self.parts.wpn_fps_shot_r870_body_standard.adds or {}
@@ -43,13 +40,10 @@ function WeaponFactoryTweakData:init()
 			end
 		end
 	end
-end
+end)
 
 --Set up legendary parts
-local orig_WeaponFactoryTweakData__init_legendary = WeaponFactoryTweakData._init_legendary
-function WeaponFactoryTweakData:_init_legendary()
-	orig_WeaponFactoryTweakData__init_legendary(self)
-	
+Hooks:PostHook(WeaponFactoryTweakData, "_init_legendary", "osa_post_WeaponFactoryTweakData__init_legendary", function(self)
 	--Set up legendary parts
 	local new_values = {
 		pcs = {},--Without this, the part gets flagged as inaccessible
@@ -84,6 +78,8 @@ function WeaponFactoryTweakData:_init_legendary()
 					}
 				end
 			end
+			
+			--Set name and description
 			self.parts[part_id].name_id = "osa_bm_"..part_id
 			self.parts[part_id].desc_id = "osa_bm_req_"..skin
 			
@@ -93,7 +89,7 @@ function WeaponFactoryTweakData:_init_legendary()
 					self.parts[part_id].sub_type = "laser"
 				end
 			end
-			--Raven's barrel sub_type is "silencer" which is wrong, but that gets overwritten so it's fine
+			--Raven's barrel sub_type is "silencer" which is wrong, but it has a gadget so that gets overwritten here
 		end
 	end
 	
@@ -166,4 +162,4 @@ function WeaponFactoryTweakData:_init_legendary()
 	--Midas Touch
 	--Stop barrel from shifting the front post of the Marksman Sight
 	self.parts.wpn_fps_pis_deagle_b_legend.override.wpn_upg_o_marksmansight_front = nil
-end
+end)
