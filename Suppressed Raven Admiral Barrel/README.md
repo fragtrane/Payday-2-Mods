@@ -33,11 +33,16 @@ Note: if the host has also installed the mod, then the real legendary attachment
 
 This mod has been tested both as client and host with vanilla and modded peers.
 
-- The silencer effect works both as client and host. Guards will not be alerted, so you can safely use it in stealth.
-- The gunshot sound is only suppressed for players who have the mod. Any gunshot from a Raven Admiral Barrel will sound suppressed to a modded player. So if an unmodded player in your lobby is using a Raven Admiral, their gunshots will sound suppressed for you while they are in fact loud (and will alert guards).
-- Players who do not have the mod will hear a loud gunshot. This may be confusing for them because they will hear a loud gunshot but won't see guards being alerted.
-- Similarly, you will see a silencer icon in the loadout screen next to any player with a Raven Admiral Barrel equipped, regardless of whether or not they have the mod.
-- Unmodded players will not see a silencer icon in the loadout screen.
+Silencer effect:
+- The silencer effect works as both client and host for both the real and add-on barrel, regardless of whether or not the host as the mod. Guards will not be alerted, so you can safely use it in stealth.
+
+Gunshot sound:
+- Real Admiral Barrel: gunshots from the real Admiral Barrel will always sound suppressed to you. If someone without the mod shoots with the real Admiral Barrel, it will still sound suppressed to you (when it is in fact loud and will alert guards).
+- Add-On Admiral Barrel: if you have AOLA installed, gunshots from the Add-On Admiral Barel will always sound suppressed to you. If someone without the mod shoots with the Add-On Admiral Barrel, it will sound suppressed to you (when it is in fact loud and will alert guards). Players who do not have AOLA will always hear a loud gunshot from the Add-On Admiral Barrel.
+
+Silencer icon in crew setup:
+- Real Admiral Barrel: when using the mod, anyone with the real Admiral Barrel equipped will show a silencer icon, even if they do not have the mod (so their shots will alert guards).
+- Add-On Admiral Barrel: if you equip the Add-On Admiral Barrel while using the mod, the gun will show a silencer icon for you. For other players, it is not possible to see the silencer icon for the Add-On Admiral Barrel.
 
 In order to reduce the detection risk offset with AOLA attachments, this mod has changed the synced parts (based-on parts) for the following AOLA attachments:
 
