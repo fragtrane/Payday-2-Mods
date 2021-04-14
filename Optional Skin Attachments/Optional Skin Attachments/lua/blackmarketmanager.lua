@@ -225,6 +225,13 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 		return
 	end
 	
+	--3.0.1 Fix when opening color customization
+	if not OSA._state or not OSA._state.options or not OSA._state.options.attach then
+		OSA._state = OSA._state or {}
+		OSA._state.options = OSA._state.options or {}
+		OSA._state.options.attach = "keep"
+	end
+	
 	--Set up blueprints, mostly unchanged
 	local old_cosmetic_id = crafted.cosmetics and crafted.cosmetics.id
 	local old_cosmetic_data = old_cosmetic_id and tweak_data.blackmarket.weapon_skins[old_cosmetic_id]
@@ -583,7 +590,8 @@ end
 local orig_BlackMarketManager_view_weapon_with_cosmetics = BlackMarketManager.view_weapon_with_cosmetics
 function BlackMarketManager:view_weapon_with_cosmetics(category, slot, cosmetics, open_node_cb, spawn_workbench, custom_data)
 	--Call original function if option off or if state missing
-	if not OSA._settings.osa_preview or not OSA._state.options or not OSA._state.options.attach then
+	--3.0.1 Fix when opening color customization
+	if not OSA._settings.osa_preview or not OSA._state or not OSA._state.options or not OSA._state.options.attach then
 		orig_BlackMarketManager_view_weapon_with_cosmetics(self, category, slot, cosmetics, open_node_cb, spawn_workbench, custom_data)
 		return
 	end
