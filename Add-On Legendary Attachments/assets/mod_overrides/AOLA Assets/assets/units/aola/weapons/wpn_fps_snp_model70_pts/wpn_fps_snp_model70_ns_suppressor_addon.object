@@ -1,0 +1,6 @@
+<dynamic_object>
+	<diesel materials="units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon" orientation_object="rp_wpn_fps_snp_model70_ns_suppressor" />
+	<graphics>
+		<object inherit_bounding_volume="co_culling" name="g_supp" enabled="true" />
+	</graphics>
+</dynamic_object>

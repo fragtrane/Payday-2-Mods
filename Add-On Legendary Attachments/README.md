@@ -1,6 +1,6 @@
 # Add-On Legendary Attachments
 
-Latest version v1.3.
+Latest version v1.4.
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/27211).
 
@@ -39,6 +39,10 @@ The following add-on attachments will still INCREASE your concealment and give y
 - The Gimp Body Kit: other players will see your concealment INCREASED by 3 points, i.e. LOWER detection risk (good).
 - Vlad's Rodina Stock: other players will see your concealment INCREASED by 2 points, i.e. LOWER detection risk (good).
 
+## Don Pastrami Suppressor Glitch Fix
+
+When equipping the Beak Suppressor with the Don Pastrami Barrel in the base game, the suppressor model becomes invisible and only appears intermittently when you inspect your weapon. In AOLA v1.4, an edited Beak Suppressor model has been added and is automatically used when the Don Pastrami Barrel (real or add-on) is equipped. The edited model is visually identical to the Beak Suppressor; only the culling object was changed to prevent it from glitching. Shoutout to Hoppip and Mercu for helping me figure out how to get the model working.
+
 ## Known Issues
 
 The Vlad's Rodina Laser and Santa's Slayers Laser can be seen by other players. However, the integrated laser found on non-gadget legendary attachments cannot be seen by other players. Full list of attachments with lasers that do not sync:
@@ -58,7 +62,7 @@ Add-on legendary attachments use a white version of the legendary skin icon. I h
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) and [BeardLib](https://modworkshop.net/mod/14924); it will not work if you do not have them installed.
 
-This mod consists of a BLT part and an asset override part. The asset overrides can be downloaded automatically so you only need to install the BLT part of the mod. Download [`Add-On_Legendary_Attachments_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_v1.3.zip) and extract the entire contents to your `mods` folder.
+This mod consists of a BLT part and an asset override part. The asset overrides can be downloaded automatically so you only need to install the BLT part of the mod. Download [`Add-On_Legendary_Attachments_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_v1.4.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -68,7 +72,7 @@ C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 
 You will automatically be prompted to install the assets overrides through SuperBLT's Download Manager when you start the game.
 
-If you run into issues, you can also install the asset overrides manually. Download [`Add-On_Legendary_Attachments_Assets_v1.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_Assets_v1.3.zip) and extract the entire contents to your `mod_overrides` folder.
+If you run into issues, you can also install the asset overrides manually. Download [`Add-On_Legendary_Attachments_Assets_v1.4.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Add-On%20Legendary%20Attachments/Add-On_Legendary_Attachments_Assets_v1.4.zip) and extract the entire contents to your `mod_overrides` folder.
 
 The location of the `mod_overrides` folder depends on where you installed the game; typically it can be found here:
 
@@ -103,6 +107,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.4 - 2021-04-15**
+
+- Added an edited Beak Suppressor model that is automatically enabled when using the Don Pastrami Barrel to fix the invisible suppressor glitch.
 
 **v1.3 - 2021-04-11**
 

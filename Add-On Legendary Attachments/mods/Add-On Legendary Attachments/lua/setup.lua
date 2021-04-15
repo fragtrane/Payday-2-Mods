@@ -219,6 +219,7 @@ AOLA._gen_1_mods = {
 	model70_baaah = {
 		"wpn_fps_snp_model70_b_legend",
 		"wpn_fps_snp_model70_s_legend"
+		--"wpn_fps_snp_model70_ns_suppressor"--Don't need to do this anymore since we aren't making it a standalone mod, just use the model in an override
 	},
 	--Hungry Wolf
 	par_wolf = {
@@ -309,4 +310,5 @@ AOLA._based_on = {
 	wpn_fps_ass_m14_body_legendary_addon = "wpn_fps_ass_m14_body_ebr",
 	wpn_fps_ass_m14_body_upper_legendary_addon = "wpn_fps_ass_m14_body_upper",
 	wpn_fps_ass_m14_body_lower_legendary_addon = "wpn_fps_ass_m14_body_lower"
+	--wpn_fps_snp_model70_ns_suppressor_addon = "wpn_fps_snp_model70_ns_suppressor"--Don't need to do this anymore since we aren't making it a standalone mod, just use the model in an override
 }

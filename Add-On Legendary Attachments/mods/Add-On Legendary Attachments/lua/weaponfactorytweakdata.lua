@@ -73,6 +73,37 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 		end
 	end
 	
+	--Set unit to our addon part
+	--Don't need to do this anymore since we aren't making it a standalone mod
+	--self.parts["wpn_fps_snp_model70_ns_suppressor_addon"].unit = "units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon"
+	
+	--Default Platypus barrel forbids add-on silencer
+	--Don't need to do this anymore since we aren't making it a standalone mod
+	--self.parts.wpn_fps_snp_model70_b_standard.forbids = {"wpn_fps_snp_model70_ns_suppressor_addon"}
+	
+	--Original Beak Suppressor third unit
+	local third_unit = self.parts.wpn_fps_snp_model70_ns_suppressor.third_unit
+	--AOLA Beak Suppressor unit
+	local unit = "units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon"
+	
+	if self.parts.wpn_fps_snp_model70_ns_suppressor_addon then
+		--Set replacements if not using PBSR, or if PBSR override is off
+		if not _G.BeakSuppressorReplacements or (_G.BeakSuppressorReplacements and _G.BeakSuppressorReplacements._settings and not _G.BeakSuppressorReplacements._settings.pbsr_override_aola) then
+			--Set overrides for Don Pastrami Barrel
+			self.parts.wpn_fps_snp_model70_b_legend.override = self.parts.wpn_fps_snp_model70_b_legend.override or {}
+			self.parts.wpn_fps_snp_model70_b_legend.override.wpn_fps_snp_model70_ns_suppressor = {
+				third_unit = third_unit,
+				unit = unit
+			}
+			--Set overrides for Add-On Don Pastrami Barrel
+			self.parts.wpn_fps_snp_model70_b_legend_addon.override = self.parts.wpn_fps_snp_model70_b_legend_addon.override or {}
+			self.parts.wpn_fps_snp_model70_b_legend_addon.override.wpn_fps_snp_model70_ns_suppressor = {
+				third_unit = third_unit,
+				unit = unit
+			}
+		end
+	end
+	
 	--Localization for Suppressed Raven Admiral Barrel mod
 	--Legacy support for _G.SRAB identifier used by v1.0
 	if _G.SuppressedRavenAdmiralBarrel or _G.SRAB then

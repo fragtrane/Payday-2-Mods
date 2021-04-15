@@ -1,55 +1,75 @@
 <mod name="Add-On Legendary Attachments Assets" author="fragtrane" min_lib_version="3.38">
 	<Localization directory="localization" default="english.txt"/>
 	
-    <AddFiles directory="assets">
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_74_b_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fg_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_g_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_s_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fl_legend_addon"/>
+	<!-- Beak Suppressor with edited co_culling -->
+	<WeaponMod
+		id="wpn_fps_snp_model70_ns_suppressor_addon"
+		based_on="wpn_fps_snp_model70_ns_suppressor"
+		type="barrel_ext"
+		texture_bundle_folder="aola"
+		guess_unit="false"
+		global_value="normal"
+		is_a_unlockable="true"
+		droppable="false"
+		hidden = "true"
+		ver="2">
+		<weapons>
+			<value_node value="wpn_fps_snp_model70"/>
+		</weapons>
+	</WeaponMod>
+	
+	<AddFiles directory="assets">
+		<unit_mat_cc path ="units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_ns_suppressor_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_deagle_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_74_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fg_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_g_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_s_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_fl_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_fla_mk2_body_fierybeast_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_deagle_b_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_rpg7_m_grinclown_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_fla_mk2_body_fierybeast_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_body_upper_spikey_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_barrel_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_rpg7_m_grinclown_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_p90_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_body_upper_spikey_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_m134_barrel_legendary_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_b_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_s_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_fg_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_p90_b_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_g_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_fl_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_b_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_s_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_r870_fg_legendary_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_b_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_s_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_g_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_1911_fl_legendary_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_b_standard_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_s_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_snp_model70_s_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_b_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_fg_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_s_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_b_standard_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_lmg_svinet_s_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_g_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_fg_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m16_s_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_b_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_fg_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_o_legendary_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_s_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_g_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_pis_judge_b_legend_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_ksg_b_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_b_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_fg_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_o_legendary_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_boot_s_legendary_addon"/>
 		
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_b_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_fg_legend_addon"/>
-        <texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_s_legend_addon"/>
-        
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_sho_ksg_b_legendary_addon"/>
+		
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_b_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_fg_legend_addon"/>
+		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_tecci_s_legend_addon"/>
+		
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_b_legendary_addon"/>
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_fg_legendary_addon"/>
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_shot_shorty_s_legendary_addon"/>
@@ -58,7 +78,7 @@
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_legendary_addon"/>
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_upper_legendary_addon"/>
 		<texture path="guis/dlcs/aola/textures/pd2/blackmarket/icons/mods/wpn_fps_ass_m14_body_lower_legendary_addon"/>
-    </AddFiles>
+	</AddFiles>
 	
 	<!-- Vlad's Rodina, 5 attachments -->
 	<!-- Vlad's Rodina Barrel, based on default barrel -->
