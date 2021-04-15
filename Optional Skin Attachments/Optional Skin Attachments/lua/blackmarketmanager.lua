@@ -225,11 +225,12 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 		return
 	end
 	
-	--3.0.1 Fix when opening color customization
-	if not OSA._state or not OSA._state.options or not OSA._state.options.attach then
-		OSA._state = OSA._state or {}
-		OSA._state.options = OSA._state.options or {}
-		OSA._state.options.attach = "keep"
+	--3.0.2 rework, prevent crash when opening color customization
+	local state_attach = "keep"
+	local state_unlock = nil
+	if OSA._state and OSA._state.options then
+		state_attach = OSA._state.options.attach or state_attach
+		state_unlock = OSA._state.options.unlock or state_unlock
 	end
 	
 	--Set up blueprints, mostly unchanged
@@ -252,16 +253,16 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 	
 	--Check if we can skip and just clone
 	local can_clone = true
-	if OSA._state.options.attach == "keep" then
+	if state_attach == "keep" then
 		--Can't clone if blueprint or COM 000
 		if #old_cosmetic_default_blueprint ~= 0 or #new_cosmetic_default_blueprint ~= 0 or table.contains(gun_current_blueprint, "wpn_fps_upg_a_custom_free") then
 			can_clone = false
 		end
-	elseif OSA._state.options.attach == "replace" then
+	elseif state_attach == "replace" then
 		--Check locked legendary
-		if is_locked and OSA._state.options.unlock == "no" then
+		if is_locked and state_unlock == "no" then
 			--Clone if locked and not unlocking
-		elseif is_locked and OSA._state.options.unlock == "remove_legend" then
+		elseif is_locked and state_unlock == "remove_legend" then
 			--Can't clone if remove legendary
 			can_clone = false
 		elseif table.contains(new_cosmetic_default_blueprint, "wpn_fps_upg_a_custom_free") then
@@ -276,14 +277,14 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 	
 	if can_clone then
 		--Cloning
-		if OSA._state.options.attach == "keep" then
+		if state_attach == "keep" then
 			--Nothing
-		elseif OSA._state.options.attach == "replace" then
+		elseif state_attach == "replace" then
 			--Clone new
 			self:add_crafted_weapon_blueprint_to_inventory(category, slot, old_cosmetic_default_blueprint)
 			crafted.global_values = nil
 			crafted.blueprint = deep_clone(new_cosmetic_default_blueprint)
-		elseif OSA._state.options.attach == "remove" then
+		elseif state_attach == "remove" then
 			--Clone default
 			self:add_crafted_weapon_blueprint_to_inventory(category, slot, old_cosmetic_default_blueprint)
 			crafted.global_values = nil
@@ -293,10 +294,10 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 		--Handle attachments
 		--Set wanted attachments
 		local wanted_raw
-		if OSA._state.options.attach == "keep" then
+		if state_attach == "keep" then
 			--Keep
 			wanted_raw = deep_clone(crafted.blueprint)
-		elseif OSA._state.options.attach == "replace" then
+		elseif state_attach == "replace" then
 			--Replace
 			wanted_raw = deep_clone(new_cosmetic_default_blueprint)
 		end
@@ -307,7 +308,7 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 		crafted.blueprint = deep_clone(gun_default_blueprint)
 		
 		--Check if we need to strip legendary parts
-		local strip_legend = is_locked and OSA._state.options.unlock == "remove_legend" or false
+		local strip_legend = is_locked and state_unlock == "remove_legend" or false
 		
 		--Call _sort_wanted_attachments to handle wanted attachments
 		local wanted_parsed = self:_sort_wanted_attachments(new_cosmetic_default_blueprint, wanted_raw, gun_default_blueprint, strip_legend)
@@ -375,7 +376,7 @@ function BlackMarketManager:_set_weapon_cosmetics(category, slot, cosmetics, upd
 	end
 	
 	--Customize is locked only if we are replacing and there is no unlock flag
-	crafted.customize_locked = weapon_skin_data.locked and OSA._state.options.attach == "replace" and OSA._state.options.unlock == "no"
+	crafted.customize_locked = weapon_skin_data.locked and state_attach == "replace" and state_unlock == "no"
 	--Check settings to see if rename is allowed
 	crafted.locked_name = weapon_skin_data.rarity == "legendary" and not OSA._settings.osa_rename_legendary
 	
@@ -414,12 +415,10 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 		return
 	end
 	
-	--When skip update, options have not been set
-	--Do it manually here otherwise we'll crash
-	if skip_update then
-		OSA._state = OSA._state or {}
-		OSA._state.options = OSA._state.options or {}
-		OSA._state.options.attach = "keep"
+	--3.0.2 rework, prevent crash when skip_update (options not set)
+	local state_attach = "keep"
+	if OSA._state and OSA._state.options then
+		state_attach = OSA._state.options.attach or state_attach
 	end
 	
 	--Set up blueprints
@@ -441,7 +440,7 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 	
 	--Check if we can skip and just clone
 	local can_clone = true
-	if OSA._state.options.attach == "keep" then
+	if state_attach == "keep" then
 		--Can't clone if blueprint or COM 000
 		if #old_cosmetic_default_blueprint ~= 0 or table.contains(gun_current_blueprint, "wpn_fps_upg_a_custom_free") then
 			can_clone = false
@@ -456,9 +455,9 @@ function BlackMarketManager:on_remove_weapon_cosmetics(category, slot, skip_upda
 	
 	if can_clone then
 		--Cloning
-		if OSA._state.options.attach == "keep" then
+		if state_attach == "keep" then
 			--Nothing
-		elseif OSA._state.options.attach == "remove" then
+		elseif state_attach == "remove" then
 			--Clone default
 			self:add_crafted_weapon_blueprint_to_inventory(category, slot, old_cosmetic_default_blueprint)
 			crafted.global_values = nil
@@ -589,11 +588,16 @@ end
 --Preview weapon skin (or color)
 local orig_BlackMarketManager_view_weapon_with_cosmetics = BlackMarketManager.view_weapon_with_cosmetics
 function BlackMarketManager:view_weapon_with_cosmetics(category, slot, cosmetics, open_node_cb, spawn_workbench, custom_data)
-	--Call original function if option off or if state missing
-	--3.0.1 Fix when opening color customization
-	if not OSA._settings.osa_preview or not OSA._state or not OSA._state.options or not OSA._state.options.attach then
+	--Call original function if option off
+	if not OSA._settings.osa_preview then
 		orig_BlackMarketManager_view_weapon_with_cosmetics(self, category, slot, cosmetics, open_node_cb, spawn_workbench, custom_data)
 		return
+	end
+	
+	--3.0.2 rework, prevent crash when opening color customization
+	local state_attach = "keep"
+	if OSA._state and OSA._state.options then
+		state_attach = OSA._state.options.attach or state_attach
 	end
 	
 	if not self._global.crafted_items[category] or not self._global.crafted_items[category][slot] then
@@ -603,17 +607,18 @@ function BlackMarketManager:view_weapon_with_cosmetics(category, slot, cosmetics
 	local weapon = self._global.crafted_items[category][slot]
 	
 	--Set preview blueprint
+	--This is a bit buggy, look into it
 	local blueprint = self._preview_blueprint and self._preview_blueprint.blueprint or weapon.blueprint
-	if OSA._state.options.attach == "keep" then
+	if state_attach == "keep" then
 		--Nothing
-	elseif OSA._state.options.attach == "replace" then
+	elseif state_attach == "replace" then
 		--Unchanged
 		if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
 			if tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint then
 				blueprint = deep_clone(tweak_data.blackmarket.weapon_skins[cosmetics.id].default_blueprint)
 			end
 		end
-	elseif OSA._state.options.attach == "remove" then
+	elseif state_attach == "remove" then
 		blueprint = deep_clone(managers.weapon_factory:get_default_blueprint_by_factory_id(weapon.factory_id))
 	end
 	
