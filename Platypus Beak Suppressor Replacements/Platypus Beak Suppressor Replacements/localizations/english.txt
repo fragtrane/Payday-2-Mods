@@ -1,0 +1,17 @@
+{
+	"pbsr_options_menu_title" : "Platypus Beak Suppressor Replacements",
+	"pbsr_options_menu_desc" : "Platypus Beak Suppressor Replacements mod options.",
+	
+	"pbsr_replacement_title" : "Replacement Model",
+	"pbsr_replacement_desc" : "Choose a new suppressor model to replace the Beak Suppressor when the Don Pastrami Barrel is equipped.",
+	
+	"pbsr_bm_wp_snp_msr_ns_suppressor" : "Rattlesnake Sniper Suppressor"
+	"pbsr_bm_wp_famas_b_suppressed" : "Clarion Suppressed Barrel",
+	"pbsr_bm_wp_upg_ns_ass_pbs1" : "AK PBS Suppressor",
+	
+	"pbsr_replace_normal_title" : "Always Use Replacement",
+	"pbsr_replace_normal_desc" : "Replace the barrel model even when not using Don Pastrami Barrel.",
+	
+	"pbsr_override_aola_title" : "Override AOLA Fix",
+	"pbsr_override_aola_desc" : "Override the AOLA Beak Suppressor fix and use the chosen replacement model instead."
+}

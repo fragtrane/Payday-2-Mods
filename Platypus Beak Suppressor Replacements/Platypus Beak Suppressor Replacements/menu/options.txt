@@ -1,0 +1,45 @@
+{
+	"menu_id" : "pbsr_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "pbsr_options_menu_title",
+	"description" : "pbsr_options_menu_desc",
+	"back_callback" : "pbsr_callback_save",
+	"items" : [
+		{
+			"type" : "multiple_choice",
+			"id" : "pbsr_replacement",
+			"title" : "pbsr_replacement_title",
+			"description" : "pbsr_replacement_desc",
+			"callback" : "pbsr_callback_multi",
+			"items" : [
+				"pbsr_bm_wp_snp_msr_ns_suppressor",
+				"bm_wp_upg_ns_ass_smg_medium",
+				"bm_wp_upg_ns_ass_smg_large",
+				"pbsr_bm_wp_famas_b_suppressed",
+				"pbsr_bm_wp_upg_ns_ass_pbs1",
+				"bm_wp_upg_ns_shot_thick",
+				"bm_wp_upg_ns_pis_jungle"
+			],
+			"value" : "pbsr_replacement",
+			"default_value" : 1
+		},
+		{
+			"type" : "toggle",
+			"id" : "pbsr_replace_normal",
+			"title" : "pbsr_replace_normal_title",
+			"description" : "pbsr_replace_normal_desc",
+			"callback" : "pbsr_callback_toggle",
+			"value" : "pbsr_replace_normal",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "pbsr_override_aola",
+			"title" : "pbsr_override_aola_title",
+			"description" : "pbsr_override_aola_desc",
+			"callback" : "pbsr_callback_toggle",
+			"value" : "pbsr_override_aola",
+			"default_value" : false
+		}
+	]
+}
