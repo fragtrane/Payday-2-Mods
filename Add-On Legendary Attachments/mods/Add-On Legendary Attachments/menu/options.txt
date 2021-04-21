@@ -1,0 +1,36 @@
+{
+	"menu_id" : "aola_options_menu",
+	"parent_menu_id" : "blt_options",
+	"title" : "aola_options_menu_title",
+	"description" : "aola_options_menu_desc",
+	"back_callback" : "aola_callback_save",
+	"items" : [
+		{
+			"type" : "toggle",
+			"id" : "aola_hide_unowned",
+			"title" : "aola_hide_unowned_title",
+			"description" : "aola_hide_unowned_desc",
+			"callback" : "aola_callback_toggle",
+			"value" : "aola_hide_unowned",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "aola_no_platypus_fix",
+			"title" : "aola_no_platypus_fix_title",
+			"description" : "aola_no_platypus_fix_desc",
+			"callback" : "aola_callback_toggle",
+			"value" : "aola_no_platypus_fix",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "aola_no_crosskill_fix",
+			"title" : "aola_no_crosskill_fix_title",
+			"description" : "aola_no_crosskill_fix_desc",
+			"callback" : "aola_callback_toggle",
+			"value" : "aola_no_crosskill_fix",
+			"default_value" : false
+		}
+	]
+}

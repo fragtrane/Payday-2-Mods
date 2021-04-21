@@ -41,6 +41,12 @@ function BlackMarketManager:set_available_legendary_addon_parts(remove_all)
 				self._global.inventory[global_value] = self._global.inventory[global_value] or {}
 				self._global.inventory[global_value][category] = self._global.inventory[global_value][category] or {}
 				self._global.inventory[global_value][category][part_id.."_addon"] = has_skin and 1 or 0
+				--Hide unowned
+				if not has_skin and AOLA._settings.aola_hide_unowned then
+					tweak_data.blackmarket.weapon_mods[part_id.."_addon"].pcs = nil
+				else
+					tweak_data.blackmarket.weapon_mods[part_id.."_addon"].pcs = {}
+				end
 			end
 		end
 	end

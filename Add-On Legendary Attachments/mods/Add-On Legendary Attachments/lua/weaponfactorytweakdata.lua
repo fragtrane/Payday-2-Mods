@@ -73,22 +73,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 		end
 	end
 	
-	--Set unit to our addon part
-	--Don't need to do this anymore since we aren't making it a standalone mod
-	--self.parts["wpn_fps_snp_model70_ns_suppressor_addon"].unit = "units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon"
-	
-	--Default Platypus barrel forbids add-on silencer
-	--Don't need to do this anymore since we aren't making it a standalone mod
-	--self.parts.wpn_fps_snp_model70_b_standard.forbids = {"wpn_fps_snp_model70_ns_suppressor_addon"}
-	
 	--Original Beak Suppressor third unit
 	local third_unit = self.parts.wpn_fps_snp_model70_ns_suppressor.third_unit
 	--AOLA Beak Suppressor unit
 	local unit = "units/aola/weapons/wpn_fps_snp_model70_pts/wpn_fps_snp_model70_ns_suppressor_addon"
 	
 	if self.parts.wpn_fps_snp_model70_ns_suppressor_addon then
-		--Set replacements if not using PBSR, or if PBSR override is off
-		if not _G.BeakSuppressorReplacements or (_G.BeakSuppressorReplacements and _G.BeakSuppressorReplacements._settings and not _G.BeakSuppressorReplacements._settings.pbsr_override_aola) then
+		--Check for PBSR override
+		local pbsr_override = _G.BeakSuppressorReplacements and _G.BeakSuppressorReplacements._settings and _G.BeakSuppressorReplacements._settings.pbsr_override_aola or false
+		--Set replacements if not disabled and not PBSR override
+		if not AOLA._settings.aola_no_platypus_fix and not pbsr_override then
 			--Set overrides for Don Pastrami Barrel
 			self.parts.wpn_fps_snp_model70_b_legend.override = self.parts.wpn_fps_snp_model70_b_legend.override or {}
 			self.parts.wpn_fps_snp_model70_b_legend.override.wpn_fps_snp_model70_ns_suppressor = {
@@ -100,6 +94,30 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "AOLA_post_WeaponFactoryTweakData
 			self.parts.wpn_fps_snp_model70_b_legend_addon.override.wpn_fps_snp_model70_ns_suppressor = {
 				third_unit = third_unit,
 				unit = unit
+			}
+		end
+	end
+	
+	--ADS fix for Santa's Slayers Laser
+	if self.parts.wpn_fps_pis_1911_fl_legendary_addon then
+		--Add-on Santa's Slayers Laser forbids sights to prevent clipping and issues with stance mods
+		--Real Santa's Slayers Laser can't be equipped on single Crosskill so it doesn't matter
+		--Marksman sight is okay though, no stance mod and doesn't clip
+		local whitelist = {"wpn_upg_o_marksmansight_rear"}
+		self.parts.wpn_fps_pis_1911_fl_legendary_addon.forbids = self.parts.wpn_fps_pis_1911_fl_legendary_addon.forbids or {}
+		for _, part_id in pairs(self.wpn_fps_pis_1911.uses_parts) do
+			if part_id ~= "wpn_fps_pis_1911_fl_legendary_addon" and self.parts[part_id] and self.parts[part_id].type == "sight" and not table.contains(whitelist, part_id) then
+				table.insert(self.parts.wpn_fps_pis_1911_fl_legendary_addon.forbids, part_id)
+			end
+		end
+		
+		--Add-on Santa's Slayers Laser stance mod when equipped on single Crosskill
+		--Modified from stance mod of Angled Sight (wpn_fps_upg_o_45iron) for the Thanatos (wpn_fps_snp_m95)
+		if not AOLA._settings.aola_no_crosskill_fix then
+			self.parts.wpn_fps_pis_1911_fl_legendary_addon.stance_mod = self.parts.wpn_fps_pis_1911_fl_legendary_addon.stance_mod or {}
+			self.parts.wpn_fps_pis_1911_fl_legendary_addon.stance_mod.wpn_fps_pis_1911 = {
+				translation = Vector3(-0.5, 5.8, -22.5),
+				rotation = Rotation(0.5, 0, -45)
 			}
 		end
 	end

@@ -6,5 +6,17 @@
 	"aola_dialog_open_links" : "Open Links in Browser",
 	"aola_dialog_missing_assets" : "Assets have not been downloaded yet. This mod will not work until you download them.\n\nPlease go to the Download Manager to download the required assets.",
 	"aola_dialog_config_change_restart" : "Due to a configuration change in AOLA, your game needs to be restarted.",
-	"aola_dialog_goto_dl" : "Go To Download Manager"
+	"aola_dialog_goto_dl" : "Go To Download Manager",
+	
+	"aola_options_menu_title" : "Add-On Legendary Attachments",
+	"aola_options_menu_desc" : "Add-On Legendary Attachments mod options.",
+	
+	"aola_hide_unowned_title" : "Hide Unowned Legendary Attachments",
+	"aola_hide_unowned_desc" : "Hide add-on legendary attachments for skins you do not own.",
+	
+	"aola_no_platypus_fix_title" : "I Like Glitchy Silencers",
+	"aola_no_platypus_fix_desc" : "Disables the invisible suppressor fix when using the Don Pastrami Barrel with the Beak Suppressor.",
+	
+	"aola_no_crosskill_fix_title" : "I Like Firing Blind",
+	"aola_no_crosskill_fix_desc" : "Disables the ADS viewmodel change when using the Santa's Slayers Laser on the single Crosskill."
 }

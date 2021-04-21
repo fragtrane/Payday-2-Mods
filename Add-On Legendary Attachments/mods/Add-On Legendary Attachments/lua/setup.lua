@@ -4,9 +4,12 @@ end
 
 _G.AOLA = {}
 AOLA._mod_path = ModPath
-AOLA._save_path = SavePath--Currently unused
-AOLA._save_name = "aola_settings.txt"--Currently unused
+AOLA._save_path = SavePath
+AOLA._save_name = "aola_settings.txt"
 AOLA._settings = {
+	aola_hide_unowned = false,--Hide unowned legendary attachments
+	aola_no_platypus_fix = false,--Disable Platypus suppressor fix
+	aola_no_crosskill_fix = false,--Disable Crosskill viewmodel change
 	aola_debug = false
 }
 AOLA._overrides_folder = "./assets/mod_overrides"
@@ -14,11 +17,67 @@ AOLA._legacy_overrides_path = AOLA._overrides_folder .. "/Add-On Legendary Attac
 AOLA._overrides_path = AOLA._overrides_folder .. "/AOLA Assets"
 AOLA._overrides_path_check = AOLA._overrides_path .."/assets"--Used to check if assets have installed
 
---Settings? Button to clean mods?
+--JSON encode helper
+function AOLA:json_encode(tab, path)
+	local file = io.open(path, "w+")
+	if file then
+		file:write(json.encode(tab))
+		file:close()
+	end
+end
+
+--JSON decode helper
+function AOLA:json_decode(tab, path)
+	local file = io.open(path, "r")
+	if file then
+		for k, v in pairs(json.decode(file:read("*all")) or {}) do
+			tab[k] = v
+		end
+		file:close()
+	end
+end
+
+--Save settings function
+function AOLA:save_settings()
+	local path = self._save_path..self._save_name
+	self:json_encode(self._settings, path)
+end
+
+--Load settings function
+function AOLA:load_settings()
+	local path = self._save_path..self._save_name
+	self:json_decode(self._settings, path)
+end
+
+--Load settings
+local save_exists = io.open(AOLA._save_path..AOLA._save_name, "r")
+if save_exists ~= nil then
+	save_exists:close()
+	AOLA:load_settings()
+else
+	AOLA:save_settings()
+end
 
 --Menu hooks
 Hooks:Add("LocalizationManagerPostInit", "AOLA_hook_LocalizationManagerPostInit", function(loc)
 	loc:load_localization_file(AOLA._mod_path.."localizations/english.txt")
+end)
+
+Hooks:Add("MenuManagerInitialize", "AOLA_hook_MenuManagerInitialize", function(menu_manager)
+	MenuCallbackHandler.aola_callback_toggle = function(self, item)
+		AOLA._settings[item:name()] = item:value() == "on"
+	end
+	
+	MenuCallbackHandler.aola_callback_save = function(self, item)
+		AOLA:save_settings()
+		--Do a Steam inventory refresh, the AOLA hook will then set the new legendary attachments
+		--AOLA actually hooks to BlackMarketManager:tradable_update but that will get called after inventory load
+		if Steam:logged_on() then
+			Steam:inventory_load(callback(managers.network.account, NetworkAccountSTEAM, "_clbk_inventory_load"))
+		end
+	end
+	
+	MenuHelper:LoadFromJsonFile(AOLA._mod_path.."menu/options.txt", AOLA, AOLA._settings)
 end)
 
 --Create mod_overrides folder if it does not exist
