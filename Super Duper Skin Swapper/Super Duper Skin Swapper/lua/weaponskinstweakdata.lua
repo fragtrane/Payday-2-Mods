@@ -20,6 +20,13 @@ Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "sdss_post_BlackMarke
 			table.delete(skin.weapon_ids, "akm_gold")
 		end
 	end
+
+	--If we deep clone a Judge Anarcho blueprint and try to put a barrel extension on it, the game crashes
+	--But if we start with a default Judge, put all the Anarcho attachments on it, and then equip a barrel extension, it doesn't crash
+	--Apparently it's because the Anarcho doesn't have the the default Judge barrel in its blueprint
+	--I guess for some reason the Anarcho barrel doesn't replace the default barrel?
+	--Either way, this fixes the crash
+	table.insert(self.weapon_skins["judge_burn"].default_blueprint, "wpn_fps_pis_judge_b_standard")
 end)
 
 --New in v2.0

@@ -135,3 +135,115 @@ SDSS._gen_1_folders = {
 	--Plush Phoenix
 	new_m14_lones = "guis/dlcs/cash/safes/lones/weapon_skins/new_m14_lones"
 }
+
+--Copied from OSA v3.0: map weapon_id to skins
+--Avoid unnecessary searches in BlackMarketGui:populate_mods PostHook
+SDSS._gen_1_weapons = {
+	--Vlad's Rodina
+	ak74 = "ak74_rodina",
+	--Midas Touch
+	deagle = "deagle_bling",
+	x_deagle = "deagle_bling",--Also akimbo
+	--Dragon Lord
+	flamethrower_mk2 = "flamethrower_mk2_fire",
+	--Green Grin
+	rpg7 = "rpg7_boom",
+	--The Gimp
+	m134 = "m134_bulletstorm",
+	--Alamo Dallas
+	p90 = "p90_dallas_sallad",
+	x_p90 = "p90_dallas_sallad",--Also akimbo
+	--Big Kahuna
+	r870 = "r870_waves",
+	--Santa's Slayers
+	x_1911 = "x_1911_ginger",
+	colt_1911 = "x_1911_ginger",--Also single
+	--Don Pastrami
+	model70 = "model70_baaah",
+	--Hungry Wolf
+	par = "par_wolf",
+	--Astatoz
+	m16 = "m16_cola",
+	--Anarcho
+	judge = "judge_burn",
+	x_judge = "judge_burn",--Also akimbo
+	--Apex
+	boot = "boot_buck",
+	--Admiral
+	ksg = "ksg_same",
+	--Mars Ultor
+	tecci = "tecci_grunt",
+	--Demon
+	serbu = "serbu_lones",
+	--Plush Phoenix
+	new_m14 = "new_m14_lones"
+}
+
+--Is there a better way to do this
+--Probably not.
+SDSS._akimbo_map = {
+	--Pistols
+	--Peacemaker and 5/7 AP don't have variants.
+	{"x_rage", "new_raging_bull"},
+	{"x_chinchilla", "chinchilla"},
+	{"x_model3", "model3"},
+	{"x_2006m", "mateba"},
+	{"x_sparrow", "sparrow"},
+	{"x_b92fs", "b92fs"},
+	{"x_beer", "beer"},
+	{"x_c96", "c96"},
+	{"x_g17", "glock_17"},
+	{"jowi", "g26"},
+	{"x_g22c", "g22c"},
+	{"x_packrat", "packrat"},
+	{"x_m1911", "m1911"},
+	{"x_shrew", "shrew"},
+	{"x_1911", "colt_1911"},
+	{"x_czech", "czech"},
+	{"x_deagle", "deagle"},
+	{"x_ppk", "ppk"},
+	{"x_holt", "holt"},
+	{"x_stech", "stech"},
+	{"x_usp", "usp"},
+	{"x_hs2000", "hs2000"},
+	{"x_legacy", "legacy"},
+	{"x_breech", "breech"},
+	{"x_p226", "p226"},
+	{"x_g18c", "glock_18c"},
+	{"x_pl14", "pl14"},
+	
+	--Shotguns
+	--Only a few
+	{"x_rota", "rota"},
+	{"x_judge", "judge"},
+	{"x_basset", "basset"},
+	
+	--SMGs
+	--All
+	{"x_vityaz", "vityaz"},
+	{"x_tec9", "tec9"},
+	{"x_m1928", "m1928"},
+	{"x_mp9", "mp9"},
+	{"x_scorpion", "scorpion"},
+	{"x_mp5", "new_mp5"},
+	{"x_hajk", "hajk"},
+	{"x_sr2", "sr2"},
+	{"x_schakal", "schakal"},
+	{"x_cobray", "cobray"},
+	{"x_p90", "p90"},
+	{"x_akmsu", "akmsu"},
+	{"x_polymer", "polymer"},
+	{"x_mac10", "mac10"},
+	{"x_baka", "baka"},
+	{"x_erma", "erma"},
+	{"x_olympic", "olympic"},
+	{"x_sterling", "sterling"},
+	{"x_shepheard", "shepheard"},
+	{"x_mp7", "mp7"},
+	{"x_m45", "m45"},
+	{"x_coal", "coal"},
+	{"x_uzi", "uzi"},
+	
+	--AK.762 and AK.762 Gold
+	{"akm_gold", "akm"}
+}

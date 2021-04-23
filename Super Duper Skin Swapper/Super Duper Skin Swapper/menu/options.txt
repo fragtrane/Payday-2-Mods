@@ -7,30 +7,28 @@
 	"items" : [
 		{
 			"type" : "toggle",
-			"id" : "sdss_enabled",
-			"title" : "sdss_enabled_title",
-			"description" : "sdss_enabled_desc",
-			"callback" : "sdss_callback_toggle",
-			"value" : "sdss_enabled",
-			"default_value" : true
-		},
-		{
-			"type" : "toggle",
-			"id" : "sdss_allow_beardlib",
-			"title" : "sdss_allow_beardlib_title",
-			"description" : "sdss_allow_beardlib_desc",
-			"callback" : "sdss_callback_toggle",
-			"value" : "sdss_allow_beardlib",
-			"default_value" : true
-		},
-		{
-			"type" : "toggle",
 			"id" : "sdss_hide_unowned",
 			"title" : "sdss_hide_unowned_title",
 			"description" : "sdss_hide_unowned_desc",
 			"callback" : "sdss_callback_toggle",
 			"value" : "sdss_hide_unowned",
 			"default_value" : true
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "sdss_clean_dupes",
+			"title" : "sdss_clean_dupes_title",
+			"description" : "sdss_clean_dupes_desc",
+			"callback" : "sdss_callback_multi",
+			"items" : [
+				"sdss_clean_dupes_off",
+				"sdss_clean_dupes_bonus",
+				"sdss_clean_dupes_quality",
+				"sdss_clean_dupes_both",
+				"sdss_clean_dupes_allvars"
+			],
+			"value" : "sdss_clean_dupes",
+			"default_value" : 1
 		},
 		{
 			"type" : "toggle",
@@ -49,22 +47,6 @@
 			"callback" : "sdss_callback_toggle",
 			"value" : "sdss_remove_stats",
 			"default_value" : false
-		},
-		{
-			"type" : "multiple_choice",
-			"id" : "sdss_clean_dupes",
-			"title" : "sdss_clean_dupes_title",
-			"description" : "sdss_clean_dupes_desc",
-			"callback" : "sdss_callback_multi",
-			"items" : [
-				"sdss_clean_dupes_off",
-				"sdss_clean_dupes_bonus",
-				"sdss_clean_dupes_quality",
-				"sdss_clean_dupes_both",
-				"sdss_clean_dupes_allvars"
-			],
-			"value" : "sdss_clean_dupes",
-			"default_value" : 1
 		},
 		{
 			"type" : "divider",
@@ -132,6 +114,46 @@
 			],
 			"value" : "sdss_pattern_scale",
 			"default_value" : 1
+		},
+		{
+			"type" : "divider",
+			"size" : 16
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_preview_wear",
+			"title" : "sdss_preview_wear_title",
+			"description" : "sdss_preview_wear_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_preview_wear",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_page_number_scaling",
+			"title" : "sdss_page_number_scaling_title",
+			"description" : "sdss_page_number_scaling_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_page_number_scaling",
+			"default_value" : true
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_edit_filters",
+			"title" : "sdss_edit_filters_title",
+			"description" : "sdss_edit_filters_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_edit_filters",
+			"default_value" : false
+		},
+		{
+			"type" : "toggle",
+			"id" : "sdss_persist_filters",
+			"title" : "sdss_persist_filters_title",
+			"description" : "sdss_persist_filters_desc",
+			"callback" : "sdss_callback_toggle",
+			"value" : "sdss_persist_filters",
+			"default_value" : false
 		}
 	]
 }

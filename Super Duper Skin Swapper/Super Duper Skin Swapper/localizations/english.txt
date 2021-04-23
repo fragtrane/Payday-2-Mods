@@ -2,20 +2,8 @@
 	"sdss_options_menu_title" : "Super Duper Skin Swapper",
 	"sdss_options_menu_desc" : "Super Duper Skin Swapper mod options.",
 	
-	"sdss_enabled_title" : "Enable skin swapping",
-	"sdss_enabled_desc" : "Allow skins to be used on any weapon.",
-	
-	"sdss_allow_beardlib_title" : "Allow BeardLib custom skins",
-	"sdss_allow_beardlib_desc" : "Allow BeardLib custom skins to be used on any weapon.",
-	
 	"sdss_hide_unowned_title" : "Hide unowned skins",
 	"sdss_hide_unowned_desc" : "Hide skins that you do not own.",
-	
-	"sdss_allow_variants_title" : "Allow legendary mods on akimbo variants",
-	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge.",
-	
-	"sdss_remove_stats_title" : "Remove legendary mod stats",
-	"sdss_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment. Restart required.",
 	
 	"sdss_clean_dupes_title" : "Hide duplicate skins",
 	"sdss_clean_dupes_desc" : "Hide duplicate copies of skins and only show the ones with the best quality.",
@@ -24,6 +12,12 @@
 	"sdss_clean_dupes_quality" : "Prefer quality",
 	"sdss_clean_dupes_both" : "Best normal & stat",
 	"sdss_clean_dupes_allvars" : "All variants",
+	
+	"sdss_allow_variants_title" : "Allow legendary mods on akimbo variants",
+	"sdss_allow_variants_desc" : "Allow legendary weapon attachments to be used on Akimbo Kobus 90 and Akimbo Judge.",
+	
+	"sdss_remove_stats_title" : "Remove legendary mod stats",
+	"sdss_remove_stats_desc" : "Remove all stats from legendary weapon attachments except for concealment. Restart required.",
 	
 	"sdss_immortal_python_title" : "Default Color to Immortal Python",
 	"sdss_immortal_python_desc" : "Use Immortal Python as default weapon color (if unlocked). Restart required.",
@@ -39,6 +33,32 @@
 	"sdss_pattern_scale_title": "Default Pattern Scale",
 	"sdss_pattern_scale_desc": "Change default pattern scale for weapon colors.",
 	"sdss_pattern_scale_off": "Game Default",
+	
+	"sdss_preview_wear_title" : "Choose Wear in Previews",
+	"sdss_preview_wear_desc" : "Enable dialog menu for choosing wear when previewing weapon skins.",
+	
+	"sdss_page_number_scaling_title" : "Page Number Scaling",
+	"sdss_page_number_scaling_desc" : "Automatically scale page number step size to prevent page numbers from being cut off.",
+	
+	"sdss_edit_filters_title" : "Enable Filters (Beta)",
+	"sdss_edit_filters_desc" : "Add a filter button in the weapon customization menu to choose which skins are shown.",
+	
+	"sdss_persist_filters_title" : "Persist Filters (Beta)",
+	"sdss_persist_filters_desc" : "Keep last used filter settings after game is reloaded (e.g. after playing a heist or closing the game).",
+	
+	"sdss_dialog_title" : "Super Duper Skin Swapper",
+	
+	"sdss_dialog_filter_prompt" : "Choose a filter for which skins to show.",
+	"sdss_dialog_filter_current" : "Your current filter setting is [$current_string].",
+	"sdss_dialog_filter_beta_warning" : "Note: this option is still in beta. You will need to re-open the weapon customization menu after changing the filter settings.",
+	
+	"sdss_dialog_choose_quality" : "Which skin wear do you want to preview?",
+	"sdss_dialog_real_quality" : "Actual Wear",
+	
+	"sdss_dialog_filter_preset_all" : "All Weapons",
+	"sdss_dialog_filter_preset_cat" : "Same Category",
+	"sdss_dialog_filter_preset_var" : "Single / Akimbo Variants",
+	"sdss_dialog_filter_preset_off" : "Correct Weapon",
 	
 	"sdss_bm_req_ak74_rodina" : "Requires Vlad's Rodina legendary skin.",
 	"sdss_bm_req_deagle_bling" : "Requires Midas Touch legendary skin.",

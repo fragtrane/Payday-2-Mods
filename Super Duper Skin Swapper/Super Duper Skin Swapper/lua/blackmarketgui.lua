@@ -1,5 +1,153 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--Handle clicking filters button
+local orig_BlackMarketGuiTabItem_mouse_pressed = BlackMarketGuiTabItem.mouse_pressed
+function BlackMarketGuiTabItem:mouse_pressed(button, x, y)
+	if button == Idstring("0") and alive(self._tab_filters_button) and self._tab_filters_button:inside(x, y) then
+		for _, child in ipairs(self._tab_filters_button:children()) do
+			if child:inside(x, y) then
+				SDSS:filter_button_handler()
+				return
+			end
+		end
+	end
+	
+	return orig_BlackMarketGuiTabItem_mouse_pressed(self, button, x, y)
+end
+
+--Update to check if we are inside the filters button
+local orig_BlackMarketGuiTabItem_inside = BlackMarketGuiTabItem.inside
+function BlackMarketGuiTabItem:inside(x, y)
+	--Tempfix, also check visible
+	if alive(self._tab_filters_button) and self._tab_filters_button:visible() and self._tab_filters_button:inside(x, y) then
+		for _, child in ipairs(self._tab_filters_button:children()) do
+			if child:inside(x, y) then
+				return 1
+			end
+		end
+	end
+	
+	return orig_BlackMarketGuiTabItem_inside(self, x, y)
+end
+
+--Set filter button visibility
+Hooks:PreHook(BlackMarketGuiTabItem, "refresh", "sdss_post_BlackMarketGuiTabItem_refresh", function(self)
+	if alive(self._tab_filters_button) then
+		self._tab_filters_button:set_visible(self._selected)
+	end
+end)
+
+--Page number scaling and filter options
+Hooks:PostHook(BlackMarketGuiTabItem, "init", "sdss_post_BlackMarketGuiTabItem_init", function(self, ...)
+	--Check if we are on weapon skins page
+	if self._name == "weapon_cosmetics" then
+		--Check if there is a pages panel and scaling is enabled
+		if SDSS._settings.sdss_page_number_scaling and self._tab_pages_panel then
+			--Limit to 35 pages, otherwise do nothing
+			--Might need to lower this a bit if someone has a metric fuckton of pages
+			--But they should really just use duplicate hiding in that case
+			local max_pages = 35
+			--Check if pages panel is too long
+			--n_buttons is pages + 2 (because there is also a left arrow and right arrow button)
+			local n_buttons = self._tab_pages_panel.num_children and self._tab_pages_panel:num_children()
+			if n_buttons and n_buttons > (max_pages + 2) then
+				local n_pages = n_buttons - 2
+				--Do minus one because we always have to include page 1 so that's one less page we can use
+				local step = math.ceil(n_pages/(max_pages - 1))
+				
+				local prev_item
+				for i, child in ipairs(self._tab_pages_panel:children()) do
+					if i == 1 then
+						--Left arrow is always first item, always show
+						prev_item = child
+					elseif i == 2 then
+						--Always show page 1
+						child:set_left(prev_item:right() + 6)
+						prev_item = child
+					else
+						--Page number is i-1 because first index is the left arrow
+						local page = i - 1
+						--If not on last page
+						if page < n_pages then
+							if page % step == 0 then
+								--Only show steps
+								child:set_left(prev_item:right() + 6)
+								prev_item = child
+							else
+								--Hide. Set visible doesn't work because, it just makes it invisible but you can still click on it.
+								child:set_width(0)
+								child:set_height(0)
+							end
+						else
+							--Always include last page and right arrow
+							child:set_left(prev_item:right() + 6)
+							prev_item = child
+						end
+					end
+				end
+				self._tab_pages_panel:set_w(prev_item:right())
+				self._tab_pages_panel:set_right(self._grid_panel:right())
+			end
+		end
+		
+		--Filters button
+		if SDSS._settings.sdss_edit_filters then
+			local small_font = tweak_data.menu.pd2_small_font
+			local small_font_size = tweak_data.menu.pd2_small_font_size
+			self._tab_filters_button = self._panel:panel({
+				visible = false,--If we don't set this to false at the start, the button becomes visible again after we apply or preview a weapon mod
+				w = self._grid_panel:w(),
+				h = small_font_size
+			})
+			
+			local filters_button = self._tab_filters_button:text({
+				name = "sdss_filter_button",
+				vertical = "center",
+				align = "center",
+				text = "EDIT FILTERS",--Localize this later maybe
+				font = small_font,
+				font_size = small_font_size,
+				color = tweak_data.screen_colors.button_stage_3
+			})
+			local w, h = 80, 20
+			filters_button:set_size(w, h)
+			
+			--If pages panel, set 6 units below
+			--If no pages panel, set 2 units below weapon mods
+			local top
+			if self._tab_pages_panel then
+				top = self._tab_pages_panel:bottom() + 6
+			else
+				top = self._grid_panel:bottom() + 2
+			end
+			
+			self._tab_filters_button:set_top(top)
+			self._tab_filters_button:set_w(filters_button:right())
+			self._tab_filters_button:set_right(self._grid_panel:right())
+		end
+	end
+end)
+
+--Based on OSA hijack
+--Hijack preview and open our menu if preview is enabled
+local orig_BlackMarketGui_preview_cosmetic_on_weapon_callback = BlackMarketGui.preview_cosmetic_on_weapon_callback
+function BlackMarketGui:preview_cosmetic_on_weapon_callback(data)
+	if SDSS._settings.sdss_preview_wear then
+		--Make a callback to apply the skin
+		SDSS._state = {}
+		SDSS._state.yes_clbk = callback(self, self, "sdss_preview_cosmetic_on_weapon_callback", data)
+		--Pass all of the data so we can also override the wear
+		SDSS:weapon_wear_handler(data)
+		return
+	end
+	orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
+end
+--Do original preview function and cleanup afterwards
+function BlackMarketGui:sdss_preview_cosmetic_on_weapon_callback(data)
+	orig_BlackMarketGui_preview_cosmetic_on_weapon_callback(self, data)
+	SDSS._state = nil
+end
+
 --New in v2.1
 --Hide attachments the proper way lmao.
 Hooks:PreHook(BlackMarketGui, "populate_mods", "sdss_pre_BlackMarketGui_populate_mods", function(self, data)
@@ -59,8 +207,10 @@ end)
 --Also apply settings when previewing a weapon color
 Hooks:PreHook(BlackMarketGui, "preview_cosmetic_on_weapon_callback", "sdss_pre_BlackMarketGui_preview_cosmetic_on_weapon_callback", function(self, data)
 	if data.is_a_color_skin then
+		--Not sure why but this overwrites the preview wear option that we set in the dialog
+		--So check preview wear is off before doing this
 		local wear = SDSS:get_multi_name("sdss_color_wear")
-		if wear ~= "off" then
+		if wear ~= "off" and not SDSS._settings.sdss_preview_wear then
 			if data.is_a_color_skin then
 				data.cosmetic_quality = wear
 			end
@@ -89,16 +239,22 @@ Hooks:PostHook(BlackMarketGui, "_open_crafting_node", "sdss_post_BlackMarketGui_
 end)
 
 --Add mod icons to legendary parts
+--Copied from OSA v3.0: optimized, checks if we are looking at the right weapon first
 Hooks:PostHook(BlackMarketGui, "populate_mods", "sdss_post_BlackMarketGui_populate_mods", function(self, data)
-	local parts_tweak_data = tweak_data.weapon.factory.parts
-	for index, _ in ipairs(data) do
-		local mod_name = data[index].name
-		if mod_name and parts_tweak_data[mod_name] and parts_tweak_data[mod_name].is_legendary_part then
-			for skin, part_list in pairs(SDSS._gen_1_mods) do
-				if table.contains(part_list, mod_name) then
-					data[index].bitmap_texture = SDSS._gen_1_folders[skin]
-					break
+	if data.prev_node_data and data.prev_node_data.name then
+		--Check if we are looking at a weapon with legendary mods
+		for weapon_id, skin_id in pairs(SDSS._gen_1_weapons) do
+			if weapon_id == data.prev_node_data.name then
+				--Add icons to the legendary parts
+				local parts_tweak_data = tweak_data.weapon.factory.parts
+				for index, _ in ipairs(data) do
+					local mod_name = data[index].name
+					if mod_name and parts_tweak_data[mod_name] and parts_tweak_data[mod_name].is_legendary_part then
+						data[index].bitmap_texture = SDSS._gen_1_folders[skin_id]
+					end
 				end
+				--Already found the right weapon, break
+				break
 			end
 		end
 	end

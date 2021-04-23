@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v2.0.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.0.3.zip).
+Latest version [v2.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -66,7 +66,7 @@ Legendary attachments are only available for use when the corresponding legendar
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v2.0.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.0.3.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v2.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -89,6 +89,16 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v2.1 - 2021-04-23**
+
+- Added a page number scaling option to prevent page numbers from being cut off due to too many skins. Enabled by default.
+	- Note: if you have a ridiculous amount of duplicate skins, page numbers might still be cut off. Turn on duplicate skin hiding if this is happening to you. This works even if you own every skin in the game.
+- Added an option to preview different wears on skins. Enabled by default.
+- Added an option to filter which skins are shown. This option is still in beta and is disabled by default.
+	- Added an option to save the chosen filter settings after the game is reloaded (e.g. after playing a heist or closing the game). This option is still in beta and is disabled by default.
+- Removed the option to enable/disable skin swapping for normal skins. This is being replaced by the filter settings.
+- Removed the option to enable/disable skin swapping for BeardLib skins. This option is now always enabled.
 
 **v2.0.3 - 2021-04-11**
 

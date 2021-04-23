@@ -237,8 +237,9 @@ function BlackMarketManager:view_weapon_with_cosmetics(category, slot, cosmetics
 	local weapon = self._global.crafted_items[category][slot]
 	local blueprint = deep_clone(self._preview_blueprint.blueprint)--Keep attachments
 	
+	--Don't set _last_viewed_cosmetic_id, this way we can preview the same skin again but in a different quality.
 	if cosmetics and tweak_data.blackmarket.weapon_skins[cosmetics.id] then
-		self._last_viewed_cosmetic_id = cosmetics.id
+	--	self._last_viewed_cosmetic_id = cosmetics.id
 	end
 	
 	self:get_preview_blueprint(category, slot)
@@ -273,15 +274,71 @@ end
 --Override to allow all skins on all weapons
 local orig_BlackMarketManager_weapon_cosmetics_type_check = BlackMarketManager.weapon_cosmetics_type_check
 function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_id)
-	--SDSS override
-	if SDSS._settings.sdss_enabled then
-		local weapon_skin = tweak_data.blackmarket.weapon_skins[weapon_skin_id]
-		local found_weapon = false
-		--Allows everything except for Immortal Python (unlockable + global value tam) and colors (uses blacklist)
-		--Don't duplicate BeardLib universal skins (unlockable + universal)
-		--Other BeardLib custom skins allowed if enabled in settings
-		if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal and SDSS._settings.sdss_allow_beardlib)) and not weapon_skin.use_blacklist then
+	local weapon_skin = tweak_data.blackmarket.weapon_skins[weapon_skin_id]
+	
+	--Get actual weapon category from weapon ID. Discard revolver and akimbo.
+	local function get_weapon_cat(weapon_id)
+		if tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].categories then
+			for _, cat in pairs(tweak_data.weapon[weapon_id].categories) do
+				if cat ~= "akimbo" and cat ~= "revolver" then
+					return cat
+				end
+			end
+		end
+	end
+	
+	--Don't do anything for Immortal Python (unlockable + global value tam)
+	--Don't do anything for BeardLib universal skins (unlockable + universal)
+	--Don't do anything for colors (uses blacklist)
+	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal)) and not weapon_skin.use_blacklist then
+		--Do filter stuff
+		local filter = SDSS:get_multi_name("sdss_filter")
+		if filter == "preset_all" then
+			--Everything
 			return true
+		elseif filter == "preset_cat" then
+			--Same category
+			--Get weapon category
+			local weapon_cat = get_weapon_cat(weapon_id)
+			
+			--Get weapon_id of skin
+			local skin_weapon_id
+			if weapon_skin.weapon_id then
+				skin_weapon_id = weapon_skin.weapon_id
+			elseif weapon_skin.weapon_ids then
+				--Only used for saws, should be fine
+				skin_weapon_id = weapon_skin.weapon_ids[1]
+			end
+			
+			--If weapon category and skin weapon ID
+			if weapon_cat and skin_weapon_id then
+				--Check skin category matches weapon category
+				if weapon_cat == get_weapon_cat(skin_weapon_id) then
+					return true
+				end
+			end
+		elseif filter == "preset_var" then
+			--Single/akimbo variants only
+			if tweak_data.weapon[weapon_id].sdss_has_variant then
+				--Get weapon_id of skin
+				local skin_weapon_id
+				if weapon_skin.weapon_id then
+					skin_weapon_id = weapon_skin.weapon_id
+				elseif weapon_skin.weapon_ids then
+					--Only used for saws, should be fine
+					skin_weapon_id = weapon_skin.weapon_ids[1]
+				end
+				--Check for match in akimbo map
+				for _, map in pairs(SDSS._akimbo_map) do
+					if table.contains(map, weapon_id) and table.contains(map, skin_weapon_id) then
+						return true
+					end
+				end
+			end
+			
+		elseif filter == "preset_off" then
+			--Only right weapons
+			--Do nothing
 		end
 	end
 	
