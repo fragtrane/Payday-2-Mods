@@ -2,7 +2,7 @@
 
 **Note: Hide Duplicate Skins is NOT compatible with Super Duper Skin Swapper. Duplicate hiding is already built into Super Duper Skin Swapper.**
 
-Latest version [v1.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/Hide%20Duplicate%20Skins/Hide_Duplicate_Skins_v1.0.zip).
+Latest version [v1.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Hide%20Duplicate%20Skins/Hide_Duplicate_Skins_v1.1.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26920).
 
@@ -35,7 +35,7 @@ HDS is NOT compatible with [Super Duper Skin Swapper](https://github.com/fragtra
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Hide_Duplicate_Skins_v1.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Hide%20Duplicate%20Skins/Hide_Duplicate_Skins_v1.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Hide_Duplicate_Skins_v1.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Hide%20Duplicate%20Skins/Hide_Duplicate_Skins_v1.1.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -50,6 +50,10 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v1.1 - 2021-04-24**
+
+- Fixed a small bug that could cause crashes (thanks =THT= Communismo).
 
 **v1.0 - 2020-03-21**
 
