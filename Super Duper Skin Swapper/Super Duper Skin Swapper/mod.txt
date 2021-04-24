@@ -3,7 +3,7 @@
 	"description" : "Allows any skin to be used on any weapon. Reworked version of the original Super Skin Swapper by SAR_Boats.",
 	"author" : "fragtrane",
 	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
-	"version" : "2.1",
+	"version" : "2.1.1",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [

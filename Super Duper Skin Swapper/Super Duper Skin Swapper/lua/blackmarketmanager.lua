@@ -192,7 +192,7 @@ function BlackMarketManager:build_visible_cosmetics_list(tradable_list)
 							--Variant not available, but skin is available
 							--Set instance + wear + bonus
 							--At least one skin is available, so if it's not stat then it's norm
-							local variant_new = any_visible(instances[skin_id].stat) and "stat" or "norm"
+							local variant_new = instances[skin_id].stat and any_visible(instances[skin_id].stat) and "stat" or "norm"
 							local instance_new, index_new = choose_best_wear(instances[skin_id][variant_new], true)
 							weapon_data.cosmetics.instance_id = instance_new
 							weapon_data.cosmetics.quality = get_quality(index_new)
