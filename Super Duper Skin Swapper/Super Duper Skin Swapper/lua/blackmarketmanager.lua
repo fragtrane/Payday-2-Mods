@@ -213,7 +213,34 @@ function BlackMarketManager:get_cosmetics_instances_by_weapon_id(weapon_id)
 	for instance_id, data in pairs(self._global.inventory_tradable) do
 		if data.category == "weapon_skins" and cosmetic_tweak[data.entry] and self:weapon_cosmetics_type_check(weapon_id, data.entry) then
 			if not SDSS.show or table.contains(SDSS.show, instance_id) then
-				table.insert(items, instance_id)
+				--If quality filter disabled, we're good
+				if SDSS._settings.sdss_filter_quality == 1 then
+					table.insert(items, instance_id)
+				else
+					--Otherwise check quality
+					--Map quality to index, higher is better
+					local function get_index(quality)
+						local indexes = {
+							mint = 5,
+							fine = 4,
+							good = 3,
+							fair = 2,
+							poor = 1
+						}
+						return indexes[quality]
+					end
+					
+					local skin_quality_index = get_index(data.quality)
+					local filter_quality_index = 7 - SDSS._settings.sdss_filter_quality
+					
+					--If exact match, only return if exact match
+					--Otherwise return if equal or higher
+					if SDSS._settings.sdss_filter_quality_exact and (skin_quality_index == filter_quality_index) then
+						table.insert(items, instance_id)
+					elseif not SDSS._settings.sdss_filter_quality_exact and (skin_quality_index >= filter_quality_index) then
+						table.insert(items, instance_id)
+					end
+				end
 			end
 		end
 	end
@@ -291,9 +318,66 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 	--Don't do anything for BeardLib universal skins (unlockable + universal)
 	--Don't do anything for colors (uses blacklist)
 	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal)) and not weapon_skin.use_blacklist then
-		--Do filter stuff
-		local filter = SDSS:get_multi_name("sdss_filter")
-		if filter == "preset_all" then
+		--Safe filter
+		if SDSS._settings.sdss_filter_safe ~= "off" then
+			local allowed_skins = SDSS._safe_data[SDSS._settings.sdss_filter_safe] or {}
+			if not table.contains(allowed_skins, weapon_skin_id) then
+				return false
+			end
+		end
+		
+		--Rarity filter
+		if SDSS._settings.sdss_filter_rarity ~= 1 then
+			--Map rarity to index, higher is better
+			local function get_index(rarity)
+				local indexes = {
+					legendary = 5,
+					epic = 4,
+					rare = 3,
+					uncommon = 2,
+					common = 1
+				}
+				return indexes[rarity]
+			end
+			
+			local skin_rarity_index = get_index(weapon_skin.rarity)
+			local filter_rarity_index = 7 - SDSS._settings.sdss_filter_rarity
+			
+			if SDSS._settings.sdss_filter_rarity_exact and (skin_rarity_index ~= filter_rarity_index) then
+				return false
+			elseif not SDSS._settings.sdss_filter_rarity_exact and (skin_rarity_index < filter_rarity_index) then
+				return false
+			end
+		end
+		
+		--Get weapon ID from a weapon skin. Also checks weapon IDs list and returns parent ID if applicable.
+		local function get_skin_weapon_id(weapon_skin_data)
+			local skin_weapon_id
+			if weapon_skin_data.weapon_id then
+				--Has weapon ID, easy.
+				skin_weapon_id = weapon_skin_data.weapon_id
+			elseif weapon_skin_data.weapon_ids then
+				--If multiple weapon IDs, take first one and check if it has a parent ID.
+				skin_weapon_id = weapon_skin_data.weapon_ids[1]
+				if tweak_data.weapon[skin_weapon_id] and tweak_data.weapon[skin_weapon_id].parent_weapon_id then
+					skin_weapon_id = tweak_data.weapon[skin_weapon_id].parent_weapon_id
+				end
+			end
+			return skin_weapon_id
+		end
+		
+		--Function for checking if something is in a map e.g. akimbo or family
+		local function in_map(weapon_id, skin_weapon_id, maps)
+			for _, map in pairs(maps) do
+				if table.contains(map, weapon_id) and table.contains(map, skin_weapon_id) then
+					return true
+				end
+			end
+		end
+		
+		--Weapon filter stuff
+		local filter = SDSS:get_multi_name("sdss_filter_weapon")
+		if filter == "preset_any" then
 			--Everything
 			return true
 		elseif filter == "preset_cat" then
@@ -302,13 +386,7 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 			local weapon_cat = get_weapon_cat(weapon_id)
 			
 			--Get weapon_id of skin
-			local skin_weapon_id
-			if weapon_skin.weapon_id then
-				skin_weapon_id = weapon_skin.weapon_id
-			elseif weapon_skin.weapon_ids then
-				--Only used for saws, should be fine
-				skin_weapon_id = weapon_skin.weapon_ids[1]
-			end
+			local skin_weapon_id = get_skin_weapon_id(weapon_skin)
 			
 			--If weapon category and skin weapon ID
 			if weapon_cat and skin_weapon_id then
@@ -317,26 +395,31 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 					return true
 				end
 			end
+		elseif filter == "preset_fam" then
+			--Same family or akimbo
+			if tweak_data.weapon[weapon_id].sdss_has_variant or tweak_data.weapon[weapon_id].sdss_has_family then
+				--Get weapon_id of skin
+				local skin_weapon_id = get_skin_weapon_id(weapon_skin)
+				--Check akimbo map
+				if tweak_data.weapon[weapon_id].sdss_has_variant and in_map(weapon_id, skin_weapon_id, SDSS._akimbo_map) then
+					return true
+				end
+				--Check family map
+				if tweak_data.weapon[weapon_id].sdss_has_family and in_map(weapon_id, skin_weapon_id, SDSS._family_map) then
+					return true
+				end
+			end
 		elseif filter == "preset_var" then
 			--Single/akimbo variants only
 			if tweak_data.weapon[weapon_id].sdss_has_variant then
 				--Get weapon_id of skin
-				local skin_weapon_id
-				if weapon_skin.weapon_id then
-					skin_weapon_id = weapon_skin.weapon_id
-				elseif weapon_skin.weapon_ids then
-					--Only used for saws, should be fine
-					skin_weapon_id = weapon_skin.weapon_ids[1]
-				end
+				local skin_weapon_id = get_skin_weapon_id(weapon_skin)
 				--Check for match in akimbo map
-				for _, map in pairs(SDSS._akimbo_map) do
-					if table.contains(map, weapon_id) and table.contains(map, skin_weapon_id) then
-						return true
-					end
+				if in_map(weapon_id, skin_weapon_id, SDSS._akimbo_map) then
+					return true
 				end
 			end
-			
-		elseif filter == "preset_off" then
+		elseif filter == "preset_cor" then
 			--Only right weapons
 			--Do nothing
 		end

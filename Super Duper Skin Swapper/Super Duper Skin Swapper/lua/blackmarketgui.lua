@@ -1,12 +1,54 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--Highlighting, mostly just copied
+local orig_BlackMarketGuiTabItem_mouse_moved = BlackMarketGuiTabItem.mouse_moved
+function BlackMarketGuiTabItem:mouse_moved(x, y)
+	if alive(self._tab_filters_panel) then
+		self._tab_filters_highlighted = self._tab_filters_highlighted or {}
+		local used = false
+		local pointer = "arrow"
+		for _, child in ipairs(self._tab_filters_panel:children()) do
+			if child:inside(x, y) then
+				if not self._tab_filters_highlighted[_] then
+					self._tab_filters_highlighted[_] = true
+					child:set_color(tweak_data.screen_colors.button_stage_2)
+					managers.menu_component:post_event("highlight")
+				end
+			elseif self._tab_filters_highlighted[_] then
+				self._tab_filters_highlighted[_] = false
+				child:set_color(tweak_data.screen_colors.button_stage_3)
+			end
+		end
+	end
+	return orig_BlackMarketGuiTabItem_mouse_moved(self, x, y)
+end
+
+--Double click always previews skin
+local orig_BlackMarketGui_press_first_btn = BlackMarketGui.press_first_btn
+function BlackMarketGui:press_first_btn(button)
+	--Preview takes precendence always
+	if SDSS._settings.sdss_fast_preview and button == Idstring("0") then
+		if self._btns and self._btns.wcc_preview then
+			local btn = self._btns.wcc_preview
+			if btn:visible() and btn._data.callback then
+				managers.menu_component:post_event("menu_enter")
+				btn._data.callback(self._slot_data, self._data.topic_params)
+				return true
+			end
+		end
+	end
+	
+	return orig_BlackMarketGui_press_first_btn(self, button)
+end
+
 --Handle clicking filters button
 local orig_BlackMarketGuiTabItem_mouse_pressed = BlackMarketGuiTabItem.mouse_pressed
 function BlackMarketGuiTabItem:mouse_pressed(button, x, y)
-	if button == Idstring("0") and alive(self._tab_filters_button) and self._tab_filters_button:inside(x, y) then
-		for _, child in ipairs(self._tab_filters_button:children()) do
+	if button == Idstring("0") and alive(self._tab_filters_panel) and self._tab_filters_panel:inside(x, y) then
+		for _, child in ipairs(self._tab_filters_panel:children()) do
 			if child:inside(x, y) then
-				SDSS:filter_button_handler()
+				local child_name = child:name()
+				SDSS:generic_filter_button_handler(child_name)
 				return
 			end
 		end
@@ -19,8 +61,8 @@ end
 local orig_BlackMarketGuiTabItem_inside = BlackMarketGuiTabItem.inside
 function BlackMarketGuiTabItem:inside(x, y)
 	--Tempfix, also check visible
-	if alive(self._tab_filters_button) and self._tab_filters_button:visible() and self._tab_filters_button:inside(x, y) then
-		for _, child in ipairs(self._tab_filters_button:children()) do
+	if alive(self._tab_filters_panel) and self._tab_filters_panel:visible() and self._tab_filters_panel:inside(x, y) then
+		for _, child in ipairs(self._tab_filters_panel:children()) do
 			if child:inside(x, y) then
 				return 1
 			end
@@ -32,8 +74,8 @@ end
 
 --Set filter button visibility
 Hooks:PreHook(BlackMarketGuiTabItem, "refresh", "sdss_post_BlackMarketGuiTabItem_refresh", function(self)
-	if alive(self._tab_filters_button) then
-		self._tab_filters_button:set_visible(self._selected)
+	if alive(self._tab_filters_panel) then
+		self._tab_filters_panel:set_visible(self._selected)
 	end
 end)
 
@@ -46,7 +88,8 @@ Hooks:PostHook(BlackMarketGuiTabItem, "init", "sdss_post_BlackMarketGuiTabItem_i
 			--Limit to 35 pages, otherwise do nothing
 			--Might need to lower this a bit if someone has a metric fuckton of pages
 			--But they should really just use duplicate hiding in that case
-			local max_pages = 35
+			--2.2 use slider setting
+			local max_pages = SDSS._settings.sdss_page_buttons_max
 			--Check if pages panel is too long
 			--n_buttons is pages + 2 (because there is also a left arrow and right arrow button)
 			local n_buttons = self._tab_pages_panel.num_children and self._tab_pages_panel:num_children()
@@ -90,40 +133,57 @@ Hooks:PostHook(BlackMarketGuiTabItem, "init", "sdss_post_BlackMarketGuiTabItem_i
 			end
 		end
 		
-		--Filters button
-		if SDSS._settings.sdss_edit_filters then
+		--Filter buttons
+		if SDSS._settings.sdss_enable_filters then
 			local small_font = tweak_data.menu.pd2_small_font
 			local small_font_size = tweak_data.menu.pd2_small_font_size
-			self._tab_filters_button = self._panel:panel({
+			--Make Panel
+			self._tab_filters_panel = self._panel:panel({
 				visible = false,--If we don't set this to false at the start, the button becomes visible again after we apply or preview a weapon mod
 				w = self._grid_panel:w(),
 				h = small_font_size
 			})
 			
-			local filters_button = self._tab_filters_button:text({
-				name = "sdss_filter_button",
-				vertical = "center",
-				align = "center",
-				text = "EDIT FILTERS",--Localize this later maybe
-				font = small_font,
-				font_size = small_font_size,
-				color = tweak_data.screen_colors.button_stage_3
-			})
-			local w, h = 80, 20
-			filters_button:set_size(w, h)
+			--Button Testing
+			local prev_button
+			local button_list = {
+				"sdss_filter_button_reset",
+				"sdss_filter_button_unowned",
+				"sdss_filter_button_safe",
+				"sdss_filter_button_rarity",
+				"sdss_filter_button_quality",
+				"sdss_filter_button_weapon"
+			}
+			for _, button_name in ipairs(button_list) do
+				local button = self._tab_filters_panel:text({
+					name = button_name,
+					vertical = "center",
+					align = "center",
+					text = managers.localization:text(button_name),
+					font = small_font,
+					font_size = small_font_size,
+					color = tweak_data.screen_colors.button_stage_3
+				})
+				local _, _, tw, th = button:text_rect()
+				button:set_size(tw, th)
+				if prev_button then
+					button:set_left(prev_button:right() + 15)
+				end
+				prev_button = button
+			end
 			
-			--If pages panel, set 6 units below
+			--If pages panel, set 2 units below
 			--If no pages panel, set 2 units below weapon mods
 			local top
 			if self._tab_pages_panel then
-				top = self._tab_pages_panel:bottom() + 6
+				top = self._tab_pages_panel:bottom() + 2
 			else
 				top = self._grid_panel:bottom() + 2
 			end
 			
-			self._tab_filters_button:set_top(top)
-			self._tab_filters_button:set_w(filters_button:right())
-			self._tab_filters_button:set_right(self._grid_panel:right())
+			self._tab_filters_panel:set_top(top)
+			self._tab_filters_panel:set_w(prev_button:right())
+			self._tab_filters_panel:set_right(self._grid_panel:right())
 		end
 	end
 end)
