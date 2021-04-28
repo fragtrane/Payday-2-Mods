@@ -132,7 +132,7 @@ Hooks:PostHook(StoryMissionsGui, "_update_info", "rsl_post_StoryMissionsGui__upd
 										managers.story:start_mission(mission, objective.progress_id)
 									end)
 									
-									btn:set_left(child:right() + 5)
+									btn:set_left(child:right() + 10)
 									btn:set_center_y(child:center_y())
 									table.insert(self._level_btns, btn)
 									self:_change_legend("start_mission", true)
