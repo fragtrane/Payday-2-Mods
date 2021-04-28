@@ -1,326 +1,187 @@
-require("lib/managers/menu/ExtendedUiElemets")
-
-local padding = 10
-local massive_font = tweak_data.menu.pd2_massive_font
-local large_font = tweak_data.menu.pd2_large_font
-local medium_font = tweak_data.menu.pd2_medium_font
-local small_font = tweak_data.menu.pd2_small_font
-local massive_font_size = tweak_data.menu.pd2_massive_font_size
-local large_font_size = tweak_data.menu.pd2_large_font_size
-local medium_font_size = tweak_data.menu.pd2_medium_font_size
-local small_font_size = tweak_data.menu.pd2_small_font_size
-local done_icon = "guis/textures/menu_singletick"
-local reward_icon = "guis/textures/pd2/icon_reward"
-local active_mission_icon = "guis/textures/scrollarrow"
-
---One line changed to allow story line missions to be replayed. Also fixed the Start Level button for The Basics in Crime.net Offline.
-function StoryMissionsGui:_update_info(mission)
-	self._info_scroll:clear()
-	self:_change_legend("select", false)
-	self:_change_legend("start_mission", false)
-
-	self._select_btn = nil
-	self._level_btns = {}
-	self._selected_level_btn = nil
-
-	if self._voice then
-		managers.briefing:stop_event()
-		self._voice.panel:remove_self()
-
-		self._voice = nil
-	end
-
+Hooks:PostHook(StoryMissionsGui, "_update_info", "rsl_post_StoryMissionsGui__update_info", function(self, mission)
+	--Do checks
 	mission = mission or managers.story:current_mission()
-
 	if not mission then
+		--log("No Mission")
 		return
 	end
-
-	local canvas = self._info_scroll:canvas()
-	local placer = canvas:placer()
-	local text_col = tweak_data.screen_colors.text
-
 	if mission.completed and mission.rewarded and mission.last_mission then
-		placer:add_row(canvas:fine_text({
-			text_id = "menu_sm_all_done",
-			font = medium_font,
-			font_size = medium_font_size
-		}))
-
+		--log("Last Mission")
 		return
 	end
-
-	placer:add_row(canvas:fine_text({
-		text = managers.localization:to_upper_text(mission.name_id),
-		font = medium_font,
-		font_size = medium_font_size,
-		color = text_col
-	}))
-	placer:add_row(canvas:fine_text({
-		wrap = true,
-		word_wrap = true,
-		text = managers.localization:text(mission.desc_id),
-		font = small_font,
-		font_size = small_font_size,
-		color = text_col
-	}))
-
-	if mission.voice_line then
-		self._voice = {}
-		local h = small_font_size * 2 + 20
-		local pad = 8
-		self._voice.panel = ExtendedPanel:new(self, {
-			w = 256,
-			input = true,
-			h = h
-		})
-
-		BoxGuiObject:new(self._voice.panel, {
-			sides = {
-				1,
-				1,
-				1,
-				1
-			}
-		})
-
-		self._voice.text = self._voice.panel:text({
-			x = pad,
-			y = pad,
-			font = small_font,
-			font_size = small_font_size,
-			color = text_col,
-			text = managers.localization:to_upper_text("menu_cn_message_playing")
-		})
-		self._voice.button = TextButton:new(self._voice.panel, {
-			binding = "menu_toggle_voice_message",
-			x = pad,
-			font = small_font,
-			font_size = small_font_size,
-			text = managers.localization:to_upper_text("menu_stop_sound", {
-				BTN_X = managers.localization:btn_macro("menu_toggle_voice_message")
-			})
-		}, callback(self, self, "toggle_voice_message", mission.voice_line))
-
-		self._voice.button:set_bottom(self._voice.panel:h() - pad)
-		self._voice.panel:set_world_right(self._info_scroll:world_right())
-		self:toggle_voice_message(mission.voice_line)
+	if mission.hide_progress then
+		--log("Hide Progess")
+		return
 	end
-
-	placer:add_row(canvas:fine_text({
-		text = managers.localization:to_upper_text("menu_challenge_objective_title"),
-		font = small_font,
-		font_size = small_font_size,
-		color = tweak_data.screen_colors.challenge_title
-	}))
-	placer:add_row(canvas:fine_text({
-		wrap = true,
-		word_wrap = true,
-		text = managers.localization:text(mission.objective_id),
-		font = small_font,
-		font_size = small_font_size,
-		color = text_col
-	}), nil, 0)
-
-	local locked = false
-
-	if not mission.hide_progress then
-		placer:add_row(canvas:fine_text({
-			text = managers.localization:to_upper_text("menu_unlock_progress"),
-			font = small_font,
-			font_size = small_font_size,
-			color = tweak_data.screen_colors.challenge_title
-		}))
-
-		local num_objective_groups = #mission.objectives
-		local obj_padd_x = num_objective_groups > 1 and 15 or nil
-
-		for i, objective_row in ipairs(mission.objectives) do
+	
+	--Check if there are levels that we need to add buttons for
+	local has_levels = false
+	for i, objective_row in ipairs(mission.objectives) do
+		for _, objective in ipairs(objective_row) do
+			--Has levels and level completed
+			if objective.levels and objective.completed then
+				has_levels = true
+				break
+			end
+			--If mission is completed but level is not, buttons still don't show up anymore so we also need to handle it
+			if objective.levels and mission.completed then
+				has_levels = true
+				break
+			end
+			--Basics always need to be handled to fix the offline bug
+			if objective.basic then
+				has_levels = true
+				break
+			end
+		end
+		--Break outside loop
+		if has_levels then
+			break
+		end
+	end
+	if not has_levels then
+		--log("Nothing to do")
+		return
+	end
+	
+	--log("Doing stuff")
+	
+	--So the panel we need to loop over is self._info_scroll._panel:children()[1]:children()[1]:children()
+	--Maybe do it like this to be safe? idk
+	
+	--Get first child
+	local check_me
+	if self._info_scroll._panel.children and #self._info_scroll._panel:children() > 0 then
+		check_me = self._info_scroll._panel:children()[1]
+	else
+		check_me = nil
+	end
+	
+	--Get second child
+	if check_me and check_me.children and #check_me:children() > 0 then
+		check_me = check_me:children()[1]
+	else
+		check_me = nil
+	end
+	
+	--Add buttons
+	if check_me and check_me.children then
+		local canvas = self._info_scroll:canvas()
+		local small_font = tweak_data.menu.pd2_small_font
+		local small_font_size = tweak_data.menu.pd2_small_font_size
+		
+		--Loop over missions
+		for _, objective_row in ipairs(mission.objectives) do
 			for _, objective in ipairs(objective_row) do
-				local text = placer:add_row(canvas:fine_text({
-					wrap = true,
-					word_wrap = true,
-					text = managers.localization:text(objective.name_id),
-					font = small_font,
-					font_size = small_font_size,
-					color = text_col
-				}), obj_padd_x, 0)
-
---				if not mission.completed and not objective.completed and objective.levels and (not objective.basic or not Network:is_server()) and not Network:is_client() then
-				if objective.levels and (not objective.basic or not Network:is_server() or Global.game_settings.single_player) and not Network:is_client() then
-					if objective.dlc and not managers.dlc:is_dlc_unlocked(objective.dlc) and not Global.game_settings.single_player then
-						placer:add_right(canvas:fine_text({
-							text = managers.localization:to_upper_text("menu_ultimate_edition_short"),
-							font = small_font,
-							font_size = small_font_size,
-							color = tweak_data.screen_colors.dlc_color
-						}), 5)
-						placer:add_right(canvas:fine_text({
-							text_id = "menu_sm_dlc_locked",
-							font = small_font,
-							font_size = small_font_size,
-							color = tweak_data.screen_colors.important_1
-						}), 5)
-
-						locked = true
-					else
-						local btn = TextButton:new(canvas, {
-							text_id = "menu_sm_start_level",
-							font = small_font,
-							font_size = small_font_size
-						}, function ()
-							managers.story:start_mission(mission, objective.progress_id)
-						end)
-
-						placer:add_right(btn, 10)
-						table.insert(self._level_btns, btn)
-						self:_change_legend("start_mission", true)
-
-						if not self._selected_level_btn then
-							self._selected_level_btn = btn
-
-							if not managers.menu:is_pc_controller() then
-								btn:_hover_changed(true)
+				--Check levels
+				if objective.levels then
+					local mission_name = managers.localization:text(objective.name_id):lower()
+					
+					--Loop over children of second child
+					for _, child in ipairs(check_me:children()) do
+						if child.text and tostring(type(child.text)) == "function" then
+							--Do tostring, otherwise it crashes. Convert to lower just to be safe.
+							local i_could_be_a_mission = tostring(child:text()):lower()
+							if i_could_be_a_mission == mission_name then
+								--log("Found: " .. mission_name)
+								
+								--Check what needs to be added
+								local add_button = false
+								local add_ue = false
+								local add_unavailable = false
+								
+								if not objective.basic then
+									--Need to add buttons if mission or objective completed
+									if mission.completed or objective.completed then
+										--IF DLC locked and not single player, can't play
+										--So normally this is also supposed to add a "no DLC" warning message below the missions "menu_sm_dlc_locked_help_text".
+										--But after you completed the mission, it's not displayed anymore.
+										--Even though RSL adds the Start Mission button back, it doesn't bring back the DLC warning.
+										--But really who cares. Trying to bring it back is going to be a huge pain in the ass since theres all this stuff below that needs to be moved.
+										if objective.dlc and not managers.dlc:is_dlc_unlocked(objective.dlc) and not Global.game_settings.single_player then
+											add_ue = true
+											add_unavailable = true
+										else
+											--Not DLC or single player, we good.
+											add_button = true
+										end
+									end
+								else
+									--Handle basics fixes
+									--In original function, basics don't work in Crime.net Offline because Network:is_server() returns true
+									local can_play_basics = not Network:is_server() or Global.game_settings.single_player
+									if can_play_basics then
+										--Only need to add if mission completed, or objective completed, or single player fix
+										if mission.completed or objective.completed or Global.game_settings.single_player then
+											add_button = true
+										end
+									else
+										--Can't play, add unavailable tag to basics.
+										--Basics isn't DLC so normally it never gets tagged. Since it's not DLC, we can also skip the UE tag.
+										add_unavailable = true
+									end
+								end
+								
+								--Add button
+								if add_button then
+									local btn = TextButton:new(canvas, {
+										text_id = "menu_sm_start_level",
+										font = small_font,
+										font_size = small_font_size
+									}, function ()
+										managers.story:start_mission(mission, objective.progress_id)
+									end)
+									
+									btn:set_left(child:right() + 5)
+									btn:set_center_y(child:center_y())
+									table.insert(self._level_btns, btn)
+									self:_change_legend("start_mission", true)
+									
+									if not self._selected_level_btn then
+										self._selected_level_btn = btn
+										if not managers.menu:is_pc_controller() then
+											btn:_hover_changed(true)
+										end
+									end
+								else
+									--Add UE / unavailable text
+									local ue_text
+									if add_ue then
+										ue_text = canvas:fine_text({
+											text = managers.localization:to_upper_text("menu_ultimate_edition_short"),
+											font = small_font,
+											font_size = small_font_size,
+											color = tweak_data.screen_colors.dlc_color
+										})
+										ue_text:set_left(child:right() + 5)
+										ue_text:set_center_y(child:center_y())
+									end
+									
+									if add_unavailable then
+										local dlc_text = canvas:fine_text({
+											text_id = "menu_sm_dlc_locked",
+											font = small_font,
+											font_size = small_font_size,
+											color = tweak_data.screen_colors.important_1
+										})
+										if ue_text then
+											dlc_text:set_left(ue_text:right() + 5)
+										else
+											dlc_text:set_left(child:right() + 5)
+										end
+										dlc_text:set_center_y(child:center_y())
+									end
+									
+								end
+								
+								--Stop searching children if we found the mission already
+								break
 							end
 						end
 					end
 				end
-
-				if objective.max_progress > 1 then
-					local progress = placer:add_row(TextProgressBar:new(canvas, {
-						h = small_font_size + 2,
-						max = objective.max_progress,
-						back_color = Color(0, 0, 0, 0),
-						progress_color = tweak_data.screen_colors.challenge_completed_color:with_alpha(0.4)
-					}, {
-						font = small_font,
-						font_size = small_font_size,
-						color = text_col
-					}, objective.progress), nil, 0)
-					slot20 = BoxGuiObject:new(progress, {
-						sides = {
-							1,
-							1,
-							1,
-							1
-						}
-					})
-				else
-					local texture = "guis/textures/menu_tickbox"
-					local texture_rect = {
-						objective.completed and 24 or 0,
-						0,
-						24,
-						24
-					}
-					local checkbox = canvas:bitmap({
-						texture = texture,
-						texture_rect = texture_rect
-					})
-
-					checkbox:set_right(canvas:w())
-					checkbox:set_top(text:top())
-				end
-			end
-
-			if i < num_objective_groups then
-				placer:add_row(canvas:fine_text({
-					text_id = "menu_sm_objectives_or",
-					font = small_font,
-					font_size = small_font_size,
-					color = tweak_data.screen_colors.challenge_title
-				}), nil, 0)
 			end
 		end
 	end
-
-	if locked then
-		placer:add_row(canvas:fine_text({
-			wrap = true,
-			text_id = "menu_sm_dlc_locked_help_text",
-			word_wrap = true,
-			font = small_font,
-			font_size = small_font_size,
-			color = text_col
-		}), nil, nil)
-	end
-
-	if mission.reward_id then
-		local title = placer:add_row(canvas:fine_text({
-			text = managers.localization:to_upper_text("menu_reward"),
-			font = small_font,
-			font_size = small_font_size,
-			color = tweak_data.screen_colors.challenge_title
-		}))
-		local r_panel = GrowPanel:new(canvas, {
-			input = true
-		})
-		local r_placer = r_panel:placer()
-
-		for i, reward in ipairs(mission.rewards) do
-			local item = StoryMissionGuiRewardItem:new(r_panel, reward)
-
-			if r_placer:current_right() + item:w() < canvas:w() * 0.5 then
-				r_placer:add_right(item)
-			else
-				r_placer:add_row(item)
-			end
-		end
-
-		BoxGuiObject:new(r_panel, {
-			sides = {
-				1,
-				1,
-				1,
-				1
-			}
-		})
-		placer:add_row(r_panel, nil, 0)
-		r_panel:set_right(canvas:w())
-
-		local reward_text = canvas:fine_text({
-			wrap = true,
-			word_wrap = true,
-			text_id = mission.reward_id,
-			font = small_font,
-			font_size = small_font_size,
-			keep_w = r_panel:left() - title:left()
-		})
-
-		reward_text:set_lefttop(title:left(), r_panel:top())
-		placer:set_at_from(reward_text)
-	end
-
-	if mission.completed and not mission.rewarded then
-		local item = placer:add_row(TextButton:new(canvas, {
-			text_id = mission.last_mission and "menu_sm_claim_rewards" or "menu_sm_claim_rewards_goto_next",
-			font = medium_font,
-			font_size = medium_font_size
-		}, function ()
-			managers.story:claim_rewards(mission)
-			managers.menu_component:post_event("menu_skill_investment")
-
-			local dialog_data = {
-				title = managers.localization:text("menu_sm_claim_rewards"),
-				text = managers.localization:text(mission.reward_id)
-			}
-			local ok_button = {
-				text = managers.localization:text("dialog_ok"),
-				callback_func = function ()
-					self:_update()
-				end
-			}
-			dialog_data.button_list = {
-				ok_button
-			}
-
-			managers.system_menu:show(dialog_data)
-		end))
-
-		item:set_right(canvas:w())
-
-		self._select_btn = item
-
-		self:_change_legend("select", true)
-	end
-end
+	--log("End Reached")
+end)

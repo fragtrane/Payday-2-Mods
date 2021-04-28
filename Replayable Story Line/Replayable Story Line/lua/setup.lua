@@ -12,7 +12,7 @@ Hooks:Add("LocalizationManagerPostInit", "rsl_hook_LocalizationManagerPostInit",
 	loc:load_localization_file(RSL._mod_path.."localizations/english.txt")
 end)
 
-Hooks:Add("MenuManagerInitialize", "rsl_hook_MenuManagerInitialize", function(menu_manager)	
+Hooks:Add("MenuManagerInitialize", "rsl_hook_MenuManagerInitialize", function(menu_manager)
 	MenuCallbackHandler.rsl_callback_button = function(self, item)
 		if item:name() == "rsl_reset_story" then
 			RSL:reset_story_button()
@@ -29,7 +29,7 @@ function RSL:reset_story_button()
 	local menu_options = {
 		[1] = {
 			text = managers.localization:text("dialog_yes"),
-			callback = callback(self, self, "reset_story_button_callback")--RSL.reset_story_callback
+			callback = callback(self, self, "reset_story_button_callback")
 		},
 		[2] = {
 			text = managers.localization:text("dialog_no"),

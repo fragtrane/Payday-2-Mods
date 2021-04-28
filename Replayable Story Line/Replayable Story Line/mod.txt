@@ -2,8 +2,8 @@
 	"name" : "Replayable Story Line",
 	"description" : "Allows story line missions to be replayed.",
 	"author" : "fragtrane",
-	"contact" : "GitHub: github.com/fragtrane, Steam Group: steamcommunity.com/groups/frag_pd2, Reddit: /u/fragtrane",
-	"version" : "1.0",
+	"contact" : "GitHub: github.com/fragtrane, Steam: id/fragtrane, Reddit: /u/fragtrane",
+	"version" : "2.0",
 	"priority" : 0,
 	"blt_version" : 2,
 	"hooks" : [
