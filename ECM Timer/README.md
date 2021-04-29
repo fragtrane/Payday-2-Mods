@@ -1,6 +1,6 @@
 # ECM Timer
 
-Latest version [v2.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/ECM%20Timer/ECM_Timer_v2.0.zip).
+Latest version [v3.0](https://github.com/fragtrane/Payday-2-Mods/raw/master/ECM%20Timer/ECM_Timer_v3.0.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25509).
 
@@ -12,16 +12,15 @@ Key features and options:
 
 ## Known Issues
 
-- When an ECM is despawned (and thus is no longer active), the ECM timer still continues counting down normally.
-- When the police assault banner is active, the hostage panel is moved down and obscures the ECM timer.
+When an ECM is despawned (and thus is no longer active), the ECM timer still continues counting down. Due to the low likelihood of this occurring during typical gameplay and the fact that this issue isn't game-breaking, there are no plans to change it at this time.
 
-Due to the low likelihood of these occurrences during typical gameplay and the fact that these issues are not game-breaking, there are no plans to fix them at this time.
+When joining a game while an ECM is already active, the ECM timer will not be shown (but any new ECMs placed after joining will work fine). This cannot be fixed because the game does not sync the remaining ECM time to clients who drop in.
 
 ## Installation [BLT]
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`ECM_Timer_v2.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/ECM%20Timer/ECM_Timer_v2.0.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`ECM_Timer_v3.0.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/ECM%20Timer/ECM_Timer_v3.0.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -31,19 +30,7 @@ C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 
 ## Acknowledgments
 
-This mod is based on LazyOzzy's ECM duration timer which can be found here [here](https://www.unknowncheats.me/forum/payday-2-a/122868-ecm-duration-timer.html).
-
-The code used for calculating the remaining ECM time was written by me.
-
-The code used for displaying the time on the HUD was written by LazyOzzy (`hudmanagerpd2.lua`). I have made a few adjustments to the icon and counter.
-
-Modified version:
-
-<a href="https://i.imgur.com/B07Y85A.jpg"><img src="https://i.imgur.com/B07Y85A.jpg" alt="Modified ECM timer" height="180"></a>
-
-LazyOzzy's original version:
-
-<a href="https://i.imgur.com/O3twITA.jpg"><img src="https://i.imgur.com/O3twITA.jpg" alt="LazyOzzy's ECM timer" height="180"></a>
+This mod has been adapted from LazyOzzy's ECM duration timer which can be found [here](https://www.unknowncheats.me/forum/payday-2-a/122868-ecm-duration-timer.html).
 
 ## Contact
 
@@ -52,6 +39,11 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v3.0 - 2021-04-29**
+
+- Timer position will now move with the police assault banner.
+- Reworked code.
 
 **v2.0 - 2020-01-07**
 
