@@ -1,31 +1,57 @@
 dofile(ModPath .. "lua/setup.lua")
 
---Only show difficulty settings and nothing else in offline filters
-local orig_MenuCrimeNetFiltersInitiator_update_node = MenuCrimeNetFiltersInitiator.update_node
-function MenuCrimeNetFiltersInitiator:update_node(node)
-	--Set all visible first
-	for _, item in ipairs(node:items() or {}) do
-		item:set_visible(true)
-	end
-	--Original
-	orig_MenuCrimeNetFiltersInitiator_update_node(self, node)
-	--If single player, only show difficulty filter
-	if Global.game_settings.single_player then
+--Fix offline filter options
+--Only show difficulty settings, hide some some useless stuff
+Hooks:PostHook(MenuCrimeNetFiltersInitiator, "update_node", "IOF_post_MenuCrimeNetFiltersInitiator_update_node", function(self, node)
+	if Global.game_settings.single_player and IOF._settings.iof_filters then
+		--Universal options that should be always shown in MP but not in SP
+		local hide_sp = {
+			"divider_gamemode",--Divider between the gamemode selector and the toggles
+			"divider_2",--Divider between the toggles and the multiselectors
+			"server_filter",--Distance filter
+			"beardlib_custom_maps_only"--BeardLib custom maps only (not in vanilla)
+		}
 		for _, item in ipairs(node:items() or {}) do
-			local allow = {
-				"divider_lobby_filters",
-				"divider_1",
-				"difficulty_filter",
-				"divider_end",
-				"apply"
-			}
-			if table.contains(allow, item:parameters().name) then
-				item:set_visible(true)
-			else
-				item:set_visible(false)
+			log(item:name())
+			
+			--Show difficulty filter when searching for standard game modes or when in single player
+			if item:name() == "difficulty_filter" then
+				item.visible = function()
+					return self:is_standard() or Global.game_settings.single_player
+				end
+			end
+			
+			--Enable gamemode filter (debugging only, useless in SP)
+			--[[if item:name() == "gamemode_filter" then
+				item.visible = function()
+					return true
+				end
+			end]]
+			
+			--Hide stuff from universal list
+			if table.contains(hide_sp, item:name()) then
+				item.visible = function()
+					return not Global.game_settings.single_player
+				end
+			end
+			
+			--Hide that extra divider that shows up underneath the Crime Spree/Holdout options
+			if item:name() == "divider_crime_spree" then
+				item.visible = function()
+					return not self:is_standard() and not Global.game_settings.single_player
+				end
 			end
 		end
 	end
+end)
+
+--Load filters settings when a single player game is started
+local orig_MenuCallbackHandler_play_single_player = MenuCallbackHandler.play_single_player
+function MenuCallbackHandler:play_single_player()
+	if IOF._settings.iof_filters and managers.network.matchmake and managers.network.matchmake.load_user_filters then
+		managers.network.matchmake:load_user_filters()
+	end
+	orig_MenuCallbackHandler_play_single_player(self)
 end
 
 --Enable chat, based on Seven/Unknown Knight's Simulate Online mod
@@ -47,24 +73,4 @@ function MenuManager:toggle_chatinput()
 	end
 	
 	return
-end
-
---Multiplayer check used to set filter item visibility, return true so that the filters are visible.
---This check is also used in some other places as well as in MenuComponentManager which need to be fixed.
---If someone finds a better solution for making filters visible, feel free to let me know.
-function MenuCallbackHandler:is_multiplayer()
-	--Only override in menus
-	if not game_state_machine or game_state_machine:current_state_name() == "menu_main" then
-		return true
-	end
-	return not Global.game_settings.single_player
-end
-
---Load filters settings when a single player game is started
-local orig_MenuCallbackHandler_play_single_player = MenuCallbackHandler.play_single_player
-function MenuCallbackHandler:play_single_player()
-	if IOF._settings.iof_filters and managers.network.matchmake and managers.network.matchmake.load_user_filters then
-		managers.network.matchmake:load_user_filters()
-	end
-	orig_MenuCallbackHandler_play_single_player(self)
 end

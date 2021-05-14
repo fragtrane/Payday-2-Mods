@@ -20,26 +20,6 @@ function MenuComponentManager:_create_chat_gui()
 	end
 end
 
---Fix other functions that use MenuCallbackHandler:is_multiplayer
---Chat in lobby (Crime Spree offline)
-local orig_MenuComponentManager__create_lobby_chat_gui = MenuComponentManager._create_lobby_chat_gui
-function MenuComponentManager:_create_lobby_chat_gui()
-	if Global.game_settings.single_player and not IOF._settings.iof_chat then
-		return
-	end
-	orig_MenuComponentManager__create_lobby_chat_gui(self)
-end
-
---Fix other functions that use MenuCallbackHandler:is_multiplayer
---When opening Crime.net from lobby (currently not possible in single player but why not)
-local orig_MenuComponentManager__create_crimenet_chats_gui = MenuComponentManager._create_crimenet_chats_gui
-function MenuComponentManager:_create_crimenet_chats_gui()
-	if Global.game_settings.single_player and not IOF._settings.iof_chat then
-		return
-	end
-	orig_MenuComponentManager__create_crimenet_chats_gui(self)
-end
-
 --Chat during preplanning
 --Only changed check
 function MenuComponentManager:_create_preplanning_chats_gui()
@@ -59,3 +39,12 @@ function MenuComponentManager:_create_preplanning_chats_gui()
 		self._saved_game_chat_params = nil
 	end
 end
+
+--Chat in lobby. Only applies to Crime Spree offline since you can't make lobbies offline. Why would you even want to do this.
+--function MenuComponentManager:_create_lobby_chat_gui()
+
+--Chat in Crime.net when opened from a lobby. Offline lobbies not possible so you can't do this anyways.
+--function MenuComponentManager:_create_crimenet_chats_gui()
+
+--Chat in inventory when opened from a lobby. Offline lobbies not possible so you can't do this anyways.
+--function MenuComponentManager:_create_inventory_chats_gui(node)

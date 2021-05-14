@@ -12,6 +12,7 @@ end
 
 --Heavy Metal achievement (Monkey Wrench)
 --Not needed anymore since AchievmentManager:get_info() takes care of it
+--Also the function doesn't seem to be used anymore.
 --[[local orig_BlackMarketManager_has_unlocked_shock = BlackMarketManager.has_unlocked_shock
 function BlackMarketManager:has_unlocked_shock()
 	if not Steam:logged_on() and IOF._settings.iof_community then
