@@ -148,6 +148,17 @@ function OSA:get_multi_name(multi_id)
 	end
 end
 
+--Tempfix for setting default weapon color. Call this when opening the weapon customization menu.
+--Old solution was to set it when achievements were loaded but apparently that only happens once, so the default color goes back after you play a heist/reload.
+function OSA:set_default_weapon_color()
+	if self._settings.osa_immortal_python then
+		local data = managers.achievment:get_milestone("ami_13")
+		if data and data.awarded then
+			tweak_data.blackmarket.weapon_color_default = "color_immortal_python"
+		end
+	end
+end
+
 --Shortcut for single-option menu
 function OSA:ok_menu(title, desc, callback, localize)
 	local menu_title = not localize and title or managers.localization:text(title)

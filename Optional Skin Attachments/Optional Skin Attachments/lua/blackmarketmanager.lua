@@ -7,12 +7,12 @@ function BlackMarketManager:get_weapon_icon_path(weapon_id, cosmetics)
 	local id = cosmetics and cosmetics.id
 	if id then
 		local weapon_skin = tweak_data.blackmarket.weapon_skins[id]
-		if weapon_skin then
+		if weapon_skin and not weapon_skin.is_a_color_skin then
 			--Fix mistake in dump
 			--Check if right weapon
 			local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
 			--Wrong weapon, not color skin. Put default icon over rarity.
-			if not found_weapon and not weapon_skin.is_a_color_skin then
+			if not found_weapon then
 				local rarity = weapon_skin.rarity or "common"
 				local rarity_path = tweak_data.economy.rarities[rarity] and tweak_data.economy.rarities[rarity].bg_texture
 				--local texture_path = self:get_weapon_icon_path(weapon_id, nil)

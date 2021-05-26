@@ -1,5 +1,10 @@
 dofile(ModPath .. "lua/setup.lua")
 
+--Tempfix, set default weapon color after opening weapon modification menu
+Hooks:PostHook(BlackMarketGui, "_open_crafting_node", "osa_post_BlackMarketGui__open_crafting_node", function()
+	OSA:set_default_weapon_color()
+end)
+
 --Hide attachments the proper way lmao
 Hooks:PreHook(BlackMarketGui, "populate_mods", "osa_pre_BlackMarketGui_populate_mods", function(self, data)
 	--Hide Anarcho Barrel on Akimbo
