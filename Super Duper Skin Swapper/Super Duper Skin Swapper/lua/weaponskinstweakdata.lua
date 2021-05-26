@@ -13,12 +13,6 @@ Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "sdss_post_BlackMarke
 		if skin.rarity ~= "legendary" then
 			skin.desc_id = nil
 		end
-		
-		--Don't blacklist Golden AK.762 from weapon colors
-		--Better not delete delete the whole blacklist since who knows what happens in the future
-		if skin.use_blacklist and skin.weapon_ids and table.contains(skin.weapon_ids, "akm_gold") then
-			table.delete(skin.weapon_ids, "akm_gold")
-		end
 	end
 
 	--If we deep clone a Judge Anarcho blueprint and try to put a barrel extension on it, the game crashes

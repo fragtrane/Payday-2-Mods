@@ -3,6 +3,9 @@ dofile(ModPath .. "lua/setup.lua")
 --Refresh icons after opening weapon modification menu
 --0.1 too fast sometimes, better 0.25 to be safe
 Hooks:PostHook(PlayerInventoryGui, "_open_crafting_node", "sdss_post_PlayerInventoryGui__open_crafting_node", function()
+	--Tempfix, set default weapon color here
+	SDSS:set_default_weapon_color()
+	
 	DelayedCalls:Add("sdss_icon_refresh_2", 0.25, function()
 		--Don't reload if not in crafting anymore
 		if managers.menu_scene and managers.menu_scene:get_current_scene_template() == "blackmarket_crafting" then

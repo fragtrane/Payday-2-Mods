@@ -289,6 +289,9 @@ end)
 --Refresh icons after opening weapon modification menu
 --0.1 too fast sometimes, better 0.25 to be safe
 Hooks:PostHook(BlackMarketGui, "_open_crafting_node", "sdss_post_BlackMarketGui__open_crafting_node", function()
+	--Tempfix, set default weapon color here
+	SDSS:set_default_weapon_color()
+	
 	DelayedCalls:Add("sdss_icon_refresh_1", 0.25, function()
 		--Don't reload if not in crafting anymore
 		if managers.menu_scene and managers.menu_scene:get_current_scene_template() == "blackmarket_crafting" then
@@ -359,38 +362,33 @@ Hooks:PostHook(BlackMarketGui, "populate_weapon_category_new", "sdss_post_BlackM
 			local weapon_id = crafted.weapon_id
 			local id = crafted.cosmetics.id
 			local weapon_skin = tweak_data.blackmarket.weapon_skins[id]
-			if weapon_skin then
-				--Check that it's not a BeardLib universal skin
-				if not weapon_skin.universal then
-					--SDSS
-					local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
-					if weapon_skin.use_blacklist then
-						found_weapon = not found_weapon
+			--BeardLib universals are now weapon colors
+			if weapon_skin and not weapon_skin.is_a_color_skin then
+				local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)
+				if weapon_skin.use_blacklist then
+					found_weapon = not found_weapon
+				end
+				if not found_weapon then
+					local guis_catalog = "guis/"
+					local bundle_folder = weapon_skin.texture_bundle_folder
+					if bundle_folder then
+						guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
 					end
-					if not found_weapon then
-						local guis_catalog = "guis/"
-						local bundle_folder = weapon_skin.texture_bundle_folder
-						if bundle_folder then
-							guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
-						end
-						local texture_name = weapon_skin.texture_name or tostring(id)
-						local path = "weapon_skins/"
-						local texture_path = guis_catalog .. path .. texture_name
-						
-						local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
-						data[i].mini_icons = data[i].mini_icons or {}
-						table.insert(data[i].mini_icons, {
-							stream = true,
-							h = 24,--Scale down
-							layer = 0,
-							w = 48,--Scale down
-							right = 0,--Move left
-							texture = texture_path,
-							bottom = math.floor((#icon_list - 1) / 11) * 25 + 24
-						})
-					end
-				else
-					--v2.0: BeardLib universal skins use weapon color system now so we don't need to do anything.
+					local texture_name = weapon_skin.texture_name or tostring(id)
+					local path = "weapon_skins/"
+					local texture_path = guis_catalog .. path .. texture_name
+					
+					local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, slot)
+					data[i].mini_icons = data[i].mini_icons or {}
+					table.insert(data[i].mini_icons, {
+						stream = true,
+						h = 24,--Scale down
+						layer = 0,
+						w = 48,--Scale down
+						right = 0,--Move left
+						texture = texture_path,
+						bottom = math.floor((#icon_list - 1) / 11) * 25 + 24
+					})
 				end
 			end
 		end

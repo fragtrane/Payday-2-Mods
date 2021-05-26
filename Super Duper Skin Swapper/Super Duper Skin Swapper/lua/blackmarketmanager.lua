@@ -303,6 +303,11 @@ local orig_BlackMarketManager_weapon_cosmetics_type_check = BlackMarketManager.w
 function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_id)
 	local weapon_skin = tweak_data.blackmarket.weapon_skins[weapon_skin_id]
 	
+	--Allow all weapon colors
+	if weapon_skin and weapon_skin.is_a_color_skin then
+		return true
+	end
+	
 	--Get actual weapon category from weapon ID. Discard revolver and akimbo.
 	local function get_weapon_cat(weapon_id)
 		if tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].categories then
@@ -314,10 +319,10 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 		end
 	end
 	
-	--Don't do anything for Immortal Python (unlockable + global value tam)
-	--Don't do anything for BeardLib universal skins (unlockable + universal)
-	--Don't do anything for colors (uses blacklist)
-	if weapon_skin and (not weapon_skin.is_a_unlockable or (weapon_skin.global_value ~= "tam" and not weapon_skin.universal)) and not weapon_skin.use_blacklist then
+	--Filtering
+	--Don't do anything for weapon colors / BeardLib universal skins (is_a_color_skin)
+	--Don't do anything for Immortal Python (global value tam). Doesn't actually seem to be necessary anymore since the game filters it out.
+	if weapon_skin and not weapon_skin.is_a_color_skin and weapon_skin.global_value ~= "tam" then
 		--Safe filter
 		if SDSS._settings.sdss_filter_safe ~= "off" then
 			local allowed_skins = SDSS._safe_data[SDSS._settings.sdss_filter_safe] or {}
@@ -426,14 +431,10 @@ function BlackMarketManager:weapon_cosmetics_type_check(weapon_id, weapon_skin_i
 	end
 	
 	--Normal behavior if override doesn't return
-	--Weapon colors get handled by original function
-	--Note: Golden AK.762 has been removed from blacklist so it can use colors now (handled in weaponskinstweakdata.lua)
 	return orig_BlackMarketManager_weapon_cosmetics_type_check(self, weapon_id, weapon_skin_id)
 end
 
---Updated for v2.0 to prevent crash
 --Prevents unowned skins from being loaded (depending on options).
---Loads Immortal Python. weapon_cosmetics_type_check only allows unlockable skins (i.e. Immortal Python) on correct weapon.
 function BlackMarketManager:get_cosmetics_by_weapon_id(weapon_id)
 	if tweak_data.weapon[weapon_id] then
 		weapon_id = tweak_data.weapon[weapon_id].parent_weapon_id or weapon_id
@@ -445,23 +446,12 @@ function BlackMarketManager:get_cosmetics_by_weapon_id(weapon_id)
 		return {}
 	end
 	
-	--Put Immortal Python
+	--BlackMarketManager:weapon_cosmetics_type_check() is returning weapon colors so this list will never be empty.
+	--Put Immortal Python, let BlackMarketGui:choose_weapon_mods_callback() filter them out
 	--Put unowned skins if they aren't being hidden
 	local cosmetic_tweak = tweak_data.blackmarket.weapon_skins
 	
-	--Fix for weapons which don't have any skins.
-	--Note: the result is actually being used elsewhere now, so it causes a crash if we don't handle BlackMarketManager:is_weapon_skin_tam()
-	--local cosmetics = {dummy = {is_a_color_skin = true}}
-	
-	--So the old tempfix doesn't really seem to be needed anymore because BlackMarketManager:weapon_cosmetics_type_check() is returning weapon colors.
-	--As long as a weapon has not been blacklisted from using weapon colors the list will never be empty and we will be able to see skins.
-	--Weapons can be removed from the blacklist in weaponskinstweakdata.lua
 	local cosmetics = {}
-	
-	--If we wanted, we could use this to guarantee that the list is not empty.
-	--But since we just delete weapons from the blacklist in weaponskinstweakdata.lua, this isn't necessary.
-	--cosmetics["color_tan_khaki"] = cosmetic_tweak.color_tan_khaki
-	
 	for id, data in pairs(cosmetic_tweak) do
 		if self:weapon_cosmetics_type_check(weapon_id, id) and (data.is_a_unlockable or not SDSS._settings.sdss_hide_unowned) then
 			cosmetics[id] = data
@@ -471,7 +461,6 @@ function BlackMarketManager:get_cosmetics_by_weapon_id(weapon_id)
 	return cosmetics
 end
 
---Updated for v2.0
 --When using a swapped skin, put the default weapon icon over the rarity background
 --As of 2020-11-22 BeardLib no longer overwrites BlackMarketManager:get_weapon_icon_path() so old tempfix is no longer needed and we can do it like this
 --https://github.com/simon-wh/PAYDAY-2-BeardLib/commit/f83cd712069f50280481d90a16e9d593a62ce183
@@ -480,7 +469,7 @@ function BlackMarketManager:get_weapon_icon_path(weapon_id, cosmetics)
 	local id = cosmetics and cosmetics.id
 	if id then
 		local weapon_skin = tweak_data.blackmarket.weapon_skins[id]
-		if weapon_skin then
+		if weapon_skin and not weapon_skin.is_a_color_skin then
 			--Fix mistake in dump
 			--Check if right weapon
 			local found_weapon = (weapon_skin.weapon_ids and table.contains(weapon_skin.weapon_ids, weapon_id)) or (weapon_skin.weapon_id and weapon_skin.weapon_id == weapon_id)

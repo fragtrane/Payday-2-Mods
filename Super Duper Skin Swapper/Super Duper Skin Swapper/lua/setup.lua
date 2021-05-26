@@ -168,6 +168,17 @@ function SDSS:get_multi_name(multi_id)
 	end
 end
 
+--Tempfix for setting default weapon color. Call this when opening the weapon customization menu.
+--Old solution was to set it when achievements were loaded but apparently that only happens once, so the default color goes back after you play a heist/reload.
+function SDSS:set_default_weapon_color()
+	if self._settings.sdss_immortal_python then
+		local data = managers.achievment:get_milestone("ami_13")
+		if data and data.awarded then
+			tweak_data.blackmarket.weapon_color_default = "color_immortal_python"
+		end
+	end
+end
+
 --Wear preview, mostly stolen from OSA
 function SDSS:weapon_wear_handler(data)
 	--Show "Real Wear" tag if not a color and the skin is owned

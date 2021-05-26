@@ -2,7 +2,7 @@
 
 **Note: Super Duper Skin Swapper is NOT compatible with Optional Skin Attachments or Hide Duplicate Skins. Legendary skin support and duplicate hiding are already built into Super Duper Skin Swapper.**
 
-Latest version [v2.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.2.zip).
+Latest version [v2.3](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.3.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/26919).
 
@@ -66,7 +66,7 @@ Legendary attachments are only available for use when the corresponding legendar
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v2.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.2.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Super_Duper_Skin_Swapper_v2.3.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Super%20Duper%20Skin%20Swapper/Super_Duper_Skin_Swapper_v2.3.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -89,6 +89,11 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v2.3 - 2021-05-26**
+
+- Fixed an issue where rarity backgrounds could be set incorrectly for BeardLib universal skins.
+- Tempfix for an issue where the Immortal Python default weapon color option wasn't being set.
 
 **v2.2 - 2021-04-26**
 
