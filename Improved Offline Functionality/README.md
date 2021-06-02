@@ -1,6 +1,6 @@
 # Improved Offline Functionality
 
-Latest version [v2.1](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.1.zip).
+Latest version [v2.2](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.2.zip).
 
 This mod can also be found on [Mod Workshop](https://modworkshop.net/mod/25511).
 
@@ -24,7 +24,7 @@ Note that in the unlikely event that you reset your Steam achievements and have 
 
 This mod requires [SuperBLT](https://superblt.znix.xyz) for automatic updates.
 
-This is a BLT mod. Download [`Improved_Offline_Functionality_v2.1.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.1.zip) and extract the entire contents to your `mods` folder.
+This is a BLT mod. Download [`Improved_Offline_Functionality_v2.2.zip`](https://github.com/fragtrane/Payday-2-Mods/raw/master/Improved%20Offline%20Functionality/Improved_Offline_Functionality_v2.2.zip) and extract the entire contents to your `mods` folder.
 
 The location of the `mods` folder depends on where you installed the game; typically it can be found here:
 
@@ -34,7 +34,7 @@ C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 
 ## Acknowledgments
 
-Some parts of this mod (chat, armor regen, Winters) were inspired by Unknown Knight's [Simulate Online](https://modworkshop.net/mod/16175) mod.
+Some parts of this mod (chat, armor regen, Winters) were adapted from Unknown Knight's [Simulate Online](https://modworkshop.net/mod/16175) mod.
 
 ## Contact
 
@@ -43,6 +43,11 @@ Steam: [id/fragtrane](https://steamcommunity.com/id/fragtrane)
 Reddit: [/u/fragtrane](https://www.reddit.com/user/fragtrane)
 
 ## Changelog
+
+**v2.2 - 2021-06-02**
+
+- Fixed a bug where multiplayer lobbies would appear in Crime.net Offline (again).
+- Removed reset filters button from Crime.net Offline.
 
 **v2.1 - 2021-05-14**
 

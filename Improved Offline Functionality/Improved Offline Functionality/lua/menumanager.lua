@@ -9,10 +9,11 @@ Hooks:PostHook(MenuCrimeNetFiltersInitiator, "update_node", "IOF_post_MenuCrimeN
 			"divider_gamemode",--Divider between the gamemode selector and the toggles
 			"divider_2",--Divider between the toggles and the multiselectors
 			"server_filter",--Distance filter
+			"reset_filters",--Reset button
 			"beardlib_custom_maps_only"--BeardLib custom maps only (not in vanilla)
 		}
 		for _, item in ipairs(node:items() or {}) do
-			log(item:name())
+			--log(item:name())
 			
 			--Show difficulty filter when searching for standard game modes or when in single player
 			if item:name() == "difficulty_filter" then
@@ -46,13 +47,11 @@ Hooks:PostHook(MenuCrimeNetFiltersInitiator, "update_node", "IOF_post_MenuCrimeN
 end)
 
 --Load filters settings when a single player game is started
-local orig_MenuCallbackHandler_play_single_player = MenuCallbackHandler.play_single_player
-function MenuCallbackHandler:play_single_player()
+Hooks:PreHook(MenuCallbackHandler, "play_single_player", "IOF_pre_MenuCallbackHandler_play_single_player", function()
 	if IOF._settings.iof_filters and managers.network.matchmake and managers.network.matchmake.load_user_filters then
 		managers.network.matchmake:load_user_filters()
 	end
-	orig_MenuCallbackHandler_play_single_player(self)
-end
+end)
 
 --Enable chat, based on Seven/Unknown Knight's Simulate Online mod
 local orig_MenuManager_toggle_chatinput = MenuManager.toggle_chatinput
